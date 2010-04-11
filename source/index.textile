@@ -1,0 +1,11 @@
+<div class="section">
+
+h1(intro). The Unified Font Object (UFO) is a cross-platform, cross-application, human readable, future proof format for storing font data.
+
+h3. The UFO Design Philosophy
+
+# The data must be human readable and human editable.
+# The data should be application independent.
+# Data duplication should be avoided unless absolutely necessary.
+
+</div>

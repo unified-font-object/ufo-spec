@@ -1,0 +1,324 @@
+body {
+	min-width: 755px;
+	text-align: left;
+	background-color: black;
+	line-height: 1.40;
+	margin: 0px;
+	padding: 0px;
+	font-size: 11px;
+	font-family: Verdana, Helvetica, sans-serif;
+}
+
+p {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+a {
+	color: #cc0000;
+}
+
+a img {
+	border: none;
+}
+
+/* headlines */
+
+h1 {
+	margin-left: 0px;
+	margin-bottom: 20px;
+	margin-right: 0px;
+	margin-top: 10px;
+	padding: 5px 10px 5px 10px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #cc0000;
+	color: white;
+}
+
+h1.intro {
+	margin-left: 0px;
+	margin-bottom: 20px;
+	margin-right: 0px;
+	margin-top: 10px;
+	padding: 0px;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: white;
+	color: #777;
+}
+
+h2 {
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding: 5px 10px 5px 10px;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: #cc0000;
+	color: white;
+}
+
+h3 {
+	padding: 0px;
+	margin-bottom: 10px;
+	margin-top: 15px;
+	padding: 5px 10px 5px 10px;
+	border: 1px #cc0000 solid;
+	font-size: 11px;
+	font-weight: bold;
+	color: #cc0000;
+}
+
+h4 {
+	margin-bottom: 5px;
+	margin-top: 15px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #cc0000;
+}
+
+h5 {
+	padding: 0px;
+	font-style: italic;
+	margin-bottom: 5px;
+	margin-top: 10px;
+	font-size: 11px;
+	color: black;
+}
+
+h6 {
+	padding: 0px;
+	font-style: normal;
+	font-weight: bold;
+	margin-bottom: 5px;
+	margin-top: 10px;
+	font-size: 11px;
+	color: #666666;
+}
+
+/* tables */
+
+table {
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding: 0px;
+	width: 100%;
+	border-spacing: 0px 0px;
+	border: 1px #d8d8d8 solid;
+	font-size: 11px;
+}
+
+th {
+	padding: 5px;
+	text-align: left;
+	background-color: #d8d8d8;
+	font-size: 9px;
+	font-weight: bold;
+}
+
+tr:nth-child(odd) {
+	background-color: #ededed;
+}
+
+td {
+	padding: 5px;
+}
+
+/* code */
+
+pre code {
+	font-size: 11px;
+	font-family: Monaco, "Courier New", Courier, monospace;
+}
+
+pre p {
+	padding: 0px;
+	margin: 0px;
+}
+
+pre br {
+	padding: 0px;
+	margin: 0px;
+}
+
+/* lists */
+
+ol {
+	margin-left: 0px;
+	margin-bottom: 10px;
+	margin-right: 0px;
+	margin-top: 10px;
+	padding-left: 25px;
+}
+
+li {
+	list-style-type: decimal;
+	padding: 0px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	list-style-position: outside;
+}
+
+/* footnote */
+
+p.footnote {
+	font-size: 9px;
+	font-style: italic;
+}
+
+/* divs */
+
+#logo {
+	position: fixed;
+	width: 220px;
+	height: 200px;
+	top: 20px;
+	left: 20px;
+	background-image: url(logo.png);
+	background-repeat: no-repeat;
+	background-color: #cc0000;
+}
+
+#navigation {
+	position: fixed;
+	background-color: #333333;
+	width: 150px;
+	top: 230px;
+	left: 90px;
+}
+
+#content {
+	position: absolute;
+	top: 100px;
+	left: 250px;
+	padding: 0px 0px 20px 0px;
+	width: 600;
+}
+
+.section {
+	padding-right: 35px;
+	padding-left: 35px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	margin-bottom: 10px;
+	background-color: white;
+}
+
+/* navigation overrides */
+
+a.navigation {
+	color: white;
+	text-decoration: none;
+}
+
+a.navigation:hover {
+	color: #cc0000;
+}
+
+ul.navigation {
+	padding-right: 0px;
+	padding-left: 20px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+li.navigation {
+	margin: 0px;
+	font-weight: bold;
+	padding-left: 0px;
+	padding-bottom: 2px;
+	padding-right: 0px;
+	padding-top: 2px;
+	list-style-type: none;
+}
+
+li.secondaryNavigation {
+	margin: 0px;
+	list-style-type: none;
+	font-style: normal;
+	font-weight: normal;
+	padding-right: 0px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	border-left-width: 1px;
+	border-left-color: black;
+	border-left-style: solid;
+	padding-left: 7px;
+}
+
+/* file diagrams */
+
+span.filediagram-arrow {
+	color: #999;
+}
+
+ul.filediagram {
+	padding: 5px 10px 5px 10px;
+	border: 1px solid #d8d8d8;
+	background: rgba(0, 0, 0, 0.03);
+}
+
+ul.filediagram-nested {
+	margin: 5px 0px 5px 0px;
+	padding: 5px 10px 5px 10px;
+	border: 1px solid #d8d8d8;
+	background: rgba(0, 0, 0, 0.03);
+}
+
+li.filediagram-directory {
+	margin: 5px 0px 5px 0px;
+	padding: 0px;
+	font-weight: bold;
+	list-style-type: none;
+}
+
+li.filediagram-file {
+	margin: 5px 0px 5px 0px;
+	padding: 0px;
+	font-weight: normal;
+	list-style-type: none;
+}
+
+/* object tree diagrams */
+
+ul.treediagram {
+	padding: 5px 10px 5px 10px;
+	border: 1px solid #d8d8d8;
+	background: rgba(0, 0, 0, 0.03);
+}
+
+ul.treediagram-nested {
+	margin: 5px 0px 5px 0px;
+	padding: 5px 10px 5px 10px;
+	border: 1px solid #d8d8d8;
+	background: rgba(0, 0, 0, 0.03);
+}
+
+li.treediagram {
+	margin: 5px 0px 5px 0px;
+	padding: 0px;
+	font-weight: normal;
+	list-style-type: none;
+}
+
+/* prettify */
+
+.str { color: #080; }
+.kwd { color: #008; }
+.com { color: #800; }
+.typ { color: #606; }
+.lit { color: #066; }
+.pun { color: #660; }
+.pln { color: #000; }
+.tag { color: #008; }
+.atn { color: #606; }
+.atv { color: #080; }
+.dec { color: #606; }
+pre.prettyprint {
+	padding: 5px 0px 5px 10px;
+	background-color: #e5e5e5;
+}

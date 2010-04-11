@@ -1,0 +1,84 @@
+<div class="section">
+
+h1. Resources
+
+The UFO team strives to make it as easy as possible to add UFO support to applications and toolkits. To that effect, we present a small collection of resources.
+
+</div>
+
+
+<div class="section">
+
+h2. Macintosh Applications
+
+These resources are useful for developing Macintosh OS X applications that support the UFO format.
+
+h3. UFO Document Icon
+
+A standard UFO document icon. The file is provided in "Apple Icon Image format":http://en.wikipedia.org/wiki/Apple_Icon_Image.
+
+<a href="downloads/UFODocumentIcon.zip"><img src="media/resources-macicon.png" alt="UFO Icon" style="margin:0px 0px 0px -19px;" /></a>
+
+"Click to download":downloads/UFODocumentIcon.zip
+
+h3. UTI Declarations
+
+A set of standard "Uniform Type Identifier":http://developer.apple.com/macosx/uniformtypeidentifiers.html declarations.
+
+h4. UTExportedTypeDeclarations
+
+<pre class="prettyprint">
+&lt;array&gt;
+  &lt;dict&gt;
+    &lt;key&gt;UTTypeConformsTo&lt;/key&gt;
+    &lt;array&gt;
+      &lt;string&gt;com.apple.package&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;UTTypeDescription&lt;/key&gt;
+    &lt;string&gt;Unified Font Object&lt;/string&gt;
+    &lt;key&gt;UTTypeIconFile&lt;/key&gt;
+    &lt;string&gt;UFODocumentIcon.icns&lt;/string&gt;
+    &lt;key&gt;UTTypeIdentifier&lt;/key&gt;
+    &lt;string&gt;org.unifiedfontobject.ufo&lt;/string&gt;
+    &lt;key&gt;UTTypeReferenceURL&lt;/key&gt;
+    &lt;string&gt;http://unifiedfontobject.org&lt;/string&gt;
+    &lt;key&gt;UTTypeTagSpecification&lt;/key&gt;
+    &lt;dict&gt;
+      &lt;key&gt;public.filename-extension&lt;/key&gt;
+      &lt;array&gt;
+        &lt;string&gt;ufo&lt;/string&gt;
+      &lt;/array&gt;
+    &lt;/dict&gt;
+  &lt;/dict&gt;
+&lt;/array&gt;
+</pre>
+
+h4. UTImportedTypeDeclarations
+
+<pre class="prettyprint">
+&lt;array&gt;
+  &lt;dict&gt;
+    &lt;key&gt;UTTypeConformsTo&lt;/key&gt;
+    &lt;array&gt;
+      &lt;string&gt;com.apple.package&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;UTTypeDescription&lt;/key&gt;
+    &lt;string&gt;Unified Font Object&lt;/string&gt;
+    &lt;key&gt;UTTypeIconFile&lt;/key&gt;
+    &lt;string&gt;UFODocumentIcon.icns&lt;/string&gt;
+    &lt;key&gt;UTTypeIdentifier&lt;/key&gt;
+    &lt;string&gt;org.unifiedfontobject.ufo&lt;/string&gt;
+    &lt;key&gt;UTTypeReferenceURL&lt;/key&gt;
+    &lt;string&gt;http://unifiedfontobject.org&lt;/string&gt;
+    &lt;key&gt;UTTypeTagSpecification&lt;/key&gt;
+    &lt;dict&gt;
+      &lt;key&gt;public.filename-extension&lt;/key&gt;
+      &lt;array&gt;
+        &lt;string&gt;ufo&lt;/string&gt;
+      &lt;/array&gt;
+    &lt;/dict&gt;
+  &lt;/dict&gt;
+&lt;/array&gt;
+</pre>
+
+</div>

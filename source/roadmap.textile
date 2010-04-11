@@ -1,0 +1,567 @@
+<div class="section">
+
+h1. UFO 3
+
+h4. Draft 2: March 10, 2010
+
+The UFO 3 specification is currently in early development. This document describes the _changes_ to the UFO 2 specification. As such, this is not a complete specification. In no way a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":team.html
+
+UFO 3 contains a number of major additions along with some enhancements to the pervious specification. In short, the UFO now supports "layers":#layers, "images":#layertypes, "layer-level":#layerinfo and "glyph-level":#glyphguides guidelines, "point links":#pointlinks, "GLIF":#GLIF has some changes, "fontinfo.plist":#fontinfo has some new properties and there is a new "data directory":#data for storing large amounts of arbitrary data.
+
+The file structure in this draft looks like this:
+
+<ul class="filediagram">
+  <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> &#42;.ufo</li>
+  <ul class="filediagram-nested">
+    <li class="filediagram-file">metainfo.plist</li>
+    <li class="filediagram-file">fontinfo.plist</li>
+    <li class="filediagram-file">groups.plist</li>
+    <li class="filediagram-file">kerning.plist</li>
+    <li class="filediagram-file">features.plist</li>
+    <li class="filediagram-file">lib.plist</li>
+    <li class="filediagram-file">layercontents.plist</li>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">&#42;.glif</li>
+    </ul>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs.&#42;</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">&#42;.glif</li>
+    </ul>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> images</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">&#42;.png</li>
+    </ul>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9654;</span> data</li>
+  </ul>
+</ul>
+
+</div>
+
+
+<div class="section">
+
+h2(#layers). Layers
+
+The biggest change in UFO 3 is that the UFO now supports layers. These layers can be used for anything--the standard _main+background+image_ drawing environment, multi-layered fonts, glyph revision history and so on. The UFO layering system is designed to be conceptually unrestricted. However, this does not mean that layers should be used to store an entire family of weights within a single UFO. The UFO is a single style file format, not a family format.
+
+Layers are implemented as a series of glyph sets within the UFO. There is one required layer--the _glyphs_ directory. This directory is considered the primary outline source of the font. Additional layers are represented as additional directories that adhere to the naming convention of _glyphs.&#42;_ where _&#42;_ is a unique, case-insensitive, file-system legal string.
+
+The top level of the UFO gains one new file, "layercontents.plist":#layercontents This file maps layer directory names to layer names. Each layer may have a "layerinfo.plist":#layerinfo file. Each layer may contain glyphs that are or are not part of other layers. The structure of the UFO, as it relates to layers, looks like this:
+
+<ul class="filediagram">
+  <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> &#42;.ufo</li>
+  <ul class="filediagram-nested">
+    <li class="filediagram-file">layercontents.plist</li>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">&#42;.glif</li>
+    </ul>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs.&#42;</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">&#42;.glif</li>
+    </ul>
+  </ul>
+</ul>
+
+For example, this UFO contains three layers--the main layer, a layer named "Reference" and another named "Pencil Sketches":
+
+<ul class="filediagram">
+  <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> &#42;.ufo</li>
+  <ul class="filediagram-nested">
+    <li class="filediagram-file">layercontents.plist</li>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">A.glif</li>
+      <li class="filediagram-file">B.glif</li>
+    </ul>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs.reference</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">A.glif</li>
+      <li class="filediagram-file">B.glif</li>
+    </ul>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs.pencil_sketches</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">A.glif</li>
+      <li class="filediagram-file">B.glif</li>
+      <li class="filediagram-file">C.glif</li>
+    </ul>
+  </ul>
+</ul>
+
+h3(#layertypes). Layer Types
+
+There are two types of layers--outline layers and image layers. All glyphs within a single glyph set must be the same type of layer. The required _glyphs_ directory must be an outline layer. The glyphs in both outline and image layers are stored in GLIF format.
+
+h3(#layercontents). layercontents.plist
+
+| *File Format* | Property List |
+
+h4. Description
+
+This file maps the layer names to the _glyphs_ directory names. Those directory names must be plain directory names, not absolute or relative paths in the file system. Care must be taken when choosing directory names: many file systems have character, length and case sensitivity restrictions. There is no one standard layer name to directory name conversion. However, a sample one must be developed[1]. Additionally, all layers must have unique names within the UFO.
+
+The mapping is stored as an array in the property list. This array also defines the order of the layers from top to bottom. The mapping is stored within the array as arrays containing the layer names first and the directory name second.
+
+fn1. The glyph name to GLIF file name conversion should provide a good starting point for this. Perhaps that algorithm can be abstracted so that it is file name extension agnostic. It will also need to gain an additional step to handle characters that may not be suitable for use in a file system name.
+
+h5. Example
+
+<pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;
+&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;array&gt;
+  &lt;array&gt;
+    &lt;string&gt;&lt;/string&gt;
+    &lt;string&gt;glyphs&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;Sketches&lt;/string&gt;
+    &lt;string&gt;glyphs.S_ketches&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;Reference&lt;/string&gt;
+    &lt;string&gt;glyphs.R_eference&lt;/string&gt;
+  &lt;/array&gt;
+&lt;/array&gt;
+&lt;/plist&gt;
+</pre>
+
+
+h3(#layerinfo). layerinfo.plist
+
+| *File Format* | Property List |
+
+h4. Description
+
+This file contains information about the layer. This file is optional. Not all values are required for a proper file.
+
+h4. Version 1
+
+The property list data consists of a dictionary at the top level. The keys and values are as follows.
+
+|_. key        |_. value type              |_. description |_. default value |
+| guidelines   | array                     | An array of guideline definitions that apply to all glyphs in the layer. | None |
+| fillColor    | string                    | The color that should be used to fill all glyphs in the layer. The format follows the "color definition":#color standard. This attribute is optional. | None |
+| strokeColor  | string                    | The color that should be used to stroke all glyphs in the layer. The format follows the "color definition":#color standard. This attribute is optional. | None |
+| strokeWidth | positive integer or float | The weight of the stroke to be applied to all glyphs in the layer. This attribute is optional. | None |
+| lib          | dictionary | A lib specific to the layer. To avoid naming conflicts, keys should use the Reverse Domain Naming Convention defined for lib.plist. | None |
+
+In an image glyph layer, strokeColor and strokeWidth should be ignored.
+
+h5. Guideline Format
+
+The guidelines are stored as dictionaries of the following format.
+
+|_. key    |_. value type     |_. description |_. default value |
+| x        | integer or float | The 'x' coordinate. | None. Optional if _y_ is provided and _angle_ is not provided. See below for details. |
+| y        | integer or float | The 'y' coordinate. | None. Optional if _x_ is provided and _angle_ is not provided. See below for details. |
+| angle    | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None. Optional if x or y are provided. See below for details. |
+| name     | string           | An arbitrary name for the guideline. This attribute is optional.  | None |
+| color    | string           | The color that should be applied to the guideline. The format follows the "color definition":#color standard. This attribute is optional. | None |
+
+The guideline extends along _angle_ to infinity in both directions out of the point defined by _x_ and _y_. If _y_ and _angle_ are omitted, the element represents a vertical guideline. If _x_ and _angle_ are omitted, the element represents a horizontal guideline. If _y_ is omitted and _angle_ if provided, _y_ is zero. If _x_ is omitted and _angle_ is provided, _x_ is zero.
+</div>
+
+
+<div class="section">
+
+h2(#GLIF). GLIF
+
+h3. Version 2
+
+A GLIF may represent either an outline glyph or an image glyph. If a GLIF contains an &lt;outline&gt; element within the top level &lt;glyph&gt; element, the glyph is an outline glyph. If a GLIF contains one or more &lt;image&gt; elements within the top level &lt;glyph&gt; element, the glyph is an image glyph. Within a layer, if no GLIF files contain either an &lt;outline&gt; or an &lt;image&gt; element within the top level &lt;glyph&gt; elements, the layer is an outline layer. Outline glyphs must not contain images. Image glyphs must not contain outlines. The basic tree structures for each format are as follows:
+
+h5. Outline Glyph Structure
+
+<ul class="treediagram">
+  <li class="treediagram">glyph</li>
+  <ul class="treediagram">
+    <li class="treediagram">advance</li>
+    <li class="treediagram">unicode</li>
+    <li class="treediagram">lib</li>
+    <li class="treediagram">guideline</li>
+    <li class="treediagram">outline</li>
+    <ul class="treediagram">
+      <li class="treediagram">contour</li>
+      <ul class="treediagram">
+        <li class="treediagram">point</li>
+      </ul>
+      <li class="treediagram">component</li>
+      <li class="treediagram">link</li>
+      <ul class="treediagram">
+        <li class="treediagram">linkref</li>
+      </ul>
+    </ul>
+  </ul>
+</ul>
+
+h5. Image Glyph Structure
+
+<ul class="treediagram">
+  <li class="treediagram">glyph</li>
+  <ul class="treediagram">
+    <li class="treediagram">advance</li>
+    <li class="treediagram">unicode</li>
+    <li class="treediagram">lib</li>
+    <li class="treediagram">guideline</li>
+    <li class="treediagram">image</li>
+  </ul>
+</ul>
+
+h3(#glifimage). &lt;image&gt;  An image reference.
+
+h4. Attributes
+
+|_. attribute name |_. data type |_. description |_. default value |
+| fileName         | string      | The image file name. | None |
+| directory        | string      | The directory the image is stored in. If this is not given, the image must be stored in the _images_ directory within the UFO. | None |
+| xScale           | integer or float | See below. | 1 |
+| xyScale          | integer or float | See below. | 0 |
+| yxScale          | integer or float | See below. | 0 |
+| yScale           | integer or float | See below. | 1 |
+| xOffset          | integer or float | See below. | 0 |
+| yOffset          | integer or float | See below. | 0 |
+| color            | string | The color that should be applied to the image. The format follows the "color definition":#color standard. This attribute is optional. If no color is provided, the image should be drawn using the colors stored in the image data. | None |
+
+xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is [1 0 0 1 0 0], the identity transformation.
+
+This element has no child elements. However, a mask child element could be of use.
+
+h5. Coloring Images
+
+If a color is to be applied to an image, as a result of a color attribute in an image element or a layer fill color attribute in "layerinfo.plist":#layerinfo, the application displaying the image should convert the image to grayscale and then apply the color.
+
+h3(#glyphguides). &lt;guideline&gt; A reference guideline.
+
+This element may occur any number of times.
+
+h4. Attributes
+
+|_. attribute name |_. data type      |_. description |_. default value |
+| x                | integer or float | The 'x' coordinate. | None. Optional if _y_ is provided and _angle_ is not provided. See below for details. |
+| y                | integer or float | The 'y' coordinate. | None. Optional. See below for details. |
+| angle            | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None |
+| name             | string           | An arbitrary name for the guideline. This attribute is optional.  | None |
+| color            | string           | The color that should be applied to the guideline. The format follows the "color definition":#color standard. This attribute is optional. | None |
+
+The guideline extends along _angle_ to infinity in both directions out of the point defined by _x_ and _y_. If _y_ and _angle_ are omitted, the element represents a vertical guideline. If _x_ and _angle_ are omitted, the element represents a horizontal guideline. If _y_ is omitted and _angle_ if provided, _y_ is zero. If _x_ is omitted and _angle_ is provided, _x_ is zero.
+
+h4. Child Elements
+
+This element has no child elements.
+
+h3(#contour). &lt;contour&gt; Contour description.
+
+The contour element gains a new name attribute.
+
+|_. attribute name |_. data type |_. description |_. default value |
+| name             | string      | Arbitrary name or label for this contour. The name does not have to be unique within an outline. | None |
+
+
+h3. &lt;component&gt; Insert another glyph as part of the outline.
+
+The component element gains a new name attribute.
+
+|_. attribute name |_. data type |_. description |_. default value |
+| name             | string      | Arbitrary name or label for this component. The name does not have to be unique within an outline. | None |
+
+This element has a new rule that governs component behavior as it relates to layers: When multiple glyphs directories are in the font, a component may only reference a glyph within the same glyphs directory that contains the glyph that contains the component.
+
+h3(#pointlinks). &lt;link&gt; A collection of point references.
+
+Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The _link_ element may contain a _type_ string that applications can use to define what a particular link represents.
+
+This element may occur any number of times.
+
+h4. Child Elements
+
+|_. element name |_. description |
+| linkref        | Must occur at least twice. |
+
+h4. Attributes
+
+|_. attribute name |_. data type |_. description |
+| type             | string      | Optional. An arbitrary string describing the type of link. |
+
+h5. Notes
+
+This seems very open ended. This is both a good thing and a bad thing. On the one hand it makes many, many things possible. On the other hand, because there is no defined correlation with font binary data structures, the links could ultimately become application specific blobs. We need to give this some thought. We could have a list of common types: stem, counter, x-height and so on. Applications would be free to do with those as they wish, but at least the types would be abstract enough to be portable.
+
+h3. &lt;linkref&gt; A reference to a particular point in the glyph.
+
+This element must occur at least twice.
+
+This element has no child elements.
+
+h4. Attributes
+
+|_. attribute name |_. data type |_. description |
+| contour          | string      | The name of the contour being referenced. This corresponds to the name attribute of the contour element. |
+| point            | string      | The name of the point being referenced. This corresponds to the name attribute of the point element. |
+
+h5. Notes
+
+Are contour and point always required? Should we add a component attribute?
+
+</div>
+
+
+<div class="section">
+
+h2(#fontinfo). fontinfo.plist
+
+There are several additions to the font info file.
+
+h3. OpenType Name Table Records
+
+A list of specific OpenType name table records. This is an addition to the top level of the font info dictionary. The name table fields are covered by the top level info fields. This name record storage area is intended for records that require platform, encoding and or language localization.
+
+|_. key               |_. value type |_. description |
+| openTypeNameRecords | list         | A list of name records. |
+
+h4. Name Table Record Format
+
+The records are stored as dictionaries of the following format.
+
+|_. key      |_. value type |_. description |
+| nameID     | integer      | The name ID. |
+| platformID | integer      | The platform ID. |
+| encodingID | integer      | The encoding ID. |
+| languageID | integer      | The language ID. |
+| string     | string       | The string value for the record. |
+
+Records must have a unique nameID, platformID, encodingID and languageID combination.
+
+h3. WOFF Fields
+
+Many of these fields _can_ be populated from generic fontinfo.plist elements, but since WOFF is a wrapper format they _may not_ always be duplicated. As such, all of the WOFF fields are unique key/value pairs.
+
+|_. key                    |_. value type |_. description |
+| woffMajorVersion         | integer      | Major version of the font. |
+| woffMinorVersion         | integer      | Minor version of the font. |
+| woffMetadataUniqueID     | string       | Identification string. Corresponds to the uniqueid element id attribute. |
+| woffMetadataVendor       | string       | Font vendor. Corresponds to the vendor element name attribute. |
+| woffMetadataVendorURL    | string       | Font vendor URL. Corresponds to the vendor element url attribute. |
+| woffMetadataCredits      | list         | List of credit records. Corresponds to the credits element. |
+| woffMetadataDescription  | string       | Description string. Corresponds to the description element. |
+| woffMetadataLicense      | string       | License string. Corresponds to the license element. |
+| woffMetadataLicenseID    | string       | License ID string. Corresponds to the license element id attribute. |
+| woffMetadataLicenseURL   | string       | License URL string. Corresponds to the license element url attribute. |
+| woffMetadataCopyright    | string       | Copyright string. Corresponds to the copyright element. |
+| woffMetadataTrademark    | string       | Trademark string. Corresponds to the trademark element. |
+| woffMetadataLicenseeName | string       | Licensee name string. Corresponds to the licensee element name attribute. |
+| woffMetadataRecords      | list         | List of metadata records. This record storage area is intended for records that require language localization. |
+
+h4. Credit Record
+
+The records are stored as dictionaries of the following format.
+
+|_. key |_. value type |_. description |
+| name  | string       | The name for the credit. |
+| url   | string       | The url for the credit. |
+| role  | string       | The role for the credit. |
+
+h4. Metadata Records
+
+The records are stored as dictionaries of the following format.
+
+|_. key    |_. value type |_. description |
+| tag      | string       | The element tag of the record. |
+| language | string       | The language tag of the record. |
+| text     | string       | The text for of record. |
+
+h5. Localization Notes
+
+The metadata attributes at the top of this file correspond to the default, unlocalized elements in the WOFF metadata. If an element needs to be localized, the localized element is stored as a Metadata Record in the woffMetadataRecords array. For example, this shows how the WOFF section of fontinfo.plist would look if it contained a localized license.
+
+<pre class="prettyprint">
+&lt;key&gt;woffMetadataLicense&lt;/key&gt;
+&lt;string&gt;A license goes here.&lt;/string&gt;
+&lt;key&gt;woffMetadataLicenseID&lt;/key&gt;
+&lt;string&gt;fontvendor-web-corporate-v2&lt;/string&gt;
+&lt;key&gt;woffMetadataRecords&lt;/key&gt;
+&lt;array&gt;
+  &lt;dict&gt;
+    &lt;key&gt;tag&lt;/key&gt;
+    &lt;string&gt;license&lt;/string&gt;
+    &lt;key&gt;language&lt;/key&gt;
+    &lt;string&gt;en&lt;/string&gt;
+    &lt;key&gt;text&lt;/key&gt;
+    &lt;string&gt;A license goes here.&lt;/string&gt;
+  &lt;/dict&gt;
+  &lt;dict&gt;
+    &lt;key&gt;tag&lt;/key&gt;
+    &lt;string&gt;license&lt;/string&gt;
+    &lt;key&gt;language&lt;/key&gt;
+    &lt;string&gt;fr&lt;/string&gt;
+    &lt;key&gt;text&lt;/key&gt;
+    &lt;string&gt;Un permis va ici.&lt;/string&gt;
+  &lt;/dict&gt;
+&lt;/array&gt;
+</pre>
+
+h3. Kerning Group Prefixes
+
+If an application allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the _leftKerningGroupPrefix_ or the _rightKerningGroupPrefix_. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
+
+|_. key                   |_. value type |_. description |
+| leftKerningGroupPrefix  | string       | An arbitrary string that defines the group name prefix for left kerning groups used in the pairs dictionary. This string should not be the same as the string in rightKerningGroupPrefix. |
+| rightKerningGroupPrefix | string       | An arbitrary string that defines the group name prefix for right kerning groups used in the pairs dictionary. This string should not be the same as the string in leftKerningGroupPrefix. |
+
+</div>
+
+<div class="section">
+
+h2(#kerning). kerning.plist
+
+In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the leftKerningGroupPrefix and rightKerningGroupPrefix found in fontinfo.plist. Knowing the kerning group prefixes allows an application to step through the kerning pair members, perform a string match on the beginning of a member and confidently know if the member is a group or glyph reference.
+
+h3. Converting to UFO 3 formatted kerning
+
+Converting from UFO 1 and UFO 2 is possible. An algorithm and sample implementation are below.
+
+h4. Conversion algorithm
+
+# Make lists of groups referenced on the left and right of kerning pairs.
+## Create new names for these groups.
+### The names must be unique within the overall groups dictionary.
+### The names must begin with the appropriate prefix as defined by leftKerningGroupPrefix and rightKerningGroupPrefix in fontinfo.plist.
+# Populate the new group names into the kerning dictionary as needed.
+# Make copies of the referenced groups and store them under the new names in the overall groups dictionary.
+
+h4. Sample conversion implementation
+
+<pre class="prettyprint">
+def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups,
+    leftKerningGroupPrefix="@KERN_L_",
+    rightKerningGroupPrefix="@KERN_R_"):
+    # The prefixes must be unique.
+    assert leftKerningGroupPrefix != rightKerningGroupPrefix
+    # 1. Create a mapping of old group names
+    #    to new group names.
+    leftGroupRename = {}
+    rightGroupRename = {}
+    # Iterate through all kerning pairs.
+    for left, right in kerning.keys():
+        # If the left member has the same name as a group,
+        # it is considered a group.
+        if left in groups and left not in leftGroupRename:
+            # Add the prefix to the group name if necessary.
+            newName = left
+            if not left.startswith(leftKerningGroupPrefix):
+                newName = leftKerningGroupPrefix + left
+                # Make a unique group name.
+                newName = makeUniqueGroupName(
+                  newName, groups.keys() + leftGroupRename.keys())
+            # Store the old and new names.
+            leftGroupRename[left] = newName
+        # If the right member has the same name as a group,
+        # it is considered a group.
+        if right in groups and right not in rightGroupRename:
+            # Add the prefix to the group name if necessary.
+            if not right.startswith(rightKerningGroupPrefix):
+                newName = rightKerningGroupPrefix + right
+                # Make a unique group name.
+                newName = makeUniqueGroupName(
+                  newName, groups.keys() + rightGroupRename.keys())
+            # Store the old and new names.
+            rightGroupRename[right] = newName
+    # 2. Iterate through all kerning pairs and
+    #    rename group references.
+    ufo3Kerning = {}
+    for (left, right), value in kerning.items():
+        # Get the renamed left group if possible.
+        if left in leftGroupRename:
+            left = leftGroupRename[left]
+        # Get the renamed right group if possible.
+        if right in rightGroupRename:
+            right = rightGroupRename[right]
+        # Store the pair.
+        ufo3Kerning[left, right] = value
+    # 3. Store the renamed groups under their new names.
+    ufo3Groups = {}
+    # Iterate through the left groups.
+    for oldName, newName in leftGroupRename.items():
+        ufo3Groups[newName] = groups[oldName]
+    # Iterate through the right groups.
+    for oldName, newName in rightGroupRename.items():
+        ufo3Groups[newName] = groups[oldName]
+    # Store the original groups.
+    ufo3Groups.update(groups)
+    # 4. Return the kerning and the groups.
+    return ufo3Kerning, ufo3Groups
+</pre>
+
+<pre class="prettyprint">
+def makeUniqueGroupName(name, groupNames, counter=0):
+    # Add a number to the name if the counter is higher than zero.
+    newName = name
+    if counter > 0:
+        newName = "%s%d" % (newName, counter)
+    # If the new name is in the existing group names, recurse.
+    if newName in groupNames:
+        return makeUniqueGroupName(name, groupNames, counter + 1)
+    # Otherwise send back the new name.
+    return newName
+</pre>
+
+</div>
+
+<div class="section">
+
+h2(#images). images directory
+
+Images files may be stored within the UFO or not. If they are stored within the UFO, they must be stored in an _images_ directory at the top of the UFO. Obviously, each image must have a unique file name. However, beyond that there are no file name requirements. Applications should try to prevent duplicate images, but this is not a requirement of the UFO format. Applications should also try to remove unreferenced images from the images directory, but this is not a requirement of the UFO format.
+
+We are debating whether the specification should allow only one image type, a set of image types or any image types. One image type or a set of image types will be easiest for implementations. Any image type will be easiest for users, but could raise some implementation compatibility problems.
+
+</div>
+
+<div class="section">
+
+h2(#data). data directory
+
+This directory allows applications to store application specific data that is too complex or too large for lib.plist. The items within the directory may be either files or directories. The only requirement is that the top level files and directories follow the same reverse domain naming convention used in lib.plist. Applications are required to copy the entire data directory tree.
+
+If an application uses the data directory to store its own outline data or data that is dependent on the outline data stored elsewhere in the UFO, it is the responsibility of that application to ensure that the data in _glyphs_ and _glyphs.&#42;_ is up to date. The outline data in _glyphs_ and _glyphs.&#42;_ is always considered current.
+
+</div>
+
+<div class="section">
+
+h2(#color). Color Definitions
+
+Several elements have a color attribute that defines a color value to be applied to the element. A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the "sRGB":http://en.wikipedia.org/wiki/SRGB color space.
+
+</div>
+
+
+<div class="section">
+
+h2(#compactufo). Compact UFO
+
+A couple of people have asked about creating a compacted version of the UFO. The easiest way to do this would be to put the contents of the UFO into a zip archive. On a general level, this seems easy enough to do in the specification, there are precedents for compacting packages this way and there would be some benefits for the user. However, the implementation of this will be complicated for applications.
+
+By design the UFO doesn't place a limit on how many glyphs can be in a font, so there could be lots and lots of GLIF files within a UFO. (Modern file systems would allow for up to 4,294,967,295 GLIF files.) The nice thing about the existing UFO structure is that it allows for very efficient management of the GLIF files. Not all glyphs must be loaded all of the time and saving procedures are very simple--if a glyph is to be removed, it is removed with an operating system call; if a glyph is unchanged since loading, the existing GLIF doesn't need to be resaved; a "save as" operation can be initiated with a directory tree copy. Our experiments with creating a compact version of the UFO, for example inside of a zip archive, have indicated that the aforementioned simplicity is no longer available. In the case of zip archives, files cannot be programmatically removed from or replaced in an existing zip. (At least they can't with the Python API.) This means that the entire contents of the UFO must be rewritten with each save. If there are a large number of glyphs, this could introduce serious memory issues. One way around this may be to do a directory tree copy to a temporary location, make the UFO changes, recompress and replace the existing file. This could lead to serious performance issues, so it needs to be studied before moving forward with this addition to the specification.
+
+
+While this is under consideration, it is unlikely to make it into the UFO 3 specification.
+
+</div>
