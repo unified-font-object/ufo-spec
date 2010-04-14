@@ -50,6 +50,8 @@ def runFolder(directory, currentDepth=0):
             continue
         if fileName == "downloads":
             continue
+        if fileName.startswith("."):
+            continue
 
         print "processing %s..." % fileName
 
