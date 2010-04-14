@@ -2,7 +2,7 @@
 
 h1. UFO 3
 
-h4. Draft 2: March 10, 2010
+h4. Draft 3: XXX
 
 The UFO 3 specification is currently in early development. This document describes the _changes_ to the UFO 2 specification. As such, this is not a complete specification. In no way a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":team.html
 
@@ -299,10 +299,21 @@ h4. Attributes
 
 |_. attribute name |_. data type |_. description |
 | type             | string      | Optional. An arbitrary string describing the type of link. |
+| name             | string      | Optional. Arbitrary name or label for this link. The name does not have to be unique. |
 
 h5. Notes
 
 This seems very open ended. This is both a good thing and a bad thing. On the one hand it makes many, many things possible. On the other hand, because there is no defined correlation with font binary data structures, the links could ultimately become application specific blobs. We need to give this some thought. We could have a list of common types: stem, counter, x-height and so on. Applications would be free to do with those as they wish, but at least the types would be abstract enough to be portable.
+
+h4. Example
+
+<pre class="prettyprint">
+&lt;link type=&quot;vertical-stem&quot; name="stem 1"&gt;
+  &lt;linkref contour=&quot;Contour 1&quot; point=&quot;Point 4&quot;/&gt;
+  &lt;linkref contour=&quot;Contour 1&quot; point=&quot;Point 8&quot;/&gt;
+&lt;/link&gt;
+
+</pre>
 
 h3. &lt;linkref&gt; A reference to a particular point in the glyph.
 
