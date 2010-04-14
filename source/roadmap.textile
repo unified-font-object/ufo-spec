@@ -430,11 +430,11 @@ The metadata attributes at the top of this file correspond to the default, unloc
 
 h3. Kerning Group Prefixes
 
-If an application allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the _leftKerningGroupPrefix_ or the _rightKerningGroupPrefix_. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
+If an application allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the _firstKerningGroupPrefix_ or the _secondKerningGroupPrefix_. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
 
 |_. key                   |_. value type |_. description |
-| leftKerningGroupPrefix  | string       | An arbitrary string that defines the group name prefix for left kerning groups used in the pairs dictionary. This string should not be the same as the string in rightKerningGroupPrefix. |
-| rightKerningGroupPrefix | string       | An arbitrary string that defines the group name prefix for right kerning groups used in the pairs dictionary. This string should not be the same as the string in leftKerningGroupPrefix. |
+| firstKerningGroupPrefix  | string       | An arbitrary string that defines the group name prefix for first kerning groups used in the pairs dictionary. This string should not be the same as the string in secondKerningGroupPrefix. |
+| secondKerningGroupPrefix | string       | An arbitrary string that defines the group name prefix for second kerning groups used in the pairs dictionary. This string should not be the same as the string in firstKerningGroupPrefix. |
 
 </div>
 
@@ -442,7 +442,13 @@ If an application allows the user to edit group kerning (aka class kerning), the
 
 h2(#kerning). kerning.plist
 
-In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the leftKerningGroupPrefix and rightKerningGroupPrefix found in fontinfo.plist. Knowing the kerning group prefixes allows an application to step through the kerning pair members, perform a string match on the beginning of a member and confidently know if the member is a group or glyph reference.
+This file contains horizontal kerning pairs for the font. This file is optional. If it is not defined in the UFO, there is no horizontal kerning data.
+
+The property list data consists of a dictionary at the top level. Keys are _first_ glyph or group names and values are dictionaries. These dictionaries contain _second_ glyph or group names as keys and kerning values as the values. Glyphs or groups in the pairs are not required to be in the font.
+
+The kerning data is writing direction neutral. For text written left-to-right, the left-most glyph is the key in the top level dictionary. For text written right-to-left, the right-most glyph is the key in the top level dictionary. For example, given the pair _LG_, written left-to-right, the _L_ is the key in the top dictionary and the _G_ is the sub-dictionary. Given the pair _GL_, written right-to-left, the _G_ is the key in the top dictionary and the _L_ is the key in the sub-dictionary.
+
+In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the firstKerningGroupPrefix and secondKerningGroupPrefix found in fontinfo.plist. Knowing the kerning group prefixes allows an application to step through the kerning pair members, perform a string match on the beginning of a member and confidently know if the member is a group or glyph reference.
 
 h3. Converting to UFO 3 formatted kerning
 
@@ -453,7 +459,7 @@ h4. Conversion algorithm
 # Make lists of groups referenced on the left and right of kerning pairs.
 ## Create new names for these groups.
 ### The names must be unique within the overall groups dictionary.
-### The names must begin with the appropriate prefix as defined by leftKerningGroupPrefix and rightKerningGroupPrefix in fontinfo.plist.
+### The names must begin with the appropriate prefix as defined by firstKerningGroupPrefix and secondKerningGroupPrefix in fontinfo.plist.
 # Populate the new group names into the kerning dictionary as needed.
 # Make copies of the referenced groups and store them under the new names in the overall groups dictionary.
 
@@ -461,8 +467,8 @@ h4. Sample conversion implementation
 
 <pre class="prettyprint">
 def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups,
-    leftKerningGroupPrefix="@KERN_L_",
-    rightKerningGroupPrefix="@KERN_R_"):
+    leftKerningGroupPrefix="@KERN_1_",
+    rightKerningGroupPrefix="@KERN_2_"):
     # The prefixes must be unique.
     assert leftKerningGroupPrefix != rightKerningGroupPrefix
     # 1. Create a mapping of old group names
@@ -531,6 +537,67 @@ def makeUniqueGroupName(name, groupNames, counter=0):
         return makeUniqueGroupName(name, groupNames, counter + 1)
     # Otherwise send back the new name.
     return newName
+</pre>
+
+<pre class="prettyprint">
+>>> testKerning = {
+...     "A" : {
+...         "A" : 1,
+...         "B" : 2,
+...         "CGroup" : 3,
+...         "DGroup" : 4
+...     },
+...     "BGroup" : {
+...         "A" : 5,
+...         "B" : 6,
+...         "CGroup" : 7,
+...         "DGroup" : 8
+...     },
+...     "CGroup" : {
+...         "A" : 9,
+...         "B" : 10,
+...         "CGroup" : 11,
+...         "DGroup" : 12
+...     },
+... }
+>>> testGroups = {
+...     "BGroup" : ["B"],
+...     "CGroup" : ["C"],
+...     "DGroup" : ["D"],
+... }
+>>> kerning, groups = convertUFO1OrUFO2KerningToUFO3Kerning(
+...     testKerning, testGroups)
+>>> kerning
+{
+    "A" : {
+        "A": 1,
+        "B": 2,
+        "@KERN_2_CGroup": 3,
+        "@KERN_2_DGroup": 4
+    },
+    "@KERN_1_BGroup": {
+        "A": 5,
+        "B": 6,
+        "@KERN_2_CGroup": 7,
+        "@KERN_2_DGroup": 8
+    },
+    "@KERN_1_CGroup": {
+        "A": 9,
+        "B": 10,
+        "@KERN_2_CGroup": 11,
+        "@KERN_2_DGroup": 12
+    }
+}
+>>> groups
+{
+    "BGroup": ["B"],
+    "CGroup": ["C"],
+    "DGroup": ["D"],
+    "@KERN_1_BGroup": ["B"],
+    "@KERN_1_CGroup": ["C"],
+    "@KERN_2_CGroup": ["C"],
+    "@KERN_2_DGroup": ["D"],
+}
 </pre>
 
 </div>
