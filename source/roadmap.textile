@@ -260,7 +260,7 @@ h4. Attributes
 
 |_. attribute name |_. data type |_. description |_. default value |
 | fileName         | string      | The image file name. | None |
-| directory        | string      | The directory the image is stored in. If this is not given, the image must be stored in the _images_ directory within the UFO. | None |
+| directory        | string      | The directory the image is stored in. If this is not given, the image must be stored in the _images_ directory within the UFO. <span class="editorsnote">Is this path relative to the UFO, file system or something else?</span> | None |
 | xScale           | integer or float | See below. | 1 |
 | xyScale          | integer or float | See below. | 0 |
 | yxScale          | integer or float | See below. | 0 |
@@ -271,7 +271,7 @@ h4. Attributes
 
 xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is [1 0 0 1 0 0], the identity transformation.
 
-This element has no child elements. However, a mask child element could be of use.
+This element has no child elements.
 
 h5. Coloring Images
 
@@ -344,6 +344,36 @@ h3(#pointlinks). &lt;link&gt; A collection of point references.
 Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The _link_ element may contain a _type_ string that applications can use to define what a particular link represents.
 
 This element may occur any number of times.
+
+<div class="implementationnote">
+Links are going to be a challenge to implement. There are two challenges: 1. How are they read from and written to a glyph object? Pen? Defined API and data structure? 2. How are they to be interpreted? In ufo2fdk it might be good to allow manual hinting via links. How will the package know which links to pay attention to? What is the structure of those links?
+
+*Reading and Writing*
+We could add an addLink(contourAndPointNamePairs, type, name=None) method pen and pointPen. This would be a breaking change that we could mitigate with try: except: and a deprecation warning while pens are still being updated. This raises the question: are links part of the outline? Pens are for transmitting outline data. The advantage with adding a method to the pens is that the responsibility for iterating and coercing to the proper structure is the duty of the appropriate object's draw and drawPoints methods.
+
+Alternatively, we could set a new protocol for a standard links attribute and the linkref objects it contains. The advantage with this is that it won't break any pens. The disadvantage is that it gives glifLib more work to do.
+
+*Interpretation*
+If we have a standard link object, we need to have some standard structures that cover common uses. We can't make everything completely arbitrary because it will be too difficult for anything other than the creator of a particular link to interpret. It seems that define two things would alleviate the ambiguity and promote interoperability.
+
+First, we need to define a type naming scheme. Broadly, there are two types of links: links that are application specific and links that are not. In the case of application specific links, the type should be defined with a reverse domain naming scheme. @com.typesupply.SomeTool.Serif@. This way the maker of the link can identify the link as uniquely its own. Other applications can quickly see that the link type is unknown and choose to not display or display it in a generic way. For links that are not application specific, the @public.**@ naming scheme would be used. We would have a list of defined link types in the UFO specification.
+
+Secondly, for these public.* links, we would need to define what the link would contain and how it should be interpreted. Some examples:
+
+| public.horizontalStem | Two or more points defining a horizontal stem. Within the points there must be two unique y coordinates. |
+| public.verticalStem | Two or more points defining a vertical stem. Within the points there must be two unique x coordinates. |
+| public.counter | Two or more points defining a counter. |
+| public.postscriptHintMask | (Definition from the T2 Charstring spec.) |
+| public.postscriptCounterMask | (Definition from the T2 Charstring spec.) |
+
+This puts us in the position of managing a registry, but it would only be for public types so it shouldn't be too complicated.
+
+*objectsFL*
+It is going to be quite a task to implement in FontLab 5. There are some hinting objects that could be abstracted into links via the RoboFab API. Those could then be written to and read from UFOs. I suppose that we could simulate point and contour names with str(index) for the object in question. This seems very fragile.
+
+*Keeping Links Up To Date*
+Another thing we need to consider in the implementation is how links are kept up to date. When a point name changes, should teh link be automatically updated? If a referenced point is deleted, what should happen to the link?
+</div>
 
 h4. Child Elements
 
@@ -489,6 +519,12 @@ If an application allows the user to edit group kerning (aka class kerning), the
 |_. key                   |_. value type |_. description |
 | firstKerningGroupPrefix  | string       | An arbitrary string that defines the group name prefix for first kerning groups used in the pairs dictionary. This string should not be the same as the string in secondKerningGroupPrefix. |
 | secondKerningGroupPrefix | string       | An arbitrary string that defines the group name prefix for second kerning groups used in the pairs dictionary. This string should not be the same as the string in firstKerningGroupPrefix. |
+
+<div class="discussionnote">
+This should also contain a note stating that groups that are not kerning groups should not use the prefixes. This would allow for finding kerning groups that aren't used by pairs.
+
+It might be worth setting rules for the content of groups. For example, a glyph must not exist in more than one glyph per side.
+</div>
 
 </div>
 
@@ -654,6 +690,10 @@ def makeUniqueGroupName(name, groupNames, counter=0):
 }
 </pre>
 
+<div class="discussionnote">
+Should a down conversion algorithm be defined?
+</div>
+
 </div>
 
 <div class="section">
@@ -678,8 +718,7 @@ h2(#data). data directory
 
 This directory allows applications to store application specific data that is too complex or too large for lib.plist. The items within the directory may be either files or directories. The only requirement is that the top level files and directories follow the same reverse domain naming convention used in lib.plist. Applications are required to copy the entire data directory tree.
 
-If an application uses the data directory to store its own outline data or data that is dependent on the outline data stored elsewhere in the UFO, it is the responsibility of that application to ensure that the data in _glyphs_ and _glyphs.&#42;_ is up to date. The outline data in _glyphs_ and _glyphs.&#42;_ is always considered current.
-
+If an application uses the data directory to store its own outline data or data that is dependent on the outline data stored elsewhere in the UFO, it is the responsibility of that application to ensure that the data in _glyphs_ and _glyphs.&#42;_ is up to date. The outline data in _glyphs_ and _glyphs.&#42;_ is always considered current. <span class="editorsnote">This paragraph seems odd. It was in response to a specific question but it may be better to define that applications are responsible for their own directories in the data directory. We should also lay down rules to prevent applications from removing other application's directories.</span>
 </div>
 
 <div class="section">
@@ -688,6 +727,9 @@ h2(#color). Color Definitions
 
 Several elements have a color attribute that defines a color value to be applied to the element. A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the "sRGB":http://en.wikipedia.org/wiki/SRGB color space.
 
+<div class="discussionnote">
+This needs a more clear definition in table form.
+</div>
 </div>
 
 
@@ -695,11 +737,12 @@ Several elements have a color attribute that defines a color value to be applied
 
 h2(#compactufo). Compact UFO
 
+<div class="discussionnote">
 A couple of people have asked about creating a compacted version of the UFO. The easiest way to do this would be to put the contents of the UFO into a zip archive. On a general level, this seems easy enough to do in the specification, there are precedents for compacting packages this way and there would be some benefits for the user. However, the implementation of this will be complicated for applications.
 
 By design the UFO doesn't place a limit on how many glyphs can be in a font, so there could be lots and lots of GLIF files within a UFO. (Modern file systems would allow for up to 4,294,967,295 GLIF files.) The nice thing about the existing UFO structure is that it allows for very efficient management of the GLIF files. Not all glyphs must be loaded all of the time and saving procedures are very simple--if a glyph is to be removed, it is removed with an operating system call; if a glyph is unchanged since loading, the existing GLIF doesn't need to be resaved; a "save as" operation can be initiated with a directory tree copy. Our experiments with creating a compact version of the UFO, for example inside of a zip archive, have indicated that the aforementioned simplicity is no longer available. In the case of zip archives, files cannot be programmatically removed from or replaced in an existing zip. (At least they can't with the Python API.) This means that the entire contents of the UFO must be rewritten with each save. If there are a large number of glyphs, this could introduce serious memory issues. One way around this may be to do a directory tree copy to a temporary location, make the UFO changes, recompress and replace the existing file. This could lead to serious performance issues, so it needs to be studied before moving forward with this addition to the specification.
 
 
 While this is under consideration, it is unlikely to make it into the UFO 3 specification.
-
+</div>
 </div>

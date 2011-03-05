@@ -319,6 +319,11 @@ li.treediagram {
 	background-color: #FFE0DF;
 }
 
+span.editorsnote {
+	color: red;
+	font-style: italic;
+}
+
 /* prettify */
 
 .str { color: #080; }
