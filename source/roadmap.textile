@@ -2,7 +2,7 @@
 
 h1. UFO 3
 
-h4. Draft 3: March 5, 2011
+h4. Draft 4: XXX
 
 The UFO 3 specification is currently in early development. This document describes the _changes_ to the UFO 2 specification. As such, this is not a complete specification. In no way a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":team.html
 
