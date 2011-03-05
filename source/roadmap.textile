@@ -6,6 +6,14 @@ h4. Draft 3: XXX
 
 The UFO 3 specification is currently in early development. This document describes the _changes_ to the UFO 2 specification. As such, this is not a complete specification. In no way a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":team.html
 
+<div class="discussionnote">
+Points of contention in this document have notes like this explaining the differing points of view. These are ongoing discussions that will be resolved before the specification is final.
+</div>
+
+<div class="implementationnote">
+We have found it helpful to think about the implementation of this spec in our own code, notably ufoLib, glifLib, RoboFab and defcon. Throughout this document, notes about how we think we can/will implement things are highlighted in sections like this. These are not and will not be part of the official specification. They are here purely to help keep the specification grounded in reality.
+</div>
+
 UFO 3 contains a number of major additions along with some enhancements to the pervious specification. In short, the UFO now supports "layers":#layers, "images":#layertypes, "layer-level":#layerinfo and "glyph-level":#glyphguides guidelines, "point links":#pointlinks, "GLIF":#GLIF has some changes, "fontinfo.plist":#fontinfo has some new properties and there is a new "data directory":#data for storing large amounts of arbitrary data.
 
 The file structure in this draft looks like this:
@@ -172,11 +180,15 @@ The guidelines are stored as dictionaries of the following format.
 |_. key    |_. value type     |_. description |_. default value |
 | x        | integer or float | The 'x' coordinate. | None. Optional if _y_ is provided and _angle_ is not provided. See below for details. |
 | y        | integer or float | The 'y' coordinate. | None. Optional if _x_ is provided and _angle_ is not provided. See below for details. |
-| angle    | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None. Optional if x or y are provided. See below for details. |
+| angle    | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None. If x or y are not specified, the angle must not be specified. If it is specified in this case, it should be ignored. See below for details. |
 | name     | string           | An arbitrary name for the guideline. This attribute is optional.  | None |
 | color    | string           | The color that should be applied to the guideline. The format follows the "color definition":#color standard. This attribute is optional. | None |
 
 The guideline extends along _angle_ to infinity in both directions out of the point defined by _x_ and _y_. If _y_ and _angle_ are omitted, the element represents a vertical guideline. If _x_ and _angle_ are omitted, the element represents a horizontal guideline. If _y_ is omitted and _angle_ if provided, _y_ is zero. If _x_ is omitted and _angle_ is provided, _x_ is zero.
+
+<div class="discussionnote">
+See the discussion about guideline formats in the GLIF section below.
+</div>
 </div>
 
 
@@ -257,11 +269,19 @@ h4. Attributes
 |_. attribute name |_. data type      |_. description |_. default value |
 | x                | integer or float | The 'x' coordinate. | None. Optional if _y_ is provided and _angle_ is not provided. See below for details. |
 | y                | integer or float | The 'y' coordinate. | None. Optional. See below for details. |
-| angle            | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None |
+| angle            | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. If x or y are not specified, the angle must not be specified. If it is specified in this case, it should be ignored.| None |
 | name             | string           | An arbitrary name for the guideline. This attribute is optional.  | None |
 | color            | string           | The color that should be applied to the guideline. The format follows the "color definition":#color standard. This attribute is optional. | None |
 
 The guideline extends along _angle_ to infinity in both directions out of the point defined by _x_ and _y_. If _y_ and _angle_ are omitted, the element represents a vertical guideline. If _x_ and _angle_ are omitted, the element represents a horizontal guideline. If _y_ is omitted and _angle_ if provided, _y_ is zero. If _x_ is omitted and _angle_ is provided, _x_ is zero.
+
+<div class="discussionnote">
+A proposed alternative format is to omit the the angle as described above and provide two pairs of x and y coordinates. The angle would be inferred from the two points. The argument for this is that it is potentially more precise. The arguments against it are that the precision difference is very small if it even exists and it is more data.
+</div>
+
+<div class="implementationnote">
+Implementing this should be relatively easy. The guides could be stored in a list at attribute "guides" and glifLib could set/get them to/from there. Or pens and point pens could gain an addGuide method. The latter could be a breaking change though.
+</div>
 
 h4. Child Elements
 
@@ -274,6 +294,14 @@ The contour element gains a new name attribute.
 |_. attribute name |_. data type |_. description |_. default value |
 | name             | string      | Arbitrary name or label for this contour. The name does not have to be unique within an outline. | None |
 
+<div class="implementationnote">
+The name attribute will require a modification to pens and the pen protocol. It seems that the easiest way to do this will be to modify the moveTo and _moveTo methods to accept an optional name attribute. This shouldn't be a problem in the moveTo method since it is implemented in the base class and subclasses are not supposed to override it. In the case of _moveTo it could be a breaking change. If a pen hasn't been updated to accept the name attribute, an error will occur. We could work around this in the glifLib, RoboFab and defcon draw methods with a try: except: wrapper. For a year the except would raise a deprecation warning. This would give people time to update their pens.
+
+The name attribute will also require a modification to point pen and the point pen protocol. The addPoint method could be modified to take a contourName attribute. This shouldn't be a breaking change as the base point pen has **kwargs and all implementations should have copied that. The only issue here is determining when this attribute could be something other than None. Perhaps when the segmentType is "move"?
+
+Both of these implementations fail in the case of a quadratic contour that has no on-curve points. I'm not sure how to get around that.
+</div>
+
 
 h3. &lt;component&gt; Insert another glyph as part of the outline.
 
@@ -283,6 +311,10 @@ The component element gains a new name attribute.
 | name             | string      | Arbitrary name or label for this component. The name does not have to be unique within an outline. | None |
 
 This element has a new rule that governs component behavior as it relates to layers: When multiple glyphs directories are in the font, a component may only reference a glyph within the same glyphs directory that contains the glyph that contains the component.
+
+<div class="implementationnote">
+The name attribute will require modification to pens, the pen protocol, point pens and the point pen protocol. For pens, the change could be handled as the contour name is handled (described above). The point pen change could be handled the same way.
+</div>
 
 h3(#pointlinks). &lt;link&gt; A collection of point references.
 
@@ -608,7 +640,9 @@ h2(#images). images directory
 
 Images files may be stored within the UFO or not. If they are stored within the UFO, they must be stored in an _images_ directory at the top of the UFO. Obviously, each image must have a unique file name. However, beyond that there are no file name requirements. Applications should try to prevent duplicate images, but this is not a requirement of the UFO format. Applications should also try to remove unreferenced images from the images directory, but this is not a requirement of the UFO format.
 
+<div class="discussionnote">
 We are debating whether the specification should allow only one image type, a set of image types or any image types. One image type or a set of image types will be easiest for implementations. Any image type will be easiest for users, but could raise some implementation compatibility problems.
+</div>
 
 </div>
 

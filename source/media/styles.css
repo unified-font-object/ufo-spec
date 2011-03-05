@@ -305,6 +305,20 @@ li.treediagram {
 	list-style-type: none;
 }
 
+/* editor's notes (for drafts only) */
+
+.implementationnote {
+	margin: 5px 0px 5px 0px;
+	padding: 10px 15px 10px 15px;
+	background-color: #D5FBCC;
+}
+
+.discussionnote {
+	margin: 5px 0px 5px 0px;
+	padding: 10px 15px 10px 15px;
+	background-color: #FFE0DF;
+}
+
 /* prettify */
 
 .str { color: #080; }
