@@ -115,6 +115,10 @@ h3(#layertypes). Layer Types
 
 There are two types of layers--outline layers and image layers. All glyphs within a single glyph set must be the same type of layer. The required _glyphs_ directory must be an outline layer. The glyphs in both outline and image layers are stored in GLIF format.
 
+<div class="discussionnote">
+The layer structures as they relate to images are still being discussed. Refer to the image discussion in the GLIF section below.
+</div>
+
 h3(#layercontents). layercontents.plist
 
 | *File Format* | Property List |
@@ -237,8 +241,6 @@ h5. Image Glyph Structure
   </ul>
 </ul>
 
-h3(#glifimage). &lt;image&gt;  An image reference.
-
 <div class="discussionnote">
 The structure for storing images in GLIF is still an open debate. The debate really boils down to a question about how many images a glyph needs to contain. The two proposals are as follows:
 
@@ -251,9 +253,8 @@ An optional image element in the existing glyph structure. The image element wou
 *Masking*
 We have discussed using outlines as masks for images. That is a deeply complicated matter that will most likely not be a part of UFO 3.
 </div>
-<div class="implementationnote">
-From an implementation perspective, images are quite complex. We either need to define a new pen like protocol for working with images or we need to define a standard API for getting and setting image data from/to glyphs.
-</div>
+
+h3(#glifimage). &lt;image&gt;  An image reference.
 
 h4. Attributes
 
@@ -276,6 +277,10 @@ h5. Coloring Images
 
 If a color is to be applied to an image, as a result of a color attribute in an image element or a layer fill color attribute in "layerinfo.plist":#layerinfo, the application displaying the image should convert the image to grayscale and then apply the color.
 
+<div class="implementationnote">
+From an implementation perspective, images are quite complex. We either need to define a new pen like protocol for working with images or we need to define a standard API for getting and setting image data from/to glyphs.
+</div>
+
 h3(#glyphguides). &lt;guideline&gt; A reference guideline.
 
 This element may occur any number of times.
@@ -297,6 +302,8 @@ A proposed alternative format is to omit the the angle as described above and pr
 
 <div class="implementationnote">
 Implementing this should be relatively easy. The guides could be stored in a list at attribute "guides" and glifLib could set/get them to/from there. Or pens and point pens could gain an addGuide method. The latter could be a breaking change though.
+
+This is going to require defining an API or protocol. It seems that we should find a place to publish the various protocols and APIs to ensure interoperability. Perhaps another section of this site, completely separate from the specifications, would be good.
 </div>
 
 h4. Child Elements
@@ -656,7 +663,11 @@ h2(#images). images directory
 Images files may be stored within the UFO or not. If they are stored within the UFO, they must be stored in an _images_ directory at the top of the UFO. Obviously, each image must have a unique file name. However, beyond that there are no file name requirements. Applications should try to prevent duplicate images, but this is not a requirement of the UFO format. Applications should also try to remove unreferenced images from the images directory, but this is not a requirement of the UFO format.
 
 <div class="discussionnote">
-We are debating whether the specification should allow only one image type, a set of image types or any image types. One image type or a set of image types will be easiest for implementations. Any image type will be easiest for users, but could raise some implementation compatibility problems.
+We are debating whether the specification should allow only one image type (PNG), a set of image types or any image types. One image type or a set of image types will be easiest for implementations. Any image type will be easiest for users, but could raise some implementation compatibility problems.
+</div>
+
+<div class="implementationnote">
+It seems that the easiest way to implement things would be to require one specific image type. Trying to support more than one image type sounds like a heap of conversion trouble. PNG is documented and widely supported. It is RGB only, but so are the color specifications in this document.
 </div>
 
 </div>
