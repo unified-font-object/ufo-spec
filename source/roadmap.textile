@@ -239,6 +239,22 @@ h5. Image Glyph Structure
 
 h3(#glifimage). &lt;image&gt;  An image reference.
 
+<div class="discussionnote">
+The structure for storing images in GLIF is still an open debate. The debate really boils down to a question about how many images a glyph needs to contain. The two proposals are as follows:
+
+*Multiple Images*
+Glyphs would be either outline glyphs or image glyphs. An image glyph would not contain outline data. An outline glyph would not contain image data. The glyph type would be consistent for all glyphs in a layer. (This is the format described below.) This would allow for multiple images in a single glyph.
+
+*Single Image*
+An optional image element in the existing glyph structure. The image element would occur once at the most. The image would always be considered to be at the bottom of drawing stack.
+
+*Masking*
+We have discussed using outlines as masks for images. That is a deeply complicated matter that will most likely not be a part of UFO 3.
+</div>
+<div class="implementationnote">
+From an implementation perspective, images are quite complex. We either need to define a new pen like protocol for working with images or we need to define a standard API for getting and setting image data from/to glyphs.
+</div>
+
 h4. Attributes
 
 |_. attribute name |_. data type |_. description |_. default value |
@@ -344,7 +360,6 @@ h4. Example
   &lt;linkref contour=&quot;Contour 1&quot; point=&quot;Point 4&quot;/&gt;
   &lt;linkref contour=&quot;Contour 1&quot; point=&quot;Point 8&quot;/&gt;
 &lt;/link&gt;
-
 </pre>
 
 h3. &lt;linkref&gt; A reference to a particular point in the glyph.
