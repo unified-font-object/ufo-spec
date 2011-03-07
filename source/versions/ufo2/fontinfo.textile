@@ -6,9 +6,9 @@ h1. fontinfo.plist
 
 This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
 
-The fontinfo.plist structure in UFO 2 cleans up and reorganizes the data stored in fontinfo.plist in UFO 1 and it adds some new attributes.
+h4. Changes from UFO 1
 
-h5. Design Concept
+The key value pairs in the property list were modified and significantly expanded for UFO 2. The design of the structure follows these rules:
 
 # All keys should be tagged for the format and/or table that they represent. For example, _openTypeHheaAscender_.
 # If data can be used for more than one format and/or table, it is considered _generic_ and the format specific tag is removed. For example, _familyName_.
@@ -269,9 +269,9 @@ h5. Notes
 
 <div class="section">
 
-h2. Converting Version 1 to Version 2
+h2. Converting fontinfo.plist in UFO 1 to fontinfo.plist in UFO 2
 
-In many cases, the attributes in Version 1 are retained in Version 2. However, some attributes are stored under new keys. A few attributes need to be converted to a new data format.
+In many cases, the attributes have been retained in the new structure. However, some attributes are stored under new keys. A few attributes need to be converted to a new data format.
 
 |_. old key    |_. new key                          |_. special conversion instructions |
 | menuName     | styleMapFamilyName                 | No special conversion needed. |

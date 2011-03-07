@@ -13,3 +13,17 @@ A UFO file is actually a directory containing a set of files and a directory.
 | "glyphs":glyphs.html           | A directory containing GLIF files and a list of all glyphs. |
 
 </div>
+
+<div class="section">
+
+h1. Changes from UFO 1
+
+h4. fontinfo.plist
+
+The fontinfo.plist structure was redesigned in UFO 2 to make things cleaner, clearer and more organized.
+
+h4. features.fea
+
+features.fea was added.
+
+</div>
