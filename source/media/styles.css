@@ -236,6 +236,17 @@ li.navigation {
 	list-style-type: none;
 }
 
+li.navigationSectionTitle {
+	margin: 0px;
+	font-weight: bold;
+	padding-left: 0px;
+	padding-bottom: 2px;
+	padding-right: 0px;
+	padding-top: 5px;
+	list-style-type: none;
+	color: #999;
+}
+
 li.secondaryNavigation {
 	margin: 0px;
 	list-style-type: none;

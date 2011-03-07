@@ -1,105 +1,108 @@
 import os
 import shutil
 import textile
+import re
 
 baseDirectory = os.path.dirname(__file__)
 sourceDirectory = os.path.join(baseDirectory, "source")
 siteDirectory = os.path.join(baseDirectory, "site")
 templatePath = os.path.join(sourceDirectory, "template.html")
+mediaDirectory = os.path.join(siteDirectory, "media")
 
 f = open(templatePath)
 templateText = f.read()
 f.close()
 
-links = [
-    ("Overview",        "index.html"),
-    ("File Structure",  "filestructure/index.html"),
-    ("metainfo.plist",  "filestructure/metainfo.html"),
-    ("fontinfo.plist",  "filestructure/fontinfo.html"),
-    ("groups.plist",    "filestructure/groups.html"),
-    ("kerning.plist",   "filestructure/kerning.html"),
-    ("lib.plist",       "filestructure/lib.html"),
-    ("features.fea",    "filestructure/features.html"),
-    ("glyphs",          "filestructure/glyphs.html"),
-    ("Storage Formats", "storageformats/index.html"),
-    ("GLIF",            "storageformats/glif.html"),
-    ("Resources",       "resources.html"),
-    ("Road Map",        "roadmap.html"),
-    ("Team",            "team.html"),
-]
-
 # remove old site
 if os.path.exists(siteDirectory):
     shutil.rmtree(siteDirectory)
-os.mkdir(siteDirectory)
 
-# copy media
-mediaSourcePath = os.path.join(sourceDirectory, "media")
-mediaSitePath = os.path.join(siteDirectory, "media")
-shutil.copytree(mediaSourcePath, mediaSitePath)
+# copy the source tree
+shutil.copytree(sourceDirectory, siteDirectory)
 
-# copy downloads
-downloadsSourcePath = os.path.join(sourceDirectory, "downloads")
-downloadsSitePath = os.path.join(siteDirectory, "downloads")
-shutil.copytree(downloadsSourcePath, downloadsSitePath)
+# convert textile documents to html documents
+navigationRE = re.compile(
+    "<!-- Navigation URL: [\w/.]+ -->"
+)
 
-# recurse through the source folders
-def runFolder(directory, currentDepth=0):
+def convertPages(directory, currentDepth=0):
     for fileName in os.listdir(directory):
-        if fileName == "media":
-            continue
-        if fileName == "downloads":
-            continue
-        if fileName.startswith("."):
-            continue
-
-        print "processing %s..." % fileName
-
-        sourcePath = os.path.join(directory, fileName)
-
-        # work out the nesting
-        subDirectories = directory.replace(sourceDirectory, "")
-        if subDirectories.startswith("/"):
-            subDirectories = subDirectories[1:]
-        if subDirectories.endswith("/"):
-            subDirectories = subDirectories[:-1]
-
-        sitePath = os.path.join(subDirectories, fileName.replace(".textile", ".html"))
-        sitePath = os.path.join(siteDirectory, sitePath)
-
-        # make needed directory
-        if os.path.isdir(sourcePath):
-            os.mkdir(sitePath)
-            runFolder(sourcePath, currentDepth=currentDepth+1)
-        # make html
-        elif fileName.endswith(".textile"):
-            f = open(sourcePath, "r")
+        path = os.path.join(directory, fileName)
+        if os.path.isdir(path):
+            convertPages(path, currentDepth=currentDepth+1)
+        elif os.path.splitext(fileName)[-1] == ".textile":
+            print "Converting %s..." % fileName
+            # make the html path
+            htmlName = os.path.splitext(fileName)[0] + ".html"
+            htmlPath = os.path.join(directory, htmlName)
+            # read the raw text
+            f = open(path, "rb")
             text = f.read()
             f.close()
-
-            html = templateText
-            root = "/".join([".." for i in range(currentDepth)])
-            if root:
-                root += "/"
-
-            # populate links
-            for title, link in links:
-                search = "<!-- %s -->" % title
-                replacement = "<a href=\"%s%s\" class=\"navigation\">%s</a>" % (root, link, title)
-                html = html.replace(search, replacement)
-
-            # populate textile content
+            # convert
             processedText = textile.textile(text)
-            html = html.replace("<!-- textile content -->", processedText)
-
-            # assign the relative media links
-            html = html.replace("<!-- Media Root -->", root)
-
-            # write the file
-            f = open(sitePath, "w")
+            html = templateText.replace("<!-- textile content -->", processedText)
+            # insert the sub navigation if available
+            navigationstubPath = os.path.join(directory, "navigationstub.html")
+            if os.path.exists(navigationstubPath):
+                f = open(navigationstubPath, "rb")
+                navigationStub = f.read()
+                f.close()
+                pattern = "<!-- Navigation: %s -->" % directory[len(siteDirectory) + 1:]
+                html = html.replace(pattern, navigationStub)
+            # set the media root
+            html = html.replace("<!-- Media Root -->", os.path.relpath(mediaDirectory, os.path.dirname(htmlPath)))
+            # set the navigation links
+            for comment in navigationRE.findall(html):
+                url = comment.split(" ")[3]
+                url = os.path.relpath(os.path.join(siteDirectory, url), htmlPath)
+                url = url[3:]
+                html = html.replace(comment, url)
+            # write the html
+            f = open(htmlPath, "wb")
             f.write(html)
             f.close()
 
-# go!
-runFolder(sourceDirectory)
+convertPages(siteDirectory)
 
+# filter out unneeded files
+
+allowedTypes = [
+    ".html",
+    ".css",
+    ".js",
+    ".png"
+]
+allowedExceptions = [
+    os.path.join(siteDirectory, "downloads/UFODocumentIcon.zip")
+]
+mustRemove = [
+    os.path.join(siteDirectory, "template.html"),
+    os.path.join(siteDirectory, "versions/ufo1/navigationstub.html"),
+    os.path.join(siteDirectory, "versions/ufo2/navigationstub.html"),
+]
+
+def filterJunk(directory):
+    for fileName in os.listdir(directory):
+        path = os.path.join(directory, fileName)
+        # hidden, svn
+        if fileName.startswith("."):
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+            else:
+                os.remove(path)
+            continue
+        # directory
+        if os.path.isdir(path):
+            filterJunk(path)
+        # allowed exceptions
+        elif path in allowedExceptions:
+            continue
+        # allowed file types
+        elif os.path.splitext(fileName)[-1] not in allowedTypes:
+            os.remove(path)
+
+filterJunk(siteDirectory)
+
+for path in mustRemove:
+    os.remove(path)

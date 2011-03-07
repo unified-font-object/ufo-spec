@@ -2,9 +2,7 @@
 
 h1. glyphs directory
 
-h4. Description
-
-This directory will contain glyph data files in "Glyph Interchange Format":../storageformats/glif.html. This directory must contain a contents.plist file.
+This directory will contain glyph data files in "Glyph Interchange Format":glif.html. This directory must contain a contents.plist file.
 
 </div>
 
@@ -13,8 +11,6 @@ This directory will contain glyph data files in "Glyph Interchange Format":../st
 h1. contents.plist
 
 | *File Format* | Property List |
-
-h4. Description
 
 _contents.plist_ contains a dictionary that maps glyph names to GLIF file names. Those file names must be plain file names, not absolute or relative paths in the file system. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, the most common implementation is described below.
 
@@ -53,17 +49,7 @@ h5. Possible problems
 # Some file systems impose file name length restrictions. This can cause file name clashes.
 # The assumption that glyph names are not case sensitive apart from the first character causes problems with glyph names like _A.alt_ and _A.Alt_.
 
-
-h4. Version Usage
-
-| *UFO 1* | Version 1 |
-| *UFO 2* | Version 1 |
-
-</div>
-
-<div class="section">
-
-h2. Version 1
+h2. Specification
 
 The property list data consists of a dictionary at the top level. The keys are glyph names and the values are file names.
 

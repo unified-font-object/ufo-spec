@@ -4,28 +4,15 @@ h1. metainfo.plist
 
 | *File Format* | Property List |
 
-
-h4. Description
-
 This file contains metadata about the UFO. This file is required.
 
-
-h4. Version Usage
-
-| *UFO 1* | Version 1 |
-| *UFO 2* | Version 1 |
-
-</div>
-
-<div class="section">
-
-h2. Version 1
+h2. Specification
 
 The property list data consists of a dictionary at the top level. The keys and values are as follows.
 
 |_. key          |_. value type |_. description |
 | creator        | string       | The application or library that created the UFO. This should follow a reverse domain naming convention. For example, _org.robofab.ufoLib_. |
-| formatVersion  | int          | The version number of the UFO format. 1 for UFO 1. 2 for UFO 2. |
+| formatVersion  | int          | The version number of the UFO format. 1 for UFO 1. |
 
 
 h3. Example

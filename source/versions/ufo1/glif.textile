@@ -4,21 +4,9 @@ h1. Glyph Interchange Format
 
 | *File Format* | XML |
 
-h4. Description
-
 The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a _.glif_ extension.
 
-h4. Version Usage
-
-| *UFO 1* | Version 1 |
-| *UFO 2* | Version 1 |
-
-</div>
-
-<div class="section">
-
-h2. Version 1
-
+h2. Specification
 
 h3. &lt;glyph&gt; The top level element.
 

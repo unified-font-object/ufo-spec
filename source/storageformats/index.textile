@@ -1,7 +1,0 @@
-<div class="section">
-
-h1. Storage Formats
-
-The UFO uses two primary storage formats, both of which are based on XML. Glyph files are stored in "GLIF format":glif.html. Other files are stored as <a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd" target="_blank">Property Lists</a>.
-
-</div>

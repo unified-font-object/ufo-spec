@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. File Structure
+h1. UFO 1
 
 A UFO file is actually a directory containing a set of files and a directory.
 
@@ -9,7 +9,6 @@ A UFO file is actually a directory containing a set of files and a directory.
 | "groups.plist":groups.html     | Contains glyph group definitions. |
 | "kerning.plist":kerning.html   | Contains kerning info. |
 | "lib.plist":lib.html           | Contains arbitrary custom data. |
-| "features.fea":features.html   | Contains OpenType feature definitions. |
 | "glyphs":glyphs.html           | A directory containing GLIF files and a list of all glyphs. |
 
 </div>
