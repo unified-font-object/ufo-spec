@@ -2,13 +2,33 @@
 
 h1. UFO 1
 
-A UFO file is actually a directory containing a set of files and a directory.
+A UFO file is a directory following this structure:
 
-| "metainfo.plist":metainfo.html | Contains format version, creator, etc. |
-| "fontinfo.plist":fontinfo.html | Contains various font info data. |
-| "groups.plist":groups.html     | Contains glyph group definitions. |
-| "kerning.plist":kerning.html   | Contains kerning info. |
-| "lib.plist":lib.html           | Contains arbitrary custom data. |
-| "glyphs":glyphs.html           | A directory containing GLIF files and a list of all glyphs. |
+<ul class="filediagram">
+  <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> &#42;.ufo</li>
+  <ul class="filediagram-nested">
+    <li class="filediagram-file">metainfo.plist</li>
+    <li class="filediagram-file">fontinfo.plist</li>
+    <li class="filediagram-file">groups.plist</li>
+    <li class="filediagram-file">kerning.plist</li>
+    <li class="filediagram-file">lib.plist</li>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">&#42;.glif</li>
+    </ul>
+  </ul>
+</ul>
+
+Each of the files has a unique meaning, purpose and data structure:
+
+| "metainfo.plist":metainfo.html                     | Format version, creator, etc. |
+| "fontinfo.plist":fontinfo.html                     | Various font info data. |
+| "groups.plist":groups.html                         | Glyph group definitions. |
+| "kerning.plist":kerning.html                       | Kerning data. |
+| "lib.plist":lib.html                               | Arbitrary custom data. |
+| "glyphs":glyphs.html                               | A directory containing all glyphs in the font. |
+| glyphs/"contents.plist":glyphs.html#contents.plist | File name to glyph name mapping. |
+| glyphs/"*.glif":GLIF                               | A glyph definition. |
 
 </div>
