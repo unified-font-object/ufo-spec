@@ -66,6 +66,10 @@ Each of the files has a unique meaning, purpose and data structure:
 
 h1. Changes from UFO 2
 
+h3. metainfo.plist
+
+The _formatVersion_ was bumped to 3.
+
 h3. fontinfo.plist
 
 Support for specific id, platform, platform encoding and language name table entries was added.

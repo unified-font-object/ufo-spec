@@ -12,7 +12,7 @@ The property list data consists of a dictionary at the top level. The keys and v
 
 |_. key          |_. value type |_. description |
 | creator        | string       | The application or library that created the UFO. This should follow a reverse domain naming convention. For example, _org.robofab.ufoLib_. |
-| formatVersion  | int          | The version number of the UFO format. 2 for UFO 2. |
+| formatVersion  | int          | The version number of the UFO format. 3 for UFO 3. |
 
 
 h3. Example
@@ -26,7 +26,7 @@ h3. Example
     &lt;key&gt;creator&lt;/key&gt;
     &lt;string&gt;org.robofab.ufoLib&lt;/string&gt;
     &lt;key&gt;formatVersion&lt;/key&gt;
-    &lt;integer&gt;2&lt;/integer&gt;
+    &lt;integer&gt;3&lt;/integer&gt;
 &lt;/dict&gt;
 &lt;/plist&gt;
 </pre>
