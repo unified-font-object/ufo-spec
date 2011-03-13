@@ -6,15 +6,6 @@ h1. fontinfo.plist
 
 This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
 
-h4. Changes from UFO 1
-
-The key value pairs in the property list were modified and significantly expanded for UFO 2. The design of the structure follows these rules:
-
-# All keys should be tagged for the format and/or table that they represent. For example, _openTypeHheaAscender_.
-# If data can be used for more than one format and/or table, it is considered _generic_ and the format specific tag is removed. For example, _familyName_.
-
-In several cases, data moved to generic keys can be used in a controlled, slightly altered form for format specific fields. In these cases, information about how this can be done is provided. These are merely suggestions for the sake of clarity. Compiler developers are free to interpret these as they wish.
-
 h2. Specification
 
 h4. Generic Identification Information
