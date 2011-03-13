@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. File Structure
+h1. UFO 2
 
 A UFO file is a directory following this structure:
 

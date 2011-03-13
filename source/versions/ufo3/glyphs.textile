@@ -1,0 +1,149 @@
+<div class="section">
+
+h1. glyphs directory
+
+This directory will contain glyph data files in "Glyph Interchange Format":glif.html. This directory must contain a contents.plist file.
+
+</div>
+
+<div class="section">
+
+h1. contents.plist
+
+| *File Format* | Property List |
+
+_contents.plist_ contains a dictionary that maps glyph names to GLIF file names. Those file names must be plain file names, not absolute or relative paths in the file system. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, the most common implementation is described below.
+
+h4. Common glyph name to file name algorithm
+
+This algorithm has limited support for case insensitive file systems: it assumes glyph names are not case sensitive apart from the first character.
+
+# If a glyph name starts with a ".":
+## Replace the "." with an "_". Some file systems regard file names that start with "." as invisible.
+# Break the glyph name into parts delimited by ".".
+# *If the first part contains one or more underscores*, it is a compound name.
+## Split the compound name by underscore into its member names.
+## To each member starting with a capital letter, add a "_" at the end.
+## Rejoin the member names with underscore.
+# *If the first part contains no underscore:*
+## If it starts with a capital letter, add a "_" to the end.
+# Rejoin the parts with ".".
+# Tag the name with ".glif".
+
+h5. Examples
+
+|_. glyph name |_. file name |
+| <pre>a</pre>            | <pre>a.glif</pre> |
+| <pre>A</pre>            | <pre>A_.glif</pre> |
+| <pre>A.alt</pre>        | <pre>A_.alt.glif</pre> |
+| <pre>T_H</pre>          | <pre>T__H_.glif</pre> |
+| <pre>T_h</pre>          | <pre>T__h.glif</pre> |
+| <pre>t_h</pre>          | <pre>t_h.glif</pre> |
+| <pre>F_F_I</pre>        | <pre>F__F__I_.glif</pre> |
+| <pre>f_f_i</pre>        | <pre>f_f_i.glif</pre> |
+| <pre>Aacute_V.swash</pre>        | <pre>Aacute__V_.swash.glif</pre> |
+
+
+h5. Possible problems
+
+# Some file systems impose file name length restrictions. This can cause file name clashes.
+# The assumption that glyph names are not case sensitive apart from the first character causes problems with glyph names like _A.alt_ and _A.Alt_.
+
+h2. Specification
+
+The property list data consists of a dictionary at the top level. The keys are glyph names and the values are file names.
+
+h3. Example
+
+<pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;
+&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+  &lt;key&gt;A&lt;/key&gt;
+  &lt;string&gt;A_.glif&lt;/string&gt;
+  &lt;key&gt;B&lt;/key&gt;
+  &lt;string&gt;B_.glif&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</pre>
+
+</div>
+
+<div class="section">
+
+h1. layercontents.plist
+
+| *File Format* | Property List |
+
+This file maps the layer names to the _glyphs_ directory names. Those directory names must be plain directory names, not absolute or relative paths in the file system. Care must be taken when choosing directory names: many file systems have character, length and case sensitivity restrictions. There is no one standard layer name to directory name conversion. However, a sample one must be developed[1]. Additionally, all layers must have unique names within the UFO.
+
+fn1. The glyph name to GLIF file name conversion should provide a good starting point for this. Perhaps that algorithm can be abstracted so that it is file name extension agnostic. It will also need to gain an additional step to handle characters that may not be suitable for use in a file system name.
+
+h2. Specification
+
+The mapping is stored as an array in the property list. This array also defines the order of the layers from top to bottom. The mapping is stored within the array as arrays containing the layer names first and the directory name second.
+
+h3. Example
+
+<pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;
+&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;array&gt;
+  &lt;array&gt;
+    &lt;string&gt;&lt;/string&gt;
+    &lt;string&gt;glyphs&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;Sketches&lt;/string&gt;
+    &lt;string&gt;glyphs.S_ketches&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;Reference&lt;/string&gt;
+    &lt;string&gt;glyphs.R_eference&lt;/string&gt;
+  &lt;/array&gt;
+&lt;/array&gt;
+&lt;/plist&gt;
+</pre>
+
+</div>
+
+<div class="section">
+
+h1. layerinfo.plist
+
+| *File Format* | Property List |
+
+This file contains information about the layer. This file is optional. Not all values are required for a proper file.
+
+h2. Specification
+
+The property list data consists of a dictionary at the top level. The keys and values are as follows.
+
+|_. key        |_. value type              |_. description |_. default value |
+| guidelines   | array                     | An array of guideline definitions that apply to all glyphs in the layer. | None |
+| fillColor    | string                    | The color that should be used to fill all glyphs in the layer. The format follows the "color definition":#color standard. This attribute is optional. | None |
+| strokeColor  | string                    | The color that should be used to stroke all glyphs in the layer. The format follows the "color definition":#color standard. This attribute is optional. | None |
+| strokeWidth | positive integer or float | The weight of the stroke to be applied to all glyphs in the layer. This attribute is optional. | None |
+| lib          | dictionary | A lib specific to the layer. To avoid naming conflicts, keys should use the Reverse Domain Naming Convention defined for lib.plist. | None |
+
+h3. Guideline Format
+
+The guidelines are stored as dictionaries of the following format.
+
+|_. key    |_. value type     |_. description |_. default value |
+| x        | integer or float | The 'x' coordinate. | None. Optional if _y_ is provided and _angle_ is not provided. See below for details. |
+| y        | integer or float | The 'y' coordinate. | None. Optional if _x_ is provided and _angle_ is not provided. See below for details. |
+| angle    | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None. If x or y are not specified, the angle must not be specified. If it is specified in this case, it should be ignored. See below for details. |
+| name     | string           | An arbitrary name for the guideline. This attribute is optional.  | None |
+| color    | string           | The color that should be applied to the guideline. The format follows the "color definition":#color standard. This attribute is optional. | None |
+
+The guideline extends along _angle_ to infinity in both directions out of the point defined by _x_ and _y_. If _y_ and _angle_ are omitted, the element represents a vertical guideline. If _x_ and _angle_ are omitted, the element represents a horizontal guideline. If _y_ is omitted and _angle_ if provided, _y_ is zero. If _x_ is omitted and _angle_ is provided, _x_ is zero.
+
+<div class="discussionnote">
+See the discussion about guideline formats in the GLIF section.
+</div>
+</div>

@@ -1,0 +1,15 @@
+<div class="section">
+
+h1. images directory
+
+Images files may be stored within the UFO or not. If they are stored within the UFO, they must be stored in an _images_ directory at the top of the UFO. Obviously, each image must have a unique file name. However, beyond that there are no file name requirements. Applications should try to prevent duplicate images, but this is not a requirement of the UFO format. Applications should also try to remove unreferenced images from the images directory, but this is not a requirement of the UFO format.
+
+<div class="discussionnote">
+We are debating whether the specification should allow only one image type (PNG), a set of image types or any image types. One image type or a set of image types will be easiest for implementations. Any image type will be easiest for users, but could raise some implementation compatibility problems.
+</div>
+
+<div class="implementationnote">
+It seems that the easiest way to implement things would be to require one specific image type. Trying to support more than one image type sounds like a heap of conversion trouble. PNG is documented and widely supported. It is RGB only, but so are the color specifications in this document.
+</div>
+
+</div>

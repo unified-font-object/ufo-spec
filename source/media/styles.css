@@ -330,8 +330,14 @@ li.treediagram {
 	background-color: #FFE0DF;
 }
 
+.editorsnote{
+	margin: 5px 0px 5px 0px;
+	padding: 10px 15px 10px 15px;
+	background-color: #9ECDFF;
+}
+
 span.editorsnote {
-	color: red;
+	color: blue;
 	font-style: italic;
 }
 

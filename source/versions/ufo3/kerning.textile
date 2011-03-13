@@ -1,0 +1,209 @@
+<div class="section">
+
+h1. kerning.plist
+
+| *File Format* | Property List |
+
+This file contains horizontal kerning pairs for the font. This file is optional. If it is not defined in the UFO, there is no horizontal kerning data.
+
+h2. Specification
+
+The property list data consists of a dictionary at the top level. Keys are _first_ glyph or group names and values are dictionaries. These dictionaries contain _second_ glyph or group names as keys and kerning values as the values. Glyphs or groups in the pairs are not required to be in the font.
+
+The kerning data is writing direction neutral. For text written left-to-right, the left-most glyph is the key in the top level dictionary. For text written right-to-left, the right-most glyph is the key in the top level dictionary. For example, given the pair _LG_, written left-to-right, the _L_ is the key in the top dictionary and the _G_ is the sub-dictionary. Given the pair _GL_, written right-to-left, the _G_ is the key in the top dictionary and the _L_ is the key in the sub-dictionary.
+
+In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the firstKerningGroupPrefix and secondKerningGroupPrefix found in fontinfo.plist. Knowing the kerning group prefixes allows an application to step through the kerning pair members, perform a string match on the beginning of a member and confidently know if the member is a group or glyph reference.
+
+h3. Example
+
+<pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;
+&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+  &lt;key&gt;A&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;B&lt;/key&gt;
+    &lt;integer&gt;-10&lt;/integer&gt;
+    &lt;key&gt;X&lt;/key&gt;
+    &lt;integer&gt;-10&lt;/integer&gt;
+    &lt;key&gt;Z&lt;/key&gt;
+    &lt;integer&gt;-15&lt;/integer&gt;
+  &lt;/dict&gt;
+  &lt;key&gt;X&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;Q&lt;/key&gt;
+    &lt;integer&gt;-10&lt;/integer&gt;
+  &lt;/dict&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</pre>
+
+<div class="editorsnote">
+Bring this example up to date.
+</div>
+
+</div>
+
+<div class="section">
+
+h1. Converting to UFO 3 formatted kerning
+
+Converting from UFO 1 and UFO 2 is possible. An algorithm and sample implementation are below.
+
+h3. Conversion algorithm
+
+# Make lists of groups referenced on the left and right of kerning pairs.
+## Create new names for these groups.
+### The names must be unique within the overall groups dictionary.
+### The names must begin with the appropriate prefix as defined by firstKerningGroupPrefix and secondKerningGroupPrefix in fontinfo.plist.
+# Populate the new group names into the kerning dictionary as needed.
+# Make copies of the referenced groups and store them under the new names in the overall groups dictionary.
+
+h3. Sample conversion implementation
+
+<div class="editorsnote">
+This example is out of date.
+</div>
+
+<pre class="prettyprint">
+def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups,
+    leftKerningGroupPrefix="@KERN_1_",
+    rightKerningGroupPrefix="@KERN_2_"):
+    # The prefixes must be unique.
+    assert leftKerningGroupPrefix != rightKerningGroupPrefix
+    # 1. Create a mapping of old group names
+    #    to new group names.
+    leftGroupRename = {}
+    rightGroupRename = {}
+    # Iterate through all kerning pairs.
+    for left, right in kerning.keys():
+        # If the left member has the same name as a group,
+        # it is considered a group.
+        if left in groups and left not in leftGroupRename:
+            # Add the prefix to the group name if necessary.
+            newName = left
+            if not left.startswith(leftKerningGroupPrefix):
+                newName = leftKerningGroupPrefix + left
+                # Make a unique group name.
+                newName = makeUniqueGroupName(
+                  newName, groups.keys() + leftGroupRename.keys())
+            # Store the old and new names.
+            leftGroupRename[left] = newName
+        # If the right member has the same name as a group,
+        # it is considered a group.
+        if right in groups and right not in rightGroupRename:
+            # Add the prefix to the group name if necessary.
+            if not right.startswith(rightKerningGroupPrefix):
+                newName = rightKerningGroupPrefix + right
+                # Make a unique group name.
+                newName = makeUniqueGroupName(
+                  newName, groups.keys() + rightGroupRename.keys())
+            # Store the old and new names.
+            rightGroupRename[right] = newName
+    # 2. Iterate through all kerning pairs and
+    #    rename group references.
+    ufo3Kerning = {}
+    for (left, right), value in kerning.items():
+        # Get the renamed left group if possible.
+        if left in leftGroupRename:
+            left = leftGroupRename[left]
+        # Get the renamed right group if possible.
+        if right in rightGroupRename:
+            right = rightGroupRename[right]
+        # Store the pair.
+        ufo3Kerning[left, right] = value
+    # 3. Store the renamed groups under their new names.
+    ufo3Groups = {}
+    # Iterate through the left groups.
+    for oldName, newName in leftGroupRename.items():
+        ufo3Groups[newName] = groups[oldName]
+    # Iterate through the right groups.
+    for oldName, newName in rightGroupRename.items():
+        ufo3Groups[newName] = groups[oldName]
+    # Store the original groups.
+    ufo3Groups.update(groups)
+    # 4. Return the kerning and the groups.
+    return ufo3Kerning, ufo3Groups
+</pre>
+
+<pre class="prettyprint">
+def makeUniqueGroupName(name, groupNames, counter=0):
+    # Add a number to the name if the counter is higher than zero.
+    newName = name
+    if counter > 0:
+        newName = "%s%d" % (newName, counter)
+    # If the new name is in the existing group names, recurse.
+    if newName in groupNames:
+        return makeUniqueGroupName(name, groupNames, counter + 1)
+    # Otherwise send back the new name.
+    return newName
+</pre>
+
+<pre class="prettyprint">
+>>> testKerning = {
+...     "A" : {
+...         "A" : 1,
+...         "B" : 2,
+...         "CGroup" : 3,
+...         "DGroup" : 4
+...     },
+...     "BGroup" : {
+...         "A" : 5,
+...         "B" : 6,
+...         "CGroup" : 7,
+...         "DGroup" : 8
+...     },
+...     "CGroup" : {
+...         "A" : 9,
+...         "B" : 10,
+...         "CGroup" : 11,
+...         "DGroup" : 12
+...     },
+... }
+>>> testGroups = {
+...     "BGroup" : ["B"],
+...     "CGroup" : ["C"],
+...     "DGroup" : ["D"],
+... }
+>>> kerning, groups = convertUFO1OrUFO2KerningToUFO3Kerning(
+...     testKerning, testGroups)
+>>> kerning
+{
+    "A" : {
+        "A": 1,
+        "B": 2,
+        "@KERN_2_CGroup": 3,
+        "@KERN_2_DGroup": 4
+    },
+    "@KERN_1_BGroup": {
+        "A": 5,
+        "B": 6,
+        "@KERN_2_CGroup": 7,
+        "@KERN_2_DGroup": 8
+    },
+    "@KERN_1_CGroup": {
+        "A": 9,
+        "B": 10,
+        "@KERN_2_CGroup": 11,
+        "@KERN_2_DGroup": 12
+    }
+}
+>>> groups
+{
+    "BGroup": ["B"],
+    "CGroup": ["C"],
+    "DGroup": ["D"],
+    "@KERN_1_BGroup": ["B"],
+    "@KERN_1_CGroup": ["C"],
+    "@KERN_2_CGroup": ["C"],
+    "@KERN_2_DGroup": ["D"],
+}
+</pre>
+
+<div class="editorsnote">
+Should a down conversion algorithm be defined?
+</div>
+
+</div>

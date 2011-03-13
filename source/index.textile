@@ -8,4 +8,10 @@ h3. The UFO Design Philosophy
 # The data should be application independent.
 # Data duplication should be avoided unless absolutely necessary.
 
+h3. Versions
+
+| "UFO 1":ufo1 | Published in 2004. |
+| "UFO 2":ufo2 | Published in March 2009. |
+| "UFO 3":ufo3 | Currently in development. Scheduled for publication in early 2012. |
+
 </div>

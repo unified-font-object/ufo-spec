@@ -31,7 +31,7 @@ def convertPages(directory, currentDepth=0):
         if os.path.isdir(path):
             convertPages(path, currentDepth=currentDepth+1)
         elif os.path.splitext(fileName)[-1] == ".textile":
-            print "Converting %s..." % fileName
+            print "Converting %s..." % path.replace(siteDirectory, "")[1:]
             # make the html path
             htmlName = os.path.splitext(fileName)[0] + ".html"
             htmlPath = os.path.join(directory, htmlName)
