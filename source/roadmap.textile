@@ -55,7 +55,7 @@ The file structure in this draft looks like this:
 
 h2(#layers). Layers
 
-The biggest change in UFO 3 is that the UFO now supports layers. These layers can be used for anything--the standard _main+background+image_ drawing environment, multi-layered fonts, glyph revision history and so on. The UFO layering system is designed to be conceptually unrestricted. However, this does not mean that layers should be used to store an entire family of weights within a single UFO. The UFO is a single style file format, not a family format.
+The biggest change in UFO 3 is that the UFO now supports layers. These layers can be used for anything--the standard _main+background_ drawing environment, multi-layered fonts, glyph revision history and so on. The UFO layering system is designed to be conceptually unrestricted. However, this does not mean that layers should be used to store an entire family of weights within a single UFO. The UFO is a single style file format, not a family format.
 
 Layers are implemented as a series of glyph sets within the UFO. There is one required layer--the _glyphs_ directory. This directory is considered the primary outline source of the font. Additional layers are represented as additional directories that adhere to the naming convention of _glyphs.&#42;_ where _&#42;_ is a unique, case-insensitive, file-system legal string.
 
@@ -80,7 +80,7 @@ The top level of the UFO gains one new file, "layercontents.plist":#layercontent
   </ul>
 </ul>
 
-For example, this UFO contains three layers--the main layer, a layer named "Reference" and another named "Pencil Sketches":
+For example, this UFO contains three layers--the main layer, a layer named "Reference" and another named "Old Sketches":
 
 <ul class="filediagram">
   <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> &#42;.ufo</li>
@@ -100,7 +100,7 @@ For example, this UFO contains three layers--the main layer, a layer named "Refe
       <li class="filediagram-file">A.glif</li>
       <li class="filediagram-file">B.glif</li>
     </ul>
-    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs.pencil_sketches</li>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs.old_sketches</li>
     <ul class="filediagram-nested">
       <li class="filediagram-file">contents.plist</li>
       <li class="filediagram-file">layerinfo.plist</li>
@@ -110,14 +110,6 @@ For example, this UFO contains three layers--the main layer, a layer named "Refe
     </ul>
   </ul>
 </ul>
-
-h3(#layertypes). Layer Types
-
-There are two types of layers--outline layers and image layers. All glyphs within a single glyph set must be the same type of layer. The required _glyphs_ directory must be an outline layer. The glyphs in both outline and image layers are stored in GLIF format.
-
-<div class="discussionnote">
-The layer structures as they relate to images are still being discussed. Refer to the image discussion in the GLIF section below.
-</div>
 
 h3(#layercontents). layercontents.plist
 
@@ -175,8 +167,6 @@ The property list data consists of a dictionary at the top level. The keys and v
 | strokeWidth | positive integer or float | The weight of the stroke to be applied to all glyphs in the layer. This attribute is optional. | None |
 | lib          | dictionary | A lib specific to the layer. To avoid naming conflicts, keys should use the Reverse Domain Naming Convention defined for lib.plist. | None |
 
-In an image glyph layer, strokeColor and strokeWidth should be ignored.
-
 h5. Guideline Format
 
 The guidelines are stored as dictionaries of the following format.
@@ -202,9 +192,7 @@ h2(#GLIF). GLIF
 
 h3. Version 2
 
-A GLIF may represent either an outline glyph or an image glyph. If a GLIF contains an &lt;outline&gt; element within the top level &lt;glyph&gt; element, the glyph is an outline glyph. If a GLIF contains one or more &lt;image&gt; elements within the top level &lt;glyph&gt; element, the glyph is an image glyph. Within a layer, if no GLIF files contain either an &lt;outline&gt; or an &lt;image&gt; element within the top level &lt;glyph&gt; elements, the layer is an outline layer. Outline glyphs must not contain images. Image glyphs must not contain outlines. The basic tree structures for each format are as follows:
-
-h5. Outline Glyph Structure
+h5. Glyph Structure
 
 <ul class="treediagram">
   <li class="treediagram">glyph</li>
@@ -213,6 +201,7 @@ h5. Outline Glyph Structure
     <li class="treediagram">unicode</li>
     <li class="treediagram">lib</li>
     <li class="treediagram">guideline</li>
+    <li class="treediagram">image</li>
     <li class="treediagram">outline</li>
     <ul class="treediagram">
       <li class="treediagram">contour</li>
@@ -228,33 +217,9 @@ h5. Outline Glyph Structure
   </ul>
 </ul>
 
-h5. Image Glyph Structure
-
-<ul class="treediagram">
-  <li class="treediagram">glyph</li>
-  <ul class="treediagram">
-    <li class="treediagram">advance</li>
-    <li class="treediagram">unicode</li>
-    <li class="treediagram">lib</li>
-    <li class="treediagram">guideline</li>
-    <li class="treediagram">image</li>
-  </ul>
-</ul>
-
-<div class="discussionnote">
-The structure for storing images in GLIF is still an open debate. The debate really boils down to a question about how many images a glyph needs to contain. The two proposals are as follows:
-
-*Multiple Images*
-Glyphs would be either outline glyphs or image glyphs. An image glyph would not contain outline data. An outline glyph would not contain image data. The glyph type would be consistent for all glyphs in a layer. (This is the format described below.) This would allow for multiple images in a single glyph.
-
-*Single Image*
-An optional image element in the existing glyph structure. The image element would occur once at the most. The image would always be considered to be at the bottom of drawing stack.
-
-*Masking*
-We have discussed using outlines as masks for images. That is a deeply complicated matter that will most likely not be a part of UFO 3.
-</div>
-
 h3(#glifimage). &lt;image&gt;  An image reference.
+
+This optional element represents an image element in a glyph. It may occur at most once. The image is always considered to be _behind_ the outline element.
 
 h4. Attributes
 
@@ -271,7 +236,7 @@ h4. Attributes
 
 xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is [1 0 0 1 0 0], the identity transformation.
 
-This element has no child elements.
+h5. This element has no child elements.
 
 h5. Coloring Images
 
