@@ -247,18 +247,17 @@ li.navigationSectionTitle {
 	color: #999;
 }
 
-li.secondaryNavigation {
+ul.navigationNested {
+	padding: 0px 0px 0px 7px;
+	border-left: 1px solid black;
+}
+
+li.navigationNested {
 	margin: 0px;
 	list-style-type: none;
 	font-style: normal;
 	font-weight: normal;
-	padding-right: 0px;
-	padding-bottom: 2px;
-	padding-top: 2px;
-	border-left-width: 1px;
-	border-left-color: black;
-	border-left-style: solid;
-	padding-left: 7px;
+	padding: 2px 0px 2px 0px;
 }
 
 /* file diagrams */

@@ -22,7 +22,7 @@ shutil.copytree(sourceDirectory, siteDirectory)
 
 # convert textile documents to html documents
 navigationRE = re.compile(
-    "<!-- Navigation URL: [\w/.]+ -->"
+    "<!-- Navigation URL: [\w/.#]+ -->"
 )
 
 def convertPages(directory, currentDepth=0):
