@@ -4,12 +4,22 @@ h1. Conventions
 
 Two conventions are used throughout all versions of the UFO.
 
-h2. Property Lists
+h3. Property Lists
 
 Many of the file structures are stored as XML <a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd" target="_blank">Property Lists</a>.
 
-h2. Reverse Domain Naming Schemes
+h3. Reverse Domain Naming Schemes
 
 In several places in the UFO the <a href="http://en.wikipedia.org/wiki/Reverse-DNS" target="_blank">reverse domain naming system</a> is recommended for creating unique keys and ids. To make a reverse domain, reverse the relevant Internet domain. For example, if the Internet domain is _unifiedfontobject.org_, your reverse domain name would be _org.unifiedfontobject_. Further extensions are up to the creator of the data.
+
+h3. Color Definitions
+
+*This is in development for UFO 3. It is not finalized.*
+
+Several elements have a color attribute that defines a color value to be applied to the element. A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the "sRGB":http://en.wikipedia.org/wiki/SRGB color space.
+
+<div class="editorsnote">
+This needs a more clear definition in table form.
+</div>
 
 </div>

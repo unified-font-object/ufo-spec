@@ -1,9 +1,33 @@
 <div class="section">
 
-h1. glyphs directory
+h1. Glyph Directories
 
-This directory will contain glyph data files in "Glyph Interchange Format":glif.html. This directory must contain a contents.plist file.
+A glyphs directory represents a layer of glyph data in a font. This glyph data files will be in "Glyph Interchange Format":glif.html.
 
+These layers can be used for anything--the standard _main+background_ drawing environment, multi-layered fonts, glyph revision history and so on. The UFO layering system is designed to be conceptually unrestricted. However, this does not mean that layers should be used to store an entire family of weights within a single UFO. The UFO is a single style file format, not a family format.
+
+Layers are implemented as a series of glyph sets within the UFO. There is one required layer--the _glyphs_ directory. This directory is considered the primary outline source of the font. Additional layers are represented as additional directories that adhere to the naming convention of _glyphs.&#42;_ where _&#42;_ is a unique, case-insensitive, file-system legal string.
+
+The top level of the UFO gains one new file, "layercontents.plist":#layercontents This file maps layer directory names to layer names. Each layer may have a "layerinfo.plist":#layerinfo file. Each layer may contain glyphs that are or are not part of other layers. The structure of the UFO, as it relates to layers, looks like this:
+
+<ul class="filediagram">
+  <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> &#42;.ufo</li>
+  <ul class="filediagram-nested">
+    <li class="filediagram-file">layercontents.plist</li>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">&#42;.glif</li>
+    </ul>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs.&#42;</li>
+    <ul class="filediagram-nested">
+      <li class="filediagram-file">contents.plist</li>
+      <li class="filediagram-file">layerinfo.plist</li>
+      <li class="filediagram-file">&#42;.glif</li>
+    </ul>
+  </ul>
+</ul>
 </div>
 
 <div class="section">
@@ -11,6 +35,8 @@ This directory will contain glyph data files in "Glyph Interchange Format":glif.
 h1. contents.plist
 
 | *File Format* | Property List |
+
+<div class="editorsnote">Mention that this file is required.</div>
 
 _contents.plist_ contains a dictionary that maps glyph names to GLIF file names. Those file names must be plain file names, not absolute or relative paths in the file system. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, the most common implementation is described below.
 

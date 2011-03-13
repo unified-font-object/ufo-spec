@@ -2,6 +2,16 @@
 
 h1. UFO 3 (draft)
 
+The UFO 3 specification is currently in early development. In no way is this a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":../team.html
+
+<div class="discussionnote">
+Points of contention in this document have notes like this explaining the differing points of view. These are ongoing discussions that will be resolved before the specification is final.
+</div>
+
+<div class="implementationnote">
+We have found it helpful to think about the implementation of this spec in our own code, notably ufoLib, glifLib, RoboFab and defcon. Throughout this document, notes about how we think we can/will implement things are highlighted in sections like this. These are not and will not be part of the official specification. They are here purely to help keep the specification grounded in reality.
+</div>
+
 A UFO file is a directory following this structure:
 
 <ul class="filediagram">
