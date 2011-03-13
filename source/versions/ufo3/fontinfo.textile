@@ -276,26 +276,27 @@ h4. WOFF Data
 
 Many of these fields _can_ be populated from generic elements, but since WOFF is a wrapper format they _may not_ always be duplicated. As such, all of the WOFF fields are unique key/value pairs.
 
-|_. key                    |_. value type |_. description |
-| woffMajorVersion         | integer      | Major version of the font. |
-| woffMinorVersion         | integer      | Minor version of the font. |
-| woffMetadataUniqueID     | string       | Identification string. Corresponds to the WOFF uniqueid element id attribute. |
-| woffMetadataVendor       | string       | Font vendor. Corresponds to the WOFF vendor element name attribute. |
-| woffMetadataVendorURL    | string       | Font vendor URL. Corresponds to the WOFF vendor element url attribute. |
-| woffMetadataCredits      | list         | List of credit records. Corresponds to the WOFF credits element. |
-| woffMetadataDescription  | string       | Description string. Corresponds to the WOFF description element. |
-| woffMetadataLicense      | string       | License string. Corresponds to the WOFF license element. |
-| woffMetadataLicenseID    | string       | License ID string. Corresponds to the WOFF license element id attribute. |
-| woffMetadataLicenseURL   | string       | License URL string. Corresponds to the WOFF license element url attribute. |
-| woffMetadataCopyright    | string       | Copyright string. Corresponds to the WOFF copyright element. |
-| woffMetadataTrademark    | string       | Trademark string. Corresponds to the WOFF trademark element. |
-| woffMetadataLicenseeName | string       | Licensee name string. Corresponds to the WOFF licensee element name attribute. |
-| woffMetadataRecords      | list         | List of metadata records. This record storage area is intended for records that require language localization. |
+|_. key                      |_. value type |_. description |
+| woffMajorVersion           | integer      | Major version of the font. |
+| woffMinorVersion           | integer      | Minor version of the font. |
+| woffMetadataUniqueID       | string       | Identification string. Corresponds to the WOFF uniqueid element id attribute. |
+| woffMetadataVendor         | string       | Font vendor. Corresponds to the WOFF vendor element name attribute. |
+| woffMetadataVendorURL      | string       | Font vendor URL. Corresponds to the WOFF vendor element url attribute. |
+| woffMetadataCredits        | list         | List of credit records. Corresponds to the WOFF credits element. |
+| woffMetadataDescription    | string       | Description string. Corresponds to the WOFF description element. |
+| woffMetadataDescriptionURL | string       | Description URL. Corresponds to the WOFF description element url attribute. |
+| woffMetadataLicense        | string       | License string. Corresponds to the WOFF license element. |
+| woffMetadataLicenseID      | string       | License ID string. Corresponds to the WOFF license element id attribute. |
+| woffMetadataLicenseURL     | string       | License URL string. Corresponds to the WOFF license element url attribute. |
+| woffMetadataCopyright      | string       | Copyright string. Corresponds to the WOFF copyright element. |
+| woffMetadataTrademark      | string       | Trademark string. Corresponds to the WOFF trademark element. |
+| woffMetadataLicenseeName   | string       | Licensee name string. Corresponds to the WOFF licensee element name attribute. |
+| woffMetadataRecords        | list         | List of metadata records. This record storage area is intended for records that require language localization. |
 
 <div class="editorsnote">
 Need to address extension elements.
 
-Need to review the current WOFF specification to make sure everything here is in sync.
+Need to review the final (it's not yet approved) credits localization format to make sure it will be possible in the metadataRecords or the credit record.
 </div>
 
 h5. Credit Record
