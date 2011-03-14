@@ -292,9 +292,12 @@ Many of these fields _can_ be populated from generic elements, but since WOFF is
 | woffMetadataTrademark      | string       | Trademark string. Corresponds to the WOFF trademark element. |
 | woffMetadataLicenseeName   | string       | Licensee name string. Corresponds to the WOFF licensee element name attribute. |
 | woffMetadataRecords        | list         | List of metadata records. This record storage area is intended for records that require language localization. |
+| woffMetadataExtensions     | list         | List of metadata extension records. |
+
+
 
 <div class="editorsnote">
-Need to address extension elements.
+Need to finalize extension elements.
 
 Need to review the final (it's not yet approved) credits localization format to make sure it will be possible in the metadataRecords or the credit record.
 </div>
@@ -316,6 +319,73 @@ The records are stored as dictionaries of the following format.
 | tag      | string       | The element tag of the record. |
 | language | string       | The language tag of the record. |
 | text     | string       | The text for of record. |
+
+h5. Metadata Extension Records
+
+This is a very complex thing to represent. These are the ideas so far.
+
+<pre class="prettyprint">
+[
+    # extension record
+    {
+        # names
+        names : [
+            # name record
+            {
+                name : string,
+                lang : string or None}
+        ],
+        # items
+        items : [
+            # item record
+            {
+                # id
+                id : string or None,
+                # names
+                names : [
+                    {name : string, lang : string or None}
+                ]
+                # values
+                values : [
+                    {name : string, lang : string or None}
+                ]
+            }
+        ]
+    }
+]
+
+
+[
+    # extension record
+    {
+        # names
+        names : [
+            # name record
+            {
+                name : string,
+                lang : string or None
+            }
+        ],
+        # items
+        items : [
+            # item record
+            {
+                # id
+                id : string or None,
+                # records
+                records : [
+                    {
+                        name : string or None,
+                        value : string or None,
+                        lang : string or None
+                    }
+                ]
+            }
+        ]
+    }
+]
+</pre>
+
 
 
 h4. Kerning Group Prefixes
