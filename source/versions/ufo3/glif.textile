@@ -275,6 +275,10 @@ h4. Example
 
 h3. &lt;linkref&gt; A reference to a particular point in the glyph.
 
+<div class="discussionnote">
+pointref might be a better name.
+</div>
+
 This element must occur at least twice.
 
 This element has no child elements.
