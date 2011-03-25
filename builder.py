@@ -80,6 +80,7 @@ mustRemove = [
     os.path.join(siteDirectory, "template.html"),
     os.path.join(siteDirectory, "versions/ufo1/navigationstub.html"),
     os.path.join(siteDirectory, "versions/ufo2/navigationstub.html"),
+    os.path.join(siteDirectory, "versions/ufo3/navigationstub.html"),
 ]
 
 def filterJunk(directory):
