@@ -14,6 +14,14 @@ h4. Special Considerations
 
 Some groups may be used in kerning. See the "kerning.plist documentation":kerning.html for more information and special considerations.
 
+<div class="discussionnote">
+
+Should we state that the kerning prefixes should not be used for any groups other than kerning groups? We would need to state that this does not mean that only groups that are members of pairs in kerning.plist. Rather, it means that only groups that *could be* used in kerning pairs should use the prefixes.
+
+We might also want to state that a glyph must not appear in more than one group per kerning side.
+
+</div>
+
 h3. Example
 
 <pre class="prettyprint">
