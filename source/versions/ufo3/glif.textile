@@ -41,7 +41,7 @@ h4. Attributes
 | name             | The name of the glyph |
 | format           | The format version. 2 for this version. |
 
-The _name_ attribute has limited uses in this version. The _contents.plist_ file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the _name_ attribute is probably best ignored, since manual editing may have caused a mismatch with the glyph name as stored in _contents.plist_, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
+The _name_ attribute has limited uses in this version. The _contents.plist_ file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the _name_ attribute is probably best ignored <span class="inlineeditorsnote">(this should be more strongly worded)</span>, since manual editing may have caused a mismatch with the glyph name as stored in _contents.plist_, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
 
 h4. Child Elements
 
@@ -87,14 +87,14 @@ h4. Attributes
 
 |_. attribute name |_. data type |_. description |_. default value |
 | fileName         | string      | The image file name. | None |
-| directory        | string      | The directory the image is stored in. If this is not given, the image must be stored in the _images_ directory within the UFO. <span class="editorsnote">Is this path relative to the UFO, file system or something else?</span> | None |
+| directory        | string      | The directory the image is stored in. If this is not given, the image must be stored in the _images_ directory within the UFO. <span class="inlineeditorsnote">Is this path relative to the UFO, file system or something else?</span> | None |
 | xScale           | integer or float | See below. | 1 |
 | xyScale          | integer or float | See below. | 0 |
 | yxScale          | integer or float | See below. | 0 |
 | yScale           | integer or float | See below. | 1 |
 | xOffset          | integer or float | See below. | 0 |
 | yOffset          | integer or float | See below. | 0 |
-| color            | string | The color that should be applied to the image. The format follows the "color definition":#color standard. This attribute is optional. If no color is provided, the image should be drawn using the colors stored in the image data. <span class="editorsnote">This needs to address color setting at the layerinfo.plist level.</span> | None |
+| color            | string | The color that should be applied to the image. The format follows the "color definition":#color standard. This attribute is optional. If no color is provided, the image should be drawn using the colors stored in the image data. <span class="inlineeditorsnote">This needs to address color setting at the layerinfo.plist level.</span> | None |
 
 xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is [1 0 0 1 0 0], the identity transformation.
 
@@ -288,8 +288,6 @@ h4. Attributes
 h5. Notes
 
 Are contour and point always required? Should we add a component attribute?
-
-</div>
 
 
 h3. &lt;lib&gt; Custom data storage.
