@@ -2,7 +2,7 @@
 
 h1. lib.plist
 
-| *File Format* | Property List |
+| *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file contains arbitrary data for the font. It is a place to store application specific, user specific or otherwise arbitrary data. This file is optional. If it is not defined in the UFO, there is no lib data.
 

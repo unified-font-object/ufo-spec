@@ -2,7 +2,7 @@
 
 h1. groups.plist (draft)
 
-| *File Format* | Property List |
+| *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file contains the definitions of arbitrary groups of glyphs. This file is optional. If it is not defined in the UFO, there is no group data.
 

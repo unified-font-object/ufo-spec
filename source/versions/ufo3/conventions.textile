@@ -4,10 +4,6 @@ h1. Conventions
 
 Two conventions are used throughout all versions of the UFO.
 
-h3. Property Lists
-
-Many of the file structures are stored as XML <a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd" target="_blank">Property Lists</a>.
-
 h3. Reverse Domain Naming Schemes
 
 In several places in the UFO the <a href="http://en.wikipedia.org/wiki/Reverse-DNS" target="_blank">reverse domain naming system</a> is recommended for creating unique keys and ids. To make a reverse domain, reverse the relevant Internet domain. For example, if the Internet domain is _unifiedfontobject.org_, your reverse domain name would be _org.unifiedfontobject_. Further extensions are up to the creator of the data.

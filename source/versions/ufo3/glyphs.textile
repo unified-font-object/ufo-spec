@@ -38,7 +38,7 @@ The top level of the UFO gains one new file, "layercontents.plist":#layercontent
 
 h1. contents.plist
 
-| *File Format* | Property List |
+| *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 <div class="editorsnote">Mention that this file is required.</div>
 
@@ -109,7 +109,7 @@ h1. layercontents.plist
 This should move to a separate file since it lives outside of the glyphs directory.
 </div>
 
-| *File Format* | Property List |
+| *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file maps the layer names to the _glyphs_ directory names. Those directory names must be plain directory names, not absolute or relative paths in the file system. Care must be taken when choosing directory names: many file systems have character, length and case sensitivity restrictions. There is no one standard layer name to directory name conversion. However, a sample one must be developed[1]. Additionally, all layers must have unique names within the UFO.
 
