@@ -8,6 +8,10 @@ These layers can be used for anything--the common _main+background_ drawing envi
 
 Layers are implemented as a series of glyph sets within the UFO. There is one required layer--the _glyphs_ directory. This directory is considered the primary outline source of the font. Additional layers are represented as additional directories that adhere to the naming convention of _glyphs.&#42;_ where _&#42;_ is a unique, case-insensitive, file-system legal string.
 
+<div class="discussionnote">
+"file-system legal string" is very vague. Is it time to define what characters are allowed? Or, more likely, we could have a recommended way of naming files.
+</div>
+
 The top level of the UFO gains one new file, "layercontents.plist":#layercontents This file maps layer directory names to layer names. Each layer may have a "layerinfo.plist":#layerinfo file. Each layer may contain glyphs that are or are not part of other layers. The structure of the UFO, as it relates to layers, looks like this:
 
 <ul class="filediagram">
@@ -100,6 +104,10 @@ h3. Example
 <div class="section">
 
 h1. layercontents.plist
+
+<div class="editorsnote">
+This should move to a separate file since it lives outside of the glyphs directory.
+</div>
 
 | *File Format* | Property List |
 
