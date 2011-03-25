@@ -4,7 +4,7 @@ h1. Glyph Directories
 
 A glyphs directory represents a layer of glyph data in a font. This glyph data files will be in "Glyph Interchange Format":glif.html.
 
-These layers can be used for anything--the standard _main+background_ drawing environment, multi-layered fonts, glyph revision history and so on. The UFO layering system is designed to be conceptually unrestricted. However, this does not mean that layers should be used to store an entire family of weights within a single UFO. The UFO is a single style file format, not a family format.
+These layers can be used for anything--the common _main+background_ drawing environment, multi-layered fonts, glyph revision history and so on. The UFO layering system is designed to be conceptually unrestricted.
 
 Layers are implemented as a series of glyph sets within the UFO. There is one required layer--the _glyphs_ directory. This directory is considered the primary outline source of the font. Additional layers are represented as additional directories that adhere to the naming convention of _glyphs.&#42;_ where _&#42;_ is a unique, case-insensitive, file-system legal string.
 
