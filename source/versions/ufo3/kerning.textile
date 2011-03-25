@@ -202,8 +202,4 @@ def makeUniqueGroupName(name, groupNames, counter=0):
 }
 </pre>
 
-<div class="editorsnote">
-Should a down conversion algorithm be defined?
-</div>
-
 </div>
