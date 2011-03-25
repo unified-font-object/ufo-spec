@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. data directory
+h1. data directory (draft)
 
 This directory allows applications to store application specific data that is too complex or too large for lib.plist. The items within the directory may be either files or directories. The only requirement is that the top level files and directories follow the same reverse domain naming convention used in lib.plist. Applications are required to copy the entire data directory tree.
 

@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. metainfo.plist
+h1. metainfo.plist (draft)
 
 | *File Format* | Property List |
 

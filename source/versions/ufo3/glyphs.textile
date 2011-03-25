@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. Glyph Directories
+h1. Glyph Directories (draft)
 
 A glyphs directory represents a layer of glyph data in a font. This glyph data files will be in "Glyph Interchange Format":glif.html.
 

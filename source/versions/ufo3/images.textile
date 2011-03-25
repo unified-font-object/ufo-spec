@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. images directory
+h1. images directory (draft)
 
 Images files may be stored within the UFO or not. If they are stored within the UFO, they must be stored in an _images_ directory at the top of the UFO. Obviously, each image must have a unique file name. However, beyond that there are no file name requirements. Applications should try to prevent duplicate images, but this is not a requirement of the UFO format. Applications should also try to remove unreferenced images from the images directory, but this is not a requirement of the UFO format.
 

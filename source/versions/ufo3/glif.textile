@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. Glyph Interchange Format
+h1. Glyph Interchange Format (draft)
 
 | *File Format* | XML |
 
