@@ -70,6 +70,7 @@ h3. metainfo.plist
 
 The _formatVersion_ was bumped to 3.
 
+
 h3. fontinfo.plist
 
 Support for specific name id, platform, platform encoding and language name table entries was added.
@@ -78,9 +79,11 @@ Support for WOFF metadata was added.
 
 Two attributes for identifying kerning groups were added.
 
+
 h3. groups.plist
 
 Changed the special considerations for kerning groups to reflect the new prefixes.
+
 
 h3. kerning.plist
 
@@ -88,17 +91,21 @@ Added information about writing direction.
 
 Information about the new group naming attributes was added.
 
+
 h3. layercontents.plist
 
 This is a new file.
+
 
 h3. glyphs
 
 More than one glyphs directory is allowed. Each directory is a layer.
 
+
 h3. glyphs/layerinfo.plist
 
 This is a new file.
+
 
 h3. glyphs/GLIF
 
@@ -114,9 +121,31 @@ h4. Contour
 
 A name attribute was added.
 
+h4. Contour
+
+A name attribute was added.
+
+h4. Image
+
+A new image element was added.
+
+h4. Guideline
+
+A new guideline element was added.
+
+h4. Link
+
+A new link element was added.
+
+h4. Linkref
+
+A new linkref element was added.
+
+
 h3. images
 
 The images directory was added.
+
 
 h3. data
 
