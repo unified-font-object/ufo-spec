@@ -121,10 +121,6 @@ h4. Contour
 
 A name attribute was added.
 
-h4. Contour
-
-A name attribute was added.
-
 h4. Image
 
 A new image element was added.
