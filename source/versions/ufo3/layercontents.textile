@@ -1,0 +1,39 @@
+<div class="section">
+
+h1. layercontents.plist (draft)
+
+| *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
+
+This file maps the layer names to the _glyphs_ directory names. Those directory names must be plain directory names, not absolute or relative paths in the file system. Care must be taken when choosing directory names: many file systems have character, length and case sensitivity restrictions. There is no one standard layer name to directory name conversion. However, a sample one must be developed[1]. Additionally, all layers must have unique names within the UFO.
+
+fn1. The glyph name to GLIF file name conversion should provide a good starting point for this. Perhaps that algorithm can be abstracted so that it is file name extension agnostic. It will also need to gain an additional step to handle characters that may not be suitable for use in a file system name.
+
+h2. Specification
+
+The mapping is stored as an array in the property list. This array also defines the order of the layers from top to bottom. The mapping is stored within the array as arrays containing the layer names first and the directory name second.
+
+h3. Example
+
+<pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;
+&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;array&gt;
+  &lt;array&gt;
+    &lt;string&gt;&lt;/string&gt;
+    &lt;string&gt;glyphs&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;Sketches&lt;/string&gt;
+    &lt;string&gt;glyphs.S_ketches&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;Reference&lt;/string&gt;
+    &lt;string&gt;glyphs.R_eference&lt;/string&gt;
+  &lt;/array&gt;
+&lt;/array&gt;
+&lt;/plist&gt;
+</pre>
+
+</div>
