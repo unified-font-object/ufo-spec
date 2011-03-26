@@ -1,8 +1,8 @@
 <div class="section">
 
-h1. UFO 3 (draft)
+h1. UFO 3 (draft)!
 
-The UFO 3 specification is currently in early development. In no way is this a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":../team.html
+The UFO 3 specification is currently in development. In no way is this a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":../team.html
 
 <div class="discussionnote">
 Points of contention in this document have notes like this explaining the differing points of view. These are ongoing discussions that will be resolved before the specification is final.
@@ -12,7 +12,15 @@ Points of contention in this document have notes like this explaining the differ
 We have found it helpful to think about the implementation of this spec in our own code, notably ufoLib, glifLib, RoboFab and defcon. Throughout this document, notes about how we think we can/will implement things are highlighted in sections like this. These are not and will not be part of the official specification. They are here purely to help keep the specification grounded in reality. These will not be included in the final specification.
 </div>
 
-A UFO file is a directory following this structure:
+<div class="editorsnote">
+Notes to the editor are highlighted like this. Please pardon our dust.
+</div>
+
+A UFO is a directory representing font data with one or more glyph layers.
+
+h3. File Structure
+
+UFO 3 follows this file structure:
 
 <ul class="filediagram">
   <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> &#42;.ufo</li>
@@ -24,13 +32,7 @@ A UFO file is a directory following this structure:
     <li class="filediagram-file">features.plist</li>
     <li class="filediagram-file">lib.plist</li>
     <li class="filediagram-file">layercontents.plist</li>
-    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs</li>
-    <ul class="filediagram-nested">
-      <li class="filediagram-file">contents.plist</li>
-      <li class="filediagram-file">layerinfo.plist</li>
-      <li class="filediagram-file">&#42;.glif</li>
-    </ul>
-    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs.&#42;</li>
+    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs*</li>
     <ul class="filediagram-nested">
       <li class="filediagram-file">contents.plist</li>
       <li class="filediagram-file">layerinfo.plist</li>
@@ -44,7 +46,7 @@ A UFO file is a directory following this structure:
   </ul>
 </ul>
 
-Each of the files has a unique meaning, purpose and data structure:
+Each of the files and directories have unique meanings, purposes and data structures:
 
 | "metainfo.plist":metainfo.html                        | Format version, creator, etc. |
 | "fontinfo.plist":fontinfo.html                        | Various font info data. |
@@ -53,14 +55,20 @@ Each of the files has a unique meaning, purpose and data structure:
 | "features.fea":features.html                          | OpenType feature definitions. |
 | "lib.plist":lib.html                                  | Arbitrary custom data. |
 | "layercontents.plist":glyphs.html                     | Glyphs directory name to layer name mapping. |
-| "glyphs*":glyphs.html                                 | A directory containing glyphs. |
+| "glyphs*":glyphs.html                                 | A directory containing a glyph set representing a "layer":#glyphlayers. |
 | glyphs*/"contents.plist":glyphs.html#contents.plist   | File name to glyph name mapping. |
 | glyphs*/"layerinfo.plist":glyphs.html#layerinfo.plist | Information about the layer. |
 | glyphs*/"*.glif":glif.html                            | A glyph definition. |
 | "images":images.html                                  | A directory containing images referenced by glyphs. |
-| "data":data.html                                      | Arbitrary custom data. |
+| "data":data.html                                      | Arbitrary custom data in a quantity or structure that can't be stored in lib.plist. |
 
+h3(#glyphlayers). Glyph Layers
+
+The UFO supports layered glyphs. These layers can be used for anything--the common _main+background_ drawing environment, multi-layered fonts, glyph revision history and so on. The layering structure is designed to be conceptually unrestricted.
+
+Layers are implemented with a series of glyph sets within the UFO. Each glyph set represents one layer for all glyphs in the font. Each glyph set is stored in its own _glyphs_ directory. There is one required glyph set that represents the primary outline source of the glyph. This glyph set should be stored in the _glyphs_ directory. Additional layers are stored in other directories as defined in the "layercontents.plist":layercontents.html documentation.
 </div>
+
 
 <div class="section">
 
