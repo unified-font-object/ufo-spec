@@ -10,6 +10,10 @@ h2. Specification
 
 The property list data consists of a dictionary at the top level. In order to prevent conflicts in the lib, keys in the top level should follow a reverse domain naming convention (see below). It is recommended that the data stored as a value be as shallow as possible.
 
+<div class="editorsnote">
+Mention /data.
+</div>
+
 h4. Reverse Domain Naming Convention
 
 Keys in the lib should follow a reverse domain naming convention. To make your unique key, reverse your Internet domain. For example, if your Internet domain is _robofab.com_, your reverse domain name would be _com.robofab_. When creating a key for storing data in the lib, use this reverse domain at the beginning of your key. For example to store settings for a script, if your Internet domain is _robofab.com_ and your script is called _AccentBuilder_, an appropriate key would be _com.robofab.AccentBuilder_.
