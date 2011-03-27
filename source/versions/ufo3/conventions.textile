@@ -2,17 +2,58 @@
 
 h1. Conventions
 
-Two conventions are used throughout all versions of the UFO.
+These are conventions that are used throughout the UFO.
 
-h3. Reverse Domain Naming Schemes
+h3(#reversedomain). Reverse Domain Naming Schemes
 
 In several places in the UFO the <a href="http://en.wikipedia.org/wiki/Reverse-DNS" target="_blank">reverse domain naming system</a> is recommended for creating unique keys and ids. To make a reverse domain, reverse the relevant Internet domain. For example, if the Internet domain is _unifiedfontobject.org_, your reverse domain name would be _org.unifiedfontobject_. Further extensions are up to the creator of the data.
 
-h3. Color Definitions
+h3(#usernametofilename). Common User Name to File Name Algorithm
 
-*This is in development for UFO 3. It is not finalized.*
+<div class="discussionnote">
+This should be improved and extended to handle layer names. The Wikipedia article on "filenames":http://en.wikipedia.org/wiki/Filename has copious information that might be helpful.
+</div>
+
+This algorithm has limited support for case insensitive file systems: it assumes user names are not case sensitive apart from the first character.
+
+# If a name starts with a ".":
+## Replace the "." with an "_". Some file systems regard file names that start with "." as invisible.
+# Break the name into parts delimited by ".".
+# *If the first part contains one or more underscores*, it is a compound name.
+## Split the compound name by underscore into its member names.
+## To each member starting with a capital letter, add a "_" at the end.
+## Rejoin the member names with underscore.
+# *If the first part contains no underscore:*
+## If it starts with a capital letter, add a "_" to the end.
+# Rejoin the parts with ".".
+
+h4. Examples
+
+|_. glyph name              |_. file name |
+| <pre>a</pre>              | <pre>a</pre> |
+| <pre>A</pre>              | <pre>A_</pre> |
+| <pre>A.alt</pre>          | <pre>A_.alt</pre> |
+| <pre>T_H</pre>            | <pre>T__H_</pre> |
+| <pre>T_h</pre>            | <pre>T__h</pre> |
+| <pre>t_h</pre>            | <pre>t_h</pre> |
+| <pre>F_F_I</pre>          | <pre>F__F__I_</pre> |
+| <pre>f_f_i</pre>          | <pre>f_f_i</pre> |
+| <pre>Aacute_V.swash</pre> | <pre>Aacute__V_.swash</pre> |
+
+
+h5. Possible problems
+
+# Some file systems impose file name length restrictions. This can cause file name clashes.
+# The assumption that glyph names are not case sensitive apart from the first character causes problems with glyph names like _A.alt_ and _A.Alt_.
+
+
+h3(#colors). Color Definitions
 
 Several elements have a color attribute that defines a color value to be applied to the element. A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the "sRGB":http://en.wikipedia.org/wiki/SRGB color space.
+
+<div class="discussionnote">
+Why not an array of four integers or floats?
+</div>
 
 <div class="editorsnote">
 This needs a more clear definition in table form.
