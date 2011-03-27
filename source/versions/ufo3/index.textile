@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. UFO 3 (draft)!
+h1. UFO 3 (draft)
 
 The UFO 3 specification is currently in development. In no way is this a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":../team.html
 
