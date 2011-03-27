@@ -4,9 +4,13 @@ h1. layercontents.plist (draft)
 
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
-This file maps the layer names to the _glyphs_ directory names. Those directory names must be plain directory names, not absolute or relative paths in the file system. Care must be taken when choosing directory names: many file systems have character, length and case sensitivity restrictions. There is no one standard layer name to directory name conversion. However, a sample one must be developed[1]. Additionally, all layers must have unique names within the UFO.
+This file maps the layer names to the _glyphs_ directory names. Those directory names must be plain directory names, not absolute or relative paths in the file system. Care must be taken when choosing file names: layer names are case sensitive, yet many file systems are not. There is no one standard layer name to file name conversion. However, a common implementation is defined in the "conventions":conventions.html#usernametofilename.
 
-fn1. The glyph name to GLIF file name conversion should provide a good starting point for this. Perhaps that algorithm can be abstracted so that it is file name extension agnostic. It will also need to gain an additional step to handle characters that may not be suitable for use in a file system name.
+<div class="discussionnote">
+Are there any rules governing what characters can be used in a layer name?
+
+Can more than one layer have the same name?
+</div>
 
 h2. Specification
 

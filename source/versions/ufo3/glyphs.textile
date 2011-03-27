@@ -16,6 +16,12 @@ h1(#contents). contents.plist
 
 _contents.plist_ contains a dictionary that maps glyph names to GLIF file names. Those file names must be plain file names, not absolute or relative paths in the file system. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, a common implementation is defined in the "conventions":conventions.html#usernametofilename.
 
+<div class="discussionnote">
+Are there any rules governing what characters can be used in a glyph name? Obviously there are the FDK requirements, but do we want to enforce those here?
+
+We should also mention that glyph names must be unique. No duplicates.
+</div>
+
 h2. Specification
 
 The property list data consists of a dictionary at the top level. The keys are glyph names and the values are file names.
