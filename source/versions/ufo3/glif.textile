@@ -100,6 +100,10 @@ xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order 
 
 h4. This element has no child elements.
 
+h5. Format
+
+All images, regardless of whether they are stored in the _images_ directory or not, must be in PNG format.
+
 h5. Coloring Images
 
 If a color is to be applied to an image, as a result of a color attribute in an image element or a layer fill color attribute in "layerinfo.plist":#layerinfo, the application displaying the image should convert the image to grayscale and then apply the color.
