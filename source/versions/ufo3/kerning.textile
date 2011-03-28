@@ -133,7 +133,6 @@ def makeUniqueGroupName(name, groupNames, counter=0):
 
 def test():
     """
-    >>> import pprint
     >>> testKerning = {
     ...     "A" : {
     ...         "A" : 1,
