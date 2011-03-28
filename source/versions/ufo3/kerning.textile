@@ -22,27 +22,42 @@ h3. Example
 &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
 &lt;plist version=&quot;1.0&quot;&gt;
 &lt;dict&gt;
+  &lt;key&gt;@KERN_1_BGroup&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;@KERN_2_CGroup&lt;/key&gt;
+    &lt;integer&gt;7&lt;/integer&gt;
+    &lt;key&gt;@KERN_2_DGroup&lt;/key&gt;
+    &lt;integer&gt;8&lt;/integer&gt;
+    &lt;key&gt;A&lt;/key&gt;
+    &lt;integer&gt;5&lt;/integer&gt;
+    &lt;key&gt;B&lt;/key&gt;
+    &lt;integer&gt;6&lt;/integer&gt;
+  &lt;/dict&gt;
+  &lt;key&gt;@KERN_1_CGroup&lt;/key&gt;
+  &lt;dict&gt;
+    &lt;key&gt;@KERN_2_CGroup&lt;/key&gt;
+    &lt;integer&gt;11&lt;/integer&gt;
+    &lt;key&gt;@KERN_2_DGroup&lt;/key&gt;
+    &lt;integer&gt;12&lt;/integer&gt;
+    &lt;key&gt;A&lt;/key&gt;
+    &lt;integer&gt;9&lt;/integer&gt;
+    &lt;key&gt;B&lt;/key&gt;
+    &lt;integer&gt;10&lt;/integer&gt;
+  &lt;/dict&gt;
   &lt;key&gt;A&lt;/key&gt;
   &lt;dict&gt;
+    &lt;key&gt;@KERN_2_CGroup&lt;/key&gt;
+    &lt;integer&gt;3&lt;/integer&gt;
+    &lt;key&gt;@KERN_2_DGroup&lt;/key&gt;
+    &lt;integer&gt;4&lt;/integer&gt;
+    &lt;key&gt;A&lt;/key&gt;
+    &lt;integer&gt;1&lt;/integer&gt;
     &lt;key&gt;B&lt;/key&gt;
-    &lt;integer&gt;-10&lt;/integer&gt;
-    &lt;key&gt;X&lt;/key&gt;
-    &lt;integer&gt;-10&lt;/integer&gt;
-    &lt;key&gt;Z&lt;/key&gt;
-    &lt;integer&gt;-15&lt;/integer&gt;
-  &lt;/dict&gt;
-  &lt;key&gt;X&lt;/key&gt;
-  &lt;dict&gt;
-    &lt;key&gt;Q&lt;/key&gt;
-    &lt;integer&gt;-10&lt;/integer&gt;
+    &lt;integer&gt;2&lt;/integer&gt;
   &lt;/dict&gt;
 &lt;/dict&gt;
 &lt;/plist&gt;
 </pre>
-
-<div class="editorsnote">
-Bring this example up to date.
-</div>
 
 </div>
 
