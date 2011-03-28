@@ -173,7 +173,7 @@ p.footnote {
 /* divs */
 
 #logo {
-	position: fixed;
+	position: absolute;
 	width: 220px;
 	height: 200px;
 	top: 20px;
@@ -184,7 +184,7 @@ p.footnote {
 }
 
 #navigation {
-	position: fixed;
+	position: absolute;
 	background-color: #333333;
 	width: 150px;
 	top: 230px;
