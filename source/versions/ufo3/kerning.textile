@@ -69,12 +69,22 @@ Converting from UFO 1 and UFO 2 is possible. An algorithm and sample implementat
 
 h3. Conversion algorithm
 
-# Make lists of groups referenced on the first and second sides of kerning pairs.
-## Create new names for these groups.
-### The names must be unique within the overall groups dictionary.
-### The names must begin with the appropriate prefix as defined by firstKerningGroupPrefix and secondKerningGroupPrefix in fontinfo.plist.
-# Populate the new group names into the kerning dictionary as needed.
-# Make copies of the referenced groups and store them under the new names in the overall groups dictionary.
+<ol>
+  <li>
+    Make lists of groups referenced on the first and second sides of kerning pairs.
+    <ol style="list-style-type: upper-alpha;">
+      <li>
+        Create new names for these groups.
+        <ol style="list-style-type: lower-alpha;">
+          <li>The names must be unique within the overall groups dictionary.</li>
+          <li>The names must begin with the appropriate prefix as defined by firstKerningGroupPrefix and secondKerningGroupPrefix in fontinfo.plist.</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Populate the new group names into the kerning dictionary as needed.</li>
+  <li>Make copies of the referenced groups and store them under the new names in the overall groups dictionary.</li>
+</ol>
 
 h3. Sample conversion implementation
 
