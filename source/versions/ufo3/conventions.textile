@@ -10,10 +10,6 @@ In several places in the UFO the <a href="http://en.wikipedia.org/wiki/Reverse-D
 
 h3(#usernametofilename). Common User Name to File Name Algorithm
 
-<div class="discussionnote">
-This should be improved and extended to handle layer names. The Wikipedia article on "filenames":http://en.wikipedia.org/wiki/Filename has copious information that might be helpful.
-</div>
-
 This algorithm has limited support for case insensitive file systems: it assumes user names are not case sensitive apart from the first character.
 
 # If a name starts with a ".":
@@ -47,7 +43,7 @@ h5. Possible problems
 # The assumption that glyph names are not case sensitive apart from the first character causes problems with glyph names like _A.alt_ and _A.Alt_.
 
 <div class="discussionnote">
-This is a proposed revised algorithm. It has been designed to avoid name clashes and work with common file systems.
+This is a proposal for a revised version of the algorithm above. It has been designed to avoid name clashes and work with common file systems.
 
 *Phase 1: Use a standard translation without regard for clashes.*
 # Remove any illegal characters, where the illegal characters are: " * + / : < > ? [ \ ] null | and anything in the range 1-31.
