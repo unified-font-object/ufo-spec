@@ -10,6 +10,8 @@ This file maps the layer names to the _glyphs_ directory names. Those directory 
 Are there any rules governing what characters can be used in a layer name?
 
 Can more than one layer have the same name?
+
+Should we have some common names for exchanging layers? For example, FontLab has "mask", Fog had "background", FontForge has something else. They all have the same conceptual purpose. Allowing the free exchange of these despite the inconsistent UI name would be useful. We could do this through a small registry using the public.*syntax or we could add some information to a list of application interaction recommendations.
 </div>
 
 h2. Specification
