@@ -392,14 +392,7 @@ h4(#kerning-group-prefixes). Kerning Group Prefixes
 
 If an application allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the _firstKerningGroupPrefix_ or the _secondKerningGroupPrefix_. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
 
-|_. key                   |_. value type |_. description |
+|_. key                    |_. value type |_. description |
 | firstKerningGroupPrefix  | string       | An arbitrary string that defines the group name prefix for first kerning groups used in the pairs dictionary. This string should not be the same as the string in secondKerningGroupPrefix. |
 | secondKerningGroupPrefix | string       | An arbitrary string that defines the group name prefix for second kerning groups used in the pairs dictionary. This string should not be the same as the string in firstKerningGroupPrefix. |
-
-<div class="editorsnote">
-This should also contain a note stating that groups that are not kerning groups should not use the prefixes. This would allow for finding kerning groups that aren't used by pairs.
-
-It might be worth setting rules for the content of groups. For example, a glyph must not exist in more than one glyph per side.
-</div>
-
 </div>

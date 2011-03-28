@@ -10,19 +10,51 @@ h2. Specification
 
 The property list data consists of a dictionary at the top level. Keys are group names and values are arrays of glyph name strings. There is no standard for naming groups. Glyphs may be in more than one group. Glyphs listed in the arrays are not required to be in the font.
 
-h4. Special Considerations
+h3. Kerning Groups
 
-Some groups may be used in kerning. See the "kerning.plist documentation":kerning.html for more information and special considerations.
+Groups may be used as members of kerning pairs in "kerning.plist":kerning.html. These groups are divided into two types: groups that appear on the first side of a kerning pair and groups that appear on the second side of a kerning pair. Kerning groups must follow the following rules.
 
-<div class="discussionnote">
+h5. Kerning group names must begin with the appropriate "prefix":fontinfo.html#kerning-group-prefixes.
 
-Should we state that the kerning prefixes should not be used for any groups other than kerning groups? We would need to state that this does not mean that only groups that are members of pairs in kerning.plist. Rather, it means that only groups that *could be* used in kerning pairs should use the prefixes.
+As stated before, these prefixes eliminate kerning interpretation ambiguities.
 
-We might also want to state that a glyph must not appear in more than one group per kerning side.
+h5. Only kerning groups are allowed to use the kerning group prefixes in their names.
 
-</div>
+Any group whose name begins with a kerning group prefix is considered a kerning group.
+
+h5. Kerning groups are not required to appear in the kerning pairs.
+
+One or more kerning groups may be unreferenced in kerning pairs. This is allowed and in some cases, for example generating an OpenType kern feature, unreferenced groups have an important role.
+
+h5. Glyphs must not appear in more than one kerning group per side.
+
+Glyphs that appear in more than one group per side create a logical ambiguity. For example, consider these two kerning groups:
+
+|_. group name |_. group members |
+| KERN_1_A1    | A, Aacute, Agrave, Adieresis |
+| KERN_1_A2    | A, Acircumflex |
+
+The kerning in this example contains the following kerning pairs:
+
+|_. side 1  |_. side 2 |_. value |
+| KERN_1_A1 | T        | -50 |
+| KERN_1_A2 | T        | -100 |
+
+Now, an application wants to apply the kerning for the pair "AT". There are different ways to find kerning for a pair, but in this case the most general approach is best. The following steps occur:
+
+1. Look to see if (A, T) is a pair in the kerning. It isn't.
+2. Locate the groups for the first and second members of the pair.
+3. Two groups are found for A: KERN_1_A1 and KERN_1_A2.
+4. Look up the kerning value for (KERN_1_A1, T) and (KERN_1_A2, T).
+
+Two kerning values are found: -50 and -100. There is no way to determine which one is correct. This ambiguity is eliminated when a glyph may occur in only one group.
+
 
 h3. Example
+
+<div class="editorsnote">
+Add some kerning groups to this example.
+</div>
 
 <pre class="prettyprint">
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
