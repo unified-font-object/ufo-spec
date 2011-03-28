@@ -355,5 +355,5 @@ span.inlineeditorsnote {
 .dec { color: #606; }
 pre.prettyprint {
 	padding: 5px 0px 5px 10px;
-	background-color: #e5e5e5;
+	background-color: rgba(0,0,0,.08);
 }
