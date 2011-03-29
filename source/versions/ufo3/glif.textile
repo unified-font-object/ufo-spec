@@ -236,8 +236,6 @@ h4. Attributes
 | smooth           | string           | This attribute can only be given when _type_ indicates the point is on-curve. When set to _yes_, it signifies that a smooth curvature should be maintained at this point, either as a _curve point_ or a _tangent point_ in Fontographer terms. | no |
 | name             | string           | Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline. | None |
 
-h4. This element has no child elements.
-
 h5. Point Types
 
 | move     | A point of this type MUST be the first in a _contour_. The reverse is not true: a _contour_ does not necessarily start with a _move_ point. When a _contour_ *does* start with a _move_ point, it signifies the beginning of an *open* contour. A *closed* contour does *not* start with a _move_ and is defined as a cyclic list of points, with no predominant start point. There is always a _next point_ and a _previous point_. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline. |
@@ -245,6 +243,8 @@ h5. Point Types
 | offcurve | This point is part of a curve segment, that goes up to the next point that is either a _curve_ or a _qcurve_. |
 | curve    | Draw a cubic bezier curve from the last non-_offcurve_ point to this point. If the number of _offcurve_ points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the _Super Bezier_ algorithm. |
 | qcurve   | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. |
+
+h4. This element has no child elements.
 
 h4. Examples
 
