@@ -300,11 +300,9 @@ Are contour and point always required? Should we add a component attribute?
 
 h3. &lt;lib&gt; Custom data storage.
 
-This element is structure is defined as a "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd. This element may occur at most once. lib has exactly one child, which must be _dict_. To avoid naming conflicts, keys should use the Reverse Domain Naming Convention defined for "lib.plist":../filestructure/lib.html.
+This element is a place to store tool specific, user specific or otherwise arbitrary data for the glyph. It is structure is defined as a "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd. This element may occur at most once. lib has exactly one child, which must be _dict_. In order to prevent conflicts in the lib, keys in the top level should follow a "reverse domain naming scheme":conventions.html#reversedomain. It is recommended that the data stored as a value be as shallow as possible.
 
-<div class="editorsnote">
-Mention /data.
-</div>
+Data that is too complex or too large for lib can be stored in the "data directory":data.html.
 
 
 h3. Example

@@ -90,7 +90,7 @@ Two attributes for identifying kerning groups were added.
 
 h3. groups.plist
 
-Changed the special considerations for kerning groups to reflect the new prefixes.
+Behavior with regard to kerning groups was defined.
 
 
 h3. kerning.plist
