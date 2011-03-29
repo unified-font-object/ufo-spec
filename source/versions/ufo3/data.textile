@@ -2,12 +2,5 @@
 
 h1. data directory (draft)
 
-This directory allows applications to store application specific data that is too complex or too large for lib.plist. The items within the directory may be either files or directories. The only requirement is that the top level files and directories follow the same reverse domain naming convention used in lib.plist. Applications are required to copy the entire data directory tree.
-
-If an application uses the data directory to store its own outline data or data that is dependent on the outline data stored elsewhere in the UFO, it is the responsibility of that application to ensure that the data in _glyphs_ and _glyphs.&#42;_ is up to date. The outline data in _glyphs_ and _glyphs.&#42;_ is always considered current. <span class="inlineeditorsnote">This paragraph seems odd. It was in response to a specific question but it may be better to define that applications are responsible for their own directories in the data directory. We should also lay down rules to prevent applications from removing other application's directories.</span>
-
-<div class="editorsnote">
-Mention lib.plist and glyph.lib.
-</div>
-
+This directory allows applications to store application specific data that is too complex or too large for "lib.plist":lib.html and the "lib element in GLIF":glif.html#lib. The items within the directory may be either files or directories. The only requirement is that the top level files and directories follow the same "reverse domain naming scheme":conventions.html used in the lib. UFO editing tools are responsible for their own sections of the data directory and they should not delete or modify any other sections of the data directory belonging to other tools unless given permission to do so.
 </div>
