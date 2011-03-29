@@ -41,7 +41,7 @@ h4. Attributes
 | name             | The name of the glyph |
 | format           | The format version. 2 for this version. |
 
-The _name_ attribute has limited uses in this version. The _contents.plist_ file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the _name_ attribute is probably best ignored <span class="inlineeditorsnote">(this should be more strongly worded)</span>, since manual editing may have caused a mismatch with the glyph name as stored in _contents.plist_, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
+The _name_ attribute has limited uses in this version. The _contents.plist_ file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the _name_ attribute should be ignored, since manual editing may have caused a mismatch with the glyph name as stored in _contents.plist_, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
 
 h4. Child Elements
 
