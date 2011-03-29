@@ -121,7 +121,7 @@ th {
 }
 
 tr:nth-child(odd) {
-	background-color: #ededed;
+	background-color: rgba(0,0,0,.07);
 }
 
 td {
