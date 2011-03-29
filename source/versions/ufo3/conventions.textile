@@ -48,8 +48,10 @@ This is a proposal for a revised version of the algorithm above. It has been des
 *Phase 1: Use a standard translation without regard for clashes.*
 # Remove any illegal characters, where the illegal characters are: " * + / : < > ? [ \ ] null | and anything in the range 1-31.
 # Break the name into parts delimited by "_".
-* Break each of these into parts delimited by ".".
-** If one of these starts with an uppercase letter, add "_" to the end of that part.
+## Break each of these into parts delimited by ".".
+### If one of these starts with an uppercase letter, add "_" to the end of that part.
+## Rejoin parts with ".".
+# Rejoin parts with "_."
 # Clip name to 255 characters.
 
 If these is a file name clash, proceed to Phase 2.
