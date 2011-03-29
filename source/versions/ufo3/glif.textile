@@ -51,7 +51,7 @@ h4. Child Elements
 | "image":#image         | May occur at most once. |
 | "guideline":#guideline | May occur any number of times. |
 | "link":#unicode        | May occur any number of times. |
-| "outline":outline      | May occur at most once. |
+| "outline":#outline     | May occur at most once. |
 | "lib":#lib             | May occur at most once. |
 
 h3(#advance). advance:  Horizontal and vertical metrics.
