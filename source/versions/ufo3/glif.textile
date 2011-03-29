@@ -62,6 +62,12 @@ h4. Attributes
 
 h4. This element has no child elements.
 
+h4. Example
+
+<pre class="prettyprint">
+&lt;advance width="400" /&gt;
+</pre>
+
 
 h3(#unicode). unicode: Unicode code point.
 
@@ -73,6 +79,12 @@ h4. Attributes
 h4. This element has no child elements.
 
 The first occurrence of this element defines the primary unicode value for this glyph.
+
+h4. Example
+
+<pre class="prettyprint">
+&lt;unicode hex="0041" /&gt;
+</pre>
 
 
 h3(#image). image:  An image reference.
@@ -86,7 +98,7 @@ From an implementation perspective, images are quite complex. We either need to 
 h4. Attributes
 
 |_. attribute name |_. data type |_. description |_. default value |
-| fileName         | string      | The image file name. | None |
+| fileName         | string      | The image file name. <span class="inlineeditorsnote">This should include the extension, right??</span> | None |
 | directory        | string      | The directory the image is stored in. If this is not given, the image must be stored in the _images_ directory within the UFO. <span class="inlineeditorsnote">Is this path relative to the UFO, file system or something else?</span> | None |
 | xScale           | integer or float | See below. | 1 |
 | xyScale          | integer or float | See below. | 0 |
@@ -100,13 +112,24 @@ xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order 
 
 h4. This element has no child elements.
 
-h5. Format
+h4. Format
 
 All images, regardless of whether they are stored in the _images_ directory or not, must be in PNG format.
 
-h5. Coloring Images
+h4. Coloring Images
 
 If a color is to be applied to an image, as a result of a color attribute in an image element or a layer fill color attribute in "layerinfo.plist":#layerinfo, the application displaying the image should convert the image to grayscale and then apply the color.
+
+h4. Example
+
+<pre class="prettyprint">
+&lt;image fileName=&quot;Sketch 1.png&quot; xOffset=&quot;100&quot; yOffset=&quot;200&quot;
+  xScale=&quot;.75&quot; yScale=&quot;.75&quot; color=&quot;1,0,0,.5&quot; /&gt;
+</pre>
+
+<div class="editorsnote">
+Need example of image from outside of the UFO.
+</div>
 
 
 h3(#guideline). guideline: A reference guideline.
@@ -174,6 +197,13 @@ The name attribute will require modification to pens, the pen protocol, point pe
 
 h4. This element has no child elements.
 
+h4. Example
+
+<pre class="prettyprint">
+&lt;component base=&quot;A&quot; xOffset=&quot;100&quot; /&gt;
+</pre>
+
+
 h3(#contour). contour: Contour description.
 
 h4. Attributes
@@ -215,6 +245,46 @@ h5. Point Types
 | offcurve | This point is part of a curve segment, that goes up to the next point that is either a _curve_ or a _qcurve_. |
 | curve    | Draw a cubic bezier curve from the last non-_offcurve_ point to this point. If the number of _offcurve_ points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the _Super Bezier_ algorithm. |
 | qcurve   | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. |
+
+h4. Examples
+
+move point:
+
+<pre class="prettyprint">
+&lt;point x=&quot;433&quot; y=&quot;371&quot; type=&quot;move&quot; /&gt;
+</pre>
+
+line point:
+
+<pre class="prettyprint">
+&lt;point x=&quot;433&quot; y=&quot;371&quot; type=&quot;line&quot; /&gt;
+</pre>
+
+offcurve point:
+
+<pre class="prettyprint">
+&lt;point x=&quot;433&quot; y=&quot;366&quot; /&gt;
+</pre>
+
+curve point:
+
+<pre class="prettyprint">
+&lt;point x=&quot;441&quot; y=&quot;363&quot; type=&quot;curve&quot; smooth=&quot;yes&quot; /&gt;
+</pre>
+
+curve point preceded by two offcurve points, thus creating a bezier curve:
+
+<pre class="prettyprint">
+&lt;point x=&quot;433&quot; y=&quot;366&quot;/&gt;
+&lt;point x=&quot;436&quot; y=&quot;363&quot;/&gt;
+&lt;point x=&quot;441&quot; y=&quot;363&quot; type=&quot;curve&quot; smooth=&quot;yes&quot; /&gt;
+</pre>
+
+qcurve point:
+
+<pre class="prettyprint">
+&lt;point x=&quot;441&quot; y=&quot;363&quot; type=&quot;qcurve&quot; /&gt;
+</pre>
 
 
 h3(#link). link: A collection of point references.
