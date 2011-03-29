@@ -45,12 +45,14 @@ The _name_ attribute has limited uses in this version. The _contents.plist_ file
 
 h4. Child Elements
 
-|_. element name |_. description |
-| advance        | May occur at most once. |
-| unicode        | May occur any number of times. |
-| outline        | May occur at most once. |
-| lib            | May occur at most once. |
-
+|_. element name         |_. description |
+| "advance":#advance     | May occur at most once. |
+| "unicode":#unicode     | May occur any number of times. |
+| "image":#image         | May occur at most once. |
+| "guideline":#guideline | May occur any number of times. |
+| "link":#unicode        | May occur any number of times. |
+| "outline":outline      | May occur at most once. |
+| "lib":#lib             | May occur at most once. |
 
 h3(#advance). advance:  Horizontal and vertical metrics.
 
