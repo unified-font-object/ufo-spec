@@ -33,7 +33,7 @@ The GLIF data follows this structure:
 
 h2. Specification
 
-h3. &lt;glyph&gt; The top level element.
+h3(#glyph). glyph: The top level element.
 
 h4. Attributes
 
@@ -52,7 +52,7 @@ h4. Child Elements
 | lib            | May occur at most once. |
 
 
-h3. &lt;advance&gt;  Horizontal and vertical metrics.
+h3(#advance). advance:  Horizontal and vertical metrics.
 
 h4. Attributes
 
@@ -63,7 +63,7 @@ h4. Attributes
 h4. This element has no child elements.
 
 
-h3. &lt;unicode&gt; Unicode code point.
+h3(#unicode). unicode: Unicode code point.
 
 h4. Attributes
 
@@ -75,7 +75,7 @@ h4. This element has no child elements.
 The first occurrence of this element defines the primary unicode value for this glyph.
 
 
-h3. &lt;image&gt;  An image reference.
+h3(#image). image:  An image reference.
 
 This optional element represents an image element in a glyph. It may occur at most once. The image is always considered to be _behind_ the outline element.
 
@@ -109,7 +109,7 @@ h5. Coloring Images
 If a color is to be applied to an image, as a result of a color attribute in an image element or a layer fill color attribute in "layerinfo.plist":#layerinfo, the application displaying the image should convert the image to grayscale and then apply the color.
 
 
-h3. &lt;guideline&gt; A reference guideline.
+h3(#guideline). guideline: A reference guideline.
 
 This element may occur any number of times.
 
@@ -139,7 +139,7 @@ h4. Child Elements
 This element has no child elements.
 
 
-h3. &lt;outline&gt; Outline description.
+h3(#outline). outline: Outline description.
 
 h4. This element has no attributes.
 
@@ -150,7 +150,7 @@ h4. Child Elements
 | contour        | May occur any number of times. |
 
 
-h3. &lt;component&gt; Insert another glyph as part of the outline.
+h3(#component). component: Insert another glyph as part of the outline.
 
 h4. Attributes
 
@@ -174,7 +174,7 @@ The name attribute will require modification to pens, the pen protocol, point pe
 
 h4. This element has no child elements.
 
-h3. &lt;contour&gt; Contour description.
+h3(#contour). contour: Contour description.
 
 h4. Attributes
 
@@ -195,7 +195,7 @@ h4. Child Elements
 | point          | May occur any number of times. |
 
 
-h3. &lt;point&gt; An attributed coordinate pair.
+h3(#point). point: An attributed coordinate pair.
 
 h4. Attributes
 
@@ -217,7 +217,7 @@ h5. Point Types
 | qcurve   | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. |
 
 
-h3. &lt;link&gt; A collection of point references.
+h3(#link). link: A collection of point references.
 
 Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The _link_ element may contain a _type_ string that applications can use to define what a particular link represents.
 
@@ -277,7 +277,7 @@ h4. Example
 &lt;/link&gt;
 </pre>
 
-h3. &lt;linkref&gt; A reference to a particular point in the glyph.
+h3(#linkref). linkref: A reference to a particular point in the glyph.
 
 <div class="discussionnote">
 pointref might be a better name.
@@ -298,7 +298,7 @@ h5. Notes
 Are contour and point always required? Should we add a component attribute?
 
 
-h3. &lt;lib&gt; Custom data storage.
+h3(#lib). lib: Custom data storage.
 
 This element is a place to store tool specific, user specific or otherwise arbitrary data for the glyph. It is structure is defined as a "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd. This element may occur at most once. lib has exactly one child, which must be _dict_. In order to prevent conflicts in the lib, keys in the top level should follow a "reverse domain naming scheme":conventions.html#reversedomain. It is recommended that the data stored as a value be as shallow as possible.
 
