@@ -241,6 +241,10 @@ h5. Point Types
 | curve    | Draw a cubic bezier curve from the last non-_offcurve_ point to this point. If the number of _offcurve_ points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the _Super Bezier_ algorithm. |
 | qcurve   | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. |
 
+<div class="discussionnote">
+Should we remove the Super Bezier functionality? It creates an "interoperability problem":http://fontforge.sourceforge.net/python.html (search the page for "super-bezier").
+</div>
+
 h4. This element has no child elements.
 
 h4. Examples
@@ -266,14 +270,6 @@ offcurve point:
 curve point:
 
 <pre class="prettyprint">
-&lt;point x=&quot;441&quot; y=&quot;363&quot; type=&quot;curve&quot; smooth=&quot;yes&quot; /&gt;
-</pre>
-
-curve point preceded by two offcurve points, thus creating a bezier curve:
-
-<pre class="prettyprint">
-&lt;point x=&quot;433&quot; y=&quot;366&quot;/&gt;
-&lt;point x=&quot;436&quot; y=&quot;363&quot;/&gt;
 &lt;point x=&quot;441&quot; y=&quot;363&quot; type=&quot;curve&quot; smooth=&quot;yes&quot; /&gt;
 </pre>
 
