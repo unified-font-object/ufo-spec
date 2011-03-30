@@ -2,7 +2,7 @@
 
 h1. images directory (draft)
 
-Image files to be included in the UFO must be stored in the _images_ directory. These images must be in PNG format. Each file must have a unique name but there are no file name requirements %(inlineeditorsnote)(Perhaps we should establish a maximum length and a set of usable characters in the "conventions":conventions.html so that cross platform is as stable as we can make it)%. Duplicate images should be avoided and unreferenced images should not be stored, but these are recommendations not requirements.
+Image files referenced by glyphs in the UFO must be stored in the _images_ directory. These images must be in PNG format. Each file must have a unique name but there are no file name requirements %(inlineeditorsnote)(Perhaps we should establish a maximum length and a set of usable characters in the "conventions":conventions.html so that cross platform is as stable as we can make it)%. Duplicate images should be avoided and unreferenced images should not be stored, but these are recommendations not requirements.
 
 <div class="discussionnote">
 The decision to use PNG was not unanimous. These are my (Tal speaking) arguments against the other options:

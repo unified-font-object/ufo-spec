@@ -100,8 +100,7 @@ From an implementation perspective, images are quite complex. We either need to 
 h4. Attributes
 
 |_. attribute name |_. data type |_. description |_. default value |
-| fileName         | string      | The image file name. <span class="inlineeditorsnote">This should include the extension, right??</span> | None |
-| directory        | string      | The directory the image is stored in. If this is not given, the image must be stored in the _images_ directory within the UFO. <span class="inlineeditorsnote">Is this path relative to the UFO, file system or something else?</span> | None |
+| fileName         | string      | The image file name, not an absolute or relative path in the file system. The file name must include the file extension. | None |
 | xScale           | integer or float | See below. | 1 |
 | xyScale          | integer or float | See below. | 0 |
 | yxScale          | integer or float | See below. | 0 |
@@ -116,7 +115,7 @@ h4. This element has no child elements.
 
 h4. Format
 
-All images, regardless of whether they are stored in the _images_ directory or not, must be in PNG format.
+All images must be in PNG format.
 
 h4. Coloring Images
 
@@ -128,10 +127,6 @@ h4. Example
 &lt;image fileName=&quot;Sketch 1.png&quot; xOffset=&quot;100&quot; yOffset=&quot;200&quot;
   xScale=&quot;.75&quot; yScale=&quot;.75&quot; color=&quot;1,0,0,.5&quot; /&gt;
 </pre>
-
-<div class="editorsnote">
-Need example of image from outside of the UFO.
-</div>
 
 
 h3(#guideline). guideline: A reference guideline.
