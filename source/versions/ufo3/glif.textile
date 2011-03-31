@@ -370,6 +370,10 @@ Data that is too complex or too large for lib can be stored in the "data directo
 
 h3. Example
 
+<div class="editorsnote">
+Bring this example up to date.
+</div>
+
 <pre class="prettyprint">
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;glyph name=&quot;period&quot; format=&quot;1&quot;&gt;
