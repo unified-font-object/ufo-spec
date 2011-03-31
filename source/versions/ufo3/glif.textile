@@ -119,7 +119,8 @@ All images must be in PNG format.
 
 h4. Coloring Images
 
-If a color is to be applied to an image, as a result of a color attribute in an image element or a layer fill color attribute in "layerinfo.plist":#layerinfo, the application displaying the image should convert the image to grayscale and then apply the color.
+There are two places that the color for an image can be defined: the color attribute of the image element and the @fillColor@ defined in "layerinfo.plist":glyphs.html#layerinfo. The color defined in the image element's color attribute always takes precedence. If that is not defined and the @fillColor@ is defined for the layer, the layer's @fillColor@ should be used. If both of these are undefined, the image should not be colored. If a color is to be applied, the application should convert the image to grayscale and then apply the color. This modified version of the image must not be saved into the images directory.
+
 
 h4. Example
 
