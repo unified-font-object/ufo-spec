@@ -327,10 +327,6 @@ h4. Attributes
 | type             | string      | Optional. An arbitrary string describing the type of link. |
 | name             | string      | Optional. Arbitrary name or label for this link. The name does not have to be unique. |
 
-h5. Notes
-
-This seems very open ended. This is both a good thing and a bad thing. On the one hand it makes many, many things possible. On the other hand, because there is no defined correlation with font binary data structures, the links could ultimately become application specific blobs. We need to give this some thought. We could have a list of common types: stem, counter, x-height and so on. Applications would be free to do with those as they wish, but at least the types would be abstract enough to be portable.
-
 h4. Example
 
 <pre class="prettyprint">
