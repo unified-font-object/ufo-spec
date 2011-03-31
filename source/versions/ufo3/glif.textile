@@ -107,7 +107,7 @@ h4. Attributes
 | yScale           | integer or float | See below. | 1 |
 | xOffset          | integer or float | See below. | 0 |
 | yOffset          | integer or float | See below. | 0 |
-| color            | string | The color that should be applied to the image. The format follows the "color definition":#color standard. This attribute is optional. If no color is provided, the image should be drawn using the colors stored in the image data. <span class="inlineeditorsnote">This needs to address color setting at the layerinfo.plist level.</span> | None |
+| color            | string | The color that should be applied to the image. The format follows the "color definition":#color standard. This attribute is optional. | None |
 
 xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is [1 0 0 1 0 0], the identity transformation.
 
