@@ -356,9 +356,9 @@ h4. Attributes
 | contour          | string      | The name of the contour being referenced. This corresponds to the name attribute of the contour element. |
 | point            | string      | The name of the point being referenced. This corresponds to the name attribute of the point element. |
 
-h5. Notes
-
+<div class="discussionnote">
 Are contour and point always required? Should we add a component attribute?
+</div>
 
 
 h3(#lib). lib: Custom data storage.
