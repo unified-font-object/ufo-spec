@@ -14,6 +14,35 @@ The kerning data is writing direction neutral. For text written left-to-right, t
 
 In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the firstKerningGroupPrefix and secondKerningGroupPrefix found in fontinfo.plist. Knowing the kerning group prefixes allows an application to step through the kerning pair members, perform a string match on the beginning of a member and confidently know if the member is a group or glyph reference.
 
+h3. Kerning Pair Types
+
+Kerning pair members may be group names. This allows the kerning data to represent vast numbers of kerning pairs will relatively few kerning pairs. A pair member that is a group name implies that all members of the group are kerned with the other member of the pair with the same value unless an exception is defined. For example, a group with the name <notextile>@KERN_1_O</notextile> has O, D and Q as members. The kerning pair <notextile>@KERN_1_0</notextile> + A has a value of -20. This implies that O + A, D + A and Q + A all have the value -20.
+
+structures
+  maybe explain it in terms of levels
+  explain what a group as a pair member means
+
+
+  glyph, glyph - level 1
+  glyph, group - level 2
+  group, glyph - level 2
+  group, group - level 3
+
+types
+  basic
+  exception
+    glyph, glyph exception to:
+      group, group
+      group, glyph
+      glyph, group
+    group, glyph exception to:
+      group, group
+    glyph, group exception to:
+      group, group
+    can't make glyph, group and exception to group, glyph or vice versa
+
+explain resolution order
+
 h3. Example
 
 <pre class="prettyprint">
