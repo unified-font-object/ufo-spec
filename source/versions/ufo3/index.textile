@@ -18,6 +18,8 @@ Notes to the editor are highlighted like this. Please pardon our dust.
 
 A UFO is a directory representing font data with one or more glyph layers.
 
+<div class="editorsnote">Mention "RFC 2119":http://www.ietf.org/rfc/rfc2119.txt. Review all text to make sure that the right words are being used.</div>
+
 h3. File Structure
 
 UFO 3 follows this file structure:
