@@ -16,7 +16,7 @@ In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had t
 
 h3. Kerning Pair Types
 
-Kerning pair members may be group names. This allows the kerning data to represent vast numbers of kerning pairs will relatively few kerning pairs. A pair member that is a group name implies that all members of the group are kerned with the other member of the pair with the same value unless an exception is defined. For example, a group with the name <notextile>@KERN_1_O</notextile> has O, D and Q as members. The kerning pair <notextile>@KERN_1_0</notextile> + A has a value of -20. This implies that O + A, D + A and Q + A all have the value -20.
+Kerning pair members may be group names. This allows the kerning data to represent vast numbers of kerning pairs will relatively few kerning pairs. A pair member that is a group name implies that all members of the group are kerned with the other member of the pair with the same value unless an exception is defined. For example, a group with the name _&#64;KERN_1_O_ has _O_, _D_ and _Q_ as members. The kerning pair _&#64;KERN_1_0 + A_ has a value of -20. This implies that _O + A_, _D + A_ and _Q + A_ all have the value -20.
 
 structures
   maybe explain it in terms of levels
@@ -42,6 +42,38 @@ types
     can't make glyph, group and exception to group, glyph or vice versa
 
 explain resolution order
+
+@O_L: O D Q
+@H_R: H B D E F H I K L M N P R
+
+---
+
+@A, @A: -100
+	A, A: -100
+	Aacute, A: -100
+	Agrave, A: -100
+	A, Aacute: -100
+	Aacute, Aacute: -100
+	Agrave, Aacute: -100
+	A, Agrave: -100
+	Aacute, Agrave: -100
+	Agrave, Agrave: -100
+
+---
+
+@A, Agrave: -200
+	A, Agrave: -200
+	Aacute, Agrave: -200
+	Agrave, Agrave: -200
+
+Agrave, @A: -400
+	Agrave, A: -400
+	Agrave, Aacute: -400
+	Agrave, Agrave: -400
+
+---
+
+Agrave, Agrave: -300
 
 h3. Example
 
