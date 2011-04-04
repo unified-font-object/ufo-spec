@@ -2,6 +2,7 @@
 
 h1. kerning.plist (draft)
 
+table(even-columns).
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file contains horizontal kerning pairs for the font. This file is optional. If it is not defined in the UFO, there is no horizontal kerning data.
@@ -16,18 +17,25 @@ In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had t
 
 h3. Kerning Pair Types
 
+<div class="editorsnote">
+This section is a work in progress. Any feedback would be appreciated.
+</div>
+
 Kerning pairs may reference groups. This is done by using a "group's name":groups.html as a member of a kerning pair. These group members allow the kerning data to represent vast numbers of kerning pairs with relatively few kerning pairs. A pair member that contains a group implies that all members of the group are kerned with the other member of the pair with the same value (unless an exception is defined, see below). For example, a font has this group:
 
+table(even-columns).
 |_. name        |_. members |
 | &#64;KERN_1_O | O, D, Q   |
 
 The font's kerning contains a pair referencing this group:
 
+table(even-columns).
 |_. Side 1      |_. Side 2 |_. Value |
 | &#64;KERN_1_O | A        | -50     |
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+table(even-columns).
 |_. Side 1 |_. Side 2 |_. Value |
 | O        | A        | -50     |
 | O        | A        | -50     |
@@ -51,27 +59,32 @@ Exception pairs may occur at the second and third levels. Second level pairs may
 
 For example, a font has these two groups:
 
+table(even-columns).
 |_. name        |_. members |
 | &#64;KERN_1_O | O, D, Q   |
 | &#64;KERN_2_E | E, F      |
 
 The font's kerning contains a first level pair that references these two groups:
 
+table(even-columns).
 |_. Side 1      |_. Side 2      |_. Value |
 | &#64;KERN_1_O | &#64;KERN_2_E | -100    |
 
 The font's kerning contains a second level pair that forms an exception to the first level pair:
 
+table(even-columns).
 |_. Side 1      |_. Side 2 |_. Value |
 | &#64;KERN_1_O | F        | -200    |
 
 The font's kerning contains a third level pair that is an exception to both the first and second level pairs:
 
+table(even-columns).
 |_. Side 1 |_. Side 2 |_. Value |
 | D        | F        | -300    |
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+table(even-columns).
 |_. Side 1 |_. Side 2 |_. Value |
 | O        | E        | -100    |
 | O        | F        | -200    |
@@ -84,6 +97,7 @@ h5. Exception Caveat
 
 Exceptions are very powerful, but there is one rule that must be followed. There must not be contradictions within a level. For example, given the same &#64;KERN_1_O and &#64;KERN_2_E group as above, a font contains these following kerning pairs:
 
+table(even-columns).
 |_. Side 1      |_. Side 2      |_. Value |
 | &#64;KERN_1_O | &#64;KERN_2_E | -100    |
 | &#64;KERN_1_O | F             | -200    |
@@ -92,6 +106,7 @@ Exceptions are very powerful, but there is one rule that must be followed. There
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+table(even-columns).
 |_. Side 1 |_. Side 2 |_. Value        |
 | O        | E        | -100           |
 | O        | F        | -200           |
@@ -194,6 +209,12 @@ The task of finding a value for a particular glyph + glyph combination is relati
     The value is zero.
   </li>
 </ul>
+
+h5. Sample implementation
+
+<div class="editorsnote">
+Write example here.
+</div>
 
 h3. Example
 

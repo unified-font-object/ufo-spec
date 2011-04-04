@@ -112,6 +112,10 @@ table {
 	font-size: 11px;
 }
 
+table.even-columns {
+	table-layout: fixed;
+}
+
 th {
 	padding: 5px;
 	text-align: left;
