@@ -108,7 +108,92 @@ Need to formulate this rule into a simple sentence and highlight it.
 
 h4. Kerning Value Lookup Algorithm
 
+The task of finding a value for a particular glyph + glyph combination is relatively easy. The following algorithm demonstrates a way that it can be done for a given pair.
 
+<ul class="algorithm">
+    <li>
+      If the pair _first glyph + second glyph_ is in the kerning data:
+    </li>
+    <li>
+      <ul class="algorithm-nest">
+        <li>
+          The value for _first glyph + second glyph_ is the value.
+        </li>
+        <li>
+          Stop.
+        </li>
+      </ul>
+    </li>
+    <li>
+      If the second glyph is in a kerning group:
+    </li>
+    <li>
+      <ul class="algorithm-nest">
+        <li>
+          _second group_ is the name of the kerning group containing the second glyph.
+        </li>
+        <li>
+          If the pair _first glyph + second group_ is in the kerning data:
+        </li>
+          <ul class="algorithm-nest">
+            <li>
+              The value for _first glyph + second group_ is the value.
+            </li>
+            <li>
+              Stop.
+            </li>
+          </ul>
+      </ul>
+    </li>
+    <li>
+      If the first glyph is in a kerning group:
+    </li>
+    <li>
+      <ul class="algorithm-nest">
+        <li>
+          _first group_ is the name of the kerning group containing the first glyph.
+        </li>
+        <li>
+          If the pair _first group + second glyph_ is in the kerning data:
+        </li>
+          <ul class="algorithm-nest">
+            <li>
+              The value for _first first + second glyph_ is the value.
+            </li>
+            <li>
+              Stop.
+            </li>
+          </ul>
+      </ul>
+    </li>
+    <li>
+      If the first glyph is in a kerning group and the second glyph is in a kerning group:
+    </li>
+    <li>
+      <ul class="algorithm-nest">
+        <li>
+          _first group_ is the name of the kerning group containing the first glyph.
+        </li>
+        <li>
+          _second group_ is the name of the kerning group containing the second glyph.
+        </li>
+        <li>
+          If the pair _first group + second group_ is in the kerning data:
+        </li>
+          <ul class="algorithm-nest">
+            <li>
+              The value for _first group + second group_ is the value.
+            </li>
+            <li>
+              Stop.
+            </li>
+          </ul>
+      </ul>
+    </li>
+  <li>
+    The value is zero.
+  </li>
+</ul>
 
 h3. Example
 

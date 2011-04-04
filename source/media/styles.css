@@ -315,6 +315,31 @@ li.treediagram {
 	list-style-type: none;
 }
 
+/* algorithm diagrams */
+
+ul.algorithm {
+	padding: 10px 15px 10px 15px;
+	background-color: rgba(0,0,0,.08);
+}
+
+ul.algorithm li {
+	margin: 0px;
+	padding: 5px 0px 5px 0px;
+	list-style-type: none;
+}
+
+ul.algorithm-nest {
+	margin: 5px 0px 5px 0px;
+	padding: 0px 0px 0px 10px;
+	border-left: 1px solid #CCC;
+}
+
+ul.algorithm-nest li {
+	margin: 0px;
+	list-style-type: none;
+	padding: 5px 0px 5px 0px;
+}
+
 /* editor's notes (for drafts only) */
 
 .implementationnote {
