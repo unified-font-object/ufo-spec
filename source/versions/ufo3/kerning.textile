@@ -21,7 +21,7 @@ h3. Kerning Pair Types
 This section is a work in progress. Any feedback would be appreciated.
 </div>
 
-Kerning pairs may reference groups. This is done by using a "group's name":groups.html as a member of a kerning pair. These group members allow the kerning data to represent vast numbers of kerning pairs with relatively few kerning pairs. A pair member that contains a group implies that all members of the group are kerned with the other member of the pair with the same value (unless an exception is defined, see below). For example, a font has this group:
+Kerning pairs may reference groups. This is done by using a "group's name":groups.html as a member of a kerning pair. These group members allow the kerning data to represent vast amounts of kerning with relatively few pairs. A pair member that contains a group implies that all members of the group are kerned with the other member of the pair with the same value (unless an exception is defined, see below). For example, a font has this group:
 
 table(even-columns).
 |_. name        |_. members |
