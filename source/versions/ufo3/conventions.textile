@@ -43,32 +43,150 @@ h5. Possible problems
 # The assumption that glyph names are not case sensitive apart from the first character causes problems with glyph names like _A.alt_ and _A.Alt_.
 
 <div class="discussionnote">
-This is a proposal for a revised version of the algorithm above. It has been designed to avoid name clashes and work with common file systems.
+This is a proposal for a revised version of the algorithm above. It has been designed to avoid name clashes and work with common file systems. It applies the following rules:
 
-*Phase 1: Use a standard translation without regard for clashes.*
-# Remove any illegal characters, where the illegal characters are: " * + / : < > ? [ \ ] null | and anything in the range 1-31.
-# Break the name into parts delimited by "_".
-## Break each of these into parts delimited by ".".
-### If one of these starts with an uppercase letter, add "_" to the end of that part.
-## Rejoin parts with ".".
-# Rejoin parts with "_."
-# Clip name to 255 characters.
+# Filenames must be unique.
+# Filenames must be case insensitive.
+# Filenames may use any character that can be represented by UTF-8 except: &quot; * + / : < > ? [ \ ] null | and anything in the range 1-31. <span class="inlineeditorsnote">Give hex values for these characters.</span>
+# Filenames must be no longer than 255 characters.
 
-If these is a file name clash, proceed to Phase 2.
+<ul class="algorithm">
+  <li>
+    _name_ is the user name without any required prefix or suffix.
+  </li>
+  <li>
+    _maximum length_ is 255 minus the length of a prefix and/or suffix that will be added to the name.
+  </li>
+  <li>
+    Remove any illegal characters from _name_, where the illegal characters are: &quot; * + / : < > ? [ \ ] null | and anything in the range 1-31.
+  </li>
+  <li>
+    Perform a generic translation of the name without consideration for existing names:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        _underscore parts_ is _name_ broken into parts delimited by underscore.
+      </li>
+      <li>
+        For _part 1_ in these _underscore parts_:
+      </li>
+      <li>
+        <ul class="algorithm-nest">
+          <li>
+            _period parts_ is _part 1_ broken into parts delimited by period.
+          </li>
+          <li>
+            For _part 2_ in _period parts_:
+          </li>
+          <li>
+            <ul class="algorithm-nest">
+              <li>
+                If _part 2_ starts with an uppercase letter:
+              </li>
+              <li>
+                <ul class="algorithm-nest">
+                  <li>
+                    Add an underscore to the end of the part.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          <li>
+            Rejoin _period parts_ with periods.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Rejoin _underscore parts_ with underscores.
+      </li>
+      <li>
+        If the revised _name_ is longer than _maximum length_:
+      </li>
+      <li>
+        <ul class="algorithm-nest">
+          <li>
+            Remove as many characters from the end of _name_ as needed to make _name_ no longer than _maximum length_.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    If _name_ is unique:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        Stop.
+      </li>
+    </ul>
+  </li>
+  <li>
+    If _name_ is not unique:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        Remove as many characters from the end of _name_ as needed to make _name_ no longer than _maximum length_ minus 15.
+      </li>
+      <li>
+        Starting with 000000000000001, add 15 zero filled characters to the name.
+      </li>
+      <li>
+        If _name_ is unique:
+      </li>
+      <li>
+        <ul class="algorithm-nest">
+          <li>
+            Stop.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Otherwise increment the number by 1 and repeat until a unique name is found or 999999999999999 is reached.
+      </li>
+    </ul>
+  </li>
+  <li>
+    If _name_ is not unique:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        _number_ is 1.
+      </li>
+      <li>
+        _name_ is _number_.
+      </li>
+      <li>
+        If _name_ is unique:
+      </li>
+      <li>
+        <ul class="algorithm-nest">
+          <li>
+            Stop.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Otherwise increment number by 1 and repeat until a unique name is found or all possible numbers in a string _maximum length_ long has been reached.
+      </li>
+    </ul>
+  </li>
+  <li>
+    If _name_ is not unique:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        Raise an error and let the user know that after trying more than 10<sup>255</sup> names, nothing unique could be found.
+      </li>
+    </ul>
+  </li>
+</ul>
 
-*Phase 2: Clash Prevention*
-# Strip name to 240 characters.
-# Starting with 000000000000001, add 15 zero filled characters to the name.
-# If there is still a clash, increment by 1.
-** Repeat until a unique name is found or 999999999999999 is reached.
-
-If there is still a clash, proceed to Phase 3.
-
-*Phase 3: Fallback*
-# Starting with 1, look for a file name that does not exist.
-# If after trying all possible numbers up to a string that is 255 characters long, raise an error.
-
-Example implementation:
+h5. Example implementation:
 
 <pre class="prettyprint">
 illegalCharacters = "\" * + / : < > ? [ \ ] | \0".split(" ")
