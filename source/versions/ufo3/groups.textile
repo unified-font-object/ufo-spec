@@ -2,6 +2,7 @@
 
 h1. groups.plist (draft)
 
+table(even-columns).
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file contains the definitions of arbitrary groups of glyphs. This file is optional. If it is not defined in the UFO, there is no group data.
@@ -30,22 +31,24 @@ h4. 4. Glyphs must not appear in more than one kerning group per side.
 
 Glyphs that appear in more than one group per side create a logical ambiguity. For example, consider these two kerning groups:
 
-|_. group name |_. group members |
-| KERN_1_A1    | A, Aacute, Agrave, Adieresis |
-| KERN_1_A2    | A, Acircumflex |
+table(even-columns).
+|_. group name   |_. group members |
+| &#64;KERN_1_A1 | A, Aacute, Agrave, Adieresis |
+| &#64;KERN_1_A2 | A, Acircumflex |
 
 The kerning in this example contains the following kerning pairs:
 
-|_. side 1  |_. side 2 |_. value |
-| KERN_1_A1 | T        | -50 |
-| KERN_1_A2 | T        | -100 |
+table(even-columns).
+|_. side 1       |_. side 2 |_. value |
+| &#64;KERN_1_A1 | T        | -50 |
+| &#64;KERN_1_A2 | T        | -100 |
 
 Now, an application wants to apply the kerning for the pair "AT". There are different ways to find kerning for a pair, but in this case the most general approach is best. The following steps occur:
 
 1. Look to see if (A, T) is a pair in the kerning. It isn't.
 2. Locate the groups for the first and second members of the pair.
-3. Two groups are found for A: KERN_1_A1 and KERN_1_A2.
-4. Look up the kerning value for (KERN_1_A1, T) and (KERN_1_A2, T).
+3. Two groups are found for A: &#64;KERN_1_A1 and &#64;KERN_1_A2.
+4. Look up the kerning value for (&#64;KERN_1_A1, T) and (&#64;KERN_1_A2, T).
 
 Two kerning values are found: -50 and -100. There is no way to determine which one is correct. This ambiguity is eliminated when a glyph may occur in only one group.
 
