@@ -101,6 +101,8 @@ Added information about writing direction.
 
 Information about the new group naming attributes was added.
 
+Added extensive information about kerning pair types. The information is applicable to UFO 1 and UFO 2, but it was not written as a formal part of the spec.
+
 
 h3. layercontents.plist
 
