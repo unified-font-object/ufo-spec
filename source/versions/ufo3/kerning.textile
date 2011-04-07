@@ -212,9 +212,100 @@ The task of finding a value for a particular glyph + glyph combination is relati
 
 h5. Sample implementation
 
-<div class="editorsnote">
-Write example here.
-</div>
+
+
+<pre class="prettyprint">
+def lookupKerningValue(pair, kerning, groups,
+    firstKerningGroupPrefix, secondKerningGroupPrefix,
+    fallback=0):
+    """
+    Note: This expects kerning to be a flat dictionary
+    of kerning pairs, not the nested structure used
+    in kerning.plist.
+
+    >>> groups = {
+    ...     "@KERN_1_O" : ["O", "D", "Q"],
+    ...     "@KERN_2_E" : ["E", "F"]
+    ... }
+    >>> kerning = {
+    ...     ("@KERN_1_O", "@KERN_2_E") : -100,
+    ...     ("@KERN_1_O", "F") : -200,
+    ...     ("D", "F") : -300
+    ... }
+    >>> fP = "@KERN_1_"
+    >>> sP = "@KERN_2_"
+    >>> lookupKerningValue(("D", "F"),
+    ...     kerning, groups, fP, sP)
+    -300
+    >>> lookupKerningValue(("O", "F"),
+    ...     kerning, groups, fP, sP)
+    -200
+    >>> lookupKerningValue(("O", "E"),
+    ...     kerning, groups, fP, sP)
+    -100
+    >>> lookupKerningValue(("O", "O"),
+    ...     kerning, groups, fP, sP)
+    0
+    >>> lookupKerningValue(("E", "E"),
+    ...     kerning, groups, fP, sP)
+    0
+    >>> lookupKerningValue(("E", "O"),
+    ...     kerning, groups, fP, sP)
+    0
+    >>> lookupKerningValue(("X", "X"),
+    ...     kerning, groups, fP, sP)
+    0
+    >>> lookupKerningValue(("@KERN_1_O", "@KERN_2_E"),
+    ...     kerning, groups, fP, sP)
+    -100
+    >>> lookupKerningValue(("@KERN_1_O", "F"),
+    ...     kerning, groups, fP, sP)
+    -200
+    >>> lookupKerningValue(("O", "@KERN_2_E"),
+    ....     kerning, groups, fP, sP)
+    -100
+    >>> lookupKerningValue(("@KERN_1_X", "@KERN_2_X"),
+    ...     kerning, groups, fP, sP)
+    0
+    """
+    # quickly check to see if the pair is in the kerning dictionary
+    if pair in kerning:
+        return kerning[pair]
+    # get group names and make sure first and second are glyph names
+    first, second = pair
+    firstGroup = secondGroup = None
+    if first.startswith(firstKerningGroupPrefix):
+        firstGroup = first
+        first = None
+    else:
+        for group, groupMembers in groups.items():
+            if group.startswith(firstKerningGroupPrefix):
+                if first in groupMembers:
+                    firstGroup = group
+                    break
+    if second.startswith(secondKerningGroupPrefix):
+        secondGroup = second
+        second = None
+    else:
+        for group, groupMembers in groups.items():
+            if group.startswith(secondKerningGroupPrefix):
+                if second in groupMembers:
+                    secondGroup = group
+                    break
+    # make an ordered list of pairs to look up
+    pairs = [
+        (first, second),
+        (first, secondGroup),
+        (firstGroup, second),
+        (firstGroup, secondGroup)
+    ]
+    # look up the pairs and return any matches
+    for pair in pairs:
+        if pair in kerning:
+            return kerning[pair]
+    # use the fallback value
+    return fallback
+</pre>
 
 h3. Example
 
