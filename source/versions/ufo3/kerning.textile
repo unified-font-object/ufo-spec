@@ -99,7 +99,7 @@ table(even-columns).
 
 h5. Exception Caveat
 
-Exceptions are very powerful, but there is one rule that must be followed. There must not be contradictions within a level. For example, given the same &#64;KERN_1_O and &#64;KERN_2_E group as above, a font contains these following kerning pairs:
+Exceptions are very powerful, but there is one rule that must be followed. *There must not be contradictions within a level.* For example, given the same &#64;KERN_1_O and &#64;KERN_2_E group as above, a font contains these following kerning pairs:
 
 table(even-columns).
 |_. Side 1      |_. Side 2      |_. Value |
@@ -120,10 +120,6 @@ table(even-columns).
 | Q        | F        | *-200 or -250* |
 
 The two second level pairs, &#64;KERN_1_O + F and Q + &#64;KERN_2_E define two possible value for the pair Q + F. This is an unresolvable ambiguity. These types of contradictions must be avoided.
-
-<div class="discussionnote">
-Need to formulate this rule into a simple sentence and highlight it.
-</div>
 
 h4. Kerning Value Lookup Algorithm
 
