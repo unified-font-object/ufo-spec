@@ -9,13 +9,17 @@ This file contains horizontal kerning pairs for the font. This file is optional.
 
 h2. Specification
 
-The property list data consists of a dictionary at the top level. Keys are _first_ glyph or group names and values are dictionaries. These dictionaries contain _second_ glyph or group names as keys and kerning values as the values. Glyphs or groups in the pairs are not required to be in the font.
+The property list data consists of a dictionary at the top level. Keys are _first_ member names and values are dictionaries. These dictionaries contain _second_ member names as keys and kerning values, either integer or float, as the values.
+
+The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the _firstKerningGroupPrefix_. Group names used as the second member of a kerning pair must begin with _secondKerningGroupPrefix_. The prefixes are defined in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. Glyphs or groups in the pairs are not required to be in the font.
+
+Kerning pairs that are not defined in kerning.plist implicitly have a value of "no kerning" or zero. Therefore any kerning pair that has a value of zero, unless it is a necessary value of an "exception":#kerning-pair-exceptions, should not be stored in kerning.plist.
+
+h3(#writing-direction). Writing Direction
 
 The kerning data is writing direction neutral. For text written left-to-right, the left-most glyph is the key in the top level dictionary. For text written right-to-left, the right-most glyph is the key in the top level dictionary. For example, given the pair _LG_, written left-to-right, the _L_ is the key in the top dictionary and the _G_ is the sub-dictionary. Given the pair _GL_, written right-to-left, the _G_ is the key in the top dictionary and the _L_ is the key in the sub-dictionary.
 
-In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the _firstKerningGroupPrefix_ and _secondKerningGroupPrefix_ found in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. Knowing the kerning group prefixes allows an application to step through the kerning pair members, perform a string match on the beginning of a member and confidently know if the member is a group or glyph reference. An algorithm for converting UFO 1 and UFO 2 group kerning is detailed below.
-
-h3. Kerning Pair Types
+h3(#kerning-pair-types). Kerning Pair Types
 
 <div class="editorsnote">
 This section is a work in progress. Any feedback would be appreciated.
@@ -47,7 +51,7 @@ The various combinations of glyphs and groups allow for three types of kerning p
 # Glyph and group combinations: glyph + group and group + glyph. For example, A + &#64;KERN_2_E and &#64;KERN_1_O + A.
 # Glyph combinations: glyph + glyph. For example, A + X.
 
-h4. Exceptions
+h4(kerning-pair-exceptions). Exceptions
 
 The kerning data may contain _exceptions_ to group pairs. The kerning pair types are organized in three levels:
 
@@ -357,6 +361,8 @@ h3. Example
 <div class="section">
 
 h1. Converting to UFO 3 formatted kerning
+
+In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the _firstKerningGroupPrefix_ and _secondKerningGroupPrefix_ found in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. An algorithm for converting UFO 1 and UFO 2 group kerning is detailed below.
 
 h3. Conversion algorithm
 
