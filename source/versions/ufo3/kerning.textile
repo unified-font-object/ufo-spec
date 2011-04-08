@@ -11,7 +11,7 @@ h2. Specification
 
 The property list data consists of a dictionary at the top level. Keys are _first_ member names and values are dictionaries. These dictionaries contain _second_ member names as keys and kerning values, either integer or float, as the values.
 
-The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the _firstKerningGroupPrefix_. Group names used as the second member of a kerning pair must begin with _secondKerningGroupPrefix_. The prefixes are defined in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. Glyphs or groups in the pairs are not required to be in the font.
+The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the _firstKerningGroupPrefix_. Group names used as the second member of a kerning pair must begin with _secondKerningGroupPrefix_. These prefixes are defined in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. Glyphs or groups in the pairs are not required to be in the font.
 
 Kerning pairs that are not defined in kerning.plist implicitly have a value of "no kerning" or zero. Therefore any kerning pair that has a value of zero, unless it is a necessary value of an "exception":#kerning-pair-exceptions, should not be stored in kerning.plist.
 
