@@ -3,16 +3,4 @@
 h1. images directory (draft)
 
 Image files referenced by glyphs in the UFO must be stored in the _images_ directory. These images must be in PNG format. Each file must have a unique name but there are no file name requirements beyond making the file names file system appropriate. Duplicate images should be avoided and unreferenced images should not be stored, but these are recommendations not requirements.
-
-<div class="discussionnote">
-The decision to use PNG was not unanimous. These are my (Tal speaking) arguments against the other options:
-
-| TIFF | TIFF has a huge number of possible formats with the format. This makes supporting TIFF a big chore. |
-| JPEG | Too lossy. Possible "generation loss":http://en.wikipedia.org/wiki/Generation_loss. |
-
-PNG's drawbacks are that it's RGB only (not really a problem because our "color definitions":conventions.html#color are RGB only) and that it was designed for web use. Given that the images in UFO are, in this version at least, for the background of glyphs these don't seem like huge concerns.
-
-Finally, the file specification does not place any restriction on what format an application can _import_. It merely states what format they should be stored in. An application can import TIFF, JPEG, PICT, etc. and convert to PNG for storage.
-</div>
-
 </div>
