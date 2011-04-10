@@ -145,9 +145,9 @@ h4. Link
 
 A new link element was added.
 
-h4. Linkref
+h4. Pointref
 
-A new linkref element was added.
+A new pointref element was added.
 
 
 h3. images

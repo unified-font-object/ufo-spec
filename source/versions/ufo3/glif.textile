@@ -25,7 +25,7 @@ The GLIF data follows this structure:
       <li class="treediagram">component</li>
       <li class="treediagram">link</li>
       <ul class="treediagram">
-        <li class="treediagram">linkref</li>
+        <li class="treediagram">pointref</li>
       </ul>
     </ul>
   </ul>
@@ -183,15 +183,10 @@ h4. Attributes
 | yScale           | integer or float | See below.             | 1 |
 | xOffset          | integer or float | See below.             | 0 |
 | yOffset          | integer or float | See below.             | 0 |
-| name             | string           | Arbitrary name or label for this component. The name does not have to be unique within an outline. | None |
 
 xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the base glyph. The default matrix is [1 0 0 1 0 0], the identity transformation.
 
 When multiple glyphs directories are in the font, a component may only reference a glyph within the same glyphs directory that contains the glyph that contains the component.
-
-<div class="implementationnote">
-The name attribute will require modification to pens, the pen protocol, point pens and the point pen protocol. For pens, the change could be handled as the contour name is handled (described above). The point pen change could be handled the same way.
-</div>
 
 h4. This element has no child elements.
 
@@ -204,18 +199,7 @@ h4. Example
 
 h3(#contour). contour: Contour description.
 
-h4. Attributes
-
-|_. attribute name |_. data type |_. description |_. default value |
-| name             | string      | Arbitrary name or label for this contour. The name does not have to be unique within an outline. | None |
-
-<div class="implementationnote">
-The name attribute will require a modification to pens and the pen protocol. It seems that the easiest way to do this will be to modify the moveTo and _moveTo methods to accept an optional name attribute. This shouldn't be a problem in the moveTo method since it is implemented in the base class and subclasses are not supposed to override it. In the case of _moveTo it could be a breaking change. If a pen hasn't been updated to accept the name attribute, an error will occur. We could work around this in the glifLib, RoboFab and defcon draw methods with a try: except: wrapper. For a year the except would raise a deprecation warning. This would give people time to update their pens.
-
-The name attribute will also require a modification to point pen and the point pen protocol. The addPoint method could be modified to take a contourName attribute. This shouldn't be a breaking change as the base point pen has **kwargs and all implementations should have copied that. The only issue here is determining when this attribute could be something other than None. Perhaps when the segmentType is "move"?
-
-Both of these implementations fail in the case of a quadratic contour that has no on-curve points. I'm not sure how to get around that.
-</div>
+h4. This element has no attributes.
 
 h4. Child Elements
 
@@ -233,6 +217,11 @@ h4. Attributes
 | type             | string           | The point and/or segment type. The options are detailed below. | offcurve |
 | smooth           | string           | This attribute can only be given when _type_ indicates the point is on-curve. When set to _yes_, it signifies that a smooth curvature should be maintained at this point, either as a _curve point_ or a _tangent point_ in Fontographer terms. | no |
 | name             | string           | Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline. | None |
+| identifier       | string           | Identifier for this point. The requirements for this attribute are detailed below. | None |
+
+<div class="discussionnote">
+Is the identifier attribute required? What should happen if an identifier is not present?
+</div>
 
 h5. Point Types
 
@@ -245,6 +234,153 @@ h5. Point Types
 <div class="discussionnote">
 Should we remove the Super Bezier functionality? It creates an "interoperability problem":http://fontforge.sourceforge.net/python.html (search the page for "super-bezier").
 </div>
+
+h5. Point Identifier
+
+Points may have an identifier attribute. This identifier must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier must be string between one and 32 characters long. All characters must be in the printable ASCII range, <notextile>0x20</notextile> to <notextile>0x7E</notextile>.
+
+<div class="discussionnote">
+Should there be a note about not changing the identifiers willy-nilly?
+</div>
+
+There is no standard identifier generation algorithm but an example is detailed below.
+
+h6. Example Algorithm
+
+This algorithm is designed to generate a unique identifier that is a unique string consisting of between 1 and 32 numbers. This allows a glyph to contain 10<sup>32</sup>-1 points that follow this identifier naming scheme.
+
+<div class="discussionnote">
+This algorithm will work, but the identifiers look like indexes. They are not indexes, so this could be confusing.
+</div>
+
+<ul class="algorithm">
+  <li>
+    _existing identifiers_ is a ascending sorted list of existing identifiers in the glyph that can be converted losslessly to an integer.
+  </li>
+  <li>
+    If _existing identifiers_ is empty:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        The identifier is the string representation of 1.
+      </li>
+      <li>
+        Stop.
+      </li>
+    </ul>
+  </li>
+  <li>
+    If the last item in the list is less than 10<sup>32</sup>-2:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        The identifier is the string representation of the last item in the list plus one.
+      </li>
+      <li>
+        Stop.
+      </li>
+    </ul>
+  </li>
+  <li>
+    If the last item in the list is 10<sup>32</sup>-1:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        Use a binary search to find a gap in the values in _existing identifiers_.
+      </li>
+      <li>
+        If a gap is found:
+      </li>
+      <li>
+        <ul class="algorithm-nest">
+          <li>
+            The identifier is the string representation of the first value in the gap.
+          </li>
+          <li>
+            Stop.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    If no unique value can be found:
+  </li>
+  <li>
+    <ul class="algorithm-nest">
+      <li>
+        Raise an error and let the user know that after trying more than 10<sup>32</sup>-1 names, nothing unique could be found.
+      </li>
+    </ul>
+  </li>
+</ul>
+
+*Sample implementation*
+
+<pre class="prettyprint">
+def findUniqueIdentifier(existingIdentifiers):
+    """
+    This assumes that existingIdentifiers is a sorted list of integers.
+
+    >>> maxValue = 99999999999999999999999999999999
+    >>> findUniqueIdentifier([])
+    '1'
+    >>> findUniqueIdentifier([1, 2])
+    '3'
+    >>> findUniqueIdentifier([1, 2, maxValue])
+    '3'
+    >>> findUniqueIdentifier(range(1, 10) + range(11, 20) + [maxValue])
+    '10'
+    >>> findUniqueIdentifier(range(1, 11) + range(12, 20) + [maxValue])
+    '11'
+    >>> findUniqueIdentifier(range(1, 9) + range(10, 20) + [maxValue])
+    '9'
+    """
+    existingIdentifiers = [int(i) for i in existingIdentifiers]
+    # if the list is empty, return 1
+    if not existingIdentifiers:
+        return "1"
+    # check to see if it will even be possible to generate a value
+    maxIdentifier = (10 ** 32) - 1
+    if len(existingIdentifiers) >= maxIdentifier:
+        raise NotImplementedError,\
+        "This glyph has more than %d points." % maxIdentifier
+    # if the last identifier is not the maximum possible value,
+    # add one to the value
+    if existingIdentifiers[-1] < maxIdentifier:
+        return str(existingIdentifiers[-1] + 1)
+    # otherwise use a binary search to find an opening
+    return str(_findAvailableIdentifier(existingIdentifiers))
+
+def _findAvailableIdentifier(existingIdentifiers):
+    # work out where to slice
+    count = len(existingIdentifiers)
+    slicePoint = int(round(count / 2))
+    # slice the list into two parts
+    side1 = existingIdentifiers[:slicePoint]
+    side2 = existingIdentifiers[slicePoint:]
+    # if the end of the min of the second list - max of the first list
+    # is geater than 1, the available identifier is max first list + 1
+    if side2[0] - side1[-1] > 1:
+        return side1[-1] + 1
+    # if the max - min in a list is not the length of the list
+    # there is an opening
+    if side1[-1] - side1[0] >= len(side1):
+        # if the length is now 2, the available identifier
+        # is the first identifier + 1
+        if len(side1) == 2:
+            return side1[0] + 1
+        return _findAvailableIdentifier(side1)
+    else:
+        # if the length is now 2, the available identifier
+        # is the first identifier + 1
+        if len(side2) == 2:
+            return side2[0] + 1
+        return _findAvailableIdentifier(side2)
+</pre>
 
 h4. This element has no child elements.
 
@@ -291,14 +427,14 @@ This element may occur any number of times.
 Links are going to be a challenge to implement. There are two challenges: 1. How are they read from and written to a glyph object? Pen? Defined API and data structure? 2. How are they to be interpreted? In ufo2fdk it might be good to allow manual hinting via links. How will the package know which links to pay attention to? What is the structure of those links?
 
 *Reading and Writing*
-We could add an addLink(contourAndPointNamePairs, type, name=None) method pen and pointPen. This would be a breaking change that we could mitigate with try: except: and a deprecation warning while pens are still being updated. This raises the question: are links part of the outline? Pens are for transmitting outline data. The advantage with adding a method to the pens is that the responsibility for iterating and coercing to the proper structure is the duty of the appropriate object's draw and drawPoints methods.
+We could add an addLink(contourAndPointNamePairs, type, name=None) method pen and/or pointPen. This would be a breaking change that we could mitigate with try: except: and a deprecation warning while pens are still being updated. This raises the question: are links part of the outline? Pens are for transmitting outline data. The advantage with adding a method to the pens is that the responsibility for iterating and coercing to the proper structure is the duty of the appropriate object's draw and drawPoints methods.
 
-Alternatively, we could set a new protocol for a standard links attribute and the linkref objects it contains. The advantage with this is that it won't break any pens. The disadvantage is that it gives glifLib more work to do.
+Alternatively, we could set a new protocol for a standard links attribute and the pointref objects it contains. The advantage with this is that it won't break any pens. The disadvantage is that it gives glifLib more work to do.
 
 *Interpretation*
-If we have a standard link object, we need to have some standard structures that cover common uses. We can't make everything completely arbitrary because it will be too difficult for anything other than the creator of a particular link to interpret. It seems that define two things would alleviate the ambiguity and promote interoperability.
+If we have a standard link object, we need to have some standard structures that cover common uses. We can't make everything completely arbitrary because it will be too difficult for anything other than the creator of a particular link to interpret. It seems that defining two things would alleviate the ambiguity and promote interoperability.
 
-First, we need to define a type naming scheme. Broadly, there are two types of links: links that are application specific and links that are not. In the case of application specific links, the type should be defined with a reverse domain naming scheme. @com.typesupply.SomeTool.Serif@. This way the maker of the link can identify the link as uniquely its own. Other applications can quickly see that the link type is unknown and choose to not display or display it in a generic way. For links that are not application specific, the @public.**@ naming scheme would be used. We would have a list of defined link types in the UFO specification.
+First, we need to define a type naming scheme. Broadly, there are two types of links: links that are application specific and links that are not. In the case of application specific links, the type should be defined with a reverse domain naming scheme. @com.typesupply.SomeTool.Serif@. This way the maker of the link can identify the link as uniquely its own. Other applications can quickly see that the link type is unknown and choose to not display or display it in a generic way. For links that are not application specific, the @public.*@ naming scheme would be used. We would have a list of defined link types in the UFO specification.
 
 Secondly, for these public.* links, we would need to define what the link would contain and how it should be interpreted. Some examples:
 
@@ -312,15 +448,12 @@ This puts us in the position of managing a registry, but it would only be for pu
 
 *objectsFL*
 It is going to be quite a task to implement in FontLab 5. There are some hinting objects that could be abstracted into links via the RoboFab API. Those could then be written to and read from UFOs. I suppose that we could simulate point and contour names with str(index) for the object in question. This seems very fragile.
-
-*Keeping Links Up To Date*
-Another thing we need to consider in the implementation is how links are kept up to date. When a point name changes, should teh link be automatically updated? If a referenced point is deleted, what should happen to the link?
 </div>
 
 h4. Child Elements
 
 |_. element name |_. description |
-| linkref        | Must occur at least twice. |
+| pointref       | Must occur at least twice. |
 
 h4. Attributes
 
@@ -332,30 +465,19 @@ h4. Example
 
 <pre class="prettyprint">
 &lt;link type=&quot;vertical-stem&quot; name="stem 1"&gt;
-  &lt;linkref contour=&quot;Contour 1&quot; point=&quot;Point 4&quot;/&gt;
-  &lt;linkref contour=&quot;Contour 1&quot; point=&quot;Point 8&quot;/&gt;
+  &lt;pointref point=&quot;4&quot;/&gt;
+  &lt;pointref point=&quot;8&quot;/&gt;
 &lt;/link&gt;
 </pre>
 
-h3(#linkref). linkref: A reference to a particular point in the glyph.
+h3(#pointref). pointref: A reference to a particular point in the glyph.
 
-<div class="discussionnote">
-pointref might be a better name.
-</div>
-
-This element must occur at least twice.
-
-This element has no child elements.
+h4. This element has no child elements.
 
 h4. Attributes
 
 |_. attribute name |_. data type |_. description |
-| contour          | string      | The name of the contour being referenced. This corresponds to the name attribute of the contour element. |
-| point            | string      | The name of the point being referenced. This corresponds to the name attribute of the point element. |
-
-<div class="discussionnote">
-Are contour and point always required? Should we add a component attribute?
-</div>
+| point            | string      | The identifier attribute of the point being referenced. |
 
 
 h3(#lib). lib: Custom data storage.
