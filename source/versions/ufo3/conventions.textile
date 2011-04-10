@@ -10,44 +10,11 @@ In several places in the UFO the <a href="http://en.wikipedia.org/wiki/Reverse-D
 
 h3(#usernametofilename). Common User Name to File Name Algorithm
 
-This algorithm has limited support for case insensitive file systems: it assumes user names are not case sensitive apart from the first character.
-
-# If a name starts with a ".":
-## Replace the "." with an "_". Some file systems regard file names that start with "." as invisible.
-# Break the name into parts delimited by ".".
-# *If the first part contains one or more underscores*, it is a compound name.
-## Split the compound name by underscore into its member names.
-## To each member starting with a capital letter, add a "_" at the end.
-## Rejoin the member names with underscore.
-# *If the first part contains no underscore:*
-## If it starts with a capital letter, add a "_" to the end.
-# Rejoin the parts with ".".
-
-h4. Examples
-
-|_. glyph name              |_. file name |
-| <pre>a</pre>              | <pre>a</pre> |
-| <pre>A</pre>              | <pre>A_</pre> |
-| <pre>A.alt</pre>          | <pre>A_.alt</pre> |
-| <pre>T_H</pre>            | <pre>T__H_</pre> |
-| <pre>T_h</pre>            | <pre>T__h</pre> |
-| <pre>t_h</pre>            | <pre>t_h</pre> |
-| <pre>F_F_I</pre>          | <pre>F__F__I_</pre> |
-| <pre>f_f_i</pre>          | <pre>f_f_i</pre> |
-| <pre>Aacute_V.swash</pre> | <pre>Aacute__V_.swash</pre> |
-
-
-h5. Possible problems
-
-# Some file systems impose file name length restrictions. This can cause file name clashes.
-# The assumption that glyph names are not case sensitive apart from the first character causes problems with glyph names like _A.alt_ and _A.Alt_.
-
-<div class="discussionnote">
-This is a proposal for a revised version of the algorithm above. It has been designed to avoid name clashes and work with common file systems. It applies the following rules:
+There is no standard user name to file name conversion. The algorithm below is an example of a common conversion process. It has been designed to avoid name clashes and work with common file systems. It applies the following rules:
 
 # Filenames must be unique.
 # Filenames must be case insensitive.
-# Filenames may use any character that can be represented by UTF-8 except: &quot; * + / : < > ? [ \ ] null | and anything in the range 1-31. <span class="inlineeditorsnote">Give hex values for these characters.</span>
+# Filenames may use any character that can be represented by UTF-8 except: &quot; (<notextile>0x22</notextile>) ( (<notextile>0x28</notextile>) ) (<notextile>0x29</notextile>) * (<notextile>0x2A</notextile>) + (<notextile>0x2B</notextile>) / (<notextile>0x2F</notextile>) : (<notextile>0x3A</notextile>) < (<notextile>0x3C</notextile>) > (<notextile>0x3E</notextile>) ? (<notextile>0x3F</notextile>) [ (<notextile>0x5B</notextile>) \ (<notextile>0x5C</notextile>) ] (<notextile>0x5D</notextile>) | (<notextile>0x7C</notextile>) and anything in the ASCII control character range (<notextile>0x00-0x1F</notextile> and <notextile>0x7F</notextile>).
 # Filenames must be no longer than 255 characters.
 
 <ul class="algorithm">
@@ -58,7 +25,7 @@ This is a proposal for a revised version of the algorithm above. It has been des
     _maximum length_ is 255 minus the length of a prefix and/or suffix that will be added to the name.
   </li>
   <li>
-    Remove any illegal characters from _name_, where the illegal characters are: &quot; * + / : < > ? [ \ ] null | and anything in the range 1-31.
+    Remove any illegal characters from _name_, where the illegal characters are: &quot; * + / : < > ? [ \ ] | anything in the range <notextile>0x00-0x1F</notextile> and <notextile>0x7F</notextile>.
   </li>
   <li>
     Perform a generic translation of the name without consideration for existing names:
@@ -186,11 +153,27 @@ This is a proposal for a revised version of the algorithm above. It has been des
   </li>
 </ul>
 
-h5. Example implementation:
+h4. Examples
+
+|_. glyph name   |_. file name |
+| a              | a |
+| A              | A_ |
+| A.alt          | A_.alt |
+| A.Alt          | A_.Alt_ |
+| T_H            | T__H_ |
+| T_h            | T__h |
+| t_h            | t_h |
+| F_F_I          | F__F__I_ |
+| f_f_i          | f_f_i |
+| Aacute_V.swash | Aacute__V_.swash |
+| .notdef        | _notdef |
+
+h4. Example implementation:
 
 <pre class="prettyprint">
 illegalCharacters = "\" * + / : < > ? [ \ ] | \0".split(" ")
 illegalCharacters += [chr(i) for i in range(1, 32)]
+illegalCharacters += [chr(0x7F)]
 
 def userNameToFileName(userName, existing=[], prefix="", suffix=""):
     """
@@ -261,17 +244,20 @@ def handleClash1(userName, existing=[], prefix="", suffix=""):
     >>> existing = ["A" * 20]
 
     >>> e = list(existing)
-    >>> handleClash1(userName="A" * 20, existing=e, prefix=prefix, suffix=suffix)
+    >>> handleClash1(userName="A" * 20, existing=e,
+    ...     prefix=prefix, suffix=suffix)
     '00000.AAAAA000000000000001.0000000000'
 
     >>> e = list(existing)
     >>> e.append(prefix + "AAAAA" + "1".zfill(15) + suffix)
-    >>> handleClash1(userName="A" * 20, existing=e, prefix=prefix, suffix=suffix)
+    >>> handleClash1(userName="A" * 20, existing=e,
+    ...     prefix=prefix, suffix=suffix)
     '00000.AAAAA000000000000002.0000000000'
 
     >>> e = list(existing)
     >>> e.append(prefix + "AAAAA" + "2".zfill(15) + suffix)
-    >>> handleClash1(userName="A" * 20, existing=e, prefix=prefix, suffix=suffix)
+    >>> handleClash1(userName="A" * 20, existing=e,
+    ...     prefix=prefix, suffix=suffix)
     '00000.AAAAA000000000000001.0000000000'
     """
     # silce 15 characters off of the user name
@@ -336,8 +322,6 @@ def handleClash2(existing=[], prefix="", suffix=""):
     # finished
     return finalName
 </pre>
-
-</div>
 
 
 h3(#colors). Color Definitions
