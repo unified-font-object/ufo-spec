@@ -8,6 +8,8 @@ h3(#reversedomain). Reverse Domain Naming Schemes
 
 In several places in the UFO the <a href="http://en.wikipedia.org/wiki/Reverse-DNS" target="_blank">reverse domain naming system</a> is recommended for creating unique keys and ids. To make a reverse domain, reverse the relevant Internet domain. For example, if the Internet domain is _unifiedfontobject.org_, the reverse domain name would be _org.unifiedfontobject_. Further extensions to make the string unique may be added. For example, _org.unifiedfontobject.MySpecialTool_.
 
+The pattern _public.*_ is reserved for use by the UFO specification itself.
+
 h3(#usernametofilename). Common User Name to File Name Algorithm
 
 There is no standard user name to file name conversion. The algorithm below is an example of a common conversion process. It has been designed to avoid name clashes and work with common file systems. It applies the following rules:
