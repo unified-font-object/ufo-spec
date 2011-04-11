@@ -427,24 +427,9 @@ This element may occur any number of times.
 Links are going to be a challenge to implement. There are two challenges: 1. How are they read from and written to a glyph object? Pen? Defined API and data structure? 2. How are they to be interpreted? In ufo2fdk it might be good to allow manual hinting via links. How will the package know which links to pay attention to? What is the structure of those links?
 
 *Reading and Writing*
-We could add an addLink(contourAndPointNamePairs, type, name=None) method pen and/or pointPen. This would be a breaking change that we could mitigate with try: except: and a deprecation warning while pens are still being updated. This raises the question: are links part of the outline? Pens are for transmitting outline data. The advantage with adding a method to the pens is that the responsibility for iterating and coercing to the proper structure is the duty of the appropriate object's draw and drawPoints methods.
+We could add an addLink(contourAndPointNamePairs, type, name=None) method to point pen. This would be a breaking change that we could mitigate with try: except: and a deprecation warning while point pens are still being updated. This raises the question: are links part of the outline? Pens are for transmitting outline data. The advantage with adding a method to the pens is that the responsibility for iterating and coercing to the proper structure is the duty of the appropriate object's draw and drawPoints methods.
 
 Alternatively, we could set a new protocol for a standard links attribute and the pointref objects it contains. The advantage with this is that it won't break any pens. The disadvantage is that it gives glifLib more work to do.
-
-*Interpretation*
-If we have a standard link object, we need to have some standard structures that cover common uses. We can't make everything completely arbitrary because it will be too difficult for anything other than the creator of a particular link to interpret. It seems that defining two things would alleviate the ambiguity and promote interoperability.
-
-First, we need to define a type naming scheme. Broadly, there are two types of links: links that are application specific and links that are not. In the case of application specific links, the type should be defined with a reverse domain naming scheme. @com.typesupply.SomeTool.Serif@. This way the maker of the link can identify the link as uniquely its own. Other applications can quickly see that the link type is unknown and choose to not display or display it in a generic way. For links that are not application specific, the @public.*@ naming scheme would be used. We would have a list of defined link types in the UFO specification.
-
-Secondly, for these public.* links, we would need to define what the link would contain and how it should be interpreted. Some examples:
-
-| public.horizontalStem | Two or more points defining a horizontal stem. Within the points there must be two unique y coordinates. |
-| public.verticalStem | Two or more points defining a vertical stem. Within the points there must be two unique x coordinates. |
-| public.counter | Two or more points defining a counter. |
-| public.postscriptHintMask | (Definition from the T2 Charstring spec.) |
-| public.postscriptCounterMask | (Definition from the T2 Charstring spec.) |
-
-This puts us in the position of managing a registry, but it would only be for public types so it shouldn't be too complicated.
 
 *objectsFL*
 It is going to be quite a task to implement in FontLab 5. There are some hinting objects that could be abstracted into links via the RoboFab API. Those could then be written to and read from UFOs. I suppose that we could simulate point and contour names with str(index) for the object in question. This seems very fragile.
@@ -458,13 +443,37 @@ h4. Child Elements
 h4. Attributes
 
 |_. attribute name |_. data type |_. description |
-| type             | string      | Optional. An arbitrary string describing the type of link. |
+| type             | string      | Optional. An arbitrary string describing the type of link. The string should follow the reverse domain naming scheme. |
 | name             | string      | Optional. Arbitrary name or label for this link. The name does not have to be unique. |
+
+h4. Link Type Registry
+
+The following are the currently registered common link types:
+
+<div class="discussionnote">
+Need to define:
+
+# public.postscriptHintMask
+# public.postscriptCounterMask
+# public.counter (or maybe public.horizontalCount and public.verticalCounter)
+</div>
+
+h5. public.horizontalStem
+
+Two or more points defining a horizontal stem. Within the linked points, there must be at lest two unique y coordinates. The edges of the stem can be defined as the minimum and maximum of the y coordinates.
+
+h5. public.verticalStem
+
+Two or more points defining a vertical stem. Within the linked points, there must be at lest two unique x coordinates. The edges of the stem can be defined as the minimum and maximum of the x coordinates.
+
+<div class="discussionnote">
+What about italic stems? Would they be allowed to be tagged?
+</div>
 
 h4. Example
 
 <pre class="prettyprint">
-&lt;link type=&quot;vertical-stem&quot; name="stem 1"&gt;
+&lt;link type=&quot;verticalStem&quot; name="stem 1"&gt;
   &lt;pointref point=&quot;4&quot;/&gt;
   &lt;pointref point=&quot;8&quot;/&gt;
 &lt;/link&gt;
