@@ -237,7 +237,7 @@ Should we remove the Super Bezier functionality? It creates an "interoperability
 
 h5. Point Identifier
 
-Points may have an identifier attribute. This attribute is not required unless a point is referenced by a link or other structure that requires a point to have an identifier. This identifier must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier must be string between one and 32 characters long. All characters must be in the printable ASCII range, <notextile>0x20</notextile> to <notextile>0x7E</notextile>.
+Points may have an identifier attribute. This attribute is not required unless a point is referenced by a link or other structure that requires a point to have an identifier. This identifier must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier must be string between one and 100 characters long. All characters must be in the printable ASCII range, <notextile>0x20</notextile> to <notextile>0x7E</notextile>.
 
 An point's identifier should not be changed or replaced after assignment. If it is changed, all references in links must be updated to reflect the change. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained when possible. Identifiers should also be retained during outline manipulation operations such as path direction changes and remove overlap when possible.
 
