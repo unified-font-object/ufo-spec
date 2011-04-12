@@ -237,82 +237,43 @@ Should we remove the Super Bezier functionality? It creates an "interoperability
 
 h5. Point Identifier
 
-Points may have an identifier attribute. This identifier must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier must be string between one and 32 characters long. All characters must be in the printable ASCII range, <notextile>0x20</notextile> to <notextile>0x7E</notextile>.
+Points may have an identifier attribute. This attribute is not required unless a point is referenced by a link or other structure that requires a point to have an identifier. This identifier must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier must be string between one and 32 characters long. All characters must be in the printable ASCII range, <notextile>0x20</notextile> to <notextile>0x7E</notextile>.
 
-<div class="discussionnote">
-Should there be a note about not changing the identifiers willy-nilly?
-</div>
+An point's identifier should not be changed or replaced after assignment. If it is changed, all references in links must be updated to reflect the change. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained when possible. Identifiers should also be retained during outline manipulation operations such as path direction changes and remove overlap when possible.
 
-There is no standard identifier generation algorithm but an example is detailed below.
+There is no standard identifier generation algorithm. Random strings, simple numbers, UUIDs, time stamps and more may be used. An example algorithm for generating identifiers that are random strings is detailed below.
 
 h6. Example Algorithm
 
-This algorithm is designed to generate a unique identifier that is a unique string consisting of between 1 and 32 numbers. This allows a glyph to contain 10<sup>32</sup>-1 points that follow this identifier naming scheme.
-
-<div class="discussionnote">
-This algorithm will work, but the identifiers look like indexes. They are not indexes, so this could be confusing.
-</div>
+This algorithm is designed to generate a unique identifier that is a unique string consisting of 10 characters from 0-9, A-Z and a-z. This allows a glyph to contain 10<sup>62</sup> points that follow this identifier naming scheme.
 
 <ul class="algorithm">
   <li>
-    _existing identifiers_ is a ascending sorted list of existing identifiers in the glyph that can be converted losslessly to an integer.
+    _possible characters_ includes 0-9, A-Z and a-z.
   </li>
   <li>
-    If _existing identifiers_ is empty:
+    _existing identifiers_ is a list of all existing identifiers in the glyph.
+  </li>
+  <li>
+    _identifier_ a 10 character long string of characters randomly selected from _possible characters_.
+  </li>
+  <li>
+    If _identifier_ is not in _existing identifiers_:
   </li>
   <li>
     <ul class="algorithm-nest">
-      <li>
-        The identifier is the string representation of 1.
-      </li>
       <li>
         Stop.
       </li>
     </ul>
   </li>
   <li>
-    If the last item in the list is less than 10<sup>32</sup>-2:
+    If _identifier_ is in _existing identifiers_:
   </li>
   <li>
     <ul class="algorithm-nest">
       <li>
-        The identifier is the string representation of the last item in the list plus one.
-      </li>
-      <li>
-        Stop.
-      </li>
-    </ul>
-  </li>
-  <li>
-    If the last item in the list is 10<sup>32</sup>-1:
-  </li>
-  <li>
-    <ul class="algorithm-nest">
-      <li>
-        Use a binary search to find a gap in the values in _existing identifiers_.
-      </li>
-      <li>
-        If a gap is found:
-      </li>
-      <li>
-        <ul class="algorithm-nest">
-          <li>
-            The identifier is the string representation of the first value in the gap.
-          </li>
-          <li>
-            Stop.
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    If no unique value can be found:
-  </li>
-  <li>
-    <ul class="algorithm-nest">
-      <li>
-        Raise an error and let the user know that after trying more than 10<sup>32</sup>-1 names, nothing unique could be found.
+        Repeat this process until a unique identifier is found.
       </li>
     </ul>
   </li>
@@ -321,65 +282,27 @@ This algorithm will work, but the identifiers look like indexes. They are not in
 *Sample implementation*
 
 <pre class="prettyprint">
-def findUniqueIdentifier(existingIdentifiers):
-    """
-    This assumes that existingIdentifiers is a sorted list of integers.
+  import random
 
-    >>> maxValue = 99999999999999999999999999999999
-    >>> findUniqueIdentifier([])
-    '1'
-    >>> findUniqueIdentifier([1, 2])
-    '3'
-    >>> findUniqueIdentifier([1, 2, maxValue])
-    '3'
-    >>> findUniqueIdentifier(range(1, 10) + range(11, 20) + [maxValue])
-    '10'
-    >>> findUniqueIdentifier(range(1, 11) + range(12, 20) + [maxValue])
-    '11'
-    >>> findUniqueIdentifier(range(1, 9) + range(10, 20) + [maxValue])
-    '9'
-    """
-    existingIdentifiers = [int(i) for i in existingIdentifiers]
-    # if the list is empty, return 1
-    if not existingIdentifiers:
-        return "1"
-    # check to see if it will even be possible to generate a value
-    maxIdentifier = (10 ** 32) - 1
-    if len(existingIdentifiers) >= maxIdentifier:
-        raise NotImplementedError,\
-        "This glyph has more than %d points." % maxIdentifier
-    # if the last identifier is not the maximum possible value,
-    # add one to the value
-    if existingIdentifiers[-1] < maxIdentifier:
-        return str(existingIdentifiers[-1] + 1)
-    # otherwise use a binary search to find an opening
-    return str(_findAvailableIdentifier(existingIdentifiers))
+  characters = list("0123456789")
+  characters += list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+  characters += list("abcdefghijklmnopqrstuvwxyz")
+  identifierLength = 10
+  identifierRange = range(identifierLength)
 
-def _findAvailableIdentifier(existingIdentifiers):
-    # work out where to slice
-    count = len(existingIdentifiers)
-    slicePoint = int(round(count / 2))
-    # slice the list into two parts
-    side1 = existingIdentifiers[:slicePoint]
-    side2 = existingIdentifiers[slicePoint:]
-    # if the end of the min of the second list - max of the first list
-    # is geater than 1, the available identifier is max first list + 1
-    if side2[0] - side1[-1] > 1:
-        return side1[-1] + 1
-    # if the max - min in a list is not the length of the list
-    # there is an opening
-    if side1[-1] - side1[0] >= len(side1):
-        # if the length is now 2, the available identifier
-        # is the first identifier + 1
-        if len(side1) == 2:
-            return side1[0] + 1
-        return _findAvailableIdentifier(side1)
-    else:
-        # if the length is now 2, the available identifier
-        # is the first identifier + 1
-        if len(side2) == 2:
-            return side2[0] + 1
-        return _findAvailableIdentifier(side2)
+  def makeRandomIdentifier(existing, recursionDepth=0):
+      if recursionDepth &gt;= 50:
+          raise NotImplementedError,\
+              "Failed 50 times in a row to create a unique id. Sorry."
+      identifier = []
+      for i in identifierRange:
+          c = random.choice(characters)
+          identifier.append(c)
+      identifier = "".join(identifier)
+      if identifier in existing:
+          return makeRandomIdentifier(existing, recursionDepth+1)
+      else:
+          return identifier
 </pre>
 
 h4. This element has no child elements.
