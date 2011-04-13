@@ -2,29 +2,25 @@
 
 h1. Glyph Directories (draft)
 
-A glyphs directory represents a layer of glyph data in a font. This glyph data files will be in "Glyph Interchange Format":glif.html. It contains one or more %(inlineeditorsnote)(can a layer contain zero glyphs?)% GLIF files and a "contents.plist":#contents %(inlineeditorsnote)(is this file required?)% file defining the file name to glyph name mapping. A "layerinfo.plist":#layerinfo file may be present defining various properties of the layer.
-
+A glyphs directory represents a layer of glyph data in a font. This glyph data files will be in "Glyph Interchange Format":glif.html. It must contain at least one GLIF file and it must contain a "contents.plist":#contents file defining the file name to glyph name mapping. A "layerinfo.plist":#layerinfo file may be present defining various properties of the layer.
 </div>
 
 <div class="section">
 
 h1(#contents). contents.plist
 
+table(even-columns).
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
-<div class="editorsnote">Mention that this file is required.</div>
+_contents.plist_ contains a dictionary that maps glyph names to GLIF file names.
 
-_contents.plist_ contains a dictionary that maps glyph names to GLIF file names. Those file names must be plain file names, not absolute or relative paths in the file system. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, a common implementation is defined in the "conventions":conventions.html#usernametofilename.
-
-<div class="discussionnote">
-Are there any rules governing what characters can be used in a glyph name? Obviously there are the FDK requirements, but do we want to enforce those here?
-
-We should also mention that glyph names must be unique. No duplicates.
-</div>
+Glyph names may contain any character and they may be any length. Glyph names must be unique within the layer.
 
 h2. Specification
 
 The property list data consists of a dictionary at the top level. The keys are glyph names and the values are file names.
+
+The file names must end with ".glif" and must begin with a string that is unique within the layer. The file names stored in the property list must be plain file names, not absolute or relative paths in the file system, and they must include the ".glif" extension. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, a common implementation is defined in the "conventions":conventions.html#usernametofilename.
 
 h3. Example
 
@@ -48,7 +44,8 @@ h3. Example
 
 h1(#layerinfo). layerinfo.plist
 
-| *File Format* | Property List |
+table(even-columns).
+| *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file contains information about the layer. This file is optional. Not all values are required for a proper file.
 
@@ -57,7 +54,7 @@ h2. Specification
 The property list data consists of a dictionary at the top level. The keys and values are as follows.
 
 |_. key        |_. value type                              |_. description |_. default value |
-| guidelines   | array                                     | An array of guideline definitions that apply to all glyphs in the layer. | None |
+| guidelines   | array                                     | An array of guideline definitions that apply to all glyphs in the layer. This attribute is optional. | None |
 | fillColor    | "color definition":conventions.html#color | The color that should be used to fill all glyphs in the layer. This attribute is optional. | None |
 | strokeColor  | "color definition":conventions.html#color | The color that should be used to stroke all glyphs in the layer. This attribute is optional. | None |
 | strokeWidth  | positive integer or float                 | The weight of the stroke to be applied to all glyphs in the layer. This attribute is optional. | None |
