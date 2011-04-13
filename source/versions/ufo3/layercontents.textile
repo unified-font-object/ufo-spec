@@ -11,7 +11,7 @@ h2. Specification
 
 The mapping is stored as an array in the property list. This array also defines the order of the layers from top to bottom. The mapping is stored within the array as arrays containing the layer names first and the directory name second.
 
-The directory names must being with "glyphs." and must be followed by a string that is unique within the set of other layer directory names. The directory names stored in the property list must be plain directory names, not absolute or relative paths in the file system, and they must include the "glyphs." prefix. Care must be taken when choosing directory names: layer names are case sensitive, yet many file systems are not. There is no one standard layer name to file name conversion. However, a common implementation is defined in the "conventions":conventions.html#usernametofilename.
+The directory names must begin with "glyphs." and must be followed by a string that is unique within the set of other layer directory names. The directory names stored in the property list must be plain directory names, not absolute or relative paths in the file system, and they must include the "glyphs." prefix. Care must be taken when choosing directory names: layer names are case sensitive, yet many file systems are not. There is no one standard layer name to file name conversion. However, a common implementation is defined in the "conventions":conventions.html#usernametofilename.
 
 Layer names may contain any character and they may be any length. Layer names must be unique within the font. The pattern "public.*", where &#42; represents an arbitrary string of one or more characters, is reserved for use as layer names in the registry below.
 
