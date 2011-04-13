@@ -2,21 +2,26 @@
 
 h1. layercontents.plist (draft)
 
+table(even-columns).
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
-This file maps the layer names to the _glyphs_ directory names. Those directory names must be plain directory names, not absolute or relative paths in the file system. Care must be taken when choosing file names: layer names are case sensitive, yet many file systems are not. There is no one standard layer name to file name conversion. However, a common implementation is defined in the "conventions":conventions.html#usernametofilename.
-
-<div class="discussionnote">
-Are there any rules governing what characters can be used in a layer name?
-
-Can more than one layer have the same name?
-
-Should we have some common names for exchanging layers? For example, FontLab has "mask", Fog had "background", FontForge has something else. They all have the same conceptual purpose. Allowing the free exchange of these despite the inconsistent UI name would be useful. We could do this through a small registry using the public.* syntax or we could add some information to a list of application interaction recommendations.
-</div>
+This file maps the layer names to the glyph directory names.
 
 h2. Specification
 
 The mapping is stored as an array in the property list. This array also defines the order of the layers from top to bottom. The mapping is stored within the array as arrays containing the layer names first and the directory name second.
+
+The directory names must being with "glyphs." and must be followed by a string that is unique within the set of other layer directory names. The directory names stored in the property list must be plain directory names, not absolute or relative paths in the file system, and they must include the "glyphs." prefix. Care must be taken when choosing directory names: layer names are case sensitive, yet many file systems are not. There is no one standard layer name to file name conversion. However, a common implementation is defined in the "conventions":conventions.html#usernametofilename.
+
+Layer names may contain any characters, they may be any length and the names may occur more than once. The pattern "public.*", where &#42; represents an arbitrary string of one or more characters, is reserved for use as layer names in the registry below.
+
+h3. Common Layer Registry
+
+The following is a registry of public layer names that map to functionality that is often seen in font editing applications. These common layer names allow applications to exchange common layer types while the applications maintain their own unique UI names for the layers.
+
+h4. public.background
+
+This represents background reference layers such as the "Template" layer in Fontogrpaher, the "Mask" layer in FontLab and the "Background" layer in FontForge. Applications may write this common layer into a UFO using the layer name "public.background" and assigning an appropriate layer directory name. Likewise, an application that encounters a layer named "public.background" may use this layer for its own particular background reference layer.
 
 h3. Example
 
@@ -35,8 +40,8 @@ h3. Example
     &lt;string&gt;glyphs.S_ketches&lt;/string&gt;
   &lt;/array&gt;
   &lt;array&gt;
-    &lt;string&gt;Reference&lt;/string&gt;
-    &lt;string&gt;glyphs.R_eference&lt;/string&gt;
+    &lt;string&gt;public.background&lt;/string&gt;
+    &lt;string&gt;glyphs.public.background&lt;/string&gt;
   &lt;/array&gt;
 &lt;/array&gt;
 &lt;/plist&gt;
