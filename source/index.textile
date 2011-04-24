@@ -14,4 +14,8 @@ h3. Versions
 | "UFO 2":versions/ufo2/index.html | Published in March 2009. |
 | "UFO 3":versions/ufo3/index.html | Currently in development. Scheduled for publication in early 2012. |
 
+h3. Download
+
+This specification can be downloaded "here":downloads/UFOSpecification.zip as a single zip package. The raw source files for the specification can be retrieved from the Subversion repository located at "http://svn.unifiedfontobject.org":http://svn.unifiedfontobject.org.
+
 </div>
