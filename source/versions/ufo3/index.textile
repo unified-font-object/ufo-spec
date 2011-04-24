@@ -20,7 +20,7 @@ A UFO is a directory representing font data with one or more glyph layers.
 
 h3. Terminology
 
-The terms "must", "must not", "required", "shall", "shall not", "should", "should not", "recommended", "may", and "optional" conform to "RFC 2119":http://www.ietf.org/rfc/rfc2119.txt.
+The terms "must", "must not", "required", "shall", "shall not", "should", "should not", "recommended", "may", and "optional" used throughout this specification conform to "RFC 2119":http://www.ietf.org/rfc/rfc2119.txt.
 
 The term "authoring tool" is used throughout this specification to refer to tools that read and write UFOs. Authoring tools may take many forms:
 
