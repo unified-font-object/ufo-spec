@@ -17,7 +17,7 @@ h4(#generic-identification). Generic Identification Information
 | styleMapStyleName   | string       | Style map style. The possible values are _regular_, _italic_, _bold_ and _bold italic_. These are case sensitive. |
 | versionMajor        | integer      | Major version. |
 | versionMinor        | integer      | Minor version. |
-| year                | integer      | The year the font was created. This attribute is deprecated as of version 2. It's presence should not be relied upon by applications. However, it may occur in a font's info so applications should preserve it if present. |
+| year                | integer      | The year the font was created. This attribute is deprecated as of version 2. It's presence should not be relied upon by authoring tools. However, it may occur in a font's info so authoring tools should preserve it if present. |
 
 h4(#generic-legal). Generic Legal Information
 
@@ -390,7 +390,7 @@ This is a very complex thing to represent. These are the ideas so far.
 
 h4(#kerning-group-prefixes). Kerning Group Prefixes
 
-If an application allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the _firstKerningGroupPrefix_ or the _secondKerningGroupPrefix_. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
+If an authoring tool allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the _firstKerningGroupPrefix_ or the _secondKerningGroupPrefix_. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
 
 |_. key                    |_. value type |_. description |
 | firstKerningGroupPrefix  | string       | An arbitrary string that defines the group name prefix for first kerning groups used in the pairs dictionary. This string must not be the same as the string in secondKerningGroupPrefix. |

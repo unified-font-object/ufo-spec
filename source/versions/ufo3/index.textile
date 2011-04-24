@@ -26,7 +26,8 @@ The term "authoring tool" is used throughout this specification to refer to tool
 
 * A font editor that uses UFO as its native file format.
 # A tool that allows for import data from or exporting data to a UFO.
-* A user specific script for modifying a UFO.
+# A programming library for reading or writing UFO data.
+* A script for modifying a UFO.
 
 This list is not exclusive.
 

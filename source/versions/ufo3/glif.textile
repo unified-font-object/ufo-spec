@@ -116,7 +116,7 @@ All images must be in PNG format.
 
 h4. Coloring Images
 
-There are two places that the color for an image can be defined: the color attribute of the image element and the @fillColor@ defined in "layerinfo.plist":glyphs.html#layerinfo. The color defined in the image element's color attribute always takes precedence. If that is not defined and the @fillColor@ is defined for the layer, the layer's @fillColor@ should be used. If both of these are undefined, the image should not be colored unless an application has a default color for images. If a color is to be applied, the application should convert the image to grayscale and then apply the color. This modified version of the image must not be saved into the images directory.
+There are two places that the color for an image can be defined: the color attribute of the image element and the @fillColor@ defined in "layerinfo.plist":glyphs.html#layerinfo. The color defined in the image element's color attribute always takes precedence. If that is not defined and the @fillColor@ is defined for the layer, the layer's @fillColor@ should be used. If both of these are undefined, the image should not be colored unless an authoring tool has a default color for images. If a color is to be applied, the authoring tool should convert the image to grayscale and then apply the color. This modified version of the image must not be saved into the images directory.
 
 
 h4. Example
@@ -335,7 +335,7 @@ qcurve point:
 
 h3(#link). link: A collection of point references.
 
-Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The _link_ element may contain a _type_ string that applications can use to define what a particular link represents.
+Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The _link_ element may contain a _type_ string that authoring tools can use to define what a particular link represents.
 
 This element may occur any number of times.
 
@@ -407,7 +407,7 @@ h4. Attributes
 
 h3(#lib). lib: Custom data storage.
 
-This element is a place to store tool specific, user specific or otherwise arbitrary data for the glyph. lib mus have one child element that is structure as a dictionary formatted as an "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd. This element may occur at most once. In order to prevent conflicts in the lib, keys in the top level should follow a "reverse domain naming scheme":conventions.html#reversedomain. It is recommended that the data stored as a value be as shallow as possible.
+This element is a place to store authoring tool specific, user specific or otherwise arbitrary data for the glyph. lib mus have one child element that is structure as a dictionary formatted as an "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd. This element may occur at most once. In order to prevent conflicts in the lib, keys in the top level should follow a "reverse domain naming scheme":conventions.html#reversedomain. It is recommended that the data stored as a value be as shallow as possible.
 
 Data that is too complex or too large for lib can be stored in the "data directory":data.html.
 

@@ -17,7 +17,7 @@ Groups may be used as members of kerning pairs in "kerning.plist":kerning.html. 
 
 h4. 1. Kerning group names must begin with the appropriate "prefix":fontinfo.html#kerning-group-prefixes.
 
-As stated before, these prefixes eliminate kerning interpretation ambiguities.
+As stated elsewhere, these prefixes eliminate kerning interpretation ambiguities.
 
 h4. 2. Only kerning groups are allowed to use the kerning group prefixes in their names.
 
