@@ -2,6 +2,7 @@
 
 h1. Glyph Interchange Format (draft)
 
+table(even-columns).
 | *File Format* | XML |
 
 The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a _.glif_ extension.
@@ -38,7 +39,7 @@ h3(#glyph). glyph: The top level element.
 h4. Attributes
 
 |_. attribute name |_. description |
-| name             | The name of the glyph |
+| name             | The name of the glyph. |
 | format           | The format version. 2 for this version. |
 
 The _name_ attribute has limited uses in this version. The _contents.plist_ file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the _name_ attribute should be ignored, since manual editing may have caused a mismatch with the glyph name as stored in _contents.plist_, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
@@ -91,11 +92,7 @@ h4. Example
 
 h3(#image). image:  An image reference.
 
-This optional element represents an image element in a glyph. It may occur at most once. The image is always considered to be _behind_ the outline element.
-
-<div class="implementationnote">
-From an implementation perspective, images are quite complex. We either need to define a new pen like protocol for working with images or we need to define a standard API for getting and setting image data from/to glyphs.
-</div>
+This optional element represents an image element in a glyph. It may occur at most once. The image should always be considered to be _behind_ the outline element.
 
 h4. Attributes
 
@@ -119,7 +116,7 @@ All images must be in PNG format.
 
 h4. Coloring Images
 
-There are two places that the color for an image can be defined: the color attribute of the image element and the @fillColor@ defined in "layerinfo.plist":glyphs.html#layerinfo. The color defined in the image element's color attribute always takes precedence. If that is not defined and the @fillColor@ is defined for the layer, the layer's @fillColor@ should be used. If both of these are undefined, the image should not be colored. If a color is to be applied, the application should convert the image to grayscale and then apply the color. This modified version of the image must not be saved into the images directory.
+There are two places that the color for an image can be defined: the color attribute of the image element and the @fillColor@ defined in "layerinfo.plist":glyphs.html#layerinfo. The color defined in the image element's color attribute always takes precedence. If that is not defined and the @fillColor@ is defined for the layer, the layer's @fillColor@ should be used. If both of these are undefined, the image should not be colored unless an application has a default color for images. If a color is to be applied, the application should convert the image to grayscale and then apply the color. This modified version of the image must not be saved into the images directory.
 
 
 h4. Example
@@ -166,9 +163,9 @@ h4. This element has no attributes.
 
 h4. Child Elements
 
-|_. element name |_. description |
-| component      | May occur any number of times. |
-| contour        | May occur any number of times. |
+|_. element name         |_. description |
+| "component":#component | May occur any number of times. |
+| "contour":#contour     | May occur any number of times. |
 
 
 h3(#component). component: Insert another glyph as part of the outline.
@@ -186,7 +183,7 @@ h4. Attributes
 
 xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the base glyph. The default matrix is [1 0 0 1 0 0], the identity transformation.
 
-When multiple glyphs directories are in the font, a component may only reference a glyph within the same glyphs directory that contains the glyph that contains the component.
+Components must only reference glyphs within the same layer that the component belongs to.
 
 h4. This element has no child elements.
 
@@ -215,19 +212,15 @@ h4. Attributes
 | x                | integer or float | The 'x' coordinate. | None |
 | y                | integer or float | The 'y' coordinate. | None |
 | type             | string           | The point and/or segment type. The options are detailed below. | offcurve |
-| smooth           | string           | This attribute can only be given when _type_ indicates the point is on-curve. When set to _yes_, it signifies that a smooth curvature should be maintained at this point, either as a _curve point_ or a _tangent point_ in Fontographer terms. | no |
+| smooth           | string           | This attribute must only be given when _type_ indicates the point is on-curve. When set to _yes_, it signifies that a smooth curvature should be maintained at this point, either as a _curve point_ or a _tangent point_ in Fontographer terms. | no |
 | name             | string           | Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline. | None |
 | identifier       | string           | Identifier for this point. The requirements for this attribute are detailed below. | None |
 
-<div class="discussionnote">
-Is the identifier attribute required? What should happen if an identifier is not present?
-</div>
-
 h5. Point Types
 
-| move     | A point of this type MUST be the first in a _contour_. The reverse is not true: a _contour_ does not necessarily start with a _move_ point. When a _contour_ *does* start with a _move_ point, it signifies the beginning of an *open* contour. A *closed* contour does *not* start with a _move_ and is defined as a cyclic list of points, with no predominant start point. There is always a _next point_ and a _previous point_. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline. |
-| line     | Draw a straight line from the previous point to this point. The previous point may be a _move_, a _line_, a _curve_ or a _qcurve_, but not an _offcurve_. |
-| offcurve | This point is part of a curve segment, that goes up to the next point that is either a _curve_ or a _qcurve_. |
+| move     | A point of this type must be the first in a _contour_. The reverse is not true: a _contour_ does not necessarily start with a _move_ point. When a _contour_ *does* start with a _move_ point, it signifies the beginning of an *open* contour. A *closed* contour does *not* start with a _move_ and is defined as a cyclic list of points, with no predominant start point. There is always a _next point_ and a _previous point_. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline. |
+| line     | Draw a straight line from the previous point to this point. The previous point must be a _move_, a _line_, a _curve_ or a _qcurve_. It must not be an _offcurve_. |
+| offcurve | This point is part of a curve segment that goes up to the next point that is either a _curve_ or a _qcurve_. |
 | curve    | Draw a cubic bezier curve from the last non-_offcurve_ point to this point. If the number of _offcurve_ points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the _Super Bezier_ algorithm. |
 | qcurve   | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. |
 
@@ -239,7 +232,7 @@ h5. Point Identifier
 
 Points may have an identifier attribute. This attribute is not required unless a point is referenced by a link or other structure that requires a point to have an identifier. This identifier must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier must be string between one and 100 characters long. All characters must be in the printable ASCII range, <notextile>0x20</notextile> to <notextile>0x7E</notextile>.
 
-An point's identifier should not be changed or replaced after assignment. If it is changed, all references in links must be updated to reflect the change. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained when possible. Identifiers should also be retained during outline manipulation operations such as path direction changes and remove overlap when possible.
+A point's identifier should not be changed or replaced after assignment. If it is changed, all references in links must be updated to reflect the change. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained when possible. Identifiers should also be retained during outline manipulation operations such as path direction changes and remove overlap when possible.
 
 There is no standard identifier generation algorithm. Random strings, simple numbers, UUIDs, time stamps and more may be used. An example algorithm for generating identifiers that are random strings is detailed below.
 
@@ -414,7 +407,7 @@ h4. Attributes
 
 h3(#lib). lib: Custom data storage.
 
-This element is a place to store tool specific, user specific or otherwise arbitrary data for the glyph. It is structure is defined as a "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd. This element may occur at most once. lib has exactly one child, which must be _dict_. In order to prevent conflicts in the lib, keys in the top level should follow a "reverse domain naming scheme":conventions.html#reversedomain. It is recommended that the data stored as a value be as shallow as possible.
+This element is a place to store tool specific, user specific or otherwise arbitrary data for the glyph. lib mus have one child element that is structure as a dictionary formatted as an "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd. This element may occur at most once. In order to prevent conflicts in the lib, keys in the top level should follow a "reverse domain naming scheme":conventions.html#reversedomain. It is recommended that the data stored as a value be as shallow as possible.
 
 Data that is too complex or too large for lib can be stored in the "data directory":data.html.
 
