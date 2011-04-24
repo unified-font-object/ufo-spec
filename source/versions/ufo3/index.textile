@@ -24,10 +24,10 @@ The terms "must", "must not", "required", "shall", "shall not", "should", "shoul
 
 The term "authoring tool" is used throughout this specification to refer to tools that read and write UFOs. Authoring tools may take many forms:
 
-* A font editor that uses UFO as its native file format.
-# A tool that allows for import data from or exporting data to a UFO.
+# A font editor that uses UFO as its native file format.
+# A tool that allows for importing data from or exporting data to a UFO.
 # A programming library for reading or writing UFO data.
-* A script for modifying a UFO.
+# A script for modifying a UFO.
 
 This list is not exclusive.
 
