@@ -2,6 +2,7 @@ import os
 import shutil
 import textile
 import re
+import zipfile
 
 baseDirectory = os.path.dirname(__file__)
 sourceDirectory = os.path.join(baseDirectory, "source")
@@ -107,3 +108,24 @@ filterJunk(siteDirectory)
 
 for path in mustRemove:
     os.remove(path)
+
+# package the zip
+
+print "Zipping compiled sepcification..."
+
+def zipDirectory(path, relativePath, zipObj):
+    for fileName in os.listdir(path):
+        if os.path.splitext(fileName)[-1].lower() == ".zip":
+            continue
+        source = os.path.join(path, fileName)
+        dest = os.path.join(relativePath, fileName)
+        if os.path.isdir(source):
+            zipDirectory(source, dest, zipObj)
+        else:
+            zipObj.write(source, dest)
+
+zipPath = os.path.join(siteDirectory, "downloads/UFOSpecification.zip")
+assert not os.path.exists(zipPath)
+zipObj = zipfile.ZipFile(zipPath, "w", zipfile.ZIP_DEFLATED)
+zipDirectory(siteDirectory, "", zipObj)
+zipObj.close()
