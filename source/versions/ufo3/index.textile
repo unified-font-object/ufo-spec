@@ -18,7 +18,17 @@ Notes to the editor are highlighted like this. Please pardon our dust.
 
 A UFO is a directory representing font data with one or more glyph layers.
 
-<div class="editorsnote">Mention "RFC 2119":http://www.ietf.org/rfc/rfc2119.txt. Review all text to make sure that the right words are being used.</div>
+h3. Terminology
+
+The terms "must", "must not", "required", "shall", "shall not", "should", "should not", "recommended", "may", and "optional" conform to "RFC 2119":http://www.ietf.org/rfc/rfc2119.txt.
+
+The term "authoring tool" is used throughout this specification to refer to tools that read and write UFOs. Authoring tools may take many forms:
+
+* A font editor that uses UFO as its native file format.
+# A tool that allows for import data from or exporting data to a UFO.
+* A user specific script for modifying a UFO.
+
+This list is not exclusive.
 
 h3. File Structure
 
