@@ -43,7 +43,7 @@ h4(#generic-miscellaneous). Generic Miscellaneous Information
 h4(#opentype-head). OpenType head Table Fields
 
 |_. key                     |_. value type     |_. description |
-| openTypeHeadCreated       | string           | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month should be in the range 1-12 and the day should be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour should be in the range 0:23. The minute and second should each be in the range 0-59. |
+| openTypeHeadCreated       | string           | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month must be in the range 1-12 and the day must be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour must be in the range 0:23. The minute and second must each be in the range 0-59. |
 | openTypeHeadLowestRecPPEM | integer or float | Smallest readable size in pixels. Corresponds to the OpenType head table lowestRecPPEM field. |
 | openTypeHeadFlags         | number list     | A list of bit numbers indicating the flags. The bit numbers are listed in the OpenType head specification. Corresponds to the OpenType head table flags field. |
 
@@ -134,9 +134,9 @@ h4(#opentype-os/2). OpenType OS/2 Table Fields
 |_. key                         |_. value type     |_. description |
 | openTypeOS2WidthClass         | integer          | Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table usWidthClass field. |
 | openTypeOS2WeightClass        | integer          | Weight class value. Must be a positive integer. Corresponds to the OpenType OS/2 table usWeightClass field. |
-| openTypeOS2Selection          | number list      | A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table selection field. *Note:* Bits 0 (italic), 5 (bold) and 6 (regular) should not be set here. These bits should be taken from the generic _styleMapStyle_ attribute.|
+| openTypeOS2Selection          | number list      | A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table selection field. *Note:* Bits 0 (italic), 5 (bold) and 6 (regular) must not be set here. These bits should be taken from the generic _styleMapStyle_ attribute.|
 | openTypeOS2VendorID           | string           | Four character identifier for the creator of the font. Corresponds to the OpenType OS/2 table achVendID field. |
-| openTypeOS2Panose             | number list      | The list should contain 10 integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table Panose field. |
+| openTypeOS2Panose             | number list      | The list must contain 10 integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table Panose field. |
 | openTypeOS2FamilyClass        | number list      | Two integers representing the IBM font class and font subclass of the font. The first number, representing the class ID, should be in the range 0-14. The second number, representing the subclass, should be in the range 0-15. The numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table sFamilyClass field. |
 | openTypeOS2UnicodeRanges      | number list      | A list of bit numbers that are supported Unicode ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table ulUnicodeRange1, ulUnicodeRange2, ulUnicodeRange3 and ulUnicodeRange4 fields. |
 | openTypeOS2CodePageRanges     | number list      | A list of bit numbers that are supported code page ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table ulCodePageRange1 and ulCodePageRange2 fields. |
@@ -208,8 +208,8 @@ h4(#postscript). PostScript Specific Data
 | postscriptOtherBlues            | number list      | A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF OtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
 | postscriptFamilyBlues           | number list      | A list of up to 14 integers or floats specifying the values that should be in the Type 1/CFF FamilyBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
 | postscriptFamilyOtherBlues      | number list      | A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF FamilyOtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
-| postscriptStemSnapH             | number list      | List of horizontal stems sorted in increasing order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF StemSnapH field. |
-| postscriptStemSnapV             | number list      | List of vertical stems sorted in increasing order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF StemSnapV field. |
+| postscriptStemSnapH             | number list      | List of horizontal stems sorted in ascending order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF StemSnapH field. |
+| postscriptStemSnapV             | number list      | List of vertical stems sorted in ascending order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF StemSnapV field. |
 | postscriptBlueFuzz              | integer or float | BlueFuzz value. This corresponds to the Type 1/CFF BlueFuzz field. |
 | postscriptBlueShift             | integer or float | BlueShift value. This corresponds to the Type 1/CFF BlueShift field. |
 | postscriptBlueScale             | float            | BlueScale value. This corresponds to the Type 1/CFF BlueScale field. |
@@ -276,23 +276,23 @@ h4(#woff). WOFF Data
 
 Many of these fields _can_ be populated from generic elements, but since WOFF is a wrapper format they _may not_ always be duplicated. As such, all of the WOFF fields are unique key/value pairs.
 
-|_. key                      |_. value type |_. description |
-| woffMajorVersion           | integer      | Major version of the font. |
-| woffMinorVersion           | integer      | Minor version of the font. |
-| woffMetadataUniqueID       | string       | Identification string. Corresponds to the WOFF uniqueid element id attribute. |
-| woffMetadataVendor         | string       | Font vendor. Corresponds to the WOFF vendor element name attribute. |
-| woffMetadataVendorURL      | string       | Font vendor URL. Corresponds to the WOFF vendor element url attribute. |
-| woffMetadataCredits        | list         | List of credit records. Corresponds to the WOFF credits element. |
-| woffMetadataDescription    | string       | Description string. Corresponds to the WOFF description element. |
-| woffMetadataDescriptionURL | string       | Description URL. Corresponds to the WOFF description element url attribute. |
-| woffMetadataLicense        | string       | License string. Corresponds to the WOFF license element. |
-| woffMetadataLicenseID      | string       | License ID string. Corresponds to the WOFF license element id attribute. |
-| woffMetadataLicenseURL     | string       | License URL string. Corresponds to the WOFF license element url attribute. |
-| woffMetadataCopyright      | string       | Copyright string. Corresponds to the WOFF copyright element. |
-| woffMetadataTrademark      | string       | Trademark string. Corresponds to the WOFF trademark element. |
-| woffMetadataLicenseeName   | string       | Licensee name string. Corresponds to the WOFF licensee element name attribute. |
-| woffMetadataRecords        | list         | List of metadata records. This record storage area is intended for records that require language localization. |
-| woffMetadataExtensions     | list         | List of metadata extension records. |
+|_. key                      |_. value type     |_. description |
+| woffMajorVersion           | positive integer | Major version of the font. |
+| woffMinorVersion           | positive integer | Minor version of the font. |
+| woffMetadataUniqueID       | string           | Identification string. Corresponds to the WOFF uniqueid element id attribute. |
+| woffMetadataVendor         | string           | Font vendor. Corresponds to the WOFF vendor element name attribute. |
+| woffMetadataVendorURL      | string           | Font vendor URL. Corresponds to the WOFF vendor element url attribute. |
+| woffMetadataCredits        | list             | List of credit records. Corresponds to the WOFF credits element. |
+| woffMetadataDescription    | string           | Description string. Corresponds to the WOFF description element. |
+| woffMetadataDescriptionURL | string           | Description URL. Corresponds to the WOFF description element url attribute. |
+| woffMetadataLicense        | string           | License string. Corresponds to the WOFF license element. |
+| woffMetadataLicenseID      | string           | License ID string. Corresponds to the WOFF license element id attribute. |
+| woffMetadataLicenseURL     | string           | License URL string. Corresponds to the WOFF license element url attribute. |
+| woffMetadataCopyright      | string           | Copyright string. Corresponds to the WOFF copyright element. |
+| woffMetadataTrademark      | string           | Trademark string. Corresponds to the WOFF trademark element. |
+| woffMetadataLicenseeName   | string           | Licensee name string. Corresponds to the WOFF licensee element name attribute. |
+| woffMetadataRecords        | list             | List of metadata records. This record storage area is intended for records that require language localization. |
+| woffMetadataExtensions     | list             | List of metadata extension records. |
 
 
 
