@@ -10,14 +10,14 @@ h2. Specification
 
 h4(#generic-identification). Generic Identification Information
 
-|_. key               |_. value type |_. description |
-| familyName          | string       | Family name. |
-| styleName           | string       | Style name. |
-| styleMapFamilyName  | string       | Family name used for bold, italic and bold italic style mapping. |
-| styleMapStyleName   | string       | Style map style. The possible values are _regular_, _italic_, _bold_ and _bold italic_. These are case sensitive. |
-| versionMajor        | integer      | Major version. |
-| versionMinor        | integer      | Minor version. |
-| year                | integer      | The year the font was created. This attribute is deprecated as of version 2. It's presence should not be relied upon by authoring tools. However, it may occur in a font's info so authoring tools should preserve it if present. |
+|_. key               |_. value type     |_. description |
+| familyName          | string           | Family name. |
+| styleName           | string           | Style name. |
+| styleMapFamilyName  | string           | Family name used for bold, italic and bold italic style mapping. |
+| styleMapStyleName   | string           | Style map style. The possible values are _regular_, _italic_, _bold_ and _bold italic_. These are case sensitive. |
+| versionMajor        | positive integer | Major version. |
+| versionMinor        | integer          | Minor version. |
+| year                | integer          | The year the font was created. This attribute is deprecated as of version 2. It's presence should not be relied upon by authoring tools. However, it may occur in a font's info so authoring tools should preserve it if present. |
 
 h4(#generic-legal). Generic Legal Information
 
@@ -28,7 +28,7 @@ h4(#generic-legal). Generic Legal Information
 h4(#generic-dimensions). Generic Dimension Information
 
 |_. key           |_. value type     |_. description |
-| unitsPerEm      | integer or float | Units per em. |
+| unitsPerEm      | positive integer or float | Units per em. |
 | descender       | integer or float | Descender value. |
 | xHeight         | integer or float | x-height value. |
 | capHeight       | integer or float | Cap height value. |
@@ -42,10 +42,10 @@ h4(#generic-miscellaneous). Generic Miscellaneous Information
 
 h4(#opentype-head). OpenType head Table Fields
 
-|_. key                     |_. value type     |_. description |
-| openTypeHeadCreated       | string           | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month must be in the range 1-12 and the day must be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour must be in the range 0:23. The minute and second must each be in the range 0-59. |
-| openTypeHeadLowestRecPPEM | integer or float | Smallest readable size in pixels. Corresponds to the OpenType head table lowestRecPPEM field. |
-| openTypeHeadFlags         | number list     | A list of bit numbers indicating the flags. The bit numbers are listed in the OpenType head specification. Corresponds to the OpenType head table flags field. |
+|_. key                     |_. value type              |_. description |
+| openTypeHeadCreated       | string                    | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month must be in the range 1-12 and the day must be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour must be in the range 0:23. The minute and second must each be in the range 0-59. |
+| openTypeHeadLowestRecPPEM | positive integer or float | Smallest readable size in pixels. Corresponds to the OpenType head table lowestRecPPEM field. |
+| openTypeHeadFlags         | number list               | A list of bit numbers indicating the flags. The bit numbers are listed in the OpenType head specification. Corresponds to the OpenType head table flags field. |
 
 h5. Notes
 
@@ -107,12 +107,12 @@ h5. Name Record Format
 
 The records are stored as dictionaries of the following format.
 
-|_. key      |_. value type |_. description |
-| nameID     | integer      | The name ID. |
-| platformID | integer      | The platform ID. |
-| encodingID | integer      | The encoding ID. |
-| languageID | integer      | The language ID. |
-| string     | string       | The string value for the record. |
+|_. key      |_. value type     |_. description |
+| nameID     | positive integer | The name ID. |
+| platformID | positive integer | The platform ID. |
+| encodingID | positive integer | The encoding ID. |
+| languageID | positive integer | The language ID. |
+| string     | string           | The string value for the record. |
 
 Records must have a unique nameID, platformID, encodingID and languageID combination.
 
@@ -136,15 +136,15 @@ h4(#opentype-os/2). OpenType OS/2 Table Fields
 | openTypeOS2WeightClass        | integer          | Weight class value. Must be a positive integer. Corresponds to the OpenType OS/2 table usWeightClass field. |
 | openTypeOS2Selection          | number list      | A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table selection field. *Note:* Bits 0 (italic), 5 (bold) and 6 (regular) must not be set here. These bits should be taken from the generic _styleMapStyle_ attribute.|
 | openTypeOS2VendorID           | string           | Four character identifier for the creator of the font. Corresponds to the OpenType OS/2 table achVendID field. |
-| openTypeOS2Panose             | number list      | The list must contain 10 integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table Panose field. |
-| openTypeOS2FamilyClass        | number list      | Two integers representing the IBM font class and font subclass of the font. The first number, representing the class ID, should be in the range 0-14. The second number, representing the subclass, should be in the range 0-15. The numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table sFamilyClass field. |
+| openTypeOS2Panose             | number list      | The list must contain 10 positive integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table Panose field. |
+| openTypeOS2FamilyClass        | number list      | Two integers representing the IBM font class and font subclass of the font. The first number, representing the class ID, must be in the range 0-14. The second number, representing the subclass, must be in the range 0-15. The numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table sFamilyClass field. |
 | openTypeOS2UnicodeRanges      | number list      | A list of bit numbers that are supported Unicode ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table ulUnicodeRange1, ulUnicodeRange2, ulUnicodeRange3 and ulUnicodeRange4 fields. |
 | openTypeOS2CodePageRanges     | number list      | A list of bit numbers that are supported code page ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table ulCodePageRange1 and ulCodePageRange2 fields. |
 | openTypeOS2TypoAscender       | integer or float | Ascender value. Corresponds to the OpenType OS/2 table sTypoAscender field. |
 | openTypeOS2TypoDescender      | integer or float | Descender value. Corresponds to the OpenType OS/2 table sTypoDescender field. |
 | openTypeOS2TypoLineGap        | integer or float | Line gap value. Corresponds to the OpenType OS/2 table sTypoLineGap field. |
-| openTypeOS2WinAscent          | integer or float | Ascender value. Corresponds to the OpenType OS/2 table usWinAscent field. |
-| openTypeOS2WinDescent         | integer or float | Descender value. Corresponds to the OpenType OS/2 table usWinDescent field. |
+| openTypeOS2WinAscent          | positive integer or float | Ascender value. Corresponds to the OpenType OS/2 table usWinAscent field. |
+| openTypeOS2WinDescent         | positive integer or float | Descender value. Corresponds to the OpenType OS/2 table usWinDescent field. |
 | openTypeOS2Type               | number list      | A list of bit numbers indicating the embedding type. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table fsType field. |
 | openTypeOS2SubscriptXSize     | integer or float | Subscript horizontal font size. Corresponds to the OpenType OS/2 table ySubscriptXSize field. |
 | openTypeOS2SubscriptYSize     | integer or float | Subscript vertical font size. Corresponds to the OpenType OS/2 table ySubscriptYSize field. |
