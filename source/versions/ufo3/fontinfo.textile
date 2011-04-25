@@ -274,7 +274,7 @@ h5. Notes
 
 h4(#woff). WOFF Data
 
-Many of these fields _can_ be populated from generic elements, but since WOFF is a wrapper format they _may not_ always be duplicated. As such, all of the WOFF fields are unique key/value pairs.
+Many of these fields _can_ be populated from generic elements, but since WOFF is a wrapper format they _may not_ always be duplicated. As such, all of the WOFF fields are unique key/value pairs. All of these fields, and the sub-fields that they contain, are optional.
 
 |_. key                      |_. value type         |_. description |
 | woffMajorVersion           | non-negative integer | Major version of the font. |
@@ -294,11 +294,7 @@ Many of these fields _can_ be populated from generic elements, but since WOFF is
 | woffMetadataRecords        | list                 | List of metadata records. This record storage area is intended for records that require language localization. |
 | woffMetadataExtensions     | list                 | List of metadata extension records. |
 
-
-
 <div class="editorsnote">
-Need to finalize extension elements.
-
 Need to review the final (it's not yet approved) credits localization format to make sure it will be possible in the metadataRecords or the credit record.
 </div>
 
@@ -320,70 +316,104 @@ The records are stored as dictionaries of the following format.
 | language | string       | The language tag of the record. |
 | text     | string       | The text for of record. |
 
-h5. Metadata Extension Records
+h5. Metadata Extension Record
 
-This is a very complex thing to represent. These are the ideas so far.
+The records are stored as dictionaries of the following format.
+
+|_. key |_. value type |_. description |
+| names | list         | List of metadata extension name records. |
+| items | list         | List of metadata extension item records. |
+
+h6. Metadata Extension Name Record
+
+The records are stored as dictionaries of the following format.
+
+|_. key |_. value type |_. description |
+| name  | string       | The name of the name record. |
+| lang  | string       | The language of the name record. |
+
+h6. Metadata Extension Item Record
+
+The records are stored as dictionaries of the following format.
+
+|_. key   |_. value type |_. description |
+| id      | string       | The id of the item record. |
+| members | list         | List of metadata extension item member records. |
+
+h6. Metadata Extension Item Member Record
+
+The records are stored as dictionaries of the following format.
+
+|_. key    |_. value type |_. description |
+| name     | string       | The name of the member record. |
+| value    | string       | The value of the member record. |
+| language | string       | The language of the member record. |
+
+h6. Metadata Extension Item Example
 
 <pre class="prettyprint">
-[
-    # extension record
-    {
-        # names
-        names : [
-            # name record
-            {
-                name : string,
-                lang : string or None}
-        ],
-        # items
-        items : [
-            # item record
-            {
-                # id
-                id : string or None,
-                # names
-                names : [
-                    {name : string, lang : string or None}
-                ]
-                # values
-                values : [
-                    {name : string, lang : string or None}
-                ]
-            }
-        ]
-    }
-]
-
-
-[
-    # extension record
-    {
-        # names
-        names : [
-            # name record
-            {
-                name : string,
-                lang : string or None
-            }
-        ],
-        # items
-        items : [
-            # item record
-            {
-                # id
-                id : string or None,
-                # records
-                records : [
-                    {
-                        name : string or None,
-                        value : string or None,
-                        lang : string or None
-                    }
-                ]
-            }
-        ]
-    }
-]
+&lt;dict&gt;
+  &lt;key&gt;items&lt;/key&gt;
+  &lt;array&gt;
+    &lt;dict&gt;
+      &lt;key&gt;id&lt;/key&gt;
+      &lt;string&gt;org.example.fonts.metadata.v1.why&lt;/string&gt;
+      &lt;key&gt;records&lt;/key&gt;
+      &lt;array&gt;
+        &lt;dict&gt;
+          &lt;key&gt;name&lt;/key&gt;
+          &lt;string&gt;Purpose&lt;/string&gt;
+          &lt;key&gt;value&lt;/key&gt;
+          &lt;string&gt;
+            This font exists merely as
+            an example of WOFF packaging.
+          &lt;/string&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+          &lt;key&gt;lang&lt;/key&gt;
+          &lt;string&gt;en&lt;/string&gt;
+          &lt;key&gt;name&lt;/key&gt;
+          &lt;string&gt;Purpose&lt;/string&gt;
+          &lt;key&gt;value&lt;/key&gt;
+          &lt;string&gt;
+            This font exists merely as
+            an example of WOFF packaging.
+          &lt;/string&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+          &lt;key&gt;lang&lt;/key&gt;
+          &lt;string&gt;fr&lt;/string&gt;
+          &lt;key&gt;name&lt;/key&gt;
+          &lt;string&gt;But&lt;/string&gt;
+          &lt;key&gt;value&lt;/key&gt;
+          &lt;string&gt;
+            Cette fonte existe simplement comme
+            exemple de l&#x27;empaquetage de WOFF.
+          &lt;/string&gt;
+        &lt;/dict&gt;
+      &lt;/array&gt;
+    &lt;/dict&gt;
+  &lt;/array&gt;
+  &lt;key&gt;names&lt;/key&gt;
+  &lt;array&gt;
+    &lt;dict&gt;
+      &lt;key&gt;name&lt;/key&gt;
+      &lt;string&gt;Additional font information&lt;/string&gt;
+    &lt;/dict&gt;
+    &lt;dict&gt;
+      &lt;key&gt;lang&lt;/key&gt;
+      &lt;string&gt;en&lt;/string&gt;
+      &lt;key&gt;name&lt;/key&gt;
+      &lt;string&gt;Additional font information&lt;/string&gt;
+    &lt;/dict&gt;
+    &lt;dict&gt;
+      &lt;key&gt;lang&lt;/key&gt;
+      &lt;string&gt;fr&lt;/string&gt;
+      &lt;key&gt;name&lt;/key&gt;
+      &lt;string&gt;L&#x27;information suppl&eacute;mentaire de fonte&lt;/string&gt;
+    &lt;/dict&gt;
+  &lt;/array&gt;
+&lt;/dict&gt;
 </pre>
 
 
