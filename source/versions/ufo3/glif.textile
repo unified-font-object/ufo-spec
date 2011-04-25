@@ -146,12 +146,6 @@ The guideline extends along _angle_ to infinity in both directions out of the po
 A proposed alternative format is to omit the the angle as described above and provide two pairs of x and y coordinates. The angle would be inferred from the two points. The argument for this is that it is potentially more precise. The arguments against it are that the precision difference is very small if it even exists and it is more data.
 </div>
 
-<div class="implementationnote">
-Implementing this should be relatively easy. The guides could be stored in a list at attribute "guides" and glifLib could set/get them to/from there. Or pens and point pens could gain an addGuide method. The latter could be a breaking change though.
-
-This is going to require defining an API or protocol. It seems that we should find a place to publish the various protocols and APIs to ensure interoperability. Perhaps another section of this site, completely separate from the specifications, would be good.
-</div>
-
 h4. Child Elements
 
 This element has no child elements.
@@ -339,18 +333,6 @@ Links are arbitrary collections of point references. These can represent anythin
 
 This element may occur any number of times.
 
-<div class="implementationnote">
-Links are going to be a challenge to implement. There are two challenges: 1. How are they read from and written to a glyph object? Pen? Defined API and data structure? 2. How are they to be interpreted? In ufo2fdk it might be good to allow manual hinting via links. How will the package know which links to pay attention to? What is the structure of those links?
-
-*Reading and Writing*
-We could add an addLink(contourAndPointNamePairs, type, name=None) method to point pen. This would be a breaking change that we could mitigate with try: except: and a deprecation warning while point pens are still being updated. This raises the question: are links part of the outline? Pens are for transmitting outline data. The advantage with adding a method to the pens is that the responsibility for iterating and coercing to the proper structure is the duty of the appropriate object's draw and drawPoints methods.
-
-Alternatively, we could set a new protocol for a standard links attribute and the pointref objects it contains. The advantage with this is that it won't break any pens. The disadvantage is that it gives glifLib more work to do.
-
-*objectsFL*
-It is going to be quite a task to implement in FontLab 5. There are some hinting objects that could be abstracted into links via the RoboFab API. Those could then be written to and read from UFOs. I suppose that we could simulate point and contour names with str(index) for the object in question. This seems very fragile.
-</div>
-
 h4. Child Elements
 
 |_. element name       |_. description |
@@ -415,7 +397,7 @@ Data that is too complex or too large for lib can be stored in the "data directo
 h3. Example
 
 <div class="editorsnote">
-Bring this example up to date.
+Bring this example up to date after the new stuff has been sorted out.
 </div>
 
 <pre class="prettyprint">
