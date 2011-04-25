@@ -8,7 +8,7 @@ This file contains information about the font itself, such as naming and dimensi
 
 h2. Specification
 
-h4(#generic-identification). Generic Identification Information
+h4(#genericidentification). Generic Identification Information
 
 |_. key               |_. value type         |_. description |
 | familyName          | string               | Family name. |
@@ -19,13 +19,13 @@ h4(#generic-identification). Generic Identification Information
 | versionMinor        | integer              | Minor version. |
 | year                | integer              | The year the font was created. This attribute is deprecated as of version 2. It's presence should not be relied upon by authoring tools. However, it may occur in a font's info so authoring tools should preserve it if present. |
 
-h4(#generic-legal). Generic Legal Information
+h4(#genericlegal). Generic Legal Information
 
 |_. key           |_. value type |_. description |
 | copyright       | string       | Copyright statement. |
 | trademark       | string       | Trademark statement. |
 
-h4(#generic-dimensions). Generic Dimension Information
+h4(#genericdimensions). Generic Dimension Information
 
 |_. key           |_. value type                  |_. description |
 | unitsPerEm      | non-negative integer or float | Units per em. |
@@ -35,12 +35,12 @@ h4(#generic-dimensions). Generic Dimension Information
 | ascender        | integer or float              | Ascender value. |
 | italicAngle     | float                         | Italic angle. |
 
-h4(#generic-miscellaneous). Generic Miscellaneous Information
+h4(#genericmiscellaneous). Generic Miscellaneous Information
 
 |_. key           |_. value type |_. description |
 | note            | string       | Arbitrary note about the font. |
 
-h4(#opentype-head). OpenType head Table Fields
+h4(#opentypehead). OpenType head Table Fields
 
 |_. key                     |_. value type                  |_. description |
 | openTypeHeadCreated       | string                        | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month must be in the range 1-12 and the day must be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour must be in the range 0:23. The minute and second must each be in the range 0-59. |
@@ -62,7 +62,7 @@ h5. Notes
 # _indexToLocFormat_ should be set by the compiler.
 # _glyphDataFormat_ should be set by the compiler.
 
-h4(#opentype-hhea). OpenType hhea Table Fields
+h4(#opentypehhea). OpenType hhea Table Fields
 
 |_. key                      |_. value type     |_. description |
 | openTypeHheaAscender       | integer or float | Ascender value. Corresponds to the OpenType hhea table Ascender field. |
@@ -83,7 +83,7 @@ h5. Notes
 # _metricDataFormat_ should be set by the compiler.
 # _numberOfHMetrics_ should be calculated by the compiler.
 
-h4(#opentype-name). OpenType Name Table Fields
+h4(#opentypename). OpenType Name Table Fields
 
 |_. key                              |_. value type |_. description |
 | openTypeNameDesigner               | string       | Designer name. Corresponds to the OpenType name table name ID 9. |
@@ -129,7 +129,7 @@ h5. Notes
 # _Name ID 7 (trademark)_ is found at the generic _trademark_ attribute.
 # To reiterate the point stated above, these notes are merely provided for clarity. Compilers can and should follow their own recipes for creating the name table. These notes make no considerations for platform specific variations in or application specific limitations on the strings.
 
-h4(#opentype-os/2). OpenType OS/2 Table Fields
+h4(#opentypeos/2). OpenType OS/2 Table Fields
 
 |_. key                         |_. value type                  |_. description |
 | openTypeOS2WidthClass         | integer                       | Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table usWidthClass field. |
@@ -173,7 +173,7 @@ h5. Notes
 # _usBreakChar_ should be calculated by the compiler.
 # _usMaxContext_ should be calculated by the compiler.
 
-h4(#opentype-vhea). OpenType vhea Table Fields
+h4(#opentypevhea). OpenType vhea Table Fields
 
 |_. key                         |_. value type     |_. description |
 | openTypeVheaVertTypoAscender  | integer or float | Ascender value. Corresponds to the OpenType vhea table vertTypoAscender field. |
@@ -418,7 +418,7 @@ h6. Metadata Extension Item Example
 
 
 
-h4(#kerning-group-prefixes). Kerning Group Prefixes
+h4(#kerninggroupprefixes). Kerning Group Prefixes
 
 If an authoring tool allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the _firstKerningGroupPrefix_ or the _secondKerningGroupPrefix_. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
 
