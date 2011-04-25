@@ -201,7 +201,7 @@ h4. This element has no attributes.
 h4. Child Elements
 
 |_. element name |_. description |
-| point          | May occur any number of times. |
+| "point":#point | May occur any number of times. |
 
 
 h3(#point). point: An attributed coordinate pair.
@@ -353,8 +353,8 @@ It is going to be quite a task to implement in FontLab 5. There are some hinting
 
 h4. Child Elements
 
-|_. element name |_. description |
-| pointref       | Must occur at least twice. |
+|_. element name       |_. description |
+| "pointref":#pointref | Must occur at least twice. |
 
 h4. Attributes
 
