@@ -5,18 +5,18 @@ h1. UFO 2
 A UFO file is a directory following this structure:
 
 <ul class="filediagram">
-  <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> &#42;.ufo</li>
-  <ul class="filediagram-nested">
-    <li class="filediagram-file">metainfo.plist</li>
-    <li class="filediagram-file">fontinfo.plist</li>
-    <li class="filediagram-file">groups.plist</li>
-    <li class="filediagram-file">kerning.plist</li>
-    <li class="filediagram-file">features.fea</li>
-    <li class="filediagram-file">lib.plist</li>
-    <li class="filediagram-directory"><span class="filediagram-arrow">&#9660;</span> glyphs</li>
-    <ul class="filediagram-nested">
-      <li class="filediagram-file">contents.plist</li>
-      <li class="filediagram-file">&#42;.glif</li>
+  <li class="filediagramDirectory"><span class="filediagramArrow">&#9660;</span> &#42;.ufo</li>
+  <ul class="filediagramNested">
+    <li class="filediagramFile">metainfo.plist</li>
+    <li class="filediagramFile">fontinfo.plist</li>
+    <li class="filediagramFile">groups.plist</li>
+    <li class="filediagramFile">kerning.plist</li>
+    <li class="filediagramFile">features.fea</li>
+    <li class="filediagramFile">lib.plist</li>
+    <li class="filediagramDirectory"><span class="filediagramArrow">&#9660;</span> glyphs</li>
+    <ul class="filediagramNested">
+      <li class="filediagramFile">contents.plist</li>
+      <li class="filediagramFile">&#42;.glif</li>
     </ul>
   </ul>
 </ul>

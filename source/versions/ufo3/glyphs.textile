@@ -9,7 +9,7 @@ A glyphs directory represents a layer of glyph data in a font. This glyph data f
 
 h1(#contents). contents.plist
 
-table(even-columns).
+table(evenColumns).
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 _contents.plist_ contains a dictionary that maps glyph names to GLIF file names.
@@ -44,7 +44,7 @@ h3. Example
 
 h1(#layerinfo). layerinfo.plist
 
-table(even-columns).
+table(evenColumns).
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file contains information about the layer. This file is optional. Not all values are required for a proper file.
@@ -73,7 +73,7 @@ The guidelines are stored as dictionaries of the following format.
 
 The guideline extends along _angle_ to infinity in both directions out of the point defined by _x_ and _y_. If _y_ and _angle_ are omitted, the element represents a vertical guideline. If _x_ and _angle_ are omitted, the element represents a horizontal guideline. If _y_ is omitted and _angle_ if provided, _y_ is zero. If _x_ is omitted and _angle_ is provided, _x_ is zero.
 
-<div class="discussionnote">
+<div class="discussionNote">
 See the discussion about guideline formats in the GLIF section.
 
 The value of per layer guides is under debate. The most common model currently in use (FontLab, others) allows for font level guides and glyph level guides. There are no per layer guides available. An alternative proposal is to add place for font level guides in fontinfo.plist.

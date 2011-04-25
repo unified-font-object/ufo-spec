@@ -2,7 +2,7 @@
 
 h1. Glyph Interchange Format (draft)
 
-table(even-columns).
+table(evenColumns).
 | *File Format* | XML |
 
 The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a _.glif_ extension.
@@ -142,7 +142,7 @@ h4. Attributes
 
 The guideline extends along @angle@ to infinity in both directions out of the point defined by @x@ and @y@. If @y@ and @angle@ are omitted, the element represents a vertical guideline. If @x@ and @angle@ are omitted, the element represents a horizontal guideline. If @y@ is omitted and @angle@ if provided, @y@ is zero. If @x@ is omitted and @angle@ is provided, @x@ is zero.
 
-<div class="discussionnote">
+<div class="discussionNote">
 A proposed alternative format is to omit the the angle as described above and provide two pairs of x and y coordinates. The angle would be inferred from the two points. The argument for this is that it is potentially more precise. The arguments against it are that the precision difference is very small if it even exists and it is more data.
 </div>
 
@@ -218,7 +218,7 @@ h5. Point Types
 | curve    | Draw a cubic bezier curve from the last non-_offcurve_ point to this point. If the number of @offcurve@ points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the _Super Bezier_ algorithm. |
 | qcurve   | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. |
 
-<div class="discussionnote">
+<div class="discussionNote">
 Should we remove the Super Bezier functionality? It creates an "interoperability problem":http://fontforge.sourceforge.net/python.html (search the page for "super-bezier").
 </div>
 
@@ -248,7 +248,7 @@ This algorithm is designed to generate a unique identifier that is a unique stri
     If _identifier_ is not in _existing identifiers_:
   </li>
   <li>
-    <ul class="algorithm-nest">
+    <ul class="algorithmNest">
       <li>
         Stop.
       </li>
@@ -258,7 +258,7 @@ This algorithm is designed to generate a unique identifier that is a unique stri
     If _identifier_ is in _existing identifiers_:
   </li>
   <li>
-    <ul class="algorithm-nest">
+    <ul class="algorithmNest">
       <li>
         Repeat this process until a unique identifier is found.
       </li>
@@ -348,7 +348,7 @@ h4. Link Type Registry
 
 The following are the currently registered common link types:
 
-<div class="discussionnote">
+<div class="discussionNote">
 Need to define:
 
 # public.postscriptHintMask
@@ -364,7 +364,7 @@ h5. public.verticalStem
 
 Two or more points defining a vertical stem. Within the linked points, there must be at lest two unique x coordinates. The edges of the stem can be defined as the minimum and maximum of the x coordinates.
 
-<div class="discussionnote">
+<div class="discussionNote">
 What about italic stems? Would they be allowed to be tagged?
 </div>
 
@@ -396,7 +396,7 @@ Data that is too complex or too large for lib can be stored in the "data directo
 
 h3. Example
 
-<div class="editorsnote">
+<div class="editorsNote">
 Bring this example up to date after the new stuff has been sorted out.
 </div>
 

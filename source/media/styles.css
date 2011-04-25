@@ -112,7 +112,7 @@ table {
 	font-size: 11px;
 }
 
-table.even-columns {
+table.evenColumns {
 	table-layout: fixed;
 }
 
@@ -266,7 +266,7 @@ li.navigationNested {
 
 /* file diagrams */
 
-span.filediagram-arrow {
+span.filediagramArrow {
 	color: #999;
 }
 
@@ -276,21 +276,21 @@ ul.filediagram {
 	background: rgba(0, 0, 0, 0.03);
 }
 
-ul.filediagram-nested {
+ul.filediagramNested {
 	margin: 5px 0px 5px 0px;
 	padding: 5px 10px 5px 10px;
 	border: 1px solid #d8d8d8;
 	background: rgba(0, 0, 0, 0.03);
 }
 
-li.filediagram-directory {
+li.filediagramDirectory {
 	margin: 5px 0px 5px 0px;
 	padding: 0px;
 	font-weight: bold;
 	list-style-type: none;
 }
 
-li.filediagram-file {
+li.filediagramFile {
 	margin: 5px 0px 5px 0px;
 	padding: 0px;
 	font-weight: normal;
@@ -332,13 +332,13 @@ ul.algorithm li {
 	list-style-type: none;
 }
 
-ul.algorithm-nest {
+ul.algorithmNest {
 	margin: 5px 0px 5px 0px;
 	padding: 0px 0px 0px 10px;
 	border-left: 1px solid #CCC;
 }
 
-ul.algorithm-nest li {
+ul.algorithmNest li {
 	margin: 0px;
 	list-style-type: none;
 	padding: 5px 0px 5px 0px;
@@ -346,25 +346,25 @@ ul.algorithm-nest li {
 
 /* editor's notes (for drafts only) */
 
-.implementationnote {
+.implementationNote {
 	margin: 5px 0px 5px 0px;
 	padding: 10px 15px 10px 15px;
 	background-color: #F9F9BF;
 }
 
-.discussionnote {
+.discussionNote {
 	margin: 5px 0px 5px 0px;
 	padding: 10px 15px 10px 15px;
 	background-color: #FFE0DF;
 }
 
-.editorsnote{
+.editorsNote{
 	margin: 5px 0px 5px 0px;
 	padding: 10px 15px 10px 15px;
 	background-color: #9ECDFF;
 }
 
-span.inlineeditorsnote {
+span.inlineEditorsNote {
 	color: blue;
 	font-style: italic;
 }

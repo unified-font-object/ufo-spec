@@ -294,7 +294,7 @@ Many of these fields _can_ be populated from generic elements, but since WOFF is
 | woffMetadataRecords        | list                 | List of metadata records. This record storage area is intended for records that require language localization. |
 | woffMetadataExtensions     | list                 | List of metadata extension records. |
 
-<div class="editorsnote">
+<div class="editorsNote">
 Need to review the final (it's not yet approved) credits localization format to make sure it will be possible in the metadataRecords or the credit record.
 </div>
 

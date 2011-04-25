@@ -33,7 +33,7 @@ There is no standard user name to file name conversion. The algorithm below is a
     Perform a generic translation of the name without consideration for existing names:
   </li>
   <li>
-    <ul class="algorithm-nest">
+    <ul class="algorithmNest">
       <li>
         _underscore parts_ is _name_ broken into parts delimited by underscore.
       </li>
@@ -41,7 +41,7 @@ There is no standard user name to file name conversion. The algorithm below is a
         For _part 1_ in these _underscore parts_:
       </li>
       <li>
-        <ul class="algorithm-nest">
+        <ul class="algorithmNest">
           <li>
             _period parts_ is _part 1_ broken into parts delimited by period.
           </li>
@@ -49,12 +49,12 @@ There is no standard user name to file name conversion. The algorithm below is a
             For _part 2_ in _period parts_:
           </li>
           <li>
-            <ul class="algorithm-nest">
+            <ul class="algorithmNest">
               <li>
                 If _part 2_ starts with an uppercase letter:
               </li>
               <li>
-                <ul class="algorithm-nest">
+                <ul class="algorithmNest">
                   <li>
                     Add an underscore to the end of the part.
                   </li>
@@ -73,7 +73,7 @@ There is no standard user name to file name conversion. The algorithm below is a
         If the revised _name_ is longer than _maximum length_:
       </li>
       <li>
-        <ul class="algorithm-nest">
+        <ul class="algorithmNest">
           <li>
             Remove as many characters from the end of _name_ as needed to make _name_ no longer than _maximum length_.
           </li>
@@ -85,7 +85,7 @@ There is no standard user name to file name conversion. The algorithm below is a
     If _name_ is unique:
   </li>
   <li>
-    <ul class="algorithm-nest">
+    <ul class="algorithmNest">
       <li>
         Stop.
       </li>
@@ -95,7 +95,7 @@ There is no standard user name to file name conversion. The algorithm below is a
     If _name_ is not unique:
   </li>
   <li>
-    <ul class="algorithm-nest">
+    <ul class="algorithmNest">
       <li>
         Remove as many characters from the end of _name_ as needed to make _name_ no longer than _maximum length_ minus 15.
       </li>
@@ -106,7 +106,7 @@ There is no standard user name to file name conversion. The algorithm below is a
         If _name_ is unique:
       </li>
       <li>
-        <ul class="algorithm-nest">
+        <ul class="algorithmNest">
           <li>
             Stop.
           </li>
@@ -121,7 +121,7 @@ There is no standard user name to file name conversion. The algorithm below is a
     If _name_ is not unique:
   </li>
   <li>
-    <ul class="algorithm-nest">
+    <ul class="algorithmNest">
       <li>
         _number_ is 1.
       </li>
@@ -132,7 +132,7 @@ There is no standard user name to file name conversion. The algorithm below is a
         If _name_ is unique:
       </li>
       <li>
-        <ul class="algorithm-nest">
+        <ul class="algorithmNest">
           <li>
             Stop.
           </li>
@@ -147,7 +147,7 @@ There is no standard user name to file name conversion. The algorithm below is a
     If _name_ is not unique:
   </li>
   <li>
-    <ul class="algorithm-nest">
+    <ul class="algorithmNest">
       <li>
         Raise an error and let the user know that after trying more than 10<sup>255</sup> names, nothing unique could be found.
       </li>
@@ -331,11 +331,11 @@ h3(#colors). Color Definitions
 
 Several elements have a color attribute that defines a color value to be applied to the element. A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the "sRGB":http://en.wikipedia.org/wiki/SRGB color space.
 
-<div class="discussionnote">
+<div class="discussionNote">
 This is a string structured as a string like "0,0,0,1". This unusual structure is a result of the color being the value of an attribute of an element in GLIF in addition to a value in a property list. This string structure makes sense in GLIF but it is a little odd in property lists. An array of four numbers would make more sense there. Would having two structures be a problem?
 </div>
 
-<div class="editorsnote">
+<div class="editorsNote">
 This needs a more clear definition in table form.
 </div>
 

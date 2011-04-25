@@ -2,7 +2,7 @@
 
 h1. kerning.plist (draft)
 
-table(even-columns).
+table(evenColumns).
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file contains horizontal kerning pairs for the font. This file is optional. If it is not defined in the UFO, there is no horizontal kerning data.
@@ -23,19 +23,19 @@ h3(#kerningpairtypes). Kerning Pair Types
 
 Kerning pairs may reference groups. This is done by using a "group's name":groups.html as a member of a kerning pair. These group members allow the kerning data to represent vast amounts of kerning with relatively few pairs. A pair member that contains a group implies that all members of the group are kerned with the other member of the pair with the same value (unless an exception is defined, see below). For example, a font has this group:
 
-table(even-columns).
+table(evenColumns).
 |_. name        |_. members |
 | &#64;KERN_1_O | O, D, Q   |
 
 The font's kerning contains a pair referencing this group:
 
-table(even-columns).
+table(evenColumns).
 |_. Side 1      |_. Side 2 |_. Value |
 | &#64;KERN_1_O | A        | -50     |
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
-table(even-columns).
+table(evenColumns).
 |_. Side 1 |_. Side 2 |_. Value |
 | O        | A        | -50     |
 | O        | A        | -50     |
@@ -59,32 +59,32 @@ Exception pairs may occur at the second and third levels. Second level pairs may
 
 For example, a font has these two groups:
 
-table(even-columns).
+table(evenColumns).
 |_. name        |_. members |
 | &#64;KERN_1_O | O, D, Q   |
 | &#64;KERN_2_E | E, F      |
 
 The font's kerning contains a first level pair that references these two groups:
 
-table(even-columns).
+table(evenColumns).
 |_. Side 1      |_. Side 2      |_. Value |
 | &#64;KERN_1_O | &#64;KERN_2_E | -100    |
 
 The font's kerning contains a second level pair that forms an exception to the first level pair:
 
-table(even-columns).
+table(evenColumns).
 |_. Side 1      |_. Side 2 |_. Value |
 | &#64;KERN_1_O | F        | -200    |
 
 The font's kerning contains a third level pair that is an exception to both the first and second level pairs:
 
-table(even-columns).
+table(evenColumns).
 |_. Side 1 |_. Side 2 |_. Value |
 | D        | F        | -300    |
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
-table(even-columns).
+table(evenColumns).
 |_. Side 1 |_. Side 2 |_. Value |
 | O        | E        | -100    |
 | O        | F        | -200    |
@@ -97,7 +97,7 @@ h5. Exception Caveat
 
 Exceptions are very powerful, but there is one rule that must be followed. *There must not be contradictions within a level.* For example, given the same &#64;KERN_1_O and &#64;KERN_2_E group as above, a font contains these following kerning pairs:
 
-table(even-columns).
+table(evenColumns).
 |_. Side 1      |_. Side 2      |_. Value |
 | &#64;KERN_1_O | &#64;KERN_2_E | -100    |
 | &#64;KERN_1_O | F             | -200    |
@@ -106,7 +106,7 @@ table(even-columns).
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
-table(even-columns).
+table(evenColumns).
 |_. Side 1 |_. Side 2 |_. Value        |
 | O        | E        | -100           |
 | O        | F        | -200           |
@@ -126,7 +126,7 @@ The task of finding a value for a particular glyph + glyph combination is relati
       If the pair _first glyph + second glyph_ is in the kerning data:
     </li>
     <li>
-      <ul class="algorithm-nest">
+      <ul class="algorithmNest">
         <li>
           The value for _first glyph + second glyph_ is the value.
         </li>
@@ -139,14 +139,14 @@ The task of finding a value for a particular glyph + glyph combination is relati
       If the second glyph is in a kerning group:
     </li>
     <li>
-      <ul class="algorithm-nest">
+      <ul class="algorithmNest">
         <li>
           _second group_ is the name of the kerning group containing the second glyph.
         </li>
         <li>
           If the pair _first glyph + second group_ is in the kerning data:
         </li>
-          <ul class="algorithm-nest">
+          <ul class="algorithmNest">
             <li>
               The value for _first glyph + second group_ is the value.
             </li>
@@ -160,14 +160,14 @@ The task of finding a value for a particular glyph + glyph combination is relati
       If the first glyph is in a kerning group:
     </li>
     <li>
-      <ul class="algorithm-nest">
+      <ul class="algorithmNest">
         <li>
           _first group_ is the name of the kerning group containing the first glyph.
         </li>
         <li>
           If the pair _first group + second glyph_ is in the kerning data:
         </li>
-          <ul class="algorithm-nest">
+          <ul class="algorithmNest">
             <li>
               The value for _first first + second glyph_ is the value.
             </li>
@@ -181,7 +181,7 @@ The task of finding a value for a particular glyph + glyph combination is relati
       If the first glyph is in a kerning group and the second glyph is in a kerning group:
     </li>
     <li>
-      <ul class="algorithm-nest">
+      <ul class="algorithmNest">
         <li>
           _first group_ is the name of the kerning group containing the first glyph.
         </li>
@@ -191,7 +191,7 @@ The task of finding a value for a particular glyph + glyph combination is relati
         <li>
           If the pair _first group + second group_ is in the kerning data:
         </li>
-          <ul class="algorithm-nest">
+          <ul class="algorithmNest">
             <li>
               The value for _first group + second group_ is the value.
             </li>
@@ -364,7 +364,7 @@ h3. Conversion algorithm
     For each of these groups:
   </li>
   <li>
-    <ul class="algorithm-nest">
+    <ul class="algorithmNest">
       <li>
         _original group name_ is the original group name.
       </li>
@@ -372,7 +372,7 @@ h3. Conversion algorithm
         If _firstKerningGroupPrefix_ is not defined in fontinfo.plist:
       </li>
       <li>
-        <ul class="algorithm-nest">
+        <ul class="algorithmNest">
           <li>
             Set "&#64;KERN_1_" as the value for _firstKerningGroupPrefix_ in fontinfo.plist.
           </li>
@@ -382,7 +382,7 @@ h3. Conversion algorithm
         If _original group name_ does not begin with _firstKerningGroupPrefix_ as defined in fontinfo.plist:
       </li>
       <li>
-        <ul class="algorithm-nest">
+        <ul class="algorithmNest">
           <li>
             _new group name_ is _firstKerningGroupPrefix_ plus _original group name_.
           </li>
@@ -390,7 +390,7 @@ h3. Conversion algorithm
             If _new group name_ is already in the groups:
           </li>
           <li>
-            <ul class="algorithm-nest">
+            <ul class="algorithmNest">
               <li>
                 Beginning with 1, add a number to the end of _new group name_. Repeat until a unique name is found.
               </li>
@@ -415,7 +415,7 @@ h3. Conversion algorithm
       For each of these groups:
     </li>
     <li>
-      <ul class="algorithm-nest">
+      <ul class="algorithmNest">
         <li>
           _original group name_ is the original group name.
         </li>
@@ -423,7 +423,7 @@ h3. Conversion algorithm
           If _secondKerningGroupPrefix_ is not defined in fontinfo.plist:
         </li>
         <li>
-          <ul class="algorithm-nest">
+          <ul class="algorithmNest">
             <li>
               Set "&#64;KERN_2_" as the value for _secondKerningGroupPrefix_ in fontinfo.plist.
             </li>
@@ -433,7 +433,7 @@ h3. Conversion algorithm
           If _original group name_ does not begin with _secondKerningGroupPrefix_ as defined in fontinfo.plist:
         </li>
         <li>
-          <ul class="algorithm-nest">
+          <ul class="algorithmNest">
             <li>
               _new group name_ is _secondKerningGroupPrefix_ plus _original group name_.
             </li>
@@ -441,7 +441,7 @@ h3. Conversion algorithm
               If _new group name_ is already in the groups:
             </li>
             <li>
-              <ul class="algorithm-nest">
+              <ul class="algorithmNest">
                 <li>
                   Beginning with 1, add a number to the end of _new group name_. Repeat until a unique name is found.
                 </li>
@@ -456,12 +456,12 @@ h3. Conversion algorithm
           For each first glyph and dictionary in kerning.plist:
         </li>
         <li>
-          <ul class="algorithm-nest">
+          <ul class="algorithmNest">
             <li>
               If _original group name_ is a key in the dictionary:
             </li>
             <li>
-              <ul class="algorithm-nest">
+              <ul class="algorithmNest">
                 <li>
                   Copy the _value_ stored under _original group name_.
                 </li>
