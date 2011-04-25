@@ -21,10 +21,6 @@ The kerning data is writing direction neutral. For text written left-to-right, t
 
 h3(#kerning-pair-types). Kerning Pair Types
 
-<div class="editorsnote">
-This section is a work in progress. Any feedback would be appreciated.
-</div>
-
 Kerning pairs may reference groups. This is done by using a "group's name":groups.html as a member of a kerning pair. These group members allow the kerning data to represent vast amounts of kerning with relatively few pairs. A pair member that contains a group implies that all members of the group are kerned with the other member of the pair with the same value (unless an exception is defined, see below). For example, a font has this group:
 
 table(even-columns).
