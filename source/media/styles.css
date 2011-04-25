@@ -125,6 +125,7 @@ th {
 }
 
 tr:nth-child(odd) {
+	background-color: rgb(237,237,237); /* Fallback */
 	background-color: rgba(0,0,0,.07);
 }
 
@@ -273,14 +274,16 @@ span.filediagramArrow {
 ul.filediagram {
 	padding: 5px 10px 5px 10px;
 	border: 1px solid #d8d8d8;
-	background: rgba(0, 0, 0, 0.03);
+	background: rgb(247,247,247); /* Fallback */
+	background: rgba(0,0,0,0.03);
 }
 
 ul.filediagramNested {
 	margin: 5px 0px 5px 0px;
 	padding: 5px 10px 5px 10px;
 	border: 1px solid #d8d8d8;
-	background: rgba(0, 0, 0, 0.03);
+	background: rgb(247,247,247); /* Fallback */
+	background: rgba(0,0,0,0.03);
 }
 
 li.filediagramDirectory {
@@ -302,14 +305,16 @@ li.filediagramFile {
 ul.treediagram {
 	padding: 5px 10px 5px 10px;
 	border: 1px solid #d8d8d8;
-	background: rgba(0, 0, 0, 0.03);
+	background: rgb(247,247,247); /* Fallback */
+	background: rgba(0,0,0,0.03);
 }
 
 ul.treediagram-nested {
 	margin: 5px 0px 5px 0px;
 	padding: 5px 10px 5px 10px;
 	border: 1px solid #d8d8d8;
-	background: rgba(0, 0, 0, 0.03);
+	background: rgb(247,247,247); /* Fallback */
+	background: rgba(0,0,0,0.03);
 }
 
 li.treediagram {
@@ -323,6 +328,7 @@ li.treediagram {
 
 ul.algorithm {
 	padding: 10px 15px 10px 15px;
+	background-color: rgb(235,235,235);
 	background-color: rgba(0,0,0,.08);
 }
 
@@ -384,5 +390,6 @@ span.inlineEditorsNote {
 .dec { color: #606; }
 pre.prettyprint {
 	padding: 5px 0px 5px 10px;
+	background-color: rgb(235,235,235); /* Fallback */
 	background-color: rgba(0,0,0,.08);
 }
