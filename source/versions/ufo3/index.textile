@@ -8,10 +8,6 @@ The UFO 3 specification is currently in development. In no way is this a final d
 Points of contention in this document have notes like this explaining the differing points of view. These are ongoing discussions that will be resolved before the specification is final.
 </div>
 
-<div class="implementationNote">
-We have found it helpful to think about the implementation of this spec in our own code, notably ufoLib, glifLib, RoboFab and defcon. Throughout this document, notes about how we think we can/will implement things are highlighted in sections like this. These are not and will not be part of the official specification. They are here purely to help keep the specification grounded in reality. These will not be included in the final specification.
-</div>
-
 <div class="editorsNote">
 Notes to the editor are highlighted like this. Please pardon our dust.
 </div>
