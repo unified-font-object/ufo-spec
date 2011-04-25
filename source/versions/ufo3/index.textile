@@ -81,10 +81,6 @@ The UFO supports layered glyphs. These layers can be used for anything--the comm
 
 Layers are implemented with a series of glyph sets within the UFO. Each glyph set represents one layer for all glyphs in the font. Each glyph set is stored in its own _glyphs_ directory. There is one required glyph set that represents the primary outline source of the glyph. This glyph set should be stored in the _glyphs_ directory. Additional layers are stored in other directories as defined in the "layercontents.plist":layercontents.html documentation.
 
-<div class="discussionNote">
-Should there be a requirement that all glyphs with the same name have the same Unicode value? Conflicting values would cause confusion when trying to build a character to glyph name mapping.
-</div>
-
 </div>
 
 
