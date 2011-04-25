@@ -24,4 +24,6 @@ When writing data into an existing UFO, authoring tools should not overwrite fil
 
 Authoring tools must not add non-conformant data to the UFO structure outside of designated areas. For example, a _Stuff For Me_ directory must not be created in the root of the UFO.
 
+Authoring tools must write only the allowed parts of a particular UFO version. For example, an authoring tool must not write a _data_ directory into a UFO with a @formatVersion@ of 2 in metainfo.plist.
+
 </div>
