@@ -42,7 +42,7 @@ UFO 3 follows this file structure:
     <li class="filediagramFile">fontinfo.plist</li>
     <li class="filediagramFile">groups.plist</li>
     <li class="filediagramFile">kerning.plist</li>
-    <li class="filediagramFile">features.plist</li>
+    <li class="filediagramFile">features.fea</li>
     <li class="filediagramFile">lib.plist</li>
     <li class="filediagramFile">layercontents.plist</li>
     <li class="filediagramDirectory"><span class="filediagramArrow">&#9660;</span> glyphs*</li>
@@ -92,6 +92,10 @@ Should there be a requirement that all glyphs with the same name have the same U
 
 h1. Changes from UFO 2
 
+In general, there have been many editorial changes that don't affect the content. The term "authoring tool" has been used to make the references to applications, scripts, etc. consistent. Various conformance statements were modified to make them consistent with RFC 2119.
+
+This list if for reference only as it may leave some changes out. The sub-sections of the specification overrule this list.
+
 h3. metainfo.plist
 
 The _formatVersion_ was bumped to 3.
@@ -104,6 +108,8 @@ Support for specific name id, platform, platform encoding and language name tabl
 Support for WOFF metadata was added.
 
 Two attributes for identifying kerning groups were added.
+
+The value types for the following keys were clarified to be more consistent with the specifications they reference: versionMinor, unitsPerEm, openTypeHeadLowestRecPPEM and openTypeOS2WeightClass. This was done because the referenced fields allow only unsigned-integers.
 
 
 h3. groups.plist
@@ -119,6 +125,13 @@ Information about the new group naming attributes was added.
 
 Added extensive information about kerning pair types. The information is applicable to UFO 1 and UFO 2, but it was not written as a formal part of the spec.
 
+Added information about converting UFO 1 and UFO 2 kerning to UFO 3 kerning.
+
+
+h3. features.fea
+
+The "should be a plain text file" from UFO 2 was changed to "must be a plain text file."
+
 
 h3. layercontents.plist
 
@@ -129,6 +142,13 @@ h3. glyphs
 
 More than one glyphs directory is allowed. Each directory is a layer.
 
+h3. glyphs/contents.plist
+
+The sample glyph name to file name algorithm was moved to the conventions page and it was abstracted and expanded to be more robust.
+
+Information about the allowed characters in glyph names was added.
+
+The information about the file name being stored in the property list was slightly updated to be more verbose.
 
 h3. glyphs/layerinfo.plist
 
@@ -141,13 +161,11 @@ The version number was increased to 2.
 
 h4. Component
 
-A name attribute was added.
-
 A new rule explaining how components relate to layers was added.
 
-h4. Contour
+h4. Point
 
-A name attribute was added.
+A new identifier attribute was added.
 
 h4. Image
 
