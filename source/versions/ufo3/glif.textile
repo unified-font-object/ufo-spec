@@ -42,7 +42,7 @@ h4. Attributes
 | name             | The name of the glyph. |
 | format           | The format version. 2 for this version. |
 
-The _name_ attribute has limited uses in this version. The _contents.plist_ file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the _name_ attribute should be ignored, since manual editing may have caused a mismatch with the glyph name as stored in _contents.plist_, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
+The @name@ attribute has limited uses in this version. The _contents.plist_ file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the @name@ attribute should be ignored, since manual editing may have caused a mismatch with the glyph name as stored in _contents.plist_, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
 
 h4. Child Elements
 
@@ -81,7 +81,7 @@ h4. Attributes
 
 h4. This element has no child elements.
 
-The first occurrence of this element defines the primary unicode value for this glyph.
+The first occurrence of this element defines the primary Unicode value for this glyph.
 
 h4. Example
 
@@ -106,7 +106,7 @@ h4. Attributes
 | yOffset          | integer or float | See below. | 0 |
 | color            | string | The color that should be applied to the image. The format follows the "color definition":#color standard. This attribute is optional. | None |
 
-xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is [1 0 0 1 0 0], the identity transformation.
+@xScale, xyScale, yxScale, yScale, xOffset, yOffset@ taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is @[1 0 0 1 0 0]@, the identity transformation.
 
 h4. This element has no child elements.
 
@@ -134,13 +134,13 @@ This element may occur any number of times.
 h4. Attributes
 
 |_. attribute name |_. data type      |_. description |_. default value |
-| x                | integer or float | The 'x' coordinate. | None. Optional if _y_ is provided and _angle_ is not provided. See below for details. |
+| x                | integer or float | The 'x' coordinate. | None. Optional if @y@ is provided and @angle@ is not provided. See below for details. |
 | y                | integer or float | The 'y' coordinate. | None. Optional. See below for details. |
-| angle            | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. If x or y are not specified, the angle must not be specified. If it is specified in this case, it should be ignored.| None |
+| angle            | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. If @x@ or @y@ are not specified, the angle must not be specified. If it is specified in this case, it should be ignored.| None |
 | name             | string           | An arbitrary name for the guideline. This attribute is optional.  | None |
 | color            | string           | The color that should be applied to the guideline. The format follows the "color definition":#color standard. This attribute is optional. | None |
 
-The guideline extends along _angle_ to infinity in both directions out of the point defined by _x_ and _y_. If _y_ and _angle_ are omitted, the element represents a vertical guideline. If _x_ and _angle_ are omitted, the element represents a horizontal guideline. If _y_ is omitted and _angle_ if provided, _y_ is zero. If _x_ is omitted and _angle_ is provided, _x_ is zero.
+The guideline extends along @angle@ to infinity in both directions out of the point defined by @x@ and @y@. If @y@ and @angle@ are omitted, the element represents a vertical guideline. If @x@ and @angle@ are omitted, the element represents a horizontal guideline. If @y@ is omitted and @angle@ if provided, @y@ is zero. If @x@ is omitted and @angle@ is provided, @x@ is zero.
 
 <div class="discussionnote">
 A proposed alternative format is to omit the the angle as described above and provide two pairs of x and y coordinates. The angle would be inferred from the two points. The argument for this is that it is potentially more precise. The arguments against it are that the precision difference is very small if it even exists and it is more data.
@@ -175,7 +175,7 @@ h4. Attributes
 | xOffset          | integer or float | See below.             | 0 |
 | yOffset          | integer or float | See below.             | 0 |
 
-xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the base glyph. The default matrix is [1 0 0 1 0 0], the identity transformation.
+@xScale, xyScale, yxScale, yScale, xOffset, yOffset@ taken together in that order form an Affine transformation matrix, to be used to transform the base glyph. The default matrix is @[1 0 0 1 0 0]@, the identity transformation.
 
 Components must only reference glyphs within the same layer that the component belongs to.
 
@@ -206,16 +206,16 @@ h4. Attributes
 | x                | integer or float | The 'x' coordinate. | None |
 | y                | integer or float | The 'y' coordinate. | None |
 | type             | string           | The point and/or segment type. The options are detailed below. | offcurve |
-| smooth           | string           | This attribute must only be given when _type_ indicates the point is on-curve. When set to _yes_, it signifies that a smooth curvature should be maintained at this point, either as a _curve point_ or a _tangent point_ in Fontographer terms. | no |
+| smooth           | string           | This attribute must only be given when @type@ indicates the point is on-curve. When set to @yes@, it signifies that a smooth curvature should be maintained at this point, either as a @curve point@ or a @tangent point@ in Fontographer terms. | no |
 | name             | string           | Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline. | None |
 | identifier       | string           | Identifier for this point. The requirements for this attribute are detailed below. | None |
 
 h5. Point Types
 
-| move     | A point of this type must be the first in a _contour_. The reverse is not true: a _contour_ does not necessarily start with a _move_ point. When a _contour_ *does* start with a _move_ point, it signifies the beginning of an *open* contour. A *closed* contour does *not* start with a _move_ and is defined as a cyclic list of points, with no predominant start point. There is always a _next point_ and a _previous point_. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline. |
-| line     | Draw a straight line from the previous point to this point. The previous point must be a _move_, a _line_, a _curve_ or a _qcurve_. It must not be an _offcurve_. |
-| offcurve | This point is part of a curve segment that goes up to the next point that is either a _curve_ or a _qcurve_. |
-| curve    | Draw a cubic bezier curve from the last non-_offcurve_ point to this point. If the number of _offcurve_ points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the _Super Bezier_ algorithm. |
+| move     | A point of this type must be the first in a @contour@. The reverse is not true: a @contour@ does not necessarily start with a @move@ point. When a @contour@ *does* start with a @move@ point, it signifies the beginning of an *open* contour. A *closed* contour does *not* start with a @move@ and is defined as a cyclic list of points, with no predominant start point. There is always a _next point_ and a _previous point_. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline. |
+| line     | Draw a straight line from the previous point to this point. The previous point must be a @move@, a @line@, a @curve@ or a @qcurve@. It must not be an @offcurve@. |
+| offcurve | This point is part of a curve segment that goes up to the next point that is either a @curve@ or a @qcurve@. |
+| curve    | Draw a cubic bezier curve from the last non-_offcurve_ point to this point. If the number of @offcurve@ points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the _Super Bezier_ algorithm. |
 | qcurve   | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. |
 
 <div class="discussionnote">
@@ -329,7 +329,7 @@ qcurve point:
 
 h3(#link). link: A collection of point references.
 
-Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The _link_ element may contain a _type_ string that authoring tools can use to define what a particular link represents.
+Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The @link@ element may contain a @type@ string that authoring tools can use to define what a particular link represents.
 
 This element may occur any number of times.
 

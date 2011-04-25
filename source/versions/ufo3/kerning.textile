@@ -11,7 +11,7 @@ h2. Specification
 
 The property list data consists of a dictionary at the top level. Keys are _first_ member names and values are dictionaries. These dictionaries contain _second_ member names as keys and kerning values, either integer or float, as the values.
 
-The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the _firstKerningGroupPrefix_. Group names used as the second member of a kerning pair must begin with _secondKerningGroupPrefix_. These prefixes are defined in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. Glyphs or groups in the pairs are not required to be in the font.
+The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the @firstKerningGroupPrefix@. Group names used as the second member of a kerning pair must begin with @secondKerningGroupPrefix@. These prefixes are defined in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. Glyphs or groups in the pairs are not required to be in the font.
 
 Kerning pairs that are not defined in kerning.plist implicitly have a value of "no kerning" or zero. Therefore any kerning pair that has a value of zero, unless it is a necessary value of an "exception":#kerning-pair-exceptions, should not be stored in kerning.plist.
 
@@ -352,7 +352,7 @@ h3. Example
 
 h1. Converting to UFO 3 formatted kerning
 
-In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the _firstKerningGroupPrefix_ and _secondKerningGroupPrefix_ found in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. An algorithm for converting UFO 1 and UFO 2 group kerning is detailed below.
+In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the @firstKerningGroupPrefix@ and @secondKerningGroupPrefix@ found in "fontinfo.plist":fontinfo.html#kerning-group-prefixes. An algorithm for converting UFO 1 and UFO 2 group kerning is detailed below.
 
 h3. Conversion algorithm
 

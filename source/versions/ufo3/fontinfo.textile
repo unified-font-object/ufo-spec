@@ -44,44 +44,44 @@ h4(#opentypehead). OpenType head Table Fields
 
 |_. key                     |_. value type                  |_. description |
 | openTypeHeadCreated       | string                        | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month must be in the range 1-12 and the day must be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour must be in the range 0:23. The minute and second must each be in the range 0-59. |
-| openTypeHeadLowestRecPPEM | non-negative integer or float | Smallest readable size in pixels. Corresponds to the OpenType head table lowestRecPPEM field. |
-| openTypeHeadFlags         | number list                   | A list of bit numbers indicating the flags. The bit numbers are listed in the OpenType head specification. Corresponds to the OpenType head table flags field. |
+| openTypeHeadLowestRecPPEM | non-negative integer or float | Smallest readable size in pixels. Corresponds to the OpenType head table @lowestRecPPEM@ field. |
+| openTypeHeadFlags         | number list                   | A list of bit numbers indicating the flags. The bit numbers are listed in the OpenType head specification. Corresponds to the OpenType head table @flags@ field. |
 
 h5. Notes
 
 <a href="http://www.microsoft.com/typography/otspec/head.htm" target="_blank">The OpenType head table specification.</a>
 
-# _fontRevision_ can be derived from the generic _versionMajor_ and _versionMinor_ attributes.
-# _checkSumAdjustment_ should be calculated by the compiler.
-# _magicNumber_ should be set by the compiler.
-# _unitsPerEm_ is found at the generic _unitsPerEm_ attribute.
-# _created_ can be calculated by subtracting the _12:00 midnight, January 1, 1904_ (as specified in the head table documentation) from the date stored at _openTypeHeadCreated_.
-# _modified_ should be set by the compiler.
-# _xMin, yMin, xMax_ and _yMax_ should be calculated by the compiler.
-# _macStyle_ can be derived from the generic _styleMapStyle_ attribute.
-# _indexToLocFormat_ should be set by the compiler.
-# _glyphDataFormat_ should be set by the compiler.
+# @fontRevision@ can be derived from the generic @versionMajor@ and @versionMinor@ attributes.
+# @checkSumAdjustment@ should be calculated by the compiler.
+# @magicNumber@ should be set by the compiler.
+# @unitsPerEm@ is found at the generic @unitsPerEm@ attribute.
+# @created@ can be calculated by subtracting the _12:00 midnight, January 1, 1904_ (as specified in the head table documentation) from the date stored at @openTypeHeadCreated@.
+# @modified@ should be set by the compiler.
+# @xMin, yMin, xMax@ and @yMax@ should be calculated by the compiler.
+# @macStyle@ can be derived from the generic @styleMapStyle@ attribute.
+# @indexToLocFormat@ should be set by the compiler.
+# @glyphDataFormat@ should be set by the compiler.
 
 h4(#opentypehhea). OpenType hhea Table Fields
 
 |_. key                      |_. value type     |_. description |
-| openTypeHheaAscender       | integer or float | Ascender value. Corresponds to the OpenType hhea table Ascender field. |
-| openTypeHheaDescender      | integer or float | Descender value. Corresponds to the OpenType hhea table Descender field. |
-| openTypeHheaLineGap        | integer or float | Line gap value. Corresponds to the OpenType hhea table LineGap field. |
-| openTypeHheaCaretSlopeRise | integer          | Caret slope rise value. Corresponds to the OpenType hhea table caretSlopeRise field. |
-| openTypeHheaCaretSlopeRun  | integer          | Caret slope run value. Corresponds to the OpenType hhea table caretSlopeRun field. |
-| openTypeHheaCaretOffset    | integer or float | Caret offset value. Corresponds to the OpenType hhea table caretOffset field. |
+| openTypeHheaAscender       | integer or float | Ascender value. Corresponds to the OpenType hhea table @Ascender@ field. |
+| openTypeHheaDescender      | integer or float | Descender value. Corresponds to the OpenType hhea table @Descender@ field. |
+| openTypeHheaLineGap        | integer or float | Line gap value. Corresponds to the OpenType hhea table @LineGap@ field. |
+| openTypeHheaCaretSlopeRise | integer          | Caret slope rise value. Corresponds to the OpenType hhea table @caretSlopeRise@ field. |
+| openTypeHheaCaretSlopeRun  | integer          | Caret slope run value. Corresponds to the OpenType hhea table @caretSlopeRun@ field. |
+| openTypeHheaCaretOffset    | integer or float | Caret offset value. Corresponds to the OpenType hhea table @caretOffset@ field. |
 
 h5. Notes
 
 <a href="http://www.microsoft.com/typography/otspec/hhea.htm" target="_blank">The OpenType hhea table specification</a>
 
-# _advanceWidthMax_ should be calculated by the compiler.
-# _minLeftSideBearing_ should be calculated by the compiler.
-# _minRightSideBearing_ should be calculated by the compiler.
-# _xMaxExtent_ should be calculated by the compiler.
-# _metricDataFormat_ should be set by the compiler.
-# _numberOfHMetrics_ should be calculated by the compiler.
+# @advanceWidthMax@ should be calculated by the compiler.
+# @minLeftSideBearing@ should be calculated by the compiler.
+# @minRightSideBearing@ should be calculated by the compiler.
+# @xMaxExtent@ should be calculated by the compiler.
+# @metricDataFormat@ should be set by the compiler.
+# @numberOfHMetrics@ should be calculated by the compiler.
 
 h4(#opentypename). OpenType Name Table Fields
 
@@ -114,109 +114,109 @@ The records are stored as dictionaries of the following format.
 | languageID | non-negative integer | The language ID. |
 | string     | string               | The string value for the record. |
 
-Records must have a unique nameID, platformID, encodingID and languageID combination.
+Records must have a unique @nameID@, @platformID@, @encodingID@ and @languageID@ combination.
 
 
 h5. Notes
 
 <a href="http://www.microsoft.com/typography/otspec/name.htm" target="_blank">The OpenType name table specification.</a>
 
-# _Name ID 0 (copyright)_ is found at the generic _copyright_ attribute.
-# _Name ID 1 (font family name)_ is found at the generic _styleMapFamily_ attribute.
-# _Name ID 2 (font subfamily name)_ can be interpreted from the generic _styleMapStyle_ attribute.
-# _Name ID 4 (full font name)_ can be created from the generic _styleMapFamily_ and _styleMapStyle_ attributes following the rules defined in the specification.
-# _Name ID 6 (Postscript name)_ can be found at _postscriptFontName_. This should follow the rules defined in the specification.
-# _Name ID 7 (trademark)_ is found at the generic _trademark_ attribute.
+# _Name ID 0 (copyright)_ is found at the generic @copyright@ attribute.
+# _Name ID 1 (font family name)_ is found at the generic @styleMapFamily@ attribute.
+# _Name ID 2 (font subfamily name)_ can be interpreted from the generic @styleMapStyle@ attribute.
+# _Name ID 4 (full font name)_ can be created from the generic @styleMapFamily@ and @styleMapStyle@ attributes following the rules defined in the specification.
+# _Name ID 6 (Postscript name)_ can be found at @postscriptFontName@. This should follow the rules defined in the specification.
+# _Name ID 7 (trademark)_ is found at the generic @trademark@ attribute.
 # To reiterate the point stated above, these notes are merely provided for clarity. Compilers can and should follow their own recipes for creating the name table. These notes make no considerations for platform specific variations in or application specific limitations on the strings.
 
 h4(#opentypeos/2). OpenType OS/2 Table Fields
 
 |_. key                         |_. value type                  |_. description |
-| openTypeOS2WidthClass         | integer                       | Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table usWidthClass field. |
-| openTypeOS2WeightClass        | integer                       | Weight class value. Must be a non-negative integer. Corresponds to the OpenType OS/2 table usWeightClass field. |
-| openTypeOS2Selection          | number list                   | A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table selection field. *Note:* Bits 0 (italic), 5 (bold) and 6 (regular) must not be set here. These bits should be taken from the generic _styleMapStyle_ attribute.|
-| openTypeOS2VendorID           | string                        | Four character identifier for the creator of the font. Corresponds to the OpenType OS/2 table achVendID field. |
-| openTypeOS2Panose             | number list                   | The list must contain 10 non-negative integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table Panose field. |
-| openTypeOS2FamilyClass        | number list                   | Two integers representing the IBM font class and font subclass of the font. The first number, representing the class ID, must be in the range 0-14. The second number, representing the subclass, must be in the range 0-15. The numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table sFamilyClass field. |
-| openTypeOS2UnicodeRanges      | number list                   | A list of bit numbers that are supported Unicode ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table ulUnicodeRange1, ulUnicodeRange2, ulUnicodeRange3 and ulUnicodeRange4 fields. |
-| openTypeOS2CodePageRanges     | number list                   | A list of bit numbers that are supported code page ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table ulCodePageRange1 and ulCodePageRange2 fields. |
-| openTypeOS2TypoAscender       | integer or float              | Ascender value. Corresponds to the OpenType OS/2 table sTypoAscender field. |
-| openTypeOS2TypoDescender      | integer or float              | Descender value. Corresponds to the OpenType OS/2 table sTypoDescender field. |
-| openTypeOS2TypoLineGap        | integer or float              | Line gap value. Corresponds to the OpenType OS/2 table sTypoLineGap field. |
-| openTypeOS2WinAscent          | non-negative integer or float | Ascender value. Corresponds to the OpenType OS/2 table usWinAscent field. |
-| openTypeOS2WinDescent         | non-negative integer or float | Descender value. Corresponds to the OpenType OS/2 table usWinDescent field. |
-| openTypeOS2Type               | number list                   | A list of bit numbers indicating the embedding type. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table fsType field. |
-| openTypeOS2SubscriptXSize     | integer or float              | Subscript horizontal font size. Corresponds to the OpenType OS/2 table ySubscriptXSize field. |
-| openTypeOS2SubscriptYSize     | integer or float              | Subscript vertical font size. Corresponds to the OpenType OS/2 table ySubscriptYSize field. |
-| openTypeOS2SubscriptXOffset   | integer or float              | Subscript x offset. Corresponds to the OpenType OS/2 table ySubscriptXOffset field. |
-| openTypeOS2SubscriptYOffset   | integer or float              | Subscript y offset. Corresponds to the OpenType OS/2 table ySubscriptYOffset field. |
-| openTypeOS2SuperscriptXSize   | integer or float              | Superscript horizontal font size. Corresponds to the OpenType OS/2 table ySuperscriptXSize field. |
-| openTypeOS2SuperscriptYSize   | integer or float              | Superscript vertical font size. Corresponds to the OpenType OS/2 table ySuperscriptYSize field. |
-| openTypeOS2SuperscriptXOffset | integer or float              | Superscript x offset. Corresponds to the OpenType OS/2 table ySuperscriptXOffset field. |
-| openTypeOS2SuperscriptYOffset | integer or float              | Superscript y offset. Corresponds to the OpenType OS/2 table ySuperscriptYOffset field. |
-| openTypeOS2StrikeoutSize      | integer or float              | Strikeout size. Corresponds to the OpenType OS/2 table yStrikeoutSize field. |
-| openTypeOS2StrikeoutPosition  | integer or float              | Strikeout position. Corresponds to the OpenType OS/2 table yStrikeoutPosition field. |
+| openTypeOS2WidthClass         | integer                       | Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table @usWidthClass@ field. |
+| openTypeOS2WeightClass        | integer                       | Weight class value. Must be a non-negative integer. Corresponds to the OpenType OS/2 table @usWeightClass@ field. |
+| openTypeOS2Selection          | number list                   | A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table @selection@ field. *Note:* Bits 0 (italic), 5 (bold) and 6 (regular) must not be set here. These bits should be taken from the generic _styleMapStyle_ attribute.|
+| openTypeOS2VendorID           | string                        | Four character identifier for the creator of the font. Corresponds to the OpenType OS/2 table @achVendID@ field. |
+| openTypeOS2Panose             | number list                   | The list must contain 10 non-negative integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table @Panose@ field. |
+| openTypeOS2FamilyClass        | number list                   | Two integers representing the IBM font class and font subclass of the font. The first number, representing the class ID, must be in the range 0-14. The second number, representing the subclass, must be in the range 0-15. The numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table @sFamilyClass@ field. |
+| openTypeOS2UnicodeRanges      | number list                   | A list of bit numbers that are supported Unicode ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table @ulUnicodeRange1@, @ulUnicodeRange2@, @ulUnicodeRange3@ and @ulUnicodeRange4@ fields. |
+| openTypeOS2CodePageRanges     | number list                   | A list of bit numbers that are supported code page ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table @ulCodePageRange1@ and @ulCodePageRange2@ fields. |
+| openTypeOS2TypoAscender       | integer or float              | Ascender value. Corresponds to the OpenType OS/2 table @sTypoAscender@ field. |
+| openTypeOS2TypoDescender      | integer or float              | Descender value. Corresponds to the OpenType OS/2 table @sTypoDescender@ field. |
+| openTypeOS2TypoLineGap        | integer or float              | Line gap value. Corresponds to the OpenType OS/2 table @sTypoLineGap@ field. |
+| openTypeOS2WinAscent          | non-negative integer or float | Ascender value. Corresponds to the OpenType OS/2 table @usWinAscent@ field. |
+| openTypeOS2WinDescent         | non-negative integer or float | Descender value. Corresponds to the OpenType OS/2 table @usWinDescent@ field. |
+| openTypeOS2Type               | number list                   | A list of bit numbers indicating the embedding type. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table @fsType@ field. |
+| openTypeOS2SubscriptXSize     | integer or float              | Subscript horizontal font size. Corresponds to the OpenType OS/2 table @ySubscriptXSize@ field. |
+| openTypeOS2SubscriptYSize     | integer or float              | Subscript vertical font size. Corresponds to the OpenType OS/2 table @ySubscriptYSize@ field. |
+| openTypeOS2SubscriptXOffset   | integer or float              | Subscript x offset. Corresponds to the OpenType OS/2 table @ySubscriptXOffset@ field. |
+| openTypeOS2SubscriptYOffset   | integer or float              | Subscript y offset. Corresponds to the OpenType OS/2 table @ySubscriptYOffset@ field. |
+| openTypeOS2SuperscriptXSize   | integer or float              | Superscript horizontal font size. Corresponds to the OpenType OS/2 table @ySuperscriptXSize@ field. |
+| openTypeOS2SuperscriptYSize   | integer or float              | Superscript vertical font size. Corresponds to the OpenType OS/2 table @ySuperscriptYSize@ field. |
+| openTypeOS2SuperscriptXOffset | integer or float              | Superscript x offset. Corresponds to the OpenType OS/2 table @ySuperscriptXOffset@ field. |
+| openTypeOS2SuperscriptYOffset | integer or float              | Superscript y offset. Corresponds to the OpenType OS/2 table @ySuperscriptYOffset@ field. |
+| openTypeOS2StrikeoutSize      | integer or float              | Strikeout size. Corresponds to the OpenType OS/2 table @yStrikeoutSize@ field. |
+| openTypeOS2StrikeoutPosition  | integer or float              | Strikeout position. Corresponds to the OpenType OS/2 table @yStrikeoutPosition@ field. |
 
 h5. Notes
 
 <a href="http://www.microsoft.com/typography/otspec/os2.htm" target="_blank">The OpenType OS/2 table specification.</a>
 <a href="http://www.panose.com/ProductsServices/pan1.aspx" target="_blank">The Panose specification.</a>
 
-# _xAvgCharWidth_ should be calculated by the compiler.
-# _sFamilyClass_ is not supported.
-# _fsSelection_ can be derived from the generic _styleMapStyle_ attribute. (See question below.)
-# _usFirstCharIndex_ should be calculated by the compiler.
-# _usLastCharIndex_ should be calculated by the compiler.
-# _sxHeight_ is found at the generic _xHeight_ attribute.
-# _sCapHeight_ is found at the generic _capHeight_ attribute.
-# _usDefaultChar_ should be calculated by the compiler. OpenType fonts are required to have a .notdef character for fallback.
-# _usBreakChar_ should be calculated by the compiler.
-# _usMaxContext_ should be calculated by the compiler.
+# @xAvgCharWidth@ should be calculated by the compiler.
+# @sFamilyClass@ is not supported.
+# @fsSelection@ can be derived from the generic _styleMapStyle_ attribute. (See question below.)
+# @usFirstCharIndex@ should be calculated by the compiler.
+# @usLastCharIndex@ should be calculated by the compiler.
+# @sxHeight@ is found at the generic _xHeight_ attribute.
+# @sCapHeight@ is found at the generic _capHeight_ attribute.
+# @usDefaultChar@ should be calculated by the compiler. OpenType fonts are required to have a .notdef character for fallback.
+# @usBreakChar@ should be calculated by the compiler.
+# @usMaxContext@ should be calculated by the compiler.
 
 h4(#opentypevhea). OpenType vhea Table Fields
 
 |_. key                         |_. value type     |_. description |
-| openTypeVheaVertTypoAscender  | integer or float | Ascender value. Corresponds to the OpenType vhea table vertTypoAscender field. |
-| openTypeVheaVertTypoDescender | integer or float | Descender value. Corresponds to the OpenType vhea table vertTypoDescender field. |
-| openTypeVheaVertTypoLineGap   | integer or float | Line gap value. Corresponds to the OpenType vhea table vertTypoLineGap field. |
-| openTypeVheaCaretSlopeRise    | integer          | Caret slope rise value. Corresponds to the OpenType vhea table caretSlopeRise field. |
-| openTypeVheaCaretSlopeRun     | integer          | Caret slope run value. Corresponds to the OpenType vhea table caretSlopeRun field. |
-| openTypeVheaCaretOffset       | integer or float | Caret offset value. Corresponds to the OpenType vhea table caretOffset field. |
+| openTypeVheaVertTypoAscender  | integer or float | Ascender value. Corresponds to the OpenType vhea table @vertTypoAscender@ field. |
+| openTypeVheaVertTypoDescender | integer or float | Descender value. Corresponds to the OpenType vhea table @vertTypoDescender@ field. |
+| openTypeVheaVertTypoLineGap   | integer or float | Line gap value. Corresponds to the OpenType vhea table @vertTypoLineGap@ field. |
+| openTypeVheaCaretSlopeRise    | integer          | Caret slope rise value. Corresponds to the OpenType vhea table @caretSlopeRise@ field. |
+| openTypeVheaCaretSlopeRun     | integer          | Caret slope run value. Corresponds to the OpenType vhea table @caretSlopeRun@ field. |
+| openTypeVheaCaretOffset       | integer or float | Caret offset value. Corresponds to the OpenType vhea table @caretOffset@ field. |
 
 h5. Notes
 
 <a href="http://www.microsoft.com/typography/otspec/hhea.htm" target="_blank">The OpenType hhea table specification</a>
 
-# _advanceHeightMax_ should be calculated by the compiler.
-# _minTopSideBearing_ should be calculated by the compiler.
-# _minBottomSideBearing_ should be calculated by the compiler.
-# _yMaxExtent_ should be calculated by the compiler.
-# _metricDataFormat_ should be set by the compiler.
-# _numberOfHMetrics_ should be calculated by the compiler.
+# @advanceHeightMax@ should be calculated by the compiler.
+# @minTopSideBearing@ should be calculated by the compiler.
+# @minBottomSideBearing@ should be calculated by the compiler.
+# @yMaxExtent@ should be calculated by the compiler.
+# @metricDataFormat@ should be set by the compiler.
+# @numberOfHMetrics@ should be calculated by the compiler.
 
 h4(#postscript). PostScript Specific Data
 
 |_. key                           |_. value type     |_. description |
-| postscriptFontName              | string           | Name to be used for the _FontName_ field in Type 1/CFF table. |
-| postscriptFullName              | string           | Name to be used for the _FullName_ field in Type 1/CFF table. |
+| postscriptFontName              | string           | Name to be used for the @FontName@ field in Type 1/CFF table. |
+| postscriptFullName              | string           | Name to be used for the @FullName@ field in Type 1/CFF table. |
 | postscriptSlantAngle            | float            | Artificial slant angle. |
 | postscriptUniqueID              | integer          | A unique ID number as defined in the Type 1/CFF specification. |
-| postscriptUnderlineThickness    | integer or float | Underline thickness value. Corresponds to the Type 1/CFF/post table UnderlineThickness field. |
-| postscriptUnderlinePosition     | integer or float | Underline position value. Corresponds to the Type 1/CFF/post table UnderlinePosition field. |
-| postscriptIsFixedPitch          | boolean          | Indicates if the font is monospaced. A compiler could calculate this automatically, but the designer may wish to override this setting. This corresponds to the Type 1/CFF isFixedPitched field |
+| postscriptUnderlineThickness    | integer or float | Underline thickness value. Corresponds to the Type 1/CFF/post table @UnderlineThickness@ field. |
+| postscriptUnderlinePosition     | integer or float | Underline position value. Corresponds to the Type 1/CFF/post table @UnderlinePosition@ field. |
+| postscriptIsFixedPitch          | boolean          | Indicates if the font is monospaced. A compiler could calculate this automatically, but the designer may wish to override this setting. This corresponds to the Type 1/CFF @isFixedPitched@ field |
 | postscriptBlueValues            | number list      | A list of up to 14 integers or floats specifying the values that should be in the Type 1/CFF BlueValues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
 | postscriptOtherBlues            | number list      | A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF OtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
 | postscriptFamilyBlues           | number list      | A list of up to 14 integers or floats specifying the values that should be in the Type 1/CFF FamilyBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
 | postscriptFamilyOtherBlues      | number list      | A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF FamilyOtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
-| postscriptStemSnapH             | number list      | List of horizontal stems sorted in ascending order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF StemSnapH field. |
-| postscriptStemSnapV             | number list      | List of vertical stems sorted in ascending order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF StemSnapV field. |
-| postscriptBlueFuzz              | integer or float | BlueFuzz value. This corresponds to the Type 1/CFF BlueFuzz field. |
-| postscriptBlueShift             | integer or float | BlueShift value. This corresponds to the Type 1/CFF BlueShift field. |
-| postscriptBlueScale             | float            | BlueScale value. This corresponds to the Type 1/CFF BlueScale field. |
-| postscriptForceBold             | boolean          | Indicates how the Type 1/CFF ForceBold field should be set. |
+| postscriptStemSnapH             | number list      | List of horizontal stems sorted in ascending order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF @StemSnapH@ field. |
+| postscriptStemSnapV             | number list      | List of vertical stems sorted in ascending order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF @StemSnapV@ field. |
+| postscriptBlueFuzz              | integer or float | BlueFuzz value. This corresponds to the Type 1/CFF @BlueFuzz@ field. |
+| postscriptBlueShift             | integer or float | BlueShift value. This corresponds to the Type 1/CFF @BlueShift@ field. |
+| postscriptBlueScale             | float            | BlueScale value. This corresponds to the Type 1/CFF @BlueScale@ field. |
+| postscriptForceBold             | boolean          | Indicates how the Type 1/CFF @ForceBold@ field should be set. |
 | postscriptDefaultWidthX         | integer or float | Default width for glyphs. |
 | postscriptNominalWidthX         | integer or float | Nominal width for glyphs. |
-| postscriptWeightName            | string           | A string indicating the overall weight of the font. This corresponds to the Type 1/CFF Weight field. It should be in sync with the openTypeOS2WeightClass value. |
+| postscriptWeightName            | string           | A string indicating the overall weight of the font. This corresponds to the Type 1/CFF Weight field. It should be in sync with the @openTypeOS2WeightClass@ value. |
 | postscriptDefaultCharacter      | string           | The name of the glyph that should be used as the default character in PFM files. |
 | postscriptWindowsCharacterSet   | integer          | The Windows character set. The values are defined below. |
 
@@ -251,13 +251,13 @@ h5. Notes
 <a href="http://www.adobe.com/devnet/font/pdfs/5176.CFF.pdf" target="_blank">The CFF specification.</a><br>
 
 # These fields are a combination of fields in the OpenType post and CFF tables as well as the Type 1 format.
-# The post table _minMemType42, maxMemType42, minMemType1_ and _maxMemType1_ fields should be set by the compiler.
-# The Type 1/CFF _StdHW_ and _StdVW_ fields can be derived by taking the first value from the _postscriptStemSnapH_ and _postscriptStemSnapV_ lists.
-# The Type 1/CFF _version_ field can be derived from the generic _versionMajor_ and _versionMinor_ attributes.
-# The Type 1/CFF _notice_ field is found at the generic _copyright_ attribute.
-# The Type 1/CFF _FamilyName_ field can be derived from the generic _familyName_ attribute.
-# If _postscriptFullName_ is not given, the Type 1/CFF _FullName_ field can be created by combining the generic _familyName_ and _styleName_ attributes.
-# The Type 1/CFF/post table _italicAngle_ field can be found at the generic _italicAngle_ attribute.
+# The post table @minMemType42, maxMemType42, minMemType1@ and @maxMemType1@ fields should be set by the compiler.
+# The Type 1/CFF @StdHW@ and @StdVW@ fields can be derived by taking the first value from the @postscriptStemSnapH@ and @postscriptStemSnapV@ lists.
+# The Type 1/CFF @version@ field can be derived from the generic @versionMajor@ and @versionMinor@ attributes.
+# The Type 1/CFF @notice@ field is found at the generic @copyright@ attribute.
+# The Type 1/CFF @FamilyName@ field can be derived from the generic @familyName@ attribute.
+# If @postscriptFullName@ is not given, the Type 1/CFF @FullName@ field can be created by combining the generic @familyName@ and @styleName@ attributes.
+# The Type 1/CFF/post table @italicAngle@ field can be found at the generic @italicAngle@ attribute.
 
 h4(#fond). Macintosh FOND Resource Data
 
@@ -279,18 +279,18 @@ Many of these fields _can_ be populated from generic elements, but since WOFF is
 |_. key                      |_. value type         |_. description |
 | woffMajorVersion           | non-negative integer | Major version of the font. |
 | woffMinorVersion           | non-negative integer | Minor version of the font. |
-| woffMetadataUniqueID       | string               | Identification string. Corresponds to the WOFF uniqueid element id attribute. |
-| woffMetadataVendor         | string               | Font vendor. Corresponds to the WOFF vendor element name attribute. |
-| woffMetadataVendorURL      | string               | Font vendor URL. Corresponds to the WOFF vendor element url attribute. |
-| woffMetadataCredits        | list                 | List of credit records. Corresponds to the WOFF credits element. |
-| woffMetadataDescription    | string               | Description string. Corresponds to the WOFF description element. |
-| woffMetadataDescriptionURL | string               | Description URL. Corresponds to the WOFF description element url attribute. |
-| woffMetadataLicense        | string               | License string. Corresponds to the WOFF license element. |
-| woffMetadataLicenseID      | string               | License ID string. Corresponds to the WOFF license element id attribute. |
-| woffMetadataLicenseURL     | string               | License URL string. Corresponds to the WOFF license element url attribute. |
-| woffMetadataCopyright      | string               | Copyright string. Corresponds to the WOFF copyright element. |
-| woffMetadataTrademark      | string               | Trademark string. Corresponds to the WOFF trademark element. |
-| woffMetadataLicenseeName   | string               | Licensee name string. Corresponds to the WOFF licensee element name attribute. |
+| woffMetadataUniqueID       | string               | Identification string. Corresponds to the WOFF @uniqueid@ element @id@ attribute. |
+| woffMetadataVendor         | string               | Font vendor. Corresponds to the WOFF @vendor@ element @name@ attribute. |
+| woffMetadataVendorURL      | string               | Font vendor URL. Corresponds to the WOFF @vendor@ element @url@ attribute. |
+| woffMetadataCredits        | list                 | List of credit records. Corresponds to the WOFF @credits@ element. |
+| woffMetadataDescription    | string               | Description string. Corresponds to the WOFF @description@ element. |
+| woffMetadataDescriptionURL | string               | Description URL. Corresponds to the WOFF @description@ element url attribute. |
+| woffMetadataLicense        | string               | License string. Corresponds to the WOFF @license@ element. |
+| woffMetadataLicenseID      | string               | License ID string. Corresponds to the WOFF @license@ element @id@ attribute. |
+| woffMetadataLicenseURL     | string               | License URL string. Corresponds to the WOFF @license@ element @url@ attribute. |
+| woffMetadataCopyright      | string               | Copyright string. Corresponds to the WOFF @copyright@ element. |
+| woffMetadataTrademark      | string               | Trademark string. Corresponds to the WOFF @trademark@ element. |
+| woffMetadataLicenseeName   | string               | Licensee name string. Corresponds to the WOFF @licensee@ element name attribute. |
 | woffMetadataRecords        | list                 | List of metadata records. This record storage area is intended for records that require language localization. |
 | woffMetadataExtensions     | list                 | List of metadata extension records. |
 
@@ -420,10 +420,10 @@ h6. Metadata Extension Item Example
 
 h4(#kerninggroupprefixes). Kerning Group Prefixes
 
-If an authoring tool allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the _firstKerningGroupPrefix_ or the _secondKerningGroupPrefix_. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
+If an authoring tool allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the _pairs_ dictionary should be assumed to be glyphs if the appropriate members do not start with the @firstKerningGroupPrefix@ or the @secondKerningGroupPrefix@. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
 
 |_. key                    |_. value type |_. description |
-| firstKerningGroupPrefix  | string       | An arbitrary string that defines the group name prefix for first kerning groups used in the pairs dictionary. This string must not be the same as the string in secondKerningGroupPrefix. |
-| secondKerningGroupPrefix | string       | An arbitrary string that defines the group name prefix for second kerning groups used in the pairs dictionary. This string must not be the same as the string in firstKerningGroupPrefix. |
+| firstKerningGroupPrefix  | string       | An arbitrary string that defines the group name prefix for first kerning groups used in the pairs dictionary. This string must not be the same as the string in @secondKerningGroupPrefix@. |
+| secondKerningGroupPrefix | string       | An arbitrary string that defines the group name prefix for second kerning groups used in the pairs dictionary. This string must not be the same as the string in @firstKerningGroupPrefix@. |
 
 </div>
