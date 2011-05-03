@@ -21,7 +21,7 @@ The following is a registry of public layer names that map to functionality that
 
 h4. public.background
 
-This represents background reference layers such as the "Template" layer in Fontogrpaher, the "Mask" layer in FontLab and the "Background" layer in FontForge. Applications may write this common layer into a UFO using the layer name "public.background" and assigning an appropriate layer directory name. Likewise, an authoring tool that encounters a layer named "public.background" may use this layer for its own particular background reference layer.
+This represents background reference layers such as the "Template" layer in Fontographer, the "Mask" layer in FontLab and the "Background" layer in FontForge. Applications may write this common layer into a UFO using the layer name "public.background" and assigning an appropriate layer directory name. Likewise, an authoring tool that encounters a layer named "public.background" may use this layer for its own particular background reference layer.
 
 h3. Example
 
