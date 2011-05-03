@@ -142,10 +142,6 @@ h4. Attributes
 
 The guideline extends along @angle@ to infinity in both directions out of the point defined by @x@ and @y@. If @y@ and @angle@ are omitted, the element represents a vertical guideline. If @x@ and @angle@ are omitted, the element represents a horizontal guideline. If @y@ is omitted and @angle@ if provided, @y@ is zero. If @x@ is omitted and @angle@ is provided, @x@ is zero.
 
-<div class="discussionNote">
-A proposed alternative format is to omit the the angle as described above and provide two pairs of x and y coordinates. The angle would be inferred from the two points. The argument for this is that it is potentially more precise. The arguments against it are that the precision difference is very small if it even exists and it is more data.
-</div>
-
 h4. Child Elements
 
 This element has no child elements.
