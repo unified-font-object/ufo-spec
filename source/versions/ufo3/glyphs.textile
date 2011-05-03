@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. Glyph Directories (draft)
+h1. Glyphs Directory (draft)
 
 A glyphs directory represents a layer of glyph data in a font. This glyph data files will be in "Glyph Interchange Format":glif.html. It must contain at least one GLIF file and it must contain a "contents.plist":#contents file defining the file name to glyph name mapping. A "layerinfo.plist":#layerinfo file may be present defining various properties of the layer.
 </div>
