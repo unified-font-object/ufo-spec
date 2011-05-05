@@ -55,9 +55,7 @@ The property list data consists of a dictionary at the top level. The keys and v
 
 |_. key        |_. value type                              |_. description |_. default value |
 | guidelines   | array                                     | An array of guideline definitions that apply to all glyphs in the layer. This attribute is optional. | None |
-| fillColor    | "color definition":conventions.html#color | The color that should be used to fill all glyphs in the layer. This attribute is optional. | None |
-| strokeColor  | "color definition":conventions.html#color | The color that should be used to stroke all glyphs in the layer. This attribute is optional. | None |
-| strokeWidth  | positive integer or float                 | The weight of the stroke to be applied to all glyphs in the layer. This attribute is optional. | None |
+| color    | "color definition":conventions.html#color | The color that should be used for all glyphs in the layer. This attribute is optional. | None |
 | lib          | dictionary                                | A lib specific to the layer. To avoid naming conflicts, keys should use the "Reverse Domain Naming Scheme":conventions.html#reversedomain defined for lib.plist. | None |
 
 h3. Guideline Format
