@@ -331,12 +331,10 @@ h3(#colors). Color Definitions
 
 Several elements have a color attribute that defines a color value to be applied to the element. A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the "sRGB":http://en.wikipedia.org/wiki/SRGB color space.
 
-<div class="discussionNote">
-This is a string structured as a string like "0,0,0,1". This unusual structure is a result of the color being the value of an attribute of an element in GLIF in addition to a value in a property list. This string structure makes sense in GLIF but it is a little odd in property lists. An array of four numbers would make more sense there. Would having two structures be a problem?
-</div>
+h4. Examples
 
-<div class="editorsNote">
-This needs a more clear definition in table form.
-</div>
+|_. string  |_. red component |_. green component |_. blue component |_. alpha component |
+| 1,0,0,1   | 1.0             | 0                 | 0                | 1.0               |
+| 0,.5,0,.5 | 0               | 0.5               | 0                | 0.5               |
 
 </div>
