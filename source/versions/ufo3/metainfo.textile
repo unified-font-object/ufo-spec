@@ -2,6 +2,7 @@
 
 h1. metainfo.plist (draft)
 
+table(evenColumns).
 | *File Format* | "XML Property List":http://www.apple.com/DTDs/PropertyList-1.0.dtd |
 
 This file contains metadata about the UFO. This file is required.

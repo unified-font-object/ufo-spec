@@ -157,6 +157,7 @@ There is no standard user name to file name conversion. The algorithm below is a
 
 h4. Examples
 
+table(evenColumns).
 |_. glyph name   |_. file name |
 | a              | a |
 | A              | A_ |
@@ -333,6 +334,7 @@ Several elements have a color attribute that defines a color value to be applied
 
 h4. Examples
 
+table(evenColumns).
 |_. string  |_. red component |_. green component |_. blue component |_. alpha component |
 | 1,0,0,1   | 1.0             | 0                 | 0                | 1.0               |
 | 0,.5,0,.5 | 0               | 0.5               | 0                | 0.5               |

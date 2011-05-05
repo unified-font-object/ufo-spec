@@ -2,6 +2,7 @@
 
 h1. features.fea (draft)
 
+table(evenColumns).
 | *File Format* | Plain Text |
 
 This file contains the <a href="http://www.adobe.com/devnet/opentype/afdko/" target="_blank">Adobe Font Development Kit for OpenType</a> feature definitions. This file is optional. If it is not defined in the UFO, there is no feature data.
