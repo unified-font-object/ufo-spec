@@ -280,7 +280,7 @@ def handleClash1(userName, existing=[], prefix="", suffix=""):
             break
     # if there is a clash, go to the next fallback
     if finalName is None:
-        finalName = handleClash2(existsing, prefix, suffix)
+        finalName = handleClash2(existing, prefix, suffix)
     # finished
     return finalName
 
