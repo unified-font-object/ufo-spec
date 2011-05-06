@@ -63,13 +63,13 @@ h3. Guideline Format
 The guidelines are stored as dictionaries of the following format.
 
 |_. key    |_. value type     |_. description |_. default value |
-| x        | integer or float | The 'x' coordinate. | None. Optional if _y_ is provided and _angle_ is not provided. See below for details. |
-| y        | integer or float | The 'y' coordinate. | None. Optional if _x_ is provided and _angle_ is not provided. See below for details. |
-| angle    | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None. If x or y are not specified, the angle must not be specified. See below for details. |
+| x        | integer or float | The 'x' coordinate. | None. Optional if @y@ is provided and @angle@ is not provided. See below for details. |
+| y        | integer or float | The 'y' coordinate. | None. Optional if @x@ is provided and @angle@ is not provided. See below for details. |
+| angle    | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None. If @x@ or @y@ are not specified, @angle@ must not be specified. See below for details. |
 | name     | string           | An arbitrary name for the guideline. This attribute is optional.  | None |
 | color    | string           | The color that should be applied to the guideline. The format follows the "color definition":#color standard. This attribute is optional. | None |
 
-The guideline extends along _angle_ to infinity in both directions out of the point defined by _x_ and _y_. If _y_ and _angle_ are omitted, the element represents a vertical guideline. If _x_ and _angle_ are omitted, the element represents a horizontal guideline. If _y_ is omitted and _angle_ is provided, _y_ is zero. If _x_ is omitted and _angle_ is provided, _x_ is zero.
+The guideline extends along @angle@ to infinity in both directions out of the point defined by @x@ and @y@. If @y@ and @angle@ are omitted, the element represents a vertical guideline. If @x@ and @angle@ are omitted, the element represents a horizontal guideline. If @y@ is omitted and @angle@ is provided, @y@ is zero. If @x@ is omitted and @angle@ is provided, @x@ is zero.
 
 <div class="discussionNote">
 The value of per layer guides is under debate. The most common model currently in use (FontLab, others) allows for font level guides and glyph level guides. There are no per layer guides available. An alternative proposal is to add a place for font level guides in fontinfo.plist.
