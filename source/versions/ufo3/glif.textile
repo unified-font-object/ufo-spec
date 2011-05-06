@@ -325,7 +325,7 @@ qcurve point:
 
 h3(#link). link: A collection of point references.
 
-Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The @link@ element may contain a @type@ string that authoring tools can use to define what a particular link represents.
+Links are arbitrary collections of point references. These can represent anything that can be described as a list of points--TrueType hints, Postscript hints, interpolation markers, etc. The @link@ element may contain a @type@ string that authoring tools can use to define what a particular link represents.
 
 This element may occur any number of times.
 
