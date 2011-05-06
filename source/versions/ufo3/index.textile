@@ -2,6 +2,8 @@
 
 h1. UFO 3 (draft)
 
+*Editor's Draft May 6, 2011*
+
 The UFO 3 specification is currently in development. In no way is this a final draft and everything is subject to change. "Please contact the spec maintainers if you have any comments about this draft.":../team.html
 
 <div class="discussionNote">
