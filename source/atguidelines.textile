@@ -18,11 +18,11 @@ This model allows the UFO to the the native file format for the authoring tool.
 
 h3. Requirements and Recommendations
 
-Authoring tools that use the native file format operating model must not remove data from a UFO or any of a UFO's files without informing the user. For example, if an authoring tool doesn't work with groups, the authoring tool should not silently remove the group data from a UFO. Authoring tools that use the import/export operating model may remove data during an import operation. In these cases, it is recommended that the user be informed of the data being ignored.
+Authoring tools that use the native file format operating model must not remove data from a UFO or any of a UFO's files without informing the user. For example, if an authoring tool doesn't work with groups, the authoring tool must not silently remove the group data from a UFO. Authoring tools that use the import/export operating model may remove data during an import operation as long as the original UFO data is not altered. In these cases, it is recommended that the user be informed of the data being ignored.
 
 When writing data into an existing UFO, authoring tools should not overwrite files unnecessarily. For example, if _A.glif_ already exists in a UFO and a glyph needs to be stored in a file named _A.glif_, the file should not be written if the file contents will be exactly the same. This allows the modification time to be preserved in the original GLIF file.
 
-Authoring tools must not add non-conformant data to the UFO structure outside of designated areas. For example, a _Stuff For Me_ directory must not be created in the root of the UFO.
+Authoring tools must not add non-conformant data to the UFO structure outside of designated areas. For example, a _Stuff For Me_ directory must not be created in the root of the UFO. A, _myFontInfoData_ key must not be added to fontinfo.plist.
 
 Authoring tools must write only the allowed parts of a particular UFO version. For example, an authoring tool must not write a _data_ directory into a UFO with a @formatVersion@ of 2 in metainfo.plist.
 
