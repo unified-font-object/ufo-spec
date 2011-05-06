@@ -354,11 +354,11 @@ Need to define:
 
 h5. public.horizontalStem
 
-Two or more points defining a horizontal stem. Within the linked points, there must be at lest two unique y coordinates. The edges of the stem can be defined as the minimum and maximum of the y coordinates.
+Two or more points defining a horizontal stem. Within the linked points, there must be at least two unique y coordinates. The edges of the stem can be defined as the minimum and maximum of the y coordinates.
 
 h5. public.verticalStem
 
-Two or more points defining a vertical stem. Within the linked points, there must be at lest two unique x coordinates. The edges of the stem can be defined as the minimum and maximum of the x coordinates.
+Two or more points defining a vertical stem. Within the linked points, there must be at least two unique x coordinates. The edges of the stem can be defined as the minimum and maximum of the x coordinates.
 
 <div class="discussionNote">
 What about italic stems? Would they be allowed to be tagged?
