@@ -393,7 +393,7 @@ Data that is too complex or too large for lib can be stored in the "data directo
 h3. Example
 
 <div class="editorsNote">
-Bring this example up to date after the new stuff has been sorted out.
+This example is out of date.
 </div>
 
 <pre class="prettyprint">
