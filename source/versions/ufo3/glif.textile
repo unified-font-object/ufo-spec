@@ -136,7 +136,7 @@ h4. Attributes
 |_. attribute name |_. data type      |_. description |_. default value |
 | x                | integer or float | The 'x' coordinate. | None. Optional if @y@ is provided and @angle@ is not provided. See below for details. |
 | y                | integer or float | The 'y' coordinate. | None. Optional. See below for details. |
-| angle            | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. If @x@ or @y@ are not specified, the angle must not be specified. If it is specified in this case, it should be ignored.| None |
+| angle            | integer or float | The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction. | None. If @x@ or @y@ are not specified, @angle@ must not be specified. See below for details. |
 | name             | string           | An arbitrary name for the guideline. This attribute is optional.  | None |
 | color            | string           | The color that should be applied to the guideline. The format follows the "color definition":#color standard. This attribute is optional. | None |
 
