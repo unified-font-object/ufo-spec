@@ -1,0 +1,279 @@
+<div class="section">
+	<h1>UFO 3 (draft)</h1>
+
+	<p>
+		<strong>Editor's Draft May 6, 2011</strong>
+	</p>
+
+	<p>
+		The UFO 3 specification is currently in development. In no way is this a final draft and everything is subject to change. <a href="../../team.html">Please contact the spec maintainers if you have any comments about this draft.</a>
+	</p>
+	<div class="discussionNote">
+		<p>
+			Points of contention in this document have notes like this explaining the differing points of view. These are ongoing discussions that will be resolved before the specification is final.
+		</p>
+	</div>
+	<div class="editorsNote">
+		<p>
+			Notes to the editor are highlighted like this. Please pardon our dust.
+		</p>
+	</div>
+
+	<p>
+		A UFO is a directory representing font data with one or more glyph layers.
+	</p>
+
+	<!-- Terminology -->
+
+	<h3>
+		Terminology
+	</h3>
+	<p>
+		The terms "must", "must not", "required", "shall", "shall not", "should", "should not", "recommended", "may", and "optional" used throughout this specification conform to <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>.
+	</p>
+	<p>
+		The term "authoring tool" is used throughout this specification to refer to tools that read and write UFOs. Authoring tools may take many forms:
+	</p>
+	<ol>
+		<li>A font editor that uses UFO as its native file format.</li>
+		<li>A tool that allows for importing data from or exporting data to a UFO.</li>
+		<li>A programming library for reading or writing UFO data.</li>
+		<li>A script for modifying a UFO.</li>
+	</ol>
+	<p>
+		This list is not exclusive.
+	</p>
+
+	<!-- FIle Structure -->
+
+	<h3>
+		File Structure
+	</h3>
+	<p>
+		UFO 3 follows this file structure:
+	</p>
+
+
+	<ul class="filediagram">
+		<li class="filediagramDirectory"><span class="filediagramArrow">&#9660;</span> *.ufo</li>
+		<li class="filediagramFile">
+			<ul class="filediagramNested">
+				<li class="filediagramFile">metainfo.plist</li>
+				<li class="filediagramFile">fontinfo.plist</li>
+				<li class="filediagramFile">groups.plist</li>
+				<li class="filediagramFile">kerning.plist</li>
+				<li class="filediagramFile">features.fea</li>
+				<li class="filediagramFile">lib.plist</li>
+				<li class="filediagramFile">layercontents.plist</li>
+				<li class="filediagramDirectory"><span class="filediagramArrow">&#9660;</span> glyphs*</li>
+				<li class="filediagramFile">
+					<ul class="filediagramNested">
+						<li class="filediagramFile">contents.plist</li>
+						<li class="filediagramFile">layerinfo.plist</li>
+						<li class="filediagramFile">*.glif</li>
+					</ul>
+				</li>
+				<li class="filediagramDirectory"><span class="filediagramArrow">&#9660;</span> images</li>
+				<li class="filediagramFile">
+					<ul class="filediagramNested">
+						<li class="filediagramFile">*.png</li>
+					</ul>
+				</li>
+				<li class="filediagramDirectory"><span class="filediagramArrow">&#9654;</span> data</li>
+			</ul>
+		</li>
+	</ul>
+
+	<p>
+		Each of the files and directories have unique meanings, purposes and data structures:
+	</p>
+	<table>
+		<tr>
+			<td><a href="metainfo.html">metainfo.plist</a></td>
+			<td>Format version, creator, etc.</td>
+		</tr>
+		<tr>
+			<td><a href="fontinfo.html">fontinfo.plist</a></td>
+			<td>Various font info data.</td>
+		</tr>
+		<tr>
+			<td><a href="groups.html">groups.plist</a></td>
+			<td>Glyph group definitions.</td>
+		</tr>
+		<tr>
+			<td><a href="kerning.html">kerning.plist</a></td>
+			<td>Kerning data.</td>
+		</tr>
+		<tr>
+			<td><a href="features.html">features.fea</a></td>
+			<td>OpenType feature definitions.</td>
+		</tr>
+		<tr>
+			<td><a href="lib.html">lib.plist</a></td>
+			<td>Arbitrary custom data.</td>
+		</tr>
+		<tr>
+			<td><a href="layercontents.html">layercontents.plist</a></td>
+			<td>Glyphs directory name to layer name mapping.</td>
+		</tr>
+		<tr>
+			<td><a href="glyphs.html">glyphs*</a></td>
+			<td>A directory containing a glyph set representing a <a href="#glyphlayers">layer</a>.</td>
+		</tr>
+		<tr>
+			<td>glyphs*/<a href="glyphs.html#contents.plist">contents.plist</a></td>
+			<td>File name to glyph name mapping.</td>
+		</tr>
+		<tr>
+			<td>glyphs*/<a href="glyphs.html#layerinfo.plist">layerinfo.plist</a></td>
+			<td>Information about the layer.</td>
+		</tr>
+		<tr>
+			<td>glyphs*/<a href="glif.html">*.glif</a></td>
+			<td>A glyph definition.</td>
+		</tr>
+		<tr>
+			<td><a href="images.html">images</a></td>
+			<td>A directory containing images referenced by glyphs.</td>
+		</tr>
+		<tr>
+			<td><a href="data.html">data</a></td>
+			<td>Arbitrary custom data in a quantity or structure that can't be stored in lib.plist.</td>
+		</tr>
+	</table>
+
+	<!-- Glyph Layers -->
+
+	<h3 id="glyphlayers">
+		Glyph Layers
+	</h3>
+	<p>
+		The UFO supports layered glyphs. These layers can be used for anything&#8212;the common <em>main+background</em> drawing environment, multi-layered fonts, glyph revision history and so on. The layering structure is designed to be conceptually unrestricted.
+	</p>
+	<p>
+		Layers are implemented with a series of glyph sets within the UFO. Each glyph set represents one layer for all glyphs in the font. Each glyph set is stored in its own "glyphs" directory. There is one required glyph set that represents the primary outline source of the glyph. This glyph set should be stored in the "glyphs" directory. Additional layers are stored in other directories as defined in the <a href="layercontents.html">layercontents.plist</a> documentation.
+	</p>
+</div>
+
+<!-- Changes from UFO 2 -->
+
+<div class="section">
+
+	<h1>
+		Changes from UFO 2
+	</h1>
+	<p>
+		In general, there have been many editorial changes that don't affect the content. The term "authoring tool" has been used to make the references to applications, scripts, etc. consistent. Various conformance statements were modified to make them consistent with RFC 2119.
+	</p>
+	<p>
+		This list if for reference only as it may leave some changes out. The sub-sections of the specification overrule this list.
+	</p>
+
+	<h3>metainfo.plist</h3>
+	<p>
+		The <em>formatVersion</em> was bumped to 3.
+	</p>
+
+	<h3>fontinfo.plist</h3>
+	<p>
+		Support for specific name id, platform, platform encoding and language name table entries was added.
+	</p>
+	<p>
+		Support for WOFF metadata was added.
+	</p>
+	<p>
+		Two attributes for identifying kerning groups were added.
+	</p>
+	<p>
+		The value types for the following keys were clarified to be more consistent with the specifications they reference: versionMinor, unitsPerEm, openTypeHeadLowestRecPPEM and openTypeOS2WeightClass. This was done because the referenced fields allow only unsigned-integers.
+	</p>
+
+	<h3>groups.plist</h3>
+	<p>
+		Behavior with regard to kerning groups was defined.
+	</p>
+
+	<h3>kerning.plist</h3>
+	<p>
+		Added information about writing direction.
+	</p>
+	<p>
+		Information about the new group naming attributes was added.
+	</p>
+	<p>
+		Added extensive information about kerning pair types. The information is applicable to UFO 1 and UFO 2, but it was not written as a formal part of the spec.
+	</p>
+	<p>
+		Added information about converting UFO 1 and UFO 2 kerning to UFO 3 kerning.
+	</p>
+
+	<h3>features.fea</h3>
+	<p>
+		The "should be a plain text file" from UFO 2 was changed to "must be a plain text file."
+	</p>
+
+	<h3>layercontents.plist</h3>
+	<p>
+		This is a new file.
+	</p>
+
+	<h3>glyphs</h3>
+	<p>
+		More than one glyphs directory is allowed. Each directory is a layer.
+	</p>
+
+	<h3>glyphs/contents.plist</h3>
+	<p>
+		The sample glyph name to file name algorithm was moved to the conventions page and it was abstracted and expanded to be more robust.
+	</p>
+	<p>
+		Information about the allowed characters in glyph names was added.
+	</p>
+	<p>
+		The information about the file name being stored in the property list was slightly updated to be more verbose.
+	</p>
+
+	<h3>glyphs/layerinfo.plist</h3>
+	<p>
+		This is a new file.
+	</p>
+
+	<h3>glyphs/GLIF</h3>
+	<p>
+		The version number was increased to 2.
+	</p>
+		<h4>Component</h4>
+			<p>
+				A new rule explaining how components relate to layers was added.
+			</p>
+		<h4>Point</h4>
+			<p>
+				A new identifier attribute was added.
+			</p>
+		<h4>Image</h4>
+			<p>
+				A new image element was added.
+			</p>
+		<h4>Guideline</h4>
+			<p>
+				A new guideline element was added.
+			</p>
+		<h4>Link</h4>
+			<p>
+				A new link element was added.
+			</p>
+		<h4>Pointref</h4>
+			<p>
+				A new pointref element was added.
+			</p>
+
+	<h3>images</h3>
+		<p>
+			The images directory was added.
+		</p>
+
+	<h3>data</h3>
+		<p>
+			The data directory was added.
+		</p>
+</div>
