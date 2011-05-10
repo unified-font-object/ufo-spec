@@ -1,0 +1,418 @@
+<div class="section">
+
+	<h1>Conventions</h1>
+	<p>
+		These are conventions that are used throughout the UFO.
+	</p>
+
+	<!-- Reverse Domain Naming Scheme -->
+
+	<h3 id="reversedomain">
+		Reverse Domain Naming Schemes
+	</h3>
+	<p>
+		In several places in the UFO the <a href="http://en.wikipedia.org/wiki/Reverse-DNS">reverse domain naming system</a> is recommended for creating unique keys and ids. To make a reverse domain, reverse the relevant Internet domain. For example, if the Internet domain is <em>unifiedfontobject.org</em>, the reverse domain name would be <em>org.unifiedfontobject</em>. Further extensions to make the string unique may be added. For example, <em>org.unifiedfontobject.MySpecialTool</em>.
+	</p>
+	<p>
+		The name <em>public.*</em>, where * represents an arbitrary string of one or more characters, is reserved for use by data structures that are part of the UFO specification.
+	</p>
+
+	<!-- User Name to File Name -->
+
+	<h3 id="usernametofilename">
+		Common User Name to File Name Algorithm
+	</h3>
+	<p>
+		There is no standard user name to file name conversion. The algorithm below is an example of a common conversion process. It has been designed to avoid name clashes and work with common file systems. It applies the following rules:
+	</p>
+
+	<ol>
+		<li>Filenames must be unique.</li>
+		<li>Filenames must be case insensitive.</li>
+		<li>Filenames may use any character that can be represented by UTF-8 except: &quot; (0x22) ( (0x28) ) (0x29) * (0x2A) + (0x2B) / (0x2F) : (0x3A) &lt; (0x3C) &gt; (0x3E) ? (0x3F) [ (0x5B) \ (0x5C) ] (0x5D) | (0x7C) and anything in the ASCII control character range (0x00-0x1F and 0x7F).</li>
+		<li>Filenames must be no longer than 255 characters.</li>
+	</ol>
+
+	<ul class="algorithm">
+		<li>
+			<em>name</em> is the user name without any required prefix or suffix.
+		</li>
+		<li>
+			<em>maximum length</em> is 255 minus the length of a prefix and/or suffix that will be added to the name.
+		</li>
+		<li>
+			Remove any illegal characters from <em>name</em>, where the illegal characters are: &quot; * + / : &lt; &gt; ? [ \ ] | anything in the range 0x00-0x1F and 0x7F.
+		</li>
+		<li>
+			Perform a generic translation of the name without consideration for existing names:
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					<em>underscore parts</em> is <em>name</em> broken into parts delimited by underscore.
+				</li>
+				<li>
+					For <em>part 1</em> in these <em>underscore parts</em>:
+				</li>
+				<li>
+					<ul class="algorithmNest">
+						<li>
+							<em>period parts</em> is <em>part 1</em> broken into parts delimited by period.
+						</li>
+						<li>
+							For <em>part 2</em> in <em>period parts</em>:
+						</li>
+						<li>
+							<ul class="algorithmNest">
+								<li>
+									If <em>part 2</em> starts with an uppercase letter:
+								</li>
+								<li>
+									<ul class="algorithmNest">
+										<li>
+											Add an underscore to the end of the part.
+										</li>
+									</ul>
+								</li>
+							</ul>
+						<li>
+							Rejoin <em>period parts</em> with periods.
+						</li>
+					</ul>
+				</li>
+				<li>
+					Rejoin <em>underscore parts</em> with underscores.
+				</li>
+				<li>
+					If the revised <em>name</em> is longer than <em>maximum length</em>:
+				</li>
+				<li>
+					<ul class="algorithmNest">
+						<li>
+							Remove as many characters from the end of <em>name</em> as needed to make <em>name</em> no longer than <em>maximum length</em>.
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			If <em>name</em> is unique:
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					Stop.
+				</li>
+			</ul>
+		</li>
+		<li>
+			If <em>name</em> is not unique:
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					Remove as many characters from the end of <em>name</em> as needed to make <em>name</em> no longer than <em>maximum length</em> minus 15.
+				</li>
+				<li>
+					Starting with 000000000000001, add 15 zero filled characters to the name.
+				</li>
+				<li>
+					If <em>name</em> is unique:
+				</li>
+				<li>
+					<ul class="algorithmNest">
+						<li>
+							Stop.
+						</li>
+					</ul>
+				</li>
+				<li>
+					Otherwise increment the number by 1 and repeat until a unique name is found or 999999999999999 is reached.
+				</li>
+			</ul>
+		</li>
+		<li>
+			If <em>name</em> is not unique:
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					<em>number</em> is 1.
+				</li>
+				<li>
+					<em>name</em> is <em>number</em>.
+				</li>
+				<li>
+					If <em>name</em> is unique:
+				</li>
+				<li>
+					<ul class="algorithmNest">
+						<li>
+							Stop.
+						</li>
+					</ul>
+				</li>
+				<li>
+					Otherwise increment number by 1 and repeat until a unique name is found or all possible numbers in a string <em>maximum length</em> long has been reached.
+				</li>
+			</ul>
+		</li>
+		<li>
+			If <em>name</em> is not unique:
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					Raise an error and let the user know that after trying more than 10<sup>255</sup> names, nothing unique could be found.
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+	<h4>
+		Examples
+	</h4>
+	<table class="evenColumns">
+		<tr>
+			<th>glyph name</th>
+			<th>file name</th>
+		</tr>
+		<tr>
+			<td>a</td>
+			<td>a</td>
+		</tr>
+		<tr>
+			<td>A</td>
+			<td>A_</td>
+		</tr>
+		<tr>
+			<td>A.alt</td>
+			<td>A_.alt</td>
+		</tr>
+		<tr>
+			<td>A.Alt</td>
+			<td>A_.Alt_ </td>
+		</tr>
+		<tr>
+			<td>T_H</td>
+			<td>T__H_</td>
+		</tr>
+		<tr>
+			<td>T_h</td>
+			<td>T__h</td>
+		</tr>
+		<tr>
+			<td>t_h</td>
+			<td>t_h</td>
+		</tr>
+		<tr>
+			<td>F_F_I</td>
+			<td>F__F__I_</td>
+		</tr>
+		<tr>
+			<td>f_f_i</td>
+			<td>f_f_i</td>
+		</tr>
+		<tr>
+			<td> Aacute_V.swash </td>
+			<td> Aacute__V_.swash </td>
+		</tr>
+		<tr>
+			<td>.notdef</td>
+			<td>_notdef</td>
+		</tr>
+	</table>
+
+	<h4>
+		Example implementation:
+	</h4>
+	<pre class="prettyprint">
+illegalCharacters = "\" * + / : &lt; &gt; ? [ \ ] | \0".split(" ")
+illegalCharacters += [chr(i) for i in range(1, 32)]
+illegalCharacters += [chr(0x7F)]
+
+def userNameToFileName(userName, existing=[], prefix="", suffix=""):
+    """
+    &gt;&gt;&gt; userNameToFileName(u"a")
+    u'a'
+    &gt;&gt;&gt; userNameToFileName(u"A")
+    u'A_'
+    &gt;&gt;&gt; userNameToFileName(u"a.alt")
+    u'a.alt'
+    &gt;&gt;&gt; userNameToFileName(u"A.alt")
+    u'A_.alt'
+    &gt;&gt;&gt; userNameToFileName(u"a.Alt")
+    u'a.Alt_'
+    &gt;&gt;&gt; userNameToFileName(u"A.alt")
+    u'A_.alt'
+    &gt;&gt;&gt; userNameToFileName(u"T_H")
+    u'T__H_'
+    &gt;&gt;&gt; userNameToFileName(u"T_h")
+    u'T__h'
+    &gt;&gt;&gt; userNameToFileName(u"t_h")
+    u't_h'
+    &gt;&gt;&gt; userNameToFileName(u"F_F_I")
+    u'F__F__I_'
+    &gt;&gt;&gt; userNameToFileName(u"f_f_i")
+    u'f_f_i'
+    &gt;&gt;&gt; userNameToFileName(u"Aacute_V.swash")
+    u'Aacute__V_.swash'
+    &gt;&gt;&gt; userNameToFileName(u".notdef")
+    u'_notdef'
+    """
+    # the incoming name must be a unicode string
+    assert isinstance(userName, unicode),
+      "The value for userName must be a unicode string."
+    # establish the prefix and suffix lengths
+    prefixLength = len(prefix)
+    suffixLength = len(suffix)
+    # filter illegal characters
+    for c in illegalCharacters:
+      userName = userName.replace(c, "")
+    # replace an initial . with an _
+    if userName[0] == ".":
+      userName = "_" + userName[1:]
+    # replace iniatl uppercase characters in parts delimited
+    # by _ and then . with the character followed by an underscore
+    underscoreParts = []
+    for underscorePart in userName.split("_"):
+      periodParts = []
+      for periodPart in underscorePart.split("."):
+        if len(periodPart) and periodPart[0] != periodPart[0].lower():
+          periodPart += "_"
+        periodParts.append(periodPart)
+      underscorePart = ".".join(periodParts)
+      underscoreParts.append(underscorePart)
+    userName = "_".join(underscoreParts)
+    # clip to 255
+    sliceLength = 255 - prefixLength - suffixLength
+    userName = userName[:sliceLength]
+    # test for clash
+    fullName = prefix + userName + suffix
+    if fullName in existing:
+      fullName = handleClash1(userName, existing, prefix, suffix)
+    # finished
+    return fullName
+
+def handleClash1(userName, existing=[], prefix="", suffix=""):
+  """
+  &gt;&gt;&gt; prefix = ("0" * 5) + "."
+  &gt;&gt;&gt; suffix = "." + ("0" * 10)
+  &gt;&gt;&gt; existing = ["A" * 20]
+
+  &gt;&gt;&gt; e = list(existing)
+  &gt;&gt;&gt; handleClash1(userName="A" * 20, existing=e,
+  ...   prefix=prefix, suffix=suffix)
+  '00000.AAAAA000000000000001.0000000000'
+
+  &gt;&gt;&gt; e = list(existing)
+  &gt;&gt;&gt; e.append(prefix + "AAAAA" + "1".zfill(15) + suffix)
+  &gt;&gt;&gt; handleClash1(userName="A" * 20, existing=e,
+  ...   prefix=prefix, suffix=suffix)
+  '00000.AAAAA000000000000002.0000000000'
+
+  &gt;&gt;&gt; e = list(existing)
+  &gt;&gt;&gt; e.append(prefix + "AAAAA" + "2".zfill(15) + suffix)
+  &gt;&gt;&gt; handleClash1(userName="A" * 20, existing=e,
+  ...   prefix=prefix, suffix=suffix)
+  '00000.AAAAA000000000000001.0000000000'
+  """
+  # silce 15 characters off of the user name
+  userName = userName[:-15]
+  finalName = None
+  # try to add numbers to create a unique name
+  counter = 1
+  while finalName is None:
+    name = userName + str(counter).zfill(15)
+    fullName = prefix + name + suffix
+    if fullName not in existing:
+      finalName = fullName
+      break
+    else:
+      counter += 1
+    if counter &gt;= 999999999999999:
+      break
+  # if there is a clash, go to the next fallback
+  if finalName is None:
+    finalName = handleClash2(existing, prefix, suffix)
+  # finished
+  return finalName
+
+def handleClash2(existing=[], prefix="", suffix=""):
+  """
+  &gt;&gt;&gt; prefix = ("0" * 5) + "."
+  &gt;&gt;&gt; suffix = "." + ("0" * 10)
+  &gt;&gt;&gt; existing = [prefix + str(i) + suffix for i in range(100)]
+
+  &gt;&gt;&gt; e = list(existing)
+  &gt;&gt;&gt; handleClash2(existing=e, prefix=prefix, suffix=suffix)
+  '00000.100.0000000000'
+
+  &gt;&gt;&gt; e = list(existing)
+  &gt;&gt;&gt; e.remove(prefix + "1" + suffix)
+  &gt;&gt;&gt; handleClash2(existing=e, prefix=prefix, suffix=suffix)
+  '00000.1.0000000000'
+
+  &gt;&gt;&gt; e = list(existing)
+  &gt;&gt;&gt; e.remove(prefix + "2" + suffix)
+  &gt;&gt;&gt; handleClash2(existing=e, prefix=prefix, suffix=suffix)
+  '00000.2.0000000000'
+  """
+  # calculate the longest possible string
+  maxLength = 255 - len(prefix) - len(suffix)
+  maxValue = int("9" * maxLength)
+  # try to find a number
+  finalName = None
+  counter = 1
+  while finalName is None:
+    fullName = prefix + str(counter) + suffix
+    if fullName not in existing:
+      finalName = fullName
+      break
+    else:
+      counter += 1
+    if counter &gt;= maxValue:
+      break
+  # raise an error if nothing has been found
+  if finalName is None:
+    raise NameTranslationError("No unique name could be found.")
+  # finished
+  return finalName
+	</pre>
+
+	<!-- Color Definitions -->
+
+	<h3 id="colors">
+		Color Definitions
+	</h3>
+	<p>
+		Several elements have a color attribute that defines a color value to be applied to the element. A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the <a href="http://en.wikipedia.org/wiki/SRGB">sRGB</a> color space.
+	</p>
+
+	<h4>
+		Examples
+	</h4>
+	<table class="evenColumns">
+		<tr>
+			<th>string</th>
+			<th>red component</th>
+			<th>green component</th>
+			<th>blue component</th>
+			<th>alpha component</th>
+		</tr>
+		<tr>
+			<td>1,0,0,1</td>
+			<td>1.0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1.0</td>
+		</tr>
+		<tr>
+			<td>0,.5,0,.5</td>
+			<td>0</td>
+			<td>0.5</td>
+			<td>0</td>
+			<td>0.5</td>
+		</tr>
+	</table>
+</div>
