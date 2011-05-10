@@ -29,8 +29,10 @@ navigationRE = re.compile(
 def convertPages(directory, currentDepth=0):
     for fileName in os.listdir(directory):
         path = os.path.join(directory, fileName)
+        html = None
         if os.path.isdir(path):
             convertPages(path, currentDepth=currentDepth+1)
+            continue
         elif os.path.splitext(fileName)[-1] == ".textile":
             print "Converting %s..." % path.replace(siteDirectory, "")[1:]
             # make the html path
@@ -41,8 +43,21 @@ def convertPages(directory, currentDepth=0):
             text = f.read()
             f.close()
             # convert
-            processedText = textile.textile(text)
-            html = templateText.replace("<!-- textile content -->", processedText)
+            html = textile.textile(text)
+        elif os.path.splitext(fileName)[-1] == ".html":
+            # skip templates and stubs
+            if fileName == "navigationstub.html":
+                continue
+            if fileName == "template.html":
+                continue
+            # read the raw text
+            print "Reading %s..." % path.replace(siteDirectory, "")[1:]
+            htmlPath = path
+            f = open(path, "rb")
+            html = f.read()
+            f.close()
+        if html is not None:
+            html = templateText.replace("<!-- textile content -->", html)
             # insert the sub navigation if available
             navigationstubPath = os.path.join(directory, "navigationstub.html")
             if os.path.exists(navigationstubPath):
@@ -60,6 +75,8 @@ def convertPages(directory, currentDepth=0):
                 url = url[3:]
                 html = html.replace(comment, url)
             # write the html
+            if os.path.exists(htmlPath):
+                os.remove(htmlPath)
             f = open(htmlPath, "wb")
             f.write(html)
             f.close()
