@@ -1,6 +1,0 @@
-<div class="section">
-
-h1. data directory (draft)
-
-This directory allows authoring tools to store application specific data that is too complex or too large for "lib.plist":lib.html and the "lib element in GLIF":glif.html#lib. The items within the directory may be either files or directories. The only requirement is that the top level files and directories follow the same "reverse domain naming scheme":conventions.html#reversedomain used in the lib. Authoring tools are responsible for their own sections of the data directory and they must not delete or modify any other sections of the data directory belonging to other tools unless given permission to do so.
-</div>
