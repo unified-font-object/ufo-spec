@@ -1,0 +1,37 @@
+<div class="section">
+
+	<h1>lib.plist (draft)</h1>
+
+	<table class="evenColumns">
+		<tr>
+			<td> <strong>File Format</strong> </td>
+			<td> <a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">XML Property List</a> </td>
+		</tr>
+	</table>
+
+	<p>
+		This file is a place to store authoring tool specific, user specific or otherwise arbitrary data for the font. It is optional. If it is not defined in the UFO, there is no lib data.
+	</p>
+	<p>
+		Data that is too complex or too large for the lib can be stored in the <a href="data.html">data directory</a>.
+	</p>
+
+	<h2>Specification</h2>
+	<p>
+		The property list data consists of a dictionary at the top level. In order to prevent conflicts in the lib, keys in the top level should follow a <a href="conventions.html#reversedomain">reverse domain naming scheme</a>. It is recommended that the data stored as a value be as shallow as possible.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+  &lt;key&gt;org.robofab.scripts.SomeData&lt;/key&gt;
+  &lt;string&gt;Hello World.&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+	</pre>
+
+</div>
