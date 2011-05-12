@@ -1,0 +1,1175 @@
+<div class="section">
+
+	<h1>fontinfo.plist (draft)</h1>
+
+	<table class="evenColumns">
+		<tr>
+			<td><strong>File Format</strong></td>
+			<td><a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">XML Property List</a></td>
+		</tr>
+	</table>
+
+	<p>
+		This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
+	</p>
+
+	<h2>Specification</h2>
+
+	<!-- Generic Identification -->
+
+	<h4 id="genericidentification">Generic Identification Information</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>familyName</td>
+			<td>string</td>
+			<td>Family name.</td>
+		</tr>
+		<tr>
+			<td>styleName</td>
+			<td>string</td>
+			<td>Style name.</td>
+		</tr>
+		<tr>
+			<td>styleMapFamilyName</td>
+			<td>string</td>
+			<td>Family name used for bold, italic and bold italic style mapping.</td>
+		</tr>
+		<tr>
+			<td>styleMapStyleName</td>
+			<td>string</td>
+			<td>Style map style. The possible values are <em>regular</em>, <em>italic</em>, <em>bold</em> and <em>bold italic</em>. These are case sensitive.</td>
+		</tr>
+		<tr>
+			<td>versionMajor</td>
+			<td>integer</td>
+			<td>Major version.</td>
+		</tr>
+		<tr>
+			<td>versionMinor</td>
+			<td>non-negative integer</td>
+			<td>Minor version.</td>
+		</tr>
+		<tr>
+			<td>year</td>
+			<td>integer</td>
+			<td>The year the font was created. This attribute is deprecated as of version 2. It's presence should not be relied upon by authoring tools. However, it may occur in a font's info so authoring tools should preserve it if present.</td>
+		</tr>
+	</table>
+
+	<!-- Generic Legal -->
+
+	<h4 id="genericlegal">Generic Legal Information</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>copyright</td>
+			<td>string</td>
+			<td>Copyright statement.</td>
+		</tr>
+		<tr>
+			<td>trademark</td>
+			<td>string</td>
+			<td>Trademark statement.</td>
+		</tr>
+	</table>
+
+	<!-- Generic Dimensions -->
+
+	<h4 id="genericdimensions">Generic Dimension Information</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>unitsPerEm</td>
+			<td>non-negative integer or float</td>
+			<td>Units per em.</td>
+		</tr>
+		<tr>
+			<td>descender</td>
+			<td>integer or float</td>
+			<td>Descender value.</td>
+		</tr>
+		<tr>
+			<td>xHeight</td>
+			<td>integer or float</td>
+			<td>x-height value.</td>
+		</tr>
+		<tr>
+			<td>capHeight</td>
+			<td>integer or float</td>
+			<td>Cap height value.</td>
+		</tr>
+		<tr>
+			<td>ascender</td>
+			<td>integer or float</td>
+			<td>Ascender value.</td>
+		</tr>
+		<tr>
+			<td>italicAngle</td>
+			<td>float</td>
+			<td>Italic angle.</td>
+		</tr>
+	</table>
+
+	<!-- Generic Misc. -->
+
+	<h4 id="genericmiscellaneous">Generic Miscellaneous Information</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>note</td>
+			<td>string</td>
+			<td>Arbitrary note about the font.</td>
+		</tr>
+	</table>
+
+	<!-- OpenType head Table -->
+
+	<h4 id="opentypehead">OpenType head Table Fields</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>openTypeHeadCreated</td>
+			<td>string</td>
+			<td>Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month must be in the range 1-12 and the day must be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour must be in the range 0:23. The minute and second must each be in the range 0-59.</td>
+		</tr>
+		<tr>
+			<td>openTypeHeadLowestRecPPEM</td>
+			<td>non-negative integer or float</td>
+			<td>Smallest readable size in pixels. Corresponds to the OpenType head table <code>lowestRecPPEM</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeHeadFlags</td>
+			<td>number list</td>
+			<td>A list of bit numbers indicating the flags. The bit numbers are listed in the OpenType head specification. Corresponds to the OpenType head table <code>flags</code> field.</td>
+		</tr>
+	</table>
+
+	<h5>Notes</h5>
+	<p>
+		<a href="http://www.microsoft.com/typography/otspec/head.htm">The OpenType head table specification.</a>
+	</p>
+	<ol>
+		<li><code>fontRevision</code> can be derived from the generic <code>versionMajor</code> and <code>versionMinor</code> attributes.</li>
+		<li><code>checkSumAdjustment</code> should be calculated by the compiler.</li>
+		<li><code>magicNumber</code> should be set by the compiler.</li>
+		<li><code>unitsPerEm</code> is found at the generic <code>unitsPerEm</code> attribute.</li>
+		<li><code>created</code> can be calculated by subtracting the <em>12:00 midnight, January 1, 1904</em> (as specified in the head table documentation) from the date stored at <code>openTypeHeadCreated</code>.</li>
+		<li><code>modified</code> should be set by the compiler.</li>
+		<li><code>xMin, yMin, xMax</code> and <code>yMax</code> should be calculated by the compiler.</li>
+		<li><code>macStyle</code> can be derived from the generic <code>styleMapStyle</code> attribute.</li>
+		<li><code>indexToLocFormat</code> should be set by the compiler.</li>
+		<li><code>glyphDataFormat</code> should be set by the compiler.</li>
+	</ol>
+
+	<!-- OpenType hhea Table -->
+
+	<h4 id="opentypehhea">OpenType hhea Table Fields</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>openTypeHheaAscender</td>
+			<td>integer or float</td>
+			<td>Ascender value. Corresponds to the OpenType hhea table <code>Ascender</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeHheaDescender</td>
+			<td>integer or float</td>
+			<td>Descender value. Corresponds to the OpenType hhea table <code>Descender</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeHheaLineGap</td>
+			<td>integer or float</td>
+			<td>Line gap value. Corresponds to the OpenType hhea table <code>LineGap</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeHheaCaretSlopeRise</td>
+			<td>integer</td>
+			<td>Caret slope rise value. Corresponds to the OpenType hhea table <code>caretSlopeRise</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeHheaCaretSlopeRun</td>
+			<td>integer</td>
+			<td>Caret slope run value. Corresponds to the OpenType hhea table <code>caretSlopeRun</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeHheaCaretOffset</td>
+			<td>integer or float</td>
+			<td>Caret offset value. Corresponds to the OpenType hhea table <code>caretOffset</code> field.</td>
+		</tr>
+	</table>
+
+	<h5>Notes</h5>
+	<p>
+		<a href="http://www.microsoft.com/typography/otspec/hhea.htm">The OpenType hhea table specification</a>
+	</p>
+	<ol>
+		<li><code>advanceWidthMax</code> should be calculated by the compiler.</li>
+		<li><code>minLeftSideBearing</code> should be calculated by the compiler.</li>
+		<li><code>minRightSideBearing</code> should be calculated by the compiler.</li>
+		<li><code>xMaxExtent</code> should be calculated by the compiler.</li>
+		<li><code>metricDataFormat</code> should be set by the compiler.</li>
+		<li><code>numberOfHMetrics</code> should be calculated by the compiler.</li>
+	</ol>
+
+	<!-- OpenType name Table -->
+
+	<h4 id="opentypename">OpenType Name Table Fields</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>openTypeNameDesigner</td>
+			<td>string</td>
+			<td>Designer name. Corresponds to the OpenType name table name ID 9.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameDesignerURL</td>
+			<td>string</td>
+			<td>URL for the designer. Corresponds to the OpenType name table name ID 12.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameManufacturer</td>
+			<td>string</td>
+			<td>Manufacturer name. Corresponds to the OpenType name table name ID 8.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameManufacturerURL</td>
+			<td>string</td>
+			<td>Manufacturer URL. Corresponds to the OpenType name table name ID 11.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameLicense</td>
+			<td>string</td>
+			<td>License text. Corresponds to the OpenType name table name ID 13.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameLicenseURL</td>
+			<td>string</td>
+			<td>URL for the license. Corresponds to the OpenType name table name ID 14.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameVersion</td>
+			<td>string</td>
+			<td>Version string. Corresponds to the OpenType name table name ID 5.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameUniqueID</td>
+			<td>string</td>
+			<td>Unique ID string. Corresponds to the OpenType name table name ID 3.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameDescription</td>
+			<td>string</td>
+			<td>Description of the font. Corresponds to the OpenType name table name ID 10.</td>
+		</tr>
+		<tr>
+			<td>openTypeNamePreferredFamilyName</td>
+			<td>string</td>
+			<td>Preferred family name. Corresponds to the OpenType name table name ID 16.</td>
+		</tr>
+		<tr>
+			<td>openTypeNamePreferredSubfamilyName</td>
+			<td>string</td>
+			<td>Preferred subfamily name. Corresponds to the OpenType name table name ID 17.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameCompatibleFullName</td>
+			<td>string</td>
+			<td>Compatible full name. Corresponds to the OpenType name table name ID 18.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameSampleText</td>
+			<td>string</td>
+			<td>Sample text. Corresponds to the OpenType name table name ID 20.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameWWSFamilyName</td>
+			<td>string</td>
+			<td>WWS family name. Corresponds to the OpenType name table name ID 21.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameWWSSubfamilyName</td>
+			<td>string</td>
+			<td>WWS Subfamily name. Corresponds to the OpenType name table name ID 22.</td>
+		</tr>
+		<tr>
+			<td>openTypeNameRecords</td>
+			<td>list</td>
+			<td>A list of name records. This name record storage area is intended for records that require platform, encoding and or language localization.</td>
+		</tr>
+	</table>
+
+	<h5>Name Record Format</h5>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>nameID</td>
+			<td>non-negative integer</td>
+			<td>The name ID.</td>
+		</tr>
+		<tr>
+			<td>platformID</td>
+			<td>non-negative integer</td>
+			<td>The platform ID.</td>
+		</tr>
+		<tr>
+			<td>encodingID</td>
+			<td>non-negative integer</td>
+			<td>The encoding ID.</td>
+		</tr>
+		<tr>
+			<td>languageID</td>
+			<td>non-negative integer</td>
+			<td>The language ID.</td>
+		</tr>
+		<tr>
+			<td>string</td>
+			<td>string</td>
+			<td>The string value for the record.</td>
+		</tr>
+	</table>
+
+	<p>
+		Records must have a unique <code>nameID</code>, <code>platformID</code>, <code>encodingID</code> and <code>languageID</code> combination.
+	</p>
+
+	<h5>Notes</h5>
+	<p>
+		<a href="http://www.microsoft.com/typography/otspec/name.htm">The OpenType name table specification.</a>
+	</p>
+	<ol>
+		<li><em>Name ID 0 (copyright)</em> is found at the generic <code>copyright</code> attribute.</li>
+		<li><em>Name ID 1 (font family name)</em> is found at the generic <code>styleMapFamily</code> attribute.</li>
+		<li><em>Name ID 2 (font subfamily name)</em> can be interpreted from the generic <code>styleMapStyle</code> attribute.</li>
+		<li><em>Name ID 4 (full font name)</em> can be created from the generic <code>styleMapFamily</code> and <code>styleMapStyle</code> attributes following the rules defined in the specification.</li>
+		<li><em>Name ID 6 (Postscript name)</em> can be found at <code>postscriptFontName</code>. This should follow the rules defined in the specification.</li>
+		<li><em>Name ID 7 (trademark)</em> is found at the generic <code>trademark</code> attribute.</li>
+		<li>To reiterate the point stated above, these notes are merely provided for clarity. Compilers can and should follow their own recipes for creating the name table. These notes make no considerations for platform specific variations in or application specific limitations on the strings.</li>
+	</ol>
+
+	<!-- OpenType OS/2 Table -->
+
+	<h4 id="opentypeos/2">OpenType OS/2 Table Fields</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>openTypeOS2WidthClass</td>
+			<td>integer</td>
+			<td>Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table <code>usWidthClass</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2WeightClass</td>
+			<td>integer</td>
+			<td>Weight class value. Must be a non-negative integer. Corresponds to the OpenType OS/2 table <code>usWeightClass</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2Selection</td>
+			<td>number list</td>
+			<td>A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>selection</code> field. <strong>Note:</strong> Bits 0 (italic), 5 (bold) and 6 (regular) must not be set here. These bits should be taken from the generic <em>styleMapStyle</em> attribute.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2VendorID</td>
+			<td>string</td>
+			<td>Four character identifier for the creator of the font. Corresponds to the OpenType OS/2 table <code>achVendID</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2Panose</td>
+			<td>number list</td>
+			<td>The list must contain 10 non-negative integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table <code>Panose</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2FamilyClass</td>
+			<td>number list</td>
+			<td>Two integers representing the IBM font class and font subclass of the font. The first number, representing the class ID, must be in the range 0-14. The second number, representing the subclass, must be in the range 0-15. The numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>sFamilyClass</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2UnicodeRanges</td>
+			<td>number list</td>
+			<td>A list of bit numbers that are supported Unicode ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>ulUnicodeRange1</code>, <code>ulUnicodeRange2</code>, <code>ulUnicodeRange3</code> and <code>ulUnicodeRange4</code> fields.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2CodePageRanges</td>
+			<td>number list</td>
+			<td>A list of bit numbers that are supported code page ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>ulCodePageRange1</code> and <code>ulCodePageRange2</code> fields.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2TypoAscender</td>
+			<td>integer or float</td>
+			<td>Ascender value. Corresponds to the OpenType OS/2 table <code>sTypoAscender</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2TypoDescender</td>
+			<td>integer or float</td>
+			<td>Descender value. Corresponds to the OpenType OS/2 table <code>sTypoDescender</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2TypoLineGap</td>
+			<td>integer or float</td>
+			<td>Line gap value. Corresponds to the OpenType OS/2 table <code>sTypoLineGap</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2WinAscent</td>
+			<td>non-negative integer or float</td>
+			<td>Ascender value. Corresponds to the OpenType OS/2 table <code>usWinAscent</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2WinDescent</td>
+			<td>non-negative integer or float</td>
+			<td>Descender value. Corresponds to the OpenType OS/2 table <code>usWinDescent</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2Type</td>
+			<td>number list</td>
+			<td>A list of bit numbers indicating the embedding type. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>fsType</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2SubscriptXSize</td>
+			<td>integer or float</td>
+			<td>Subscript horizontal font size. Corresponds to the OpenType OS/2 table <code>ySubscriptXSize</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2SubscriptYSize</td>
+			<td>integer or float</td>
+			<td>Subscript vertical font size. Corresponds to the OpenType OS/2 table <code>ySubscriptYSize</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2SubscriptXOffset</td>
+			<td>integer or float</td>
+			<td>Subscript x offset. Corresponds to the OpenType OS/2 table <code>ySubscriptXOffset</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2SubscriptYOffset</td>
+			<td>integer or float</td>
+			<td>Subscript y offset. Corresponds to the OpenType OS/2 table <code>ySubscriptYOffset</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2SuperscriptXSize</td>
+			<td>integer or float</td>
+			<td>Superscript horizontal font size. Corresponds to the OpenType OS/2 table <code>ySuperscriptXSize</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2SuperscriptYSize</td>
+			<td>integer or float</td>
+			<td>Superscript vertical font size. Corresponds to the OpenType OS/2 table <code>ySuperscriptYSize</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2SuperscriptXOffset</td>
+			<td>integer or float</td>
+			<td>Superscript x offset. Corresponds to the OpenType OS/2 table <code>ySuperscriptXOffset</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2SuperscriptYOffset</td>
+			<td>integer or float</td>
+			<td>Superscript y offset. Corresponds to the OpenType OS/2 table <code>ySuperscriptYOffset</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2StrikeoutSize</td>
+			<td>integer or float</td>
+			<td>Strikeout size. Corresponds to the OpenType OS/2 table <code>yStrikeoutSize</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeOS2StrikeoutPosition</td>
+			<td>integer or float</td>
+			<td>Strikeout position. Corresponds to the OpenType OS/2 table <code>yStrikeoutPosition</code> field.</td>
+		</tr>
+	</table>
+
+	<h5>Notes</h5>
+	<p>
+		<a href="http://www.microsoft.com/typography/otspec/os2.htm">The OpenType OS/2 table specification.</a><br />
+		<a href="http://www.panose.com/ProductsServices/pan1.aspx">The Panose specification.</a>
+	</p>
+	<ol>
+		<li><code>xAvgCharWidth</code> should be calculated by the compiler.</li>
+		<li><code>sFamilyClass</code> is not supported.</li>
+		<li><code>fsSelection</code> can be derived from the generic <em>styleMapStyle</em> attribute. (See question below.)</li>
+		<li><code>usFirstCharIndex</code> should be calculated by the compiler.</li>
+		<li><code>usLastCharIndex</code> should be calculated by the compiler.</li>
+		<li><code>sxHeight</code> is found at the generic <em>xHeight</em> attribute.</li>
+		<li><code>sCapHeight</code> is found at the generic <em>capHeight</em> attribute.</li>
+		<li><code>usDefaultChar</code> should be calculated by the compiler. OpenType fonts are required to have a .notdef character for fallback.</li>
+		<li><code>usBreakChar</code> should be calculated by the compiler.</li>
+		<li><code>usMaxContext</code> should be calculated by the compiler.</li>
+	</ol>
+
+	<!-- OpenType vhea Table -->
+
+	<h4 id="opentypevhea">OpenType vhea Table Fields</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>openTypeVheaVertTypoAscender</td>
+			<td>integer or float</td>
+			<td>Ascender value. Corresponds to the OpenType vhea table <code>vertTypoAscender</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeVheaVertTypoDescender</td>
+			<td>integer or float</td>
+			<td>Descender value. Corresponds to the OpenType vhea table <code>vertTypoDescender</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeVheaVertTypoLineGap</td>
+			<td>integer or float</td>
+			<td>Line gap value. Corresponds to the OpenType vhea table <code>vertTypoLineGap</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeVheaCaretSlopeRise</td>
+			<td>integer</td>
+			<td>Caret slope rise value. Corresponds to the OpenType vhea table <code>caretSlopeRise</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeVheaCaretSlopeRun</td>
+			<td>integer</td>
+			<td>Caret slope run value. Corresponds to the OpenType vhea table <code>caretSlopeRun</code> field.</td>
+		</tr>
+		<tr>
+			<td>openTypeVheaCaretOffset</td>
+			<td>integer or float</td>
+			<td>Caret offset value. Corresponds to the OpenType vhea table <code>caretOffset</code> field.</td>
+		</tr>
+	</table>
+
+	<h5>Notes</h5>
+	<p>
+		<a href="http://www.microsoft.com/typography/otspec/hhea.htm">The OpenType hhea table specification</a>
+	</p>
+	<ol>
+		<li><code>advanceHeightMax</code> should be calculated by the compiler.</li>
+		<li><code>minTopSideBearing</code> should be calculated by the compiler.</li>
+		<li><code>minBottomSideBearing</code> should be calculated by the compiler.</li>
+		<li><code>yMaxExtent</code> should be calculated by the compiler.</li>
+		<li><code>metricDataFormat</code> should be set by the compiler.</li>
+		<li><code>numberOfHMetrics</code> should be calculated by the compiler.</li>
+	</ol>
+
+	<!-- PostScript Data -->
+
+	<h4 id="postscript">PostScript Specific Data</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>postscriptFontName</td>
+			<td>string</td>
+			<td>Name to be used for the <code>FontName</code> field in Type 1/CFF table.</td>
+		</tr>
+		<tr>
+			<td>postscriptFullName</td>
+			<td>string</td>
+			<td>Name to be used for the <code>FullName</code> field in Type 1/CFF table.</td>
+		</tr>
+		<tr>
+			<td>postscriptSlantAngle</td>
+			<td>float</td>
+			<td>Artificial slant angle.</td>
+		</tr>
+		<tr>
+			<td>postscriptUniqueID</td>
+			<td>integer</td>
+			<td>A unique ID number as defined in the Type 1/CFF specification.</td>
+		</tr>
+		<tr>
+			<td>postscriptUnderlineThickness</td>
+			<td>integer or float</td>
+			<td>Underline thickness value. Corresponds to the Type 1/CFF/post table <code>UnderlineThickness</code> field.</td>
+		</tr>
+		<tr>
+			<td>postscriptUnderlinePosition</td>
+			<td>integer or float</td>
+			<td>Underline position value. Corresponds to the Type 1/CFF/post table <code>UnderlinePosition</code> field.</td>
+		</tr>
+		<tr>
+			<td>postscriptIsFixedPitch</td>
+			<td>boolean</td>
+			<td>Indicates if the font is monospaced. A compiler could calculate this automatically, but the designer may wish to override this setting. This corresponds to the Type 1/CFF <code>isFixedPitched</code> field</td>
+		</tr>
+		<tr>
+			<td>postscriptBlueValues</td>
+			<td>number list</td>
+			<td>A list of up to 14 integers or floats specifying the values that should be in the Type 1/CFF BlueValues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification.</td>
+		</tr>
+		<tr>
+			<td>postscriptOtherBlues</td>
+			<td>number list</td>
+			<td>A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF OtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification.</td>
+		</tr>
+		<tr>
+			<td>postscriptFamilyBlues</td>
+			<td>number list</td>
+			<td>A list of up to 14 integers or floats specifying the values that should be in the Type 1/CFF FamilyBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification.</td>
+		</tr>
+		<tr>
+			<td>postscriptFamilyOtherBlues</td>
+			<td>number list</td>
+			<td>A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF FamilyOtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification.</td>
+		</tr>
+		<tr>
+			<td>postscriptStemSnapH</td>
+			<td>number list</td>
+			<td>List of horizontal stems sorted in ascending order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF <code>StemSnapH</code> field.</td>
+		</tr>
+		<tr>
+			<td>postscriptStemSnapV</td>
+			<td>number list</td>
+			<td>List of vertical stems sorted in ascending order. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF <code>StemSnapV</code> field.</td>
+		</tr>
+		<tr>
+			<td>postscriptBlueFuzz</td>
+			<td>integer or float</td>
+			<td>BlueFuzz value. This corresponds to the Type 1/CFF <code>BlueFuzz</code> field.</td>
+		</tr>
+		<tr>
+			<td>postscriptBlueShift</td>
+			<td>integer or float</td>
+			<td>BlueShift value. This corresponds to the Type 1/CFF <code>BlueShift</code> field.</td>
+		</tr>
+		<tr>
+			<td>postscriptBlueScale</td>
+			<td>float</td>
+			<td>BlueScale value. This corresponds to the Type 1/CFF <code>BlueScale</code> field.</td>
+		</tr>
+		<tr>
+			<td>postscriptForceBold</td>
+			<td>boolean</td>
+			<td>Indicates how the Type 1/CFF <code>ForceBold</code> field should be set.</td>
+		</tr>
+		<tr>
+			<td>postscriptDefaultWidthX</td>
+			<td>integer or float</td>
+			<td>Default width for glyphs.</td>
+		</tr>
+		<tr>
+			<td>postscriptNominalWidthX</td>
+			<td>integer or float</td>
+			<td>Nominal width for glyphs.</td>
+		</tr>
+		<tr>
+			<td>postscriptWeightName</td>
+			<td>string</td>
+			<td>A string indicating the overall weight of the font. This corresponds to the Type 1/CFF Weight field. It should be in sync with the <code>openTypeOS2WeightClass</code> value.</td>
+		</tr>
+		<tr>
+			<td>postscriptDefaultCharacter</td>
+			<td>string</td>
+			<td>The name of the glyph that should be used as the default character in PFM files.</td>
+		</tr>
+		<tr>
+			<td>postscriptWindowsCharacterSet</td>
+			<td>integer</td>
+			<td>The Windows character set. The values are defined below.</td>
+		</tr>
+	</table>
+	<h5>postscriptWindowsCharacterSet Options</h5>
+	<table>
+		<tr>
+			<td>1</td>
+			<td>ANSI</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Default</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>Symbol</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>Macintosh</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Shift JIS</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>Hangul</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td>Hangul (Johab)</td>
+		</tr>
+		<tr>
+			<td>8</td>
+			<td>GB2312</td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td>Chinese BIG5</td>
+		</tr>
+		<tr>
+			<td>10</td>
+			<td>Greek</td>
+		</tr>
+		<tr>
+			<td>11</td>
+			<td>Turkish</td>
+		</tr>
+		<tr>
+			<td>12</td>
+			<td>Vietnamese</td>
+		</tr>
+		<tr>
+			<td>13</td>
+			<td>Hebrew</td>
+		</tr>
+		<tr>
+			<td>14</td>
+			<td>Arabic</td>
+		</tr>
+		<tr>
+			<td>15</td>
+			<td>Baltic</td>
+		</tr>
+		<tr>
+			<td>16</td>
+			<td>Bitstream</td>
+		</tr>
+		<tr>
+			<td>17</td>
+			<td>Cyrillic</td>
+		</tr>
+		<tr>
+			<td>18</td>
+			<td>Thai</td>
+		</tr>
+		<tr>
+			<td>19</td>
+			<td>Eastern European</td>
+		</tr>
+		<tr>
+			<td>20</td>
+			<td>OEM</td>
+		</tr>
+	</table>
+
+	<h5>Notes</h5>
+	<p>
+		<a href="http://www.microsoft.com/typography/otspec/post.htm">The OpenType post table specification.</a><br>
+		<a href="http://partners.adobe.com/public/developer/en/font/T1_SPEC.PDF">The Postscript Type 1 specification.</a><br>
+		<a href="http://www.adobe.com/devnet/font/pdfs/5176.CFF.pdf">The CFF specification.</a><br>
+	</p>
+	<ol>
+		<li>These fields are a combination of fields in the OpenType post and CFF tables as well as the Type 1 format.</li>
+		<li>The post table <code>minMemType42, maxMemType42, minMemType1</code> and <code>maxMemType1</code> fields should be set by the compiler.</li>
+		<li>The Type 1/CFF <code>StdHW</code> and <code>StdVW</code> fields can be derived by taking the first value from the <code>postscriptStemSnapH</code> and <code>postscriptStemSnapV</code> lists.</li>
+		<li>The Type 1/CFF <code>version</code> field can be derived from the generic <code>versionMajor</code> and <code>versionMinor</code> attributes.</li>
+		<li>The Type 1/CFF <code>notice</code> field is found at the generic <code>copyright</code> attribute.</li>
+		<li>The Type 1/CFF <code>FamilyName</code> field can be derived from the generic <code>familyName</code> attribute.</li>
+		<li>If <code>postscriptFullName</code> is not given, the Type 1/CFF <code>FullName</code> field can be created by combining the generic <code>familyName</code> and <code>styleName</code> attributes.</li>
+		<li>The Type 1/CFF/post table <code>italicAngle</code> field can be found at the generic <code>italicAngle</code> attribute.</li>
+	</ol>
+
+	<!-- FOND Data -->
+
+	<h4 id="fond">Macintosh FOND Resource Data</h4>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>macintoshFONDFamilyID</td>
+			<td>integer</td>
+			<td>Family ID number. Corresponds to the ffFamID in the FOND resource.</td>
+		</tr>
+		<tr>
+			<td>macintoshFONDName</td>
+			<td>String</td>
+			<td>Font name for the FOND resource.</td>
+		</tr>
+	</table>
+
+	<h5>Notes</h5>
+	<p>
+		<a href="http://www.adobe.com/devnet/font/pdfs/0091.Mac_Fond.pdf">Adobe FOND Specification</a><br>
+		<a href="http://developer.apple.com/documentation/mac/Text/Text-269.html">Apple FOND Resource Specification</a><br>
+		<a href="http://developer.apple.com/documentation/mac/Text/Text-215.html">Apple Font Family Record Specification</a><br>
+	</p>
+
+	<!-- WOFF Data -->
+
+	<h4 id="woff">WOFF Data</h4>
+	<p>
+		Many of these fields <em>can</em> be populated from generic elements, but since WOFF is a wrapper format they <em>may not</em> always be duplicated. As such, all of the WOFF fields are unique key/value pairs. All of these fields, and the sub-fields that they contain, are optional.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>woffMajorVersion</td>
+			<td>non-negative integer</td>
+			<td>Major version of the font.</td>
+		</tr>
+		<tr>
+			<td>woffMinorVersion</td>
+			<td>non-negative integer</td>
+			<td>Minor version of the font.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataUniqueID</td>
+			<td>string</td>
+			<td>Identification string. Corresponds to the WOFF <code>uniqueid</code> element <code>id</code> attribute.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataVendor</td>
+			<td>string</td>
+			<td>Font vendor. Corresponds to the WOFF <code>vendor</code> element <code>name</code> attribute.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataVendorURL</td>
+			<td>string</td>
+			<td>Font vendor URL. Corresponds to the WOFF <code>vendor</code> element <code>url</code> attribute.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataCredits</td>
+			<td>list</td>
+			<td>List of credit records. Corresponds to the WOFF <code>credits</code> element.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataDescription</td>
+			<td>string</td>
+			<td>Description string. Corresponds to the WOFF <code>description</code> element.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataDescriptionURL</td>
+			<td>string</td>
+			<td>Description URL. Corresponds to the WOFF <code>description</code> element url attribute.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataLicense</td>
+			<td>string</td>
+			<td>License string. Corresponds to the WOFF <code>license</code> element.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataLicenseID</td>
+			<td>string</td>
+			<td>License ID string. Corresponds to the WOFF <code>license</code> element <code>id</code> attribute.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataLicenseURL</td>
+			<td>string</td>
+			<td>License URL string. Corresponds to the WOFF <code>license</code> element <code>url</code> attribute.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataCopyright</td>
+			<td>string</td>
+			<td>Copyright string. Corresponds to the WOFF <code>copyright</code> element.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataTrademark</td>
+			<td>string</td>
+			<td>Trademark string. Corresponds to the WOFF <code>trademark</code> element.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataLicenseeName</td>
+			<td>string</td>
+			<td>Licensee name string. Corresponds to the WOFF <code>licensee</code> element name attribute.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataRecords</td>
+			<td>list</td>
+			<td>List of metadata records. This record storage area is intended for records that require language localization.</td>
+		</tr>
+		<tr>
+			<td>woffMetadataExtensions</td>
+			<td>list</td>
+			<td>List of metadata extension records.</td>
+		</tr>
+	</table>
+
+	<div class="editorsNote">
+		<p>
+			Need to review the final (it's not yet approved) credits localization format to make sure it will be possible in the metadataRecords or the credit record.
+		</p>
+	</div>
+
+	<h5>Credit Record</h5>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td>The name for the credit.</td>
+		</tr>
+		<tr>
+			<td>url</td>
+			<td>string</td>
+			<td>The url for the credit.</td>
+		</tr>
+		<tr>
+			<td>role</td>
+			<td>string</td>
+			<td>The role for the credit.</td>
+		</tr>
+	</table>
+
+	<h5>Metadata Records</h5>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>tag</td>
+			<td>string</td>
+			<td>The element tag of the record.</td>
+		</tr>
+		<tr>
+			<td>language</td>
+			<td>string</td>
+			<td>The language tag of the record.</td>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>string</td>
+			<td>The text for of record.</td>
+		</tr>
+	</table>
+
+	<h5>Metadata Extension Record</h5>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>names</td>
+			<td>list</td>
+			<td>List of metadata extension name records.</td>
+		</tr>
+		<tr>
+			<td>items</td>
+			<td>list</td>
+			<td>List of metadata extension item records.</td>
+		</tr>
+	</table>
+
+	<h6>Metadata Extension Name Record</h6>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td>The name of the name record.</td>
+		</tr>
+		<tr>
+			<td>lang</td>
+			<td>string</td>
+			<td>The language of the name record.</td>
+		</tr>
+	</table>
+
+	<h6>Metadata Extension Item Record</h6>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>id</td>
+			<td>string</td>
+			<td>The id of the item record.</td>
+		</tr>
+		<tr>
+			<td>members</td>
+			<td>list</td>
+			<td>List of metadata extension item member records.</td>
+		</tr>
+	</table>
+
+	<h6>Metadata Extension Item Member Record</h6>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td>The name of the member record.</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>string</td>
+			<td>The value of the member record.</td>
+		</tr>
+		<tr>
+			<td>language</td>
+			<td>string</td>
+			<td>The language of the member record.</td>
+		</tr>
+	</table>
+
+
+	<h6>Metadata Extension Item Example</h6>
+	<pre class="prettyprint">
+&lt;dict&gt;
+  &lt;key&gt;items&lt;/key&gt;
+  &lt;array&gt;
+    &lt;dict&gt;
+      &lt;key&gt;id&lt;/key&gt;
+      &lt;string&gt;org.example.fonts.metadata.v1.why&lt;/string&gt;
+      &lt;key&gt;records&lt;/key&gt;
+      &lt;array&gt;
+        &lt;dict&gt;
+          &lt;key&gt;name&lt;/key&gt;
+          &lt;string&gt;Purpose&lt;/string&gt;
+          &lt;key&gt;value&lt;/key&gt;
+          &lt;string&gt;
+            This font exists merely as
+            an example of WOFF packaging.
+          &lt;/string&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+          &lt;key&gt;lang&lt;/key&gt;
+          &lt;string&gt;en&lt;/string&gt;
+          &lt;key&gt;name&lt;/key&gt;
+          &lt;string&gt;Purpose&lt;/string&gt;
+          &lt;key&gt;value&lt;/key&gt;
+          &lt;string&gt;
+            This font exists merely as
+            an example of WOFF packaging.
+          &lt;/string&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+          &lt;key&gt;lang&lt;/key&gt;
+          &lt;string&gt;fr&lt;/string&gt;
+          &lt;key&gt;name&lt;/key&gt;
+          &lt;string&gt;But&lt;/string&gt;
+          &lt;key&gt;value&lt;/key&gt;
+          &lt;string&gt;
+            Cette fonte existe simplement comme
+            exemple de l&#x27;empaquetage de WOFF.
+          &lt;/string&gt;
+        &lt;/dict&gt;
+      &lt;/array&gt;
+    &lt;/dict&gt;
+  &lt;/array&gt;
+  &lt;key&gt;names&lt;/key&gt;
+  &lt;array&gt;
+    &lt;dict&gt;
+      &lt;key&gt;name&lt;/key&gt;
+      &lt;string&gt;Additional font information&lt;/string&gt;
+    &lt;/dict&gt;
+    &lt;dict&gt;
+      &lt;key&gt;lang&lt;/key&gt;
+      &lt;string&gt;en&lt;/string&gt;
+      &lt;key&gt;name&lt;/key&gt;
+      &lt;string&gt;Additional font information&lt;/string&gt;
+    &lt;/dict&gt;
+    &lt;dict&gt;
+      &lt;key&gt;lang&lt;/key&gt;
+      &lt;string&gt;fr&lt;/string&gt;
+      &lt;key&gt;name&lt;/key&gt;
+      &lt;string&gt;L&#x27;information suppl&eacute;mentaire de fonte&lt;/string&gt;
+    &lt;/dict&gt;
+  &lt;/array&gt;
+&lt;/dict&gt;
+	</pre>
+
+	<!-- Kerning Prefixes -->
+
+	<h4 id="kerninggroupprefixes">Kerning Group Prefixes</h4>
+	<p>
+		If an authoring tool allows the user to edit group kerning (aka class kerning), the group prefixes must be registered. All members of the pairs defined in the <em>pairs</em> dictionary should be assumed to be glyphs if the appropriate members do not start with the <code>firstKerningGroupPrefix</code> or the <code>secondKerningGroupPrefix</code>. This represents a conceptual change from UFO 1 and UFO 2. The change is necessary to eliminate ambiguities that could arise in the interpretation of group based kerning.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>firstKerningGroupPrefix</td>
+			<td>string</td>
+			<td>An arbitrary string that defines the group name prefix for first kerning groups used in the pairs dictionary. This string must not be the same as the string in <code>secondKerningGroupPrefix</code>.</td>
+		</tr>
+		<tr>
+			<td>secondKerningGroupPrefix</td>
+			<td>string</td>
+			<td>An arbitrary string that defines the group name prefix for second kerning groups used in the pairs dictionary. This string must not be the same as the string in <code>firstKerningGroupPrefix</code>.</td>
+		</tr>
+	</table>
+
+</div>
