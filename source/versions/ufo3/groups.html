@@ -1,0 +1,114 @@
+<div class="section">
+
+	<h1>groups.plist (draft)</h1>
+
+	<table class="evenColumns">
+		<tr>
+			<td><strong>File Format</strong></td>
+			<td><a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">XML Property List</a></td>
+		</tr>
+	</table>
+
+	<p>
+		This file contains the definitions of arbitrary groups of glyphs. This file is optional. If it is not defined in the UFO, there is no group data.
+	</p>
+
+	<h2>Specification</h2>
+	<p>
+		The property list data consists of a dictionary at the top level. Keys are group names and values are arrays of glyph name strings. There is no standard for naming groups. Glyphs may be in more than one group. Glyphs listed in the arrays are not required to be in the font.
+	</p>
+
+	<h3>Kerning Groups</h3>
+	<p>
+		Groups may be used as members of kerning pairs in <a href="kerning.html">kerning.plist</a>. These groups are divided into two types: groups that appear on the first side of a kerning pair and groups that appear on the second side of a kerning pair. Kerning groups must follow the following rules.
+	</p>
+
+	<h4>1. Kerning group names must begin with the appropriate <a href="fontinfo.html#kerning-group-prefixes">prefix</a>.</h4>
+	<p>
+		As stated elsewhere, these prefixes eliminate kerning interpretation ambiguities.
+	</p>
+	<h4>2. Only kerning groups are allowed to use the kerning group prefixes in their names.</h4>
+	<p>
+		Any group whose name begins with a kerning group prefix is considered a kerning group.
+	</p>
+	<h4>3. Kerning groups are not required to appear in the kerning pairs.</h4>
+	<p>
+		One or more kerning groups may be unreferenced in kerning pairs. This is allowed and in some cases, for example generating an OpenType kern feature, unreferenced groups have an important role.
+	</p>
+	<h4>4. Glyphs must not appear in more than one kerning group per side.</h4>
+	<p>
+		Glyphs that appear in more than one group per side create a logical ambiguity. For example, consider these two kerning groups:
+	</p>
+	<table class="evenColumns">
+		<tr>
+			<th>group name</th>
+			<th>group members</th>
+		</tr>
+		<tr>
+			<td>@KERN_1_A1</td>
+			<td>A, Aacute, Agrave, Adieresis</td>
+		</tr>
+		<tr>
+			<td>@KERN_1_A2</td>
+			<td>A, Acircumflex</td>
+		</tr>
+	</table>
+	<p>The kerning in this example contains the following kerning pairs:</p>
+	<table class="evenColumns">
+		<tr>
+			<th>side 1</th>
+			<th>side 2</th>
+			<th>value</th>
+		</tr>
+		<tr>
+			<td>@KERN_1_A1</td>
+			<td>T</td>
+			<td>-50</td>
+		</tr>
+		<tr>
+			<td>@KERN_1_A2</td>
+			<td>T</td>
+			<td>-100</td>
+		</tr>
+	</table>
+	<p>
+		Now, an application wants to apply the kerning for the pair "AT". There are different ways to find kerning for a pair, but in this case the most general approach is best. The following steps occur:
+	</p>
+	<p>
+		1. Look to see if (A, T) is a pair in the kerning. It isn't.<br />
+		2. Locate the groups for the first and second members of the pair.<br />
+		3. Two groups are found for A: @KERN_1_A1 and @KERN_1_A2.<br />
+		4. Look up the kerning value for (@KERN_1_A1, T) and (@KERN_1_A2, T).
+	</p>
+	<p>
+		Two kerning values are found: -50 and -100. There is no way to determine which one is correct. This ambiguity is eliminated when a glyph may occur in only one group.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+  &lt;key&gt;@KERN_1_A&lt;/key&gt;
+  &lt;array&gt;
+    &lt;string&gt;A&lt;/string&gt;
+    &lt;string&gt;Aacute&lt;/string&gt;
+    &lt;string&gt;Acircumflex&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;key&gt;Group1&lt;/key&gt;
+  &lt;array&gt;
+    &lt;string&gt;A&lt;/string&gt;
+    &lt;string&gt;A.alt&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;key&gt;B&lt;/key&gt;
+  &lt;array&gt;
+    &lt;string&gt;B&lt;/string&gt;
+    &lt;string&gt;B.alt&lt;/string&gt;
+  &lt;/array&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+	</pre>
+
+</div>
