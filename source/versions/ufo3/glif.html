@@ -1,0 +1,748 @@
+<div class="section">
+
+<h1>Glyph Interchange Format (draft)</h1>
+
+<table class="evenColumns">
+	<tr>
+		<td><strong>File Format</strong></td>
+		<td>XML</td>
+	</tr>
+</table>
+
+<p>
+	The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a <em>.glif</em> extension.
+</p>
+
+<p>
+	The GLIF data follows this structure:
+</p>
+
+<ul class="treediagram">
+	<li class="treediagram">glyph</li>
+	<ul class="treediagram">
+		<li class="treediagram">advance</li>
+		<li class="treediagram">unicode</li>
+		<li class="treediagram">lib</li>
+		<li class="treediagram">guideline</li>
+		<li class="treediagram">image</li>
+		<li class="treediagram">outline</li>
+		<ul class="treediagram">
+			<li class="treediagram">contour</li>
+			<ul class="treediagram">
+				<li class="treediagram">point</li>
+			</ul>
+			<li class="treediagram">component</li>
+			<li class="treediagram">link</li>
+			<ul class="treediagram">
+				<li class="treediagram">pointref</li>
+			</ul>
+		</ul>
+	</ul>
+</ul>
+
+<h2>Specification</h2>
+
+<!-- <glyph -->
+
+<h3 id="glyph">glyph: The top level element.</h3>
+
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>The name of the glyph.</td>
+	</tr>
+	<tr>
+		<td>format</td>
+		<td>The format version. 2 for this version.</td>
+	</tr>
+</table>
+
+<p>
+	The <code>name</code> attribute has limited uses in this version. The <em>contents.plist</em> file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the <code>name</code> attribute should be ignored, since manual editing may have caused a mismatch with the glyph name as stored in <em>contents.plist</em>, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
+</p>
+
+<h4>Child Elements</h4>
+<table>
+	<tr>
+		<th>element name</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td><a href="#advance">advance</a></td>
+		<td>May occur at most once.</td>
+	</tr>
+	<tr>
+		<td><a href="#unicode">unicode</a></td>
+		<td>May occur any number of times.</td>
+	</tr>
+	<tr>
+		<td><a href="#image">image</a></td>
+		<td>May occur at most once.</td>
+	</tr>
+	<tr>
+		<td><a href="#guideline">guideline</a></td>
+		<td>May occur any number of times.</td>
+	</tr>
+	<tr>
+		<td><a href="#link">link</a></td>
+		<td>May occur any number of times.</td>
+	</tr>
+	<tr>
+		<td><a href="#outline">outline</a></td>
+		<td>May occur at most once.</td>
+	</tr>
+	<tr>
+		<td><a href="#lib">lib</a></td>
+		<td>May occur at most once.</td>
+	</tr>
+</table>
+
+<!-- <advance> -->
+
+<h3 id="advance">advance: Horizontal and vertical metrics.</h3>
+
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>data type</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td>width</td>
+		<td>integer or float</td>
+		<td>The advance width.</td>
+	</tr>
+	<tr>
+		<td>height</td>
+		<td>integer or float</td>
+		<td>The vertical advance.</td>
+	</tr>
+</table>
+
+<h4>This element has no child elements.</h4>
+
+<h4>Example</h4>
+<pre class="prettyprint">
+&lt;advance width="400" /&gt;
+</pre>
+
+<!-- unicode -->
+
+<h3 id="unicode">unicode: Unicode code point.</h3>
+
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td>hex</td>
+		<td>A unicode code point as a hexadecimal number.</td>
+	</tr>
+</table>
+
+<h4>This element has no child elements.</h4>
+
+<p>
+	The first occurrence of this element defines the primary Unicode value for this glyph.
+</p>
+
+<h4>Example</h4>
+<pre class="prettyprint">
+&lt;unicode hex="0041" /&gt;
+</pre>
+
+<!-- image -->
+
+<h3 id="image">image: An image reference.</h3>
+
+<p>
+	This optional element represents an image element in a glyph. It may occur at most once. The image should always be considered to be <em>behind</em> the outline element.
+</p>
+
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>data type</th>
+		<th>description</th>
+		<th>default value</th>
+	</tr>
+	<tr>
+		<td>fileName</td>
+		<td>string</td>
+		<td>The image file name, including any file extension, not an absolute or relative path in the file system.</td>
+		<td>None</td>
+	</tr>
+	<tr>
+		<td>xScale</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>xyScale</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>yxScale</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>yScale</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>xOffset</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>yOffset</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>color</td>
+		<td>string</td>
+		<td>The color that should be applied to the image. The format follows the <a href="#color">color definition</a> standard. This attribute is optional.</td>
+		<td>None</td>
+	</tr>
+</table>
+
+<p>
+	<code>xScale, xyScale, yxScale, yScale, xOffset, yOffset</code> taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is <code>[1 0 0 1 0 0]</code>, the identity transformation.
+</p>
+
+<h4>This element has no child elements.</h4>
+
+<h4>Format</h4>
+<p>
+	All images must be in Portable Network Graphics (PNG) format.
+</p>
+
+<h4>Coloring Images</h4>
+<p>
+	There are two places that the color for an image can be defined: the color attribute of the image element and the <code>color</code> defined in <a href="glyphs.html#layerinfo">layerinfo.plist</a>. The color defined in the image element's color attribute always takes precedence. If that is not defined and the <code>color</code> is defined for the layer, the layer's <code>color</code> should be used. If both of these are undefined, the image should not be colored unless an authoring tool has a default color for images. If a color is to be applied, the authoring tool should convert the image to grayscale and then apply the color. This modified version of the image must not be saved into the images directory.
+</p>
+
+<h4>Example</h4>
+<pre class="prettyprint">
+&lt;image fileName="Sketch 1.png" xOffset="100" yOffset="200"
+	xScale=".75" yScale=".75" color="1,0,0,.5" /&gt;
+</pre>
+
+<!-- <guideline> -->
+
+<h3 id="guideline">guideline: A reference guideline.</h3>
+
+<p>
+	This element may occur any number of times.
+</p>
+
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>data type</th>
+		<th>description</th>
+		<th>default value</th>
+	</tr>
+	<tr>
+		<td>x</td>
+		<td>integer or float</td>
+		<td>The 'x' coordinate.</td>
+		<td>None. Optional if <code>y</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+	</tr>
+	<tr>
+		<td>y</td>
+		<td>integer or float</td>
+		<td>The 'y' coordinate.</td>
+		<td>None. Optional. See below for details.</td>
+	</tr>
+	<tr>
+		<td>angle</td>
+		<td>integer or float</td>
+		<td>The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction.</td>
+		<td>None. If <code>x</code> or <code>y</code> are not specified, <code>angle</code> must not be specified. See below for details.</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>string</td>
+		<td>An arbitrary name for the guideline. This attribute is optional.</td>
+		<td>None</td>
+	</tr>
+	<tr>
+		<td>color</td>
+		<td>string</td>
+		<td>The color that should be applied to the guideline. The format follows the <a href="#color">color definition</a> standard. This attribute is optional.</td>
+		<td>None</td>
+	</tr>
+</table>
+
+<p>
+	The guideline extends along <code>angle</code> to infinity in both directions out of the point defined by <code>x</code> and <code>y</code>. If <code>y</code> and <code>angle</code> are omitted, the element represents a vertical guideline. If <code>x</code> and <code>angle</code> are omitted, the element represents a horizontal guideline. If <code>y</code> is omitted and <code>angle</code> if provided, <code>y</code> is zero. If <code>x</code> is omitted and <code>angle</code> is provided, <code>x</code> is zero.
+</p>
+
+<h4>This element has no child elements.</h4>
+
+<!-- <outline> -->
+
+<h3 id="outline">outline: Outline description.</h3>
+
+<h4>This element has no attributes.</h4>
+
+<h4>Child Elements</h4>
+<table>
+	<tr>
+		<th>element name</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td><a href="#component">component</a></td>
+		<td>May occur any number of times.</td>
+	</tr>
+	<tr>
+		<td><a href="#contour">contour</a></td>
+		<td>May occur any number of times.</td>
+	</tr>
+</table>
+
+<!-- <component> -->
+
+<h3 id="component">component: Insert another glyph as part of the outline.</h3>
+
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>data type</th>
+		<th>description</th>
+		<th>default value</th>
+	</tr>
+	<tr>
+		<td>base</td>
+		<td>string</td>
+		<td>Name of the base glyph</td>
+		<td>None</td>
+	</tr>
+	<tr>
+		<td>xScale</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>xyScale</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>yxScale</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>yScale</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>xOffset</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>yOffset</td>
+		<td>integer or float</td>
+		<td>See below.</td>
+		<td>0</td>
+	</tr>
+</table>
+
+<p>
+	<code>xScale, xyScale, yxScale, yScale, xOffset, yOffset</code> taken together in that order form an Affine transformation matrix, to be used to transform the base glyph. The default matrix is <code>[1 0 0 1 0 0]</code>, the identity transformation.
+</p>
+
+<p>
+	Components must only reference glyphs within the same layer that the component belongs to.
+</p>
+
+<h4>This element has no child elements.</h4>
+
+<h4>Example</h4>
+<pre class="prettyprint">
+&lt;component base="A" xOffset="100" /&gt;
+</pre>
+
+<!-- <contour> -->
+
+<h3 id="contour">contour: Contour description.</h3>
+
+<h4>This element has no attributes.</h4>
+
+<h4>Child Elements</h4>
+<table>
+	<tr>
+		<th>element name</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td><a href="#point">point</a></td>
+		<td>May occur any number of times.</td>
+	</tr>
+</table>
+
+<!-- <point> -->
+
+<h3 id="point">point: An attributed coordinate pair.</h3>
+
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>data type</th>
+		<th>description</th>
+		<th>default value</th>
+	</tr>
+	<tr>
+		<td>x</td>
+		<td>integer or float</td>
+		<td>The 'x' coordinate.</td>
+		<td>None</td>
+	</tr>
+	<tr>
+		<td>y</td>
+		<td>integer or float</td>
+		<td>The 'y' coordinate.</td>
+		<td>None</td>
+	</tr>
+	<tr>
+		<td>type</td>
+		<td>string</td>
+		<td>The point and/or segment type. The options are detailed below.</td>
+		<td>offcurve</td>
+	</tr>
+	<tr>
+		<td>smooth</td>
+		<td>string</td>
+		<td>This attribute must only be given when <code>type</code> indicates the point is on-curve. When set to <code>yes</code>, it signifies that a smooth curvature should be maintained at this point, either as a <code>curve point</code> or a <code>tangent point</code> in Fontographer terms.</td>
+		<td>no</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>string</td>
+		<td>Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline.</td>
+		<td>None</td>
+	</tr>
+	<tr>
+		<td>identifier</td>
+		<td>string</td>
+		<td>Identifier for this point. The requirements for this attribute are detailed below.</td>
+		<td>None</td>
+	</tr>
+</table>
+
+<h5>Point Types</h5>
+<table>
+	<tr>
+		<td>move</td>
+		<td>A point of this type must be the first in a <code>contour</code>. The reverse is not true: a <code>contour</code> does not necessarily start with a <code>move</code> point. When a <code>contour</code> <strong>does</strong> start with a <code>move</code> point, it signifies the beginning of an <strong>open</strong> contour. A <strong>closed</strong> contour does <strong>not</strong> start with a <code>move</code> and is defined as a cyclic list of points, with no predominant start point. There is always a <em>next point</em> and a <em>previous point</em>. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline.</td>
+	</tr>
+	<tr>
+		<td>line</td>
+		<td>Draw a straight line from the previous point to this point. The previous point must be a <code>move</code>, a <code>line</code>, a <code>curve</code> or a <code>qcurve</code>. It must not be an <code>offcurve</code>.</td>
+	</tr>
+	<tr>
+		<td>offcurve</td>
+		<td>This point is part of a curve segment that goes up to the next point that is either a <code>curve</code> or a <code>qcurve</code>.</td>
+	</tr>
+	<tr>
+		<td>curve</td>
+		<td>Draw a cubic bezier curve from the last non-<em>offcurve</em> point to this point. If the number of <code>offcurve</code> points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the <em>Super Bezier</em> algorithm.</td>
+	</tr>
+	<tr>
+		<td>qcurve</td>
+		<td>Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle.</td>
+	</tr>
+</table>
+
+<div class="discussionNote">
+	<p>
+		Should we remove the Super Bezier functionality? It creates an <a href="http://fontforge.sourceforge.net/python.html">interoperability problem</a> (search the page for "super-bezier").
+	</p>
+</div>
+
+<h5>Point Identifier</h5>
+<p>
+	Points may have an identifier attribute. This attribute is not required unless a point is referenced by a link or other structure that requires a point to have an identifier. This identifier must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier must be string between one and 100 characters long. All characters must be in the printable ASCII range, 0x20 to 0x7E.
+</p>
+<p>
+	A point's identifier should not be changed or replaced after assignment. If it is changed, all references in links must be updated to reflect the change. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained when possible. Identifiers should also be retained during outline manipulation operations such as path direction changes and remove overlap when possible.
+</p>
+<p>
+	There is no standard identifier generation algorithm. Random strings, simple numbers, UUIDs, time stamps and more may be used. An example algorithm for generating identifiers that are random strings is detailed below.
+</p>
+
+<h6>Example Algorithm</h6>
+<p>
+	This algorithm is designed to generate a unique identifier that is a unique string consisting of 10 characters from 0-9, A-Z and a-z. This allows a glyph to contain 10<sup>62</sup> points that follow this identifier naming scheme.
+</p>
+
+
+<ul class="algorithm">
+	<li>
+		<em>possible characters</em> includes 0-9, A-Z and a-z.
+	</li>
+	<li>
+		<em>existing identifiers</em> is a list of all existing identifiers in the glyph.
+	</li>
+	<li>
+		<em>identifier</em> a 10 character long string of characters randomly selected from <em>possible characters</em>.
+	</li>
+	<li>
+		If <em>identifier</em> is not in <em>existing identifiers</em>:
+	</li>
+	<li>
+		<ul class="algorithmNest">
+			<li>
+				Stop.
+			</li>
+		</ul>
+	</li>
+	<li>
+		If <em>identifier</em> is in <em>existing identifiers</em>:
+	</li>
+	<li>
+		<ul class="algorithmNest">
+			<li>
+				Repeat this process until a unique identifier is found.
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<p>
+	<strong>Sample implementation</strong>
+</p>
+
+<pre class="prettyprint">
+import random
+
+characters = list("0123456789")
+characters += list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+characters += list("abcdefghijklmnopqrstuvwxyz")
+identifierLength = 10
+identifierRange = range(identifierLength)
+
+def makeRandomIdentifier(existing, recursionDepth=0):
+    if recursionDepth &gt;= 50:
+        raise NotImplementedError,\
+            "Failed 50 times in a row to create a unique id. Sorry."
+    identifier = []
+    for i in identifierRange:
+        c = random.choice(characters)
+        identifier.append(c)
+    identifier = "".join(identifier)
+    if identifier in existing:
+        return makeRandomIdentifier(existing, recursionDepth+1)
+    else:
+        return identifier
+</pre>
+
+<h4>This element has no child elements.</h4>
+
+<h4>Examples</h4>
+
+<p>move point:</p>
+<pre class="prettyprint">
+&lt;point x="433" y="371" type="move" /&gt;
+</pre>
+
+<p>line point:</p>
+<pre class="prettyprint">
+&lt;point x="433" y="371" type="line" /&gt;
+</pre>
+
+<p>offcurve point:</p>
+<pre class="prettyprint">
+&lt;point x="433" y="366" /&gt;
+</pre>
+
+<p>curve point:</p>
+<pre class="prettyprint">
+&lt;point x="441" y="363" type="curve" smooth="yes" /&gt;
+</pre>
+
+<p>qcurve point:</p>
+<pre class="prettyprint">
+&lt;point x="441" y="363" type="qcurve" /&gt;
+</pre>
+
+<!-- <link> -->
+
+<h3 id="link">link: A collection of point references.</h3>
+<p>
+	Links are arbitrary collections of point references. These can represent anything that can be described as a list of points&#8212;TrueType hints, Postscript hints, interpolation markers, etc. The <code>link</code> element may contain a <code>type</code> string that authoring tools can use to define what a particular link represents.
+</p>
+<p>
+	This element may occur any number of times.
+</p>
+
+<h4>Child Elements</h4>
+<table>
+	<tr>
+		<th>element name</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td><a href="#pointref">pointref</a></td>
+		<td>Must occur at least twice.</td>
+	</tr>
+</table>
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>data type</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td>type</td>
+		<td>string</td>
+		<td>Optional. An arbitrary string describing the type of link. The string should follow the reverse domain naming scheme.</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>string</td>
+		<td>Optional. Arbitrary name or label for this link. The name does not have to be unique.</td>
+	</tr>
+</table>
+
+<h4>Link Type Registry</h4>
+
+<p>
+	The following are the currently registered common link types:
+</p>
+
+<div class="discussionNote">
+	<p>
+		Need to define:
+	</p>
+	<ol>
+		<li>public.postscriptHintMask</li>
+		<li>public.postscriptCounterMask</li>
+		<li>public.counter (or maybe public.horizontalCount and public.verticalCounter)</li>
+	</ol>
+</div>
+
+<h5>public.horizontalStem</h5>
+<p>
+	Two or more points defining a horizontal stem. Within the linked points, there must be at least two unique y coordinates. The edges of the stem can be defined as the minimum and maximum of the y coordinates.
+</p>
+
+<h5>public.verticalStem</h5>
+<p>
+	Two or more points defining a vertical stem. Within the linked points, there must be at least two unique x coordinates. The edges of the stem can be defined as the minimum and maximum of the x coordinates.
+</p>
+
+<div class="discussionNote">
+	<p>
+		What about italic stems? Would they be allowed to be tagged?
+	</p>
+</div>
+
+<h4>Example</h4>
+<pre class="prettyprint">
+&lt;link type="verticalStem" name="stem 1"&gt;
+	&lt;pointref point="4"/&gt;
+	&lt;pointref point="8"/&gt;
+&lt;/link&gt;
+</pre>
+
+<!-- <pointref> -->
+
+<h3 id="pointref">pointref: A reference to a particular point in the glyph.</h3>
+
+<h4>This element has no child elements.</h4>
+
+<h4>Attributes</h4>
+<table>
+	<tr>
+		<th>attribute name</th>
+		<th>data type</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td>point</td>
+		<td>string</td>
+		<td>The identifier attribute of the point being referenced.</td>
+	</tr>
+</table>
+
+<!-- <lib> -->
+
+<h3 id="lib">lib: Custom data storage.</h3>
+<p>
+	This element is a place to store authoring tool specific, user specific or otherwise arbitrary data for the glyph. lib mus have one child element that is structure as a dictionary formatted as an <a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">XML Property List</a>. This element may occur at most once. In order to prevent conflicts in the lib, keys in the top level should follow a <a href="conventions.html#reversedomain">reverse domain naming scheme</a>. It is recommended that the data stored as a value be as shallow as possible.
+</p>
+<p>
+	Data that is too complex or too large for lib can be stored in the <a href="data.html">data directory</a>.
+</p>
+
+<h3>Example</h3>
+<div class="editorsNote">
+	<p>
+		This example is out of date.
+	</p>
+</div>
+<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;glyph name="period" format="1"&gt;
+	&lt;advance width="268"/&gt;
+	&lt;unicode hex="002E"/&gt;
+	&lt;outline&gt;
+		&lt;contour&gt;
+			&lt;point x="237" y="152"/&gt;
+			&lt;point x="193" y="187"/&gt;
+			&lt;point x="134" y="187" type="curve" smooth="yes"/&gt;
+			&lt;point x="74" y="187"/&gt;
+			&lt;point x="30" y="150"/&gt;
+			&lt;point x="30" y="88" type="curve" smooth="yes"/&gt;
+			&lt;point x="30" y="23"/&gt;
+			&lt;point x="74" y="-10"/&gt;
+			&lt;point x="134" y="-10" type="curve" smooth="yes"/&gt;
+			&lt;point x="193" y="-10"/&gt;
+			&lt;point x="237" y="25"/&gt;
+			&lt;point x="237" y="88" type="curve" smooth="yes"/&gt;
+		&lt;/contour&gt;
+	&lt;/outline&gt;
+	&lt;lib&gt;
+		&lt;dict&gt;
+			&lt;key&gt;com.letterror.somestuff&lt;/key&gt;
+			&lt;string&gt;arbitrary custom data!&lt;/string&gt;
+		&lt;/dict&gt;
+	&lt;/lib&gt;
+&lt;/glyph&gt;
+</pre>
+
+</div>
