@@ -139,6 +139,76 @@
 		</tr>
 	</table>
 
+	<!-- OpenType gasp Table -->
+
+	<h4 id="opentypegasp">OpenType gasp Table Fields
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>openTypeGaspRangeRecords</td>
+			<td>list</td>
+			<td>A list of gasp Range Records. These must be sorted in ascending order based on the <code>rangeMaxPPEM</code> value of the record.</td>
+		</tr>
+	</table>
+
+	<h5>gasp Range Record Format</h5>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>rangeMaxPPEM</td>
+			<td>non-negative integer</td>
+			<td>The upper limit of the range, in PPEM. The final record should use 65535 (0xFFFF) as defined in the OpenType gasp specification. Corresponds to the rangeMaxPPEM field of the GASPRANGE record in the OpenType gasp table.</td>
+		</tr>
+		<tr>
+			<td>rangeGaspBehavior</td>
+			<td>number list</td>
+			<td>A list of bit numbers indicating the flags to be set. The bit numbers are defined below.  Corresponds to the rangeGaspBehavior field of the GASPRANGE record in the OpenType gasp table.</td>
+		</tr>
+	</table>
+
+	<h6>rangeGaspBehavior Bits</h6>
+	<p>
+		The following bit numbers correspond to the matching bits in the OpenType gasp specification listed in the description column.
+	</p>
+	<table>
+		<tr>
+			<th>value</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>0</td>
+			<td>GASP_GRIDFIT (0x0001)</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>GASP_DOGRAY (0x0002)</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>GASP_SYMMETRIC_SMOOTHING (0x0004)</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>GASP_SYMMETRIC_GRIDFIT (0x0008)</td>
+		</tr>
+	</table>
+
+	<h5>Notes</h5>
+	<p>
+		<a href="http://www.microsoft.com/typography/otspec/gasp.htm">The OpenType gasp table specification.</a>
+	</p>
+
 	<!-- OpenType head Table -->
 
 	<h4 id="opentypehead">OpenType head Table Fields</h4>
