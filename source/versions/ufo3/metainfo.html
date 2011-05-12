@@ -1,0 +1,52 @@
+<div class="section">
+
+	<h1>metainfo.plist (draft)</h1>
+
+	<table class="evenColumns">
+		<tr>
+			<td> <strong>File Format</strong> </td>
+			<td> <a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">XML Property List</a> </td>
+		</tr>
+	</table>
+
+	<p>
+		This file contains metadata about the UFO. This file is required.
+	</p>
+
+	<h2>Specification</h2>
+	<p>
+		The property list data consists of a dictionary at the top level. The keys and values are as follows.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>creator</td>
+			<td>string</td>
+			<td>The application or library that created the UFO. This should follow a <a href="conventions.html#reversedomain">reverse domain naming scheme</a>. For example, <em>org.robofab.ufoLib</em>.</td>
+		</tr>
+		<tr>
+			<td>formatVersion</td>
+			<td>int</td>
+			<td>The version number of the UFO format. 3 for UFO 3.</td>
+		</tr>
+	</table>
+
+	<h3>Example</h3>
+	<pre class="prettyprint">
+&lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &amp;quot;-//Apple Computer//DTD PLIST 1.0//EN&amp;quot;
+&amp;quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&amp;quot;&gt;
+&lt;plist version=&amp;quot;1.0&amp;quot;&gt;
+&lt;dict&gt;
+  &lt;key&gt;creator&lt;/key&gt;
+  &lt;string&gt;org.robofab.ufoLib&lt;/string&gt;
+  &lt;key&gt;formatVersion&lt;/key&gt;
+  &lt;integer&gt;3&lt;/integer&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+	</pre>
+</div>
