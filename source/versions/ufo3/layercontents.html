@@ -1,0 +1,65 @@
+<div class="section">
+
+	<h1>layercontents.plist (draft)</h1>
+
+	<table class="evenColumns">
+		<tr>
+			<td> <strong>File Format</strong> </td>
+			<td> <a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">XML Property List</a> </td>
+		</tr>
+	</table>
+
+	<p>
+		This file maps the layer names to the glyph directory names.
+	</p>
+
+	<h2>Specification</h2>
+	<p>
+		The mapping is stored as an array in the property list. This array also defines the order of the layers from top to bottom. The mapping is stored within the array as arrays containing the layer names first and the directory name second.
+	</p>
+	<p>
+		The directory names must begin with "glyphs." and must be followed by a string that is unique within the set of other layer directory names in the font. The directory names stored in the property list must be plain directory names, not absolute or relative paths in the file system, and they must include the "glyphs." prefix if applicable. Care must be taken when choosing directory names: layer names are case sensitive, yet many file systems are not. There is no one standard layer name to file name conversion. However, a common implementation is defined in the <a href="conventions.html#usernametofilename">conventions</a>.
+	</p>
+	<p>
+		The required glyph set stored in the <em>glyphs</em> directory may have a name defined in the property list. If it does, the directory name in the mapping must be "glyphs". If it does not have a name, it must not be listed in the mapping. Authoring tools must detect the required <em>glyphs</em> directory even if it is not in the property list.
+	</p>
+	<p>
+		Layer names may contain any character and they may be any length. Layer names must be unique within the font. The pattern "public.*", where * represents an arbitrary string of one or more characters, is reserved for use as layer names in the registry below.
+	</p>
+
+	<!-- Layer Registry -->
+
+	<h3>Common Layer Registry</h3>
+	<p>
+		The following is a registry of public layer names that map to functionality that is often seen in font editing applications. These common layer names allow authoring tools to exchange common layer types while the authoring tools maintain their own unique UI names for the layers.
+	</p>
+
+	<h4>public.background</h4>
+	<p>
+		This represents background reference layers such as the "Template" layer in Fontographer, the "Mask" layer in FontLab and the "Background" layer in FontForge. Applications may write this common layer into a UFO using the layer name "public.background" and assigning an appropriate layer directory name. Likewise, an authoring tool that encounters a layer named "public.background" may use this layer for its own particular background reference layer.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="prettyprint">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;array&gt;
+  &lt;array&gt;
+    &lt;string&gt;&lt;/string&gt;
+    &lt;string&gt;glyphs&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;Sketches&lt;/string&gt;
+    &lt;string&gt;glyphs.S_ketches&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;array&gt;
+    &lt;string&gt;public.background&lt;/string&gt;
+    &lt;string&gt;glyphs.public.background&lt;/string&gt;
+  &lt;/array&gt;
+&lt;/array&gt;
+&lt;/plist&gt;
+	</pre>
+
+</div>
