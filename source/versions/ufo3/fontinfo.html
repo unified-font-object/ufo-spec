@@ -924,7 +924,7 @@
 		<tr>
 			<td>woffMetadataExtensions</td>
 			<td>list</td>
-			<td>List of metadata extension records.</td>
+			<td>List of metadata extension records. <span class="inlineEditorsNote">This may not make it into the final UFO 3 specification. See note below.</span></td>
 		</tr>
 	</table>
 
@@ -989,6 +989,13 @@
 	</table>
 
 	<h5>Metadata Extension Record</h5>
+
+	<div class="editorsNote">
+		<p>
+			This may not make it into the final UFO 3 spec. The data structure is vastly more complicated than anything else in this file. The problem is that the extension elements are difficult to effectively represent with a property list. It would probably be best to not support the extension elements than to support them in a way that we are not satisfied with.
+		</p>
+	</div>
+
 	<p>
 		The records are stored as dictionaries of the following format.
 	</p>
