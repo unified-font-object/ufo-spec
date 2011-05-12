@@ -1,0 +1,157 @@
+<div class="section">
+
+	<h1>Glyphs Directory (draft)</h1>
+
+	<p>
+		A glyphs directory represents a layer of glyph data in a font. This glyph data files will be in <a href="glif.html">Glyph Interchange Format</a>. It must contain at least one GLIF file and it must contain a <a href="#contents">contents.plist</a> file defining the file name to glyph name mapping. A <a href="#layerinfo">layerinfo.plist</a> file may be present defining various properties of the layer.
+	</p>
+</div>
+
+	<div class="section">
+
+	<h1 id="contents">contents.plist</h1>
+
+	<table class="evenColumns">
+		<tr>
+			<td><strong>File Format</strong></td>
+			<td><a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">XML Property List</a></td>
+		</tr>
+	</table>
+
+	<p>
+		<em>contents.plist</em> contains a dictionary that maps glyph names to GLIF file names.
+	</p>
+	<p>
+		Glyph names may contain any character and they may be any length. Glyph names must be unique within the layer.
+	</p>
+
+	<h2>Specification</h2>
+	<p>
+		The property list data consists of a dictionary at the top level. The keys are glyph names and the values are file names.
+	</p>
+	<p>
+		The file names must end with ".glif" and must begin with a string that is unique within the layer. The file names stored in the property list must be plain file names, not absolute or relative paths in the file system, and they must include the ".glif" extension. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, a common implementation is defined in the <a href="conventions.html#usernametofilename">conventions</a>.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="prettyprint">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;
+&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+  &lt;key&gt;A&lt;/key&gt;
+  &lt;string&gt;A_.glif&lt;/string&gt;
+  &lt;key&gt;B&lt;/key&gt;
+  &lt;string&gt;B_.glif&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+	</pre>
+
+</div>
+
+<div class="section">
+
+	<h1 id="layerinfo">layerinfo.plist</h1>
+
+	<table class="evenColumns">
+		<tr>
+			<td><strong>File Format</strong></td>
+			<td><a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">XML Property List</a></td>
+		</tr>
+	</table>
+
+	<p>
+		This file contains information about the layer. This file is optional. Not all values are required for a proper file.
+	</p>
+
+	<h2>Specification</h2>
+	<p>
+		The property list data consists of a dictionary at the top level. The keys and values are as follows.
+	</p>
+
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+			<th>default value</th>
+		</tr>
+		<tr>
+			<td>guidelines</td>
+			<td>array</td>
+			<td>An array of guideline definitions that apply to all glyphs in the layer. This attribute is optional.</td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td>color</td>
+			<td><a href="conventions.html#color">color definition</a></td>
+			<td>The color that should be used for all glyphs in the layer. This attribute is optional.</td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td>lib</td>
+			<td>dictionary</td>
+			<td>A lib specific to the layer. To avoid naming conflicts, keys should use the <a href="conventions.html#reversedomain">Reverse Domain Naming Scheme</a> defined for lib.plist.</td>
+			<td>None</td>
+		</tr>
+	</table>
+
+	<!-- Guidelines -->
+
+	<h3>Guideline Format</h3>
+
+	<p>
+		The guidelines are stored as dictionaries of the following format.
+	</p>
+
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+			<th>default value</th>
+		</tr>
+		<tr>
+			<td>x</td>
+			<td>integer or float</td>
+			<td>The 'x' coordinate.</td>
+			<td>None. Optional if <code>y</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+		</tr>
+		<tr>
+			<td>y</td>
+			<td>integer or float</td>
+			<td>The 'y' coordinate.</td>
+			<td>None. Optional if <code>x</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+		</tr>
+		<tr>
+			<td>angle</td>
+			<td>integer or float</td>
+			<td>The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction.</td>
+			<td>None. If <code>x</code> or <code>y</code> are not specified, <code>angle</code> must not be specified. See below for details.</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td>An arbitrary name for the guideline. This attribute is optional.</td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td>color</td>
+			<td>string</td>
+			<td>The color that should be applied to the guideline. The format follows the <a href="#color">color definition</a> standard. This attribute is optional.</td>
+			<td>None</td>
+		</tr>
+	</table>
+
+	<p>
+		The guideline extends along <code>angle</code> to infinity in both directions out of the point defined by <code>x</code> and <code>y</code>. If <code>y</code> and <code>angle</code> are omitted, the element represents a vertical guideline. If <code>x</code> and <code>angle</code> are omitted, the element represents a horizontal guideline. If <code>y</code> is omitted and <code>angle</code> is provided, <code>y</code> is zero. If <code>x</code> is omitted and <code>angle</code> is provided, <code>x</code> is zero.
+	</p>
+
+	<div class="discussionNote">
+		<p>
+			The value of per layer guides is under debate. The most common model currently in use (FontLab, others) allows for font level guides and glyph level guides. There are no per layer guides available. An alternative proposal is to add a place for font level guides in fontinfo.plist.
+		</p>
+	</div>
+
+</div>
