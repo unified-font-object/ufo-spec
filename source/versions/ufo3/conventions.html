@@ -219,8 +219,11 @@ illegalCharacters = &quot;\&quot; * + / : &lt; &gt; ? [ \ ] | \0&quot;.split(&qu
 illegalCharacters += [chr(i) for i in range(1, 32)]
 illegalCharacters += [chr(0x7F)]
 
-def userNameToFileName(userName, caseInsensitiveExisting=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
+def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
         &quot;&quot;&quot;
+        existing should be a case-insensitive list
+        of all existing file names.
+
         &gt;&gt;&gt; userNameToFileName(u&quot;a&quot;)
         u&#x27;a&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;A&quot;)
@@ -259,7 +262,8 @@ def userNameToFileName(userName, caseInsensitiveExisting=[], prefix=&quot;&quot;
         u&#x27;_notdef&#x27;
         &quot;&quot;&quot;
         # the incoming name must be a unicode string
-        assert isinstance(userName, unicode), &quot;The value for userName must be a unicode string.&quot;
+        assert isinstance(userName, unicode),
+          &quot;The value for userName must be a unicode string.&quot;
         # establish the prefix and suffix lengths
         prefixLength = len(prefix)
         suffixLength = len(suffix)
@@ -282,31 +286,34 @@ def userNameToFileName(userName, caseInsensitiveExisting=[], prefix=&quot;&quot;
         userName = userName[:sliceLength]
         # test for clash
         fullName = prefix + userName + suffix
-        if fullName.lower() in caseInsensitiveExisting:
-            fullName = handleClash1(userName, caseInsensitiveExisting, prefix, suffix)
+        if fullName.lower() in existing:
+            fullName = handleClash1(userName, existing, prefix, suffix)
         # finished
         return fullName
 
-def handleClash1(userName, caseInsensitiveExisting=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
+def handleClash1(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
     &quot;&quot;&quot;
+    existing should be a case-insensitive list
+    of all existing file names.
+
     &gt;&gt;&gt; prefix = (&quot;0&quot; * 5) + &quot;.&quot;
     &gt;&gt;&gt; suffix = &quot;.&quot; + (&quot;0&quot; * 10)
     &gt;&gt;&gt; existing = [&quot;a&quot; * 20]
 
     &gt;&gt;&gt; e = list(existing)
-    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, caseInsensitiveExisting=e,
+    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, existing=e,
     ...     prefix=prefix, suffix=suffix)
     &#x27;00000.AAAAA000000000000001.0000000000&#x27;
 
     &gt;&gt;&gt; e = list(existing)
     &gt;&gt;&gt; e.append(prefix + &quot;aaaaa&quot; + &quot;1&quot;.zfill(15) + suffix)
-    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, caseInsensitiveExisting=e,
+    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, existing=e,
     ...     prefix=prefix, suffix=suffix)
     &#x27;00000.AAAAA000000000000002.0000000000&#x27;
 
     &gt;&gt;&gt; e = list(existing)
     &gt;&gt;&gt; e.append(prefix + &quot;AAAAA&quot; + &quot;2&quot;.zfill(15) + suffix)
-    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, caseInsensitiveExisting=e,
+    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, existing=e,
     ...     prefix=prefix, suffix=suffix)
     &#x27;00000.AAAAA000000000000001.0000000000&#x27;
     &quot;&quot;&quot;
@@ -318,7 +325,7 @@ def handleClash1(userName, caseInsensitiveExisting=[], prefix=&quot;&quot;, suff
     while finalName is None:
         name = userName + str(counter).zfill(15)
         fullName = prefix + name + suffix
-        if fullName.lower() not in caseInsensitiveExisting:
+        if fullName.lower() not in existing:
             finalName = fullName
             break
         else:
@@ -327,28 +334,31 @@ def handleClash1(userName, caseInsensitiveExisting=[], prefix=&quot;&quot;, suff
             break
     # if there is a clash, go to the next fallback
     if finalName is None:
-        finalName = handleClash2(caseInsensitiveExisting, prefix, suffix)
+        finalName = handleClash2(existing, prefix, suffix)
     # finished
     return finalName
 
-def handleClash2(caseInsensitiveExisting=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
+def handleClash2(existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
     &quot;&quot;&quot;
+    existing should be a case-insensitive list
+    of all existing file names.
+
     &gt;&gt;&gt; prefix = (&quot;0&quot; * 5) + &quot;.&quot;
     &gt;&gt;&gt; suffix = &quot;.&quot; + (&quot;0&quot; * 10)
     &gt;&gt;&gt; existing = [prefix + str(i) + suffix for i in range(100)]
 
     &gt;&gt;&gt; e = list(existing)
-    &gt;&gt;&gt; handleClash2(caseInsensitiveExisting=e, prefix=prefix, suffix=suffix)
+    &gt;&gt;&gt; handleClash2(existing=e, prefix=prefix, suffix=suffix)
     &#x27;00000.100.0000000000&#x27;
 
     &gt;&gt;&gt; e = list(existing)
     &gt;&gt;&gt; e.remove(prefix + &quot;1&quot; + suffix)
-    &gt;&gt;&gt; handleClash2(caseInsensitiveExisting=e, prefix=prefix, suffix=suffix)
+    &gt;&gt;&gt; handleClash2(existing=e, prefix=prefix, suffix=suffix)
     &#x27;00000.1.0000000000&#x27;
 
     &gt;&gt;&gt; e = list(existing)
     &gt;&gt;&gt; e.remove(prefix + &quot;2&quot; + suffix)
-    &gt;&gt;&gt; handleClash2(caseInsensitiveExisting=e, prefix=prefix, suffix=suffix)
+    &gt;&gt;&gt; handleClash2(existing=e, prefix=prefix, suffix=suffix)
     &#x27;00000.2.0000000000&#x27;
     &quot;&quot;&quot;
     # calculate the longest possible string
@@ -359,7 +369,7 @@ def handleClash2(caseInsensitiveExisting=[], prefix=&quot;&quot;, suffix=&quot;&
     counter = 1
     while finalName is None:
         fullName = prefix + str(counter) + suffix
-        if fullName.lower() not in caseInsensitiveExisting:
+        if fullName.lower() not in existing:
             finalName = fullName
             break
         else:
