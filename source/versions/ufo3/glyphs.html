@@ -32,6 +32,10 @@
 	<p>
 		The file names must end with ".glif" and must begin with a string that is unique within the layer. The file names stored in the property list must be plain file names, not absolute or relative paths in the file system, and they must include the ".glif" extension. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, a common implementation is defined in the <a href="conventions.html#usernametofilename">conventions</a>.
 	</p>
+	<p>
+		Authoring tools should preserve GLIF file names when writing into existing UFOs. This can be done by referencing the existing contents.plist before the write operation. The glyph name to file name mapping can then be referenced when creating new file names.
+	</p>
+
 
 	<h3>Example</h3>
 	<pre class="prettyprint">

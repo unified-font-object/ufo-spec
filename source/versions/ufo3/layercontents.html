@@ -26,6 +26,9 @@
 	<p>
 		Layer names may contain any character and they may be any length. Layer names must be unique within the font. The pattern "public.*", where * represents an arbitrary string of one or more characters, is reserved for use as layer names in the registry below.
 	</p>
+	<p>
+		Authoring tools should preserve directory names when writing into existing UFOs. This can be done by referencing the existing layercontents.plist before the write operation. The layer name to directory name mapping can then be referenced when creating new directory names.
+	</p>
 
 	<!-- Layer Registry -->
 
