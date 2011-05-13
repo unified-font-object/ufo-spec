@@ -58,10 +58,10 @@
 					Replace any illegal characters in <em>name</em> with underscores, where the illegal characters are: &quot; * + / : &lt; &gt; ? [ \ ] | anything in the range 0x00-0x1F and 0x7F.
 				</li>
 				<li>
-					Replace any period with an underscore.
+					Insert an underscore immediately after any uppercase character.
 				</li>
 				<li>
-					Insert an underscore immediately after any uppercase character.
+					If the name begins with a period and a prefix will not be added to the name, replace the period with an underscore.
 				</li>
 				<li>
 					If the revised <em>name</em> is longer than <em>maximum length</em>:
@@ -177,19 +177,19 @@
 			<td>aE_</td>
 		<tr>
 			<td>a.alt</td>
-			<td>a_alt</td>
+			<td>a.alt</td>
 		<tr>
 			<td>A.alt</td>
-			<td>A__alt</td>
+			<td>A_.alt</td>
 		<tr>
 			<td>A.Alt</td>
-			<td>A__A_lt</td>
+			<td>A_.A_lt</td>
 		<tr>
 			<td>A.aLt</td>
-			<td>A__aL_t</td>
+			<td>A_.aL_t</td>
 		<tr>
 			<td>A.alT</td>
-			<td>A__alT_</td>
+			<td>A_.alT_</td>
 		<tr>
 			<td>T_H</td>
 			<td>T__H_</td>
@@ -207,7 +207,7 @@
 			<td>f_f_i</td>
 		<tr>
 			<td>Aacute_V.swash</td>
-			<td>A_acute_V__swash</td>
+			<td>A_acute_V_.swash</td>
 		<tr>
 			<td>.notdef</td>
 			<td>_notdef</td>
@@ -218,6 +218,7 @@
 illegalCharacters = &quot;\&quot; * + / : &lt; &gt; ? [ \ ] | \0&quot;.split(&quot; &quot;)
 illegalCharacters += [chr(i) for i in range(1, 32)]
 illegalCharacters += [chr(0x7F)]
+maxFileNameLength = 255
 
 def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
         &quot;&quot;&quot;
@@ -237,15 +238,15 @@ def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;
         &gt;&gt;&gt; userNameToFileName(u&quot;aE&quot;)
         u&#x27;aE_&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;a.alt&quot;)
-        u&#x27;a_alt&#x27;
+        u&#x27;a.alt&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;A.alt&quot;)
-        u&#x27;A__alt&#x27;
+        u&#x27;A_.alt&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;A.Alt&quot;)
-        u&#x27;A__A_lt&#x27;
+        u&#x27;A_.A_lt&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;A.aLt&quot;)
-        u&#x27;A__aL_t&#x27;
+        u&#x27;A_.aL_t&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;A.alT&quot;)
-        u&#x27;A__alT_&#x27;
+        u&#x27;A_.alT_&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;T_H&quot;)
         u&#x27;T__H_&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;T_h&quot;)
@@ -257,24 +258,24 @@ def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;
         &gt;&gt;&gt; userNameToFileName(u&quot;f_f_i&quot;)
         u&#x27;f_f_i&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;Aacute_V.swash&quot;)
-        u&#x27;A_acute_V__swash&#x27;
+        u&#x27;A_acute_V_.swash&#x27;
         &gt;&gt;&gt; userNameToFileName(u&quot;.notdef&quot;)
         u&#x27;_notdef&#x27;
         &quot;&quot;&quot;
         # the incoming name must be a unicode string
-        assert isinstance(userName, unicode),
-          &quot;The value for userName must be a unicode string.&quot;
+        assert isinstance(userName, unicode), &quot;The value for userName must be a unicode string.&quot;
         # establish the prefix and suffix lengths
         prefixLength = len(prefix)
         suffixLength = len(suffix)
+        # replace an initial period with an _
+        # if no prefix is to be added
+        if not prefix and userName[0] == &quot;.&quot;:
+            userName = &quot;_&quot; + userName[1:]
         # filter the user name
         filteredUserName = []
         for character in userName:
             # replace illegal characters with _
             if character in illegalCharacters:
-                character = &quot;_&quot;
-            # replace all instances of . with _
-            elif character == &quot;.&quot;:
                 character = &quot;_&quot;
             # add _ to all non-lower characters
             elif character != character.lower():
@@ -282,7 +283,7 @@ def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;
             filteredUserName.append(character)
         userName = &quot;&quot;.join(filteredUserName)
         # clip to 255
-        sliceLength = 255 - prefixLength - suffixLength
+        sliceLength = maxFileNameLength - prefixLength - suffixLength
         userName = userName[:sliceLength]
         # test for clash
         fullName = prefix + userName + suffix
@@ -298,27 +299,33 @@ def handleClash1(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;
 
     &gt;&gt;&gt; prefix = (&quot;0&quot; * 5) + &quot;.&quot;
     &gt;&gt;&gt; suffix = &quot;.&quot; + (&quot;0&quot; * 10)
-    &gt;&gt;&gt; existing = [&quot;a&quot; * 20]
+    &gt;&gt;&gt; existing = [&quot;a&quot; * 5]
 
     &gt;&gt;&gt; e = list(existing)
-    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, existing=e,
+    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 5, existing=e,
     ...     prefix=prefix, suffix=suffix)
     &#x27;00000.AAAAA000000000000001.0000000000&#x27;
 
     &gt;&gt;&gt; e = list(existing)
     &gt;&gt;&gt; e.append(prefix + &quot;aaaaa&quot; + &quot;1&quot;.zfill(15) + suffix)
-    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, existing=e,
+    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 5, existing=e,
     ...     prefix=prefix, suffix=suffix)
     &#x27;00000.AAAAA000000000000002.0000000000&#x27;
 
     &gt;&gt;&gt; e = list(existing)
     &gt;&gt;&gt; e.append(prefix + &quot;AAAAA&quot; + &quot;2&quot;.zfill(15) + suffix)
-    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 20, existing=e,
+    &gt;&gt;&gt; handleClash1(userName=&quot;A&quot; * 5, existing=e,
     ...     prefix=prefix, suffix=suffix)
     &#x27;00000.AAAAA000000000000001.0000000000&#x27;
     &quot;&quot;&quot;
-    # silce 15 characters off of the user name
-    userName = userName[:-15]
+    # if the prefix length + user name length + suffix length + 15 is at
+    # or past the maximum length, silce 15 characters off of the user name
+    prefixLength = len(prefix)
+    suffixLength = len(suffix)
+    if prefixLength + len(userName) + suffixLength + 15 &gt; maxFileNameLength:
+        l = (prefixLength + len(userName) + suffixLength + 15)
+        sliceLength = maxFileNameLength - l
+        userName = userName[:sliceLength]
     finalName = None
     # try to add numbers to create a unique name
     counter = 1
@@ -362,7 +369,7 @@ def handleClash2(existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
     &#x27;00000.2.0000000000&#x27;
     &quot;&quot;&quot;
     # calculate the longest possible string
-    maxLength = 255 - len(prefix) - len(suffix)
+    maxLength = maxFileNameLength - len(prefix) - len(suffix)
     maxValue = int(&quot;9&quot; * maxLength)
     # try to find a number
     finalName = None
