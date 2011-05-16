@@ -2,7 +2,7 @@
 	<h1>UFO 3 (draft)</h1>
 
 	<p>
-		<strong>Editor's Draft May 6, 2011</strong>
+		<strong>Editor's Draft May XX, 2011</strong>
 	</p>
 
 	<p>
@@ -25,9 +25,7 @@
 
 	<!-- Terminology -->
 
-	<h3>
-		Terminology
-	</h3>
+	<h3>Terminology</h3>
 	<p>
 		The terms "must", "must not", "required", "shall", "shall not", "should", "should not", "recommended", "may", and "optional" used throughout this specification conform to <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>.
 	</p>
@@ -46,9 +44,7 @@
 
 	<!-- FIle Structure -->
 
-	<h3>
-		File Structure
-	</h3>
+	<h3>File Structure</h3>
 	<p>
 		UFO 3 follows this file structure:
 	</p>
@@ -144,24 +140,24 @@
 
 	<!-- Glyph Layers -->
 
-	<h3 id="glyphlayers">
-		Glyph Layers
-	</h3>
+	<h3 id="glyphlayers">Glyph Layers</h3>
 	<p>
 		The UFO supports layered glyphs. These layers can be used for anything&#8212;the common <em>main+background</em> drawing environment, multi-layered fonts, glyph revision history and so on. The layering structure is designed to be conceptually unrestricted.
 	</p>
 	<p>
 		Layers are implemented with a series of glyph sets within the UFO. Each glyph set represents one layer for all glyphs in the font. Each glyph set is stored in its own "glyphs" directory. There is one required glyph set that represents the primary outline source of the glyph. This glyph set should be stored in the "glyphs" directory. Additional layers are stored in other directories as defined in the <a href="layercontents.html">layercontents.plist</a> documentation.
 	</p>
+	<h4>Character Mapping</h4>
+	<p>
+		A character to glyph mapping for the UFO may be created by skimming the GLIF files in the required layer and retrieving the first Unicode element, if present. There is no guarantee that a single Unicode value will not be used in more than one GLIF. Authoring tools may handle these conflicts in their own particular way. Likewise, a glyph with the same name in more than one layer may have different Unicode values in each layer. Authoring tools using the native file model should maintain the different Unicode values. Authoring tools that use the import/expert model may or may not retain the Unicode values on the layers that are not the required layer. All of this should be done in accordance with the policies outlined in the <a href="../../atguidelines.html">Authoring Tool Guidelines</a>.
+
 </div>
 
 <!-- Changes from UFO 2 -->
 
 <div class="section">
 
-	<h1>
-		Changes from UFO 2
-	</h1>
+	<h1>Changes from UFO 2</h1>
 	<p>
 		In general, there have been many editorial changes that don't affect the content. The term "authoring tool" has been used to make the references to applications, scripts, etc. consistent. Various conformance statements were modified to make them consistent with RFC 2119.
 	</p>
