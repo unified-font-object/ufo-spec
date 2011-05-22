@@ -14,6 +14,96 @@
 		Coordinates and transformations in the UFO are relative to the origin (x=0 and y=0), the positive x-axis points towards the right and the positive y-axis points up, unless otherwise noted.
 	</p>
 
+	<!-- Data Types -->
+
+	<h3 id="datatypes">Data Types</h3>
+
+	<p>
+		These types are used throughout the UFO specification.
+	</p>
+
+	<p>
+		While efforts have been made to define how many of the values in various UFO files relate to binary files such as OpenType, it is the responsibility of authoring tools to ensure the UFO values convert to said binary values appropriately. For example, in OpenType many fields require unsigned short integers, but a UFO may contain values for these fields that are greater than 65,535.
+	</p>
+
+	<h4>string</h4>
+	<p>
+		A string is specified with one or more characters encoded with the encoding scheme defined for the XML file that the string belongs to. The range of characters allowed in a given string field in the UFO may be limited. In these cases the specification defines the available subset.
+	</p>
+
+	<h4>integer</h4>
+	<p>
+		An integer is specified with an optional sign character ("+" or "-") followed by one or more digits "0" to "9". There is not limit to the number of integer digits. If a sign character is not present, the number is non-negative.
+	<p>
+
+	<h4>non-negative integer</h4>
+	<p>
+		An integer greater than or equal to zero. See above for integer notation.
+	<p>
+
+	<h4>float</h4>
+	<p>
+		A float is specified with an optional sign character ("+" or "-") followed by zero or more digits "0" to "9" followed by a period "." followed by one or more digits "0" to "9". There is no limit to the number of digits before or after the decimal. If a sign character is not present, the number is non-negative.
+	</p>
+
+	<p>
+		Authoring tools should not write floats that can be represented losslessly as integers unless the specification requires a float.
+	</p>
+
+	<h4>non-negative float</h4>	
+	<p>
+		A float greater than or equal to zero. See above for float notation.
+	<p>
+
+	<h4>list</h4>
+	<p>
+		An ordered sequence of items.
+	</p>
+
+	<h4>number list</h4>
+	<p>
+		An ordered list of numbers. These numbers may be integers, floats or a mixture. However, the individual uses of number lists throughout this specification may override this and state that only integers are allowed or only floats are allowed.
+	</p>
+
+	<h4>dictionary</h4>
+	<p>
+		A dictionary is an unordered associative array mapping keys to values. In the XML property lists used throughout the UFO, the keys must be strings. Values may be any type, though the options are defined throughout this specification.
+	</p>
+
+
+	<h4 id="colors">color definition</h4>
+	<p>
+		A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the <a href="http://en.wikipedia.org/wiki/SRGB">sRGB</a> color space.
+	</p>
+
+	<h4>
+		Examples
+	</h5>
+	<table class="evenColumns">
+		<tr>
+			<th>string</th>
+			<th>red component</th>
+			<th>green component</th>
+			<th>blue component</th>
+			<th>alpha component</th>
+		</tr>
+		<tr>
+			<td>1,0,0,1</td>
+			<td>1.0</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1.0</td>
+		</tr>
+		<tr>
+			<td>0,.5,0,.5</td>
+			<td>0</td>
+			<td>0.5</td>
+			<td>0</td>
+			<td>0.5</td>
+		</tr>
+	</table>
+
+
 	<!-- Reverse Domain Naming Scheme -->
 
 	<h3 id="reversedomain">
@@ -389,40 +479,4 @@ def handleClash2(existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
     # finished
     return finalName
 	</pre>
-
-	<!-- Color Definitions -->
-
-	<h3 id="colors">
-		Color Definitions
-	</h3>
-	<p>
-		Several elements have a color attribute that defines a color value to be applied to the element. A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the <a href="http://en.wikipedia.org/wiki/SRGB">sRGB</a> color space.
-	</p>
-
-	<h4>
-		Examples
-	</h4>
-	<table class="evenColumns">
-		<tr>
-			<th>string</th>
-			<th>red component</th>
-			<th>green component</th>
-			<th>blue component</th>
-			<th>alpha component</th>
-		</tr>
-		<tr>
-			<td>1,0,0,1</td>
-			<td>1.0</td>
-			<td>0</td>
-			<td>0</td>
-			<td>1.0</td>
-		</tr>
-		<tr>
-			<td>0,.5,0,.5</td>
-			<td>0</td>
-			<td>0.5</td>
-			<td>0</td>
-			<td>0.5</td>
-		</tr>
-	</table>
 </div>
