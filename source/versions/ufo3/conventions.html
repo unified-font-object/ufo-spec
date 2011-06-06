@@ -363,7 +363,8 @@ def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;
         u&#x27;_notdef&#x27;
         &quot;&quot;&quot;
         # the incoming name must be a unicode string
-        assert isinstance(userName, unicode), &quot;The value for userName must be a unicode string.&quot;
+        assert isinstance(userName, unicode),
+            &quot;The value for userName must be a unicode string.&quot;
         # establish the prefix and suffix lengths
         prefixLength = len(prefix)
         suffixLength = len(suffix)
@@ -489,4 +490,76 @@ def handleClash2(existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
     # finished
     return finalName
 	</pre>
+
+	<!-- Identifiers -->
+
+	<h3 id="identifiers">
+		Identifiers
+	</h3>
+	<p>
+		Identifiers are optional attributes of several objects in the UFO. These identifiers are required to be unique within certain contexts as defined on a per object basis throughout this specification. Identifiers are specified as a string between one and 100 characters long. All characters must be in the printable ASCII range, 0x20 to 0x7E.
+	</p>
+	<p>
+		There is no standard identifier generation algorithm. Random strings, simple numbers, UUIDs, time stamps and more may be used. An example algorithm for generating identifiers that are random strings is detailed below.
+	</p>
+	<h4>Example Algorithm</h4>
+	<p>
+		This algorithm is designed to generate a unique identifier that is a unique string consisting of 10 characters from 0-9, A-Z and a-z. This allows a glyph to contain 10<sup>62</sup> points that follow this identifier naming scheme.
+	</p>
+	<ul class="algorithm">
+		<li>
+			<em>possible characters</em> includes 0-9, A-Z and a-z.
+		</li>
+		<li>
+			<em>existing identifiers</em> is a list of all existing identifiers in the glyph.
+		</li>
+		<li>
+			<em>identifier</em> a 10 character long string of characters randomly selected from <em>possible characters</em>.
+		</li>
+		<li>
+			If <em>identifier</em> is not in <em>existing identifiers</em>:
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					Stop.
+				</li>
+			</ul>
+		</li>
+		<li>
+			If <em>identifier</em> is in <em>existing identifiers</em>:
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					Repeat this process until a unique identifier is found.
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<h4>Example implementation:</h4>
+	<pre class="prettyprint">
+import random
+
+characters = list("0123456789")
+characters += list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+characters += list("abcdefghijklmnopqrstuvwxyz")
+identifierLength = 10
+identifierRange = range(identifierLength)
+
+def makeRandomIdentifier(existing, recursionDepth=0):
+    if recursionDepth &gt;= 50:
+        raise NotImplementedError,\
+            "Failed 50 times in a row to create a unique id. Sorry."
+    identifier = []
+    for i in identifierRange:
+        c = random.choice(characters)
+        identifier.append(c)
+    identifier = "".join(identifier)
+    if identifier in existing:
+        return makeRandomIdentifier(existing, recursionDepth+1)
+    else:
+        return identifier
+	</pre>
+
 </div>
