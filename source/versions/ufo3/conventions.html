@@ -321,77 +321,77 @@ illegalCharacters += [chr(0x7F)]
 maxFileNameLength = 255
 
 def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
-        &quot;&quot;&quot;
-        existing should be a case-insensitive list
-        of all existing file names.
+    &quot;&quot;&quot;
+    existing should be a case-insensitive list
+    of all existing file names.
 
-        &gt;&gt;&gt; userNameToFileName(u&quot;a&quot;)
-        u&#x27;a&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;A&quot;)
-        u&#x27;A_&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;AE&quot;)
-        u&#x27;A_E_&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;Ae&quot;)
-        u&#x27;A_e&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;ae&quot;)
-        u&#x27;ae&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;aE&quot;)
-        u&#x27;aE_&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;a.alt&quot;)
-        u&#x27;a.alt&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;A.alt&quot;)
-        u&#x27;A_.alt&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;A.Alt&quot;)
-        u&#x27;A_.A_lt&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;A.aLt&quot;)
-        u&#x27;A_.aL_t&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;A.alT&quot;)
-        u&#x27;A_.alT_&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;T_H&quot;)
-        u&#x27;T__H_&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;T_h&quot;)
-        u&#x27;T__h&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;t_h&quot;)
-        u&#x27;t_h&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;F_F_I&quot;)
-        u&#x27;F__F__I_&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;f_f_i&quot;)
-        u&#x27;f_f_i&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;Aacute_V.swash&quot;)
-        u&#x27;A_acute_V_.swash&#x27;
-        &gt;&gt;&gt; userNameToFileName(u&quot;.notdef&quot;)
-        u&#x27;_notdef&#x27;
-        &quot;&quot;&quot;
-        # the incoming name must be a unicode string
-        assert isinstance(userName, unicode),
-            &quot;The value for userName must be a unicode string.&quot;
-        # establish the prefix and suffix lengths
-        prefixLength = len(prefix)
-        suffixLength = len(suffix)
-        # replace an initial period with an _
-        # if no prefix is to be added
-        if not prefix and userName[0] == &quot;.&quot;:
-            userName = &quot;_&quot; + userName[1:]
-        # filter the user name
-        filteredUserName = []
-        for character in userName:
-            # replace illegal characters with _
-            if character in illegalCharacters:
-                character = &quot;_&quot;
-            # add _ to all non-lower characters
-            elif character != character.lower():
-                character += &quot;_&quot;
-            filteredUserName.append(character)
-        userName = &quot;&quot;.join(filteredUserName)
-        # clip to 255
-        sliceLength = maxFileNameLength - prefixLength - suffixLength
-        userName = userName[:sliceLength]
-        # test for clash
-        fullName = prefix + userName + suffix
-        if fullName.lower() in existing:
-            fullName = handleClash1(userName, existing, prefix, suffix)
-        # finished
-        return fullName
+    &gt;&gt;&gt; userNameToFileName(u&quot;a&quot;)
+    u&#x27;a&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;A&quot;)
+    u&#x27;A_&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;AE&quot;)
+    u&#x27;A_E_&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;Ae&quot;)
+    u&#x27;A_e&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;ae&quot;)
+    u&#x27;ae&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;aE&quot;)
+    u&#x27;aE_&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;a.alt&quot;)
+    u&#x27;a.alt&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;A.alt&quot;)
+    u&#x27;A_.alt&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;A.Alt&quot;)
+    u&#x27;A_.A_lt&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;A.aLt&quot;)
+    u&#x27;A_.aL_t&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;A.alT&quot;)
+    u&#x27;A_.alT_&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;T_H&quot;)
+    u&#x27;T__H_&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;T_h&quot;)
+    u&#x27;T__h&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;t_h&quot;)
+    u&#x27;t_h&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;F_F_I&quot;)
+    u&#x27;F__F__I_&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;f_f_i&quot;)
+    u&#x27;f_f_i&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;Aacute_V.swash&quot;)
+    u&#x27;A_acute_V_.swash&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;.notdef&quot;)
+    u&#x27;_notdef&#x27;
+    &quot;&quot;&quot;
+    # the incoming name must be a unicode string
+    assert isinstance(userName, unicode),
+        &quot;The value for userName must be a unicode string.&quot;
+    # establish the prefix and suffix lengths
+    prefixLength = len(prefix)
+    suffixLength = len(suffix)
+    # replace an initial period with an _
+    # if no prefix is to be added
+    if not prefix and userName[0] == &quot;.&quot;:
+        userName = &quot;_&quot; + userName[1:]
+    # filter the user name
+    filteredUserName = []
+    for character in userName:
+        # replace illegal characters with _
+        if character in illegalCharacters:
+            character = &quot;_&quot;
+        # add _ to all non-lower characters
+        elif character != character.lower():
+            character += &quot;_&quot;
+        filteredUserName.append(character)
+    userName = &quot;&quot;.join(filteredUserName)
+    # clip to 255
+    sliceLength = maxFileNameLength - prefixLength - suffixLength
+    userName = userName[:sliceLength]
+    # test for clash
+    fullName = prefix + userName + suffix
+    if fullName.lower() in existing:
+        fullName = handleClash1(userName, existing, prefix, suffix)
+    # finished
+    return fullName
 
 def handleClash1(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
     &quot;&quot;&quot;
