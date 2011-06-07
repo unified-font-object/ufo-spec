@@ -1279,14 +1279,14 @@
 		<tr>
 			<td>x</td>
 			<td>integer or float</td>
-			<td>The 'x' coordinate.</td>
-			<td>None. Optional if <code>y</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+			<td>The 'x' coordinate. Optional if <code>y</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+			<td>None</td>
 		</tr>
 		<tr>
 			<td>y</td>
 			<td>integer or float</td>
-			<td>The 'y' coordinate.</td>
-			<td>None. Optional if <code>x</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+			<td>The 'y' coordinate. Optional if <code>x</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+			<td>None</td>
 		</tr>
 		<tr>
 			<td>angle</td>
@@ -1304,6 +1304,12 @@
 			<td>color</td>
 			<td>string</td>
 			<td>The color that should be applied to the guideline. The format follows the <a href="#color">color definition</a> standard. This attribute is optional.</td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td>identifier</td>
+			<td>string</td>
+			<td>Unique identifier for the guideline. This attribute is not required and should only be added to guidelines as needed. However, once an identifier has been assigned to a guideline it must not be unnecessarily removed or changed. Identifiers may be changed in incoming guidelines during editing operations such as "paste," but they should be maintained unless a duplicate identifier will be created. The identifier value must be unique within the fontinfo.plist guidelines list that the guideline belongs to but it is not required to be unique among the identifiers assigned to guidelines in glyphs or any layerinfo.plist. The identifier specification is detailed in the <a href="conventions.html#identifiers">conventions</a>.</td>
 			<td>None</td>
 		</tr>
 	</table>

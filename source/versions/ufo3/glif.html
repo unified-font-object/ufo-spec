@@ -263,20 +263,20 @@
 		<tr>
 			<td>x</td>
 			<td>integer or float</td>
-			<td>The 'x' coordinate.</td>
-			<td>None. Optional if <code>y</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+			<td>The 'x' coordinate. Optional if <code>y</code> is provided and <code>angle</code> is not provided. See below for details.</td>
+			<td>None</td>
 		</tr>
 		<tr>
 			<td>y</td>
 			<td>integer or float</td>
-			<td>The 'y' coordinate.</td>
-			<td>None. Optional. See below for details.</td>
+			<td>The 'y' coordinate. Optional. See below for details.</td>
+			<td>None</td>
 		</tr>
 		<tr>
 			<td>angle</td>
 			<td>integer or float</td>
-			<td>The angle of the guideline. This must be an angle between 0 and 360 degrees in a clockwise direction from the horizontal.</td>
-			<td>None. If <code>x</code> or <code>y</code> are not specified, <code>angle</code> must not be specified. See below for details.</td>
+			<td>The angle of the guideline. This must be an angle between 0 and 360 degrees in a clockwise direction from the horizontal. If <code>x</code> or <code>y</code> are not specified, <code>angle</code> must not be specified. See below for details.</td>
+			<td>None</td>
 		</tr>
 		<tr>
 			<td>name</td>
@@ -288,6 +288,12 @@
 			<td>color</td>
 			<td>string</td>
 			<td>The color that should be applied to the guideline. The format follows the <a href="#color">color definition</a> standard. This attribute is optional.</td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td>identifier</td>
+			<td>string</td>
+			<td>Unique identifier for the guideline. This attribute is not required and should only be added to guidelines as needed. However, once an identifier has been assigned to a guideline it must not be unnecessarily removed or changed. Identifiers may be changed in incoming guidelines during editing operations such as "paste," but they should be maintained unless a duplicate identifier will be created. The identifier value must be unique within the glyph that the guideline belongs to but it is not required to be unique among the identifiers assigned to guidelines in other glyphs, any layerinfo.plist or in fontinfo.plist. The identifier specification is detailed in the <a href="conventions.html#identifiers">conventions</a>.</td>
 			<td>None</td>
 		</tr>
 	</table>
@@ -374,6 +380,12 @@
 			<td>See below.</td>
 			<td>0</td>
 		</tr>
+		<tr>
+			<td>identifier</td>
+			<td>string</td>
+			<td>Unique identifier for the component. This attribute is not required and should only be added to components as needed. However, once an identifier has been assigned to a component it must not be unnecessarily removed or changed. Identifiers may be changed in incoming components during editing operations such as "paste," but they should be maintained unless a duplicate identifier will be created. The identifier value must be unique within the glyph that the component belongs to but it is not required to be unique within the font that the component belongs to. The identifier specification is detailed in the <a href="conventions.html#identifiers">conventions</a>.</td>
+			<td>None</td>
+		</tr>
 	</table>
 
 	<p>
@@ -393,7 +405,21 @@
 
 	<h3 id="contour">contour: Contour description.</h3>
 
-	<h4>This element has no attributes.</h4>
+	<h4>Attributes</h4>
+	<table>
+		<tr>
+			<th>attribute name</th>
+			<th>data type</th>
+			<th>description</th>
+			<th>default value</th>
+		</tr>
+		<tr>
+			<td>identifier</td>
+			<td>string</td>
+			<td>Unique identifier for the component. This attribute is not required and should only be added to contours as needed. However, once an identifier has been assigned to a contour it must not be unnecessarily removed or changed. Identifiers may be changed in incoming contours during editing operations such as "paste" and component decomposition, but they should be maintained unless a duplicate identifier will be created. Identifiers should also be retained when possible during outline manipulation operations such as path direction changes and remove overlap. The identifier value must be unique within the glyph that the contour belongs to but it is not required to be unique within the font that the contour belongs to. The identifier specification is detailed in the <a href="conventions.html#identifiers">conventions</a>.</td>
+			<td>None</td>
+		</tr>
+	</table>
 
 	<h4>Child Elements</h4>
 	<table>
@@ -452,7 +478,7 @@
 		<tr>
 			<td>identifier</td>
 			<td>string</td>
-			<td>Identifier for this point. The requirements for this attribute are detailed below.</td>
+			<td>Unique identifier for the point. This attribute is not required and should only be added to points as needed. However, once an identifier has been assigned to a point it must not be unnecessarily removed or changed. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained unless a duplicate identifier will be created. Identifiers should also be retained when possible during outline manipulation operations such as path direction changes and remove overlap. The identifier value must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier specification is detailed in the <a href="conventions.html#identifiers">conventions</a>.</td>
 			<td>None</td>
 		</tr>
 	</table>
@@ -486,14 +512,6 @@
 			Should we remove the Super Bezier functionality? It creates an <a href="http://fontforge.sourceforge.net/python.html">interoperability problem</a> (search the page for "super-bezier").
 		</p>
 	</div>
-
-	<h5>Point Identifier</h5>
-	<p>
-		Points may have an identifier attribute. This attribute is not required and should only be added to points as needed. However, once an identifier has been assigned to a point it must not be unnecessarily removed or changed. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained unless a duplicate identifier will be created. Identifiers should also be retained during outline manipulation operations such as path direction changes and remove overlap when possible.
-	</p>
-	<p>
-		The identifier value must be unique within the glyph that the point belongs to but it is not required to be unique within the font that the point belongs to. The identifier specification is detailed in the <a href="conventions.html#identifiers">conventions</a>.
-	</p>
 
 	<h4>This element has no child elements.</h4>
 
