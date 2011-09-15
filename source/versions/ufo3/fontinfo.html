@@ -928,190 +928,54 @@
 		</tr>
 		<tr>
 			<td>woffMetadataUniqueID</td>
-			<td>string</td>
-			<td>Identification string. Corresponds to the WOFF <code>uniqueid</code> element <code>id</code> attribute.</td>
+			<td>dictionary</td>
+			<td>Identification string. Corresponds to the WOFF <code>uniqueid</code>. The dictionary must follow the WOFF Metadata Unique ID Record structure.</td>
 		</tr>
 		<tr>
 			<td>woffMetadataVendor</td>
-			<td>string</td>
-			<td>Font vendor. Corresponds to the WOFF <code>vendor</code> element <code>name</code> attribute.</td>
-		</tr>
-		<tr>
-			<td>woffMetadataVendorURL</td>
-			<td>string</td>
-			<td>Font vendor URL. Corresponds to the WOFF <code>vendor</code> element <code>url</code> attribute.</td>
+			<td>dictionary</td>
+			<td>Font vendor. Corresponds to the WOFF <code>vendor</code> element. The dictionary must follow the the WOFF Metadata Vendor Record structure.</td>
 		</tr>
 		<tr>
 			<td>woffMetadataCredits</td>
 			<td>list</td>
-			<td>List of credit records. Corresponds to the WOFF <code>credits</code> element.</td>
+			<td>Font credits. Corresponds to the WOFF <code>credits</code> element. The items in the list must follow the WOFF Credit Record format. The list must contain at least one credit record.</td>
 		</tr>
 		<tr>
 			<td>woffMetadataDescription</td>
-			<td>string</td>
-			<td>Description string. Corresponds to the WOFF <code>description</code> element.</td>
-		</tr>
-		<tr>
-			<td>woffMetadataDescriptionURL</td>
-			<td>string</td>
-			<td>Description URL. Corresponds to the WOFF <code>description</code> element url attribute.</td>
+			<td>dictionary</td>
+			<td>Font description. Corresponds to the WOFF <code>description</code> element. The dictionary must follow the WOFF Metadata Description Record structure.</td>
 		</tr>
 		<tr>
 			<td>woffMetadataLicense</td>
-			<td>string</td>
-			<td>License string. Corresponds to the WOFF <code>license</code> element.</td>
-		</tr>
-		<tr>
-			<td>woffMetadataLicenseID</td>
-			<td>string</td>
-			<td>License ID string. Corresponds to the WOFF <code>license</code> element <code>id</code> attribute.</td>
-		</tr>
-		<tr>
-			<td>woffMetadataLicenseURL</td>
-			<td>string</td>
-			<td>License URL string. Corresponds to the WOFF <code>license</code> element <code>url</code> attribute.</td>
+			<td>dictionary</td>
+			<td>Font description. Corresponds to the WOFF <code>license</code> element. The dictionary must follow the WOFF Metadata License Record structure.</td>
 		</tr>
 		<tr>
 			<td>woffMetadataCopyright</td>
-			<td>string</td>
-			<td>Copyright string. Corresponds to the WOFF <code>copyright</code> element.</td>
+			<td>dictionary</td>
+			<td>Font copyright. Corresponds to the WOFF <code>copyright</code> element. The dictionary must follow the WOFF Metadata Copyright Record structure.</td>
 		</tr>
 		<tr>
 			<td>woffMetadataTrademark</td>
-			<td>string</td>
-			<td>Trademark string. Corresponds to the WOFF <code>trademark</code> element.</td>
+			<td>dictionary</td>
+			<td>Font trademark. Corresponds to the WOFF <code>trademark</code> element. The dictionary must follow the WOFF Metadata Trademark Record structure.</td>
 		</tr>
 		<tr>
-			<td>woffMetadataLicenseeName</td>
-			<td>string</td>
-			<td>Licensee name string. Corresponds to the WOFF <code>licensee</code> element name attribute.</td>
-		</tr>
-		<tr>
-			<td>woffMetadataRecords</td>
-			<td>list</td>
-			<td>List of metadata records. This record storage area is intended for records that require language localization.</td>
+			<td>woffMetadataLicensee</td>
+			<td>dictionary</td>
+			<td>Font licensee. Corresponds to the WOFF <code>licensee</code> element. The dictionary must follow the WOFF Metadata Licensee Record structure.</td>
 		</tr>
 		<tr>
 			<td>woffMetadataExtensions</td>
 			<td>list</td>
-			<td>List of metadata extension records. <span class="inlineEditorsNote">This may not make it into the final UFO 3 specification. See note below.</span></td>
+			<td>List of metadata extension records. The dictionaries must follow the WOFF Metadata Extension Record structure. There must be at least one extension record in the list.</td>
 		</tr>
 	</table>
 
-	<div class="editorsNote">
-		<p>
-			Need to review the final (it's not yet approved) credits localization format to make sure it will be possible in the metadataRecords or the credit record.
-		</p>
-	</div>
-
-	<h5>Credit Record</h5>
+	<h5>WOFF Metadata Unique ID Record</h5>
 	<p>
-		The records are stored as dictionaries of the following format.
-	</p>
-	<table>
-		<tr>
-			<th>key</th>
-			<th>value type</th>
-			<th>description</th>
-		</tr>
-		<tr>
-			<td>name</td>
-			<td>string</td>
-			<td>The name for the credit.</td>
-		</tr>
-		<tr>
-			<td>url</td>
-			<td>string</td>
-			<td>The url for the credit.</td>
-		</tr>
-		<tr>
-			<td>role</td>
-			<td>string</td>
-			<td>The role for the credit.</td>
-		</tr>
-	</table>
-
-	<h5>Metadata Records</h5>
-	<p>
-		The records are stored as dictionaries of the following format.
-	</p>
-	<table>
-		<tr>
-			<th>key</th>
-			<th>value type</th>
-			<th>description</th>
-		</tr>
-		<tr>
-			<td>tag</td>
-			<td>string</td>
-			<td>The element tag of the record.</td>
-		</tr>
-		<tr>
-			<td>language</td>
-			<td>string</td>
-			<td>The language tag of the record.</td>
-		</tr>
-		<tr>
-			<td>text</td>
-			<td>string</td>
-			<td>The text for of record.</td>
-		</tr>
-	</table>
-
-	<h5>Metadata Extension Record</h5>
-
-	<div class="editorsNote">
-		<p>
-			This may not make it into the final UFO 3 spec. The data structure is vastly more complicated than anything else in this file. The problem is that the extension elements are difficult to effectively represent with a property list. It would probably be best to not support the extension elements than to support them in a way that we are not satisfied with.
-		</p>
-	</div>
-
-	<p>
-		The records are stored as dictionaries of the following format.
-	</p>
-	<table>
-		<tr>
-			<th>key</th>
-			<th>value type</th>
-			<th>description</th>
-		</tr>
-		<tr>
-			<td>names</td>
-			<td>list</td>
-			<td>List of metadata extension name records.</td>
-		</tr>
-		<tr>
-			<td>items</td>
-			<td>list</td>
-			<td>List of metadata extension item records.</td>
-		</tr>
-	</table>
-
-	<h6>Metadata Extension Name Record</h6>
-	<p>
-		The records are stored as dictionaries of the following format.
-	</p>
-	<table>
-		<tr>
-			<th>key</th>
-			<th>value type</th>
-			<th>description</th>
-		</tr>
-		<tr>
-			<td>name</td>
-			<td>string</td>
-			<td>The name of the name record.</td>
-		</tr>
-		<tr>
-			<td>lang</td>
-			<td>string</td>
-			<td>The language of the name record.</td>
-		</tr>
-	</table>
-
-	<h6>Metadata Extension Item Record</h6>
-	<p>
-		The records are stored as dictionaries of the following format.
+		The record is stored as dictionary of the following format.
 	</p>
 	<table>
 		<tr>
@@ -1122,18 +986,13 @@
 		<tr>
 			<td>id</td>
 			<td>string</td>
-			<td>The id of the item record.</td>
-		</tr>
-		<tr>
-			<td>members</td>
-			<td>list</td>
-			<td>List of metadata extension item member records.</td>
+			<td>The name for the credit. This is required.</td>
 		</tr>
 	</table>
 
-	<h6>Metadata Extension Item Member Record</h6>
+	<h5>WOFF Metadata Vendor Record</h5>
 	<p>
-		The records are stored as dictionaries of the following format.
+		The record is stored as dictionary of the following format.
 	</p>
 	<table>
 		<tr>
@@ -1144,86 +1003,286 @@
 		<tr>
 			<td>name</td>
 			<td>string</td>
-			<td>The name of the member record.</td>
+			<td>Font vendor. Corresponds to the WOFF <code>vendor</code> element <code>name</code> attribute. This is required.</td>
 		</tr>
 		<tr>
-			<td>value</td>
+			<td>url</td>
 			<td>string</td>
-			<td>The value of the member record.</td>
+			<td>Font vendor URL. Corresponds to the WOFF <code>vendor</code> element <code>url</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>dir</td>
+			<td>string</td>
+			<td>Writing direction. The options are <em>ltr</em> and <em>rtl</em>. Corresponds to the WOFF <code>vendor</code> element <code>dir</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>class</td>
+			<td>string</td>
+			<td>Class tokens. Corresponds to the WOFF <code>vendor</code> element <code>class</code> attribute. This is optional.</td>
+		</tr>
+	</table>
+
+	<h5>WOFF Metadata Credit Record</h5>
+	<p>
+		The record is stored as dictionary of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td>The name for the credit. Corresponds to the WOFF <code>credit</code> element <code>name</code> attribute. This is required.</td>
+		</tr>
+		<tr>
+			<td>url</td>
+			<td>string</td>
+			<td>The name for the credit. Corresponds to the WOFF <code>credit</code> element <code>name</code> attribute. This is required.</td>
+		</tr>
+		<tr>
+			<td>url</td>
+			<td>string</td>
+			<td>The url for the credit. Corresponds to the WOFF <code>credit</code> element <code>url</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>role</td>
+			<td>string</td>
+			<td>The role for the credit. Corresponds to the WOFF <code>credit</code> element <code>role</code> attribute. This is optional.</td>
+		</tr>
+	</table>
+
+	<h5>WOFF Metadata Description Record</h5>
+	<p>
+		The record is stored as dictionary of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>url</td>
+			<td>string</td>
+			<td>A URL for the description. Corresponds to the WOFF <code>description</code> element <code>url</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>list</td>
+			<td>A list of WOFF Metadata Text Records for the description. This list must contain at least one text record.</td>
+		</tr>
+	</table>
+
+	<h5>WOFF Metadata License Record</h5>
+	<p>
+		The record is stored as dictionary of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>url</td>
+			<td>string</td>
+			<td>A URL for the license. Corresponds to the WOFF <code>license</code> element <code>url</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>list</td>
+			<td>A list of WOFF Metadata Text Records for the description. This list must contain at least one text record.</td>
+		</tr>
+	</table>
+
+	<h5>WOFF Metadata Copyright Record</h5>
+	<p>
+		The record is stored as dictionary of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>list</td>
+			<td>A list of WOFF Metadata Text Records for the copyright. This list must contain at least one text record.</td>
+		</tr>
+	</table>
+
+	<h5>WOFF Metadata Trademark Record</h5>
+	<p>
+		The record is stored as dictionary of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>list</td>
+			<td>A list of WOFF Metadata Text Records for the trademark. This list must contain at least one text record.</td>
+		</tr>
+	</table>
+
+	<h5>WOFF Metadata Licensee Record</h5>
+	<p>
+		The record is stored as dictionary of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>string</td>
+			<td>The licensee. Corresponds to the WOFF <code>licensee</code> element <code>name</code> attribute. This is required.</td>
+		</tr>
+		<tr>
+			<td>dir</td>
+			<td>string</td>
+			<td>Writing direction. The options are <em>ltr</em> and <em>rtl</em>. Corresponds to the WOFF <code>vendor</code> element <code>dir</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>class</td>
+			<td>string</td>
+			<td>Class tokens. Corresponds to the WOFF <code>vendor</code> element <code>class</code> attribute. This is optional.</td>
+		</tr>
+	</table>
+
+	<h5>WOFF Metadata Text Record</h5>
+	<p>
+		The record is stored as dictionary of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>string</td>
+			<td>The text for the record. This is required.</td>
 		</tr>
 		<tr>
 			<td>language</td>
 			<td>string</td>
-			<td>The language of the member record.</td>
+			<td>Language. Corresponds to the WOFF <code>text</code> element <code>xml:lang</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>dir</td>
+			<td>string</td>
+			<td>Writing direction. The options are <em>ltr</em> and <em>rtl</em>. Corresponds to the WOFF <code>text</code> element <code>dir</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>class</td>
+			<td>string</td>
+			<td>Class tokens. Corresponds to the WOFF <code>text</code> element <code>class</code> attribute. This is optional.</td>
 		</tr>
 	</table>
 
+		<h5>WOFF Metadata Extension Record</h5>
+		<p>
+			The records are stored as dictionaries of the following format.
+		</p>
+		<table>
+			<tr>
+				<th>key</th>
+				<th>value type</th>
+				<th>description</th>
+			</tr>
+			<tr>
+				<td>names</td>
+				<td>list</td>
+				<td>List of WOFF Metadata Extension Name Records. The list must contain at least one name record.</td>
+			</tr>
+			<tr>
+				<td>items</td>
+				<td>list</td>
+				<td>List of WOFF Metadata Extension Item Records. The list must contain at least one item record.</td>
+			</tr>
+		</table>
 
-	<h6>Metadata Extension Item Example</h6>
-	<pre class="prettyprint">
-&lt;dict&gt;
-  &lt;key&gt;items&lt;/key&gt;
-  &lt;array&gt;
-    &lt;dict&gt;
-      &lt;key&gt;id&lt;/key&gt;
-      &lt;string&gt;org.example.fonts.metadata.v1.why&lt;/string&gt;
-      &lt;key&gt;records&lt;/key&gt;
-      &lt;array&gt;
-        &lt;dict&gt;
-          &lt;key&gt;name&lt;/key&gt;
-          &lt;string&gt;Purpose&lt;/string&gt;
-          &lt;key&gt;value&lt;/key&gt;
-          &lt;string&gt;
-            This font exists merely as
-            an example of WOFF packaging.
-          &lt;/string&gt;
-        &lt;/dict&gt;
-        &lt;dict&gt;
-          &lt;key&gt;lang&lt;/key&gt;
-          &lt;string&gt;en&lt;/string&gt;
-          &lt;key&gt;name&lt;/key&gt;
-          &lt;string&gt;Purpose&lt;/string&gt;
-          &lt;key&gt;value&lt;/key&gt;
-          &lt;string&gt;
-            This font exists merely as
-            an example of WOFF packaging.
-          &lt;/string&gt;
-        &lt;/dict&gt;
-        &lt;dict&gt;
-          &lt;key&gt;lang&lt;/key&gt;
-          &lt;string&gt;fr&lt;/string&gt;
-          &lt;key&gt;name&lt;/key&gt;
-          &lt;string&gt;But&lt;/string&gt;
-          &lt;key&gt;value&lt;/key&gt;
-          &lt;string&gt;
-            Cette fonte existe simplement comme
-            exemple de l&#x27;empaquetage de WOFF.
-          &lt;/string&gt;
-        &lt;/dict&gt;
-      &lt;/array&gt;
-    &lt;/dict&gt;
-  &lt;/array&gt;
-  &lt;key&gt;names&lt;/key&gt;
-  &lt;array&gt;
-    &lt;dict&gt;
-      &lt;key&gt;name&lt;/key&gt;
-      &lt;string&gt;Additional font information&lt;/string&gt;
-    &lt;/dict&gt;
-    &lt;dict&gt;
-      &lt;key&gt;lang&lt;/key&gt;
-      &lt;string&gt;en&lt;/string&gt;
-      &lt;key&gt;name&lt;/key&gt;
-      &lt;string&gt;Additional font information&lt;/string&gt;
-    &lt;/dict&gt;
-    &lt;dict&gt;
-      &lt;key&gt;lang&lt;/key&gt;
-      &lt;string&gt;fr&lt;/string&gt;
-      &lt;key&gt;name&lt;/key&gt;
-      &lt;string&gt;L&#x27;information suppl&eacute;mentaire de fonte&lt;/string&gt;
-    &lt;/dict&gt;
-  &lt;/array&gt;
-&lt;/dict&gt;
-	</pre>
+		<h6>WOFF Metadata Extension Name Record</h6>
+		<p>
+			The records are stored as dictionaries of the following format.
+		</p>
+		<table>
+			<tr>
+				<th>key</th>
+				<th>value type</th>
+				<th>description</th>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>string</td>
+				<td>The name of the name record.</td>
+			</tr>
+			<tr>
+				<td>lang</td>
+				<td>string</td>
+				<td>The language of the name record.</td>
+			</tr>
+		</table>
+
+		<h6>WOFF Metadata Extension Item Record</h6>
+		<p>
+			The records are stored as dictionaries of the following format.
+		</p>
+		<table>
+			<tr>
+				<th>key</th>
+				<th>value type</th>
+				<th>description</th>
+			</tr>
+			<tr>
+				<td>id</td>
+				<td>string</td>
+				<td>The id of the item record.</td>
+			</tr>
+			<tr>
+				<td>members</td>
+				<td>list</td>
+				<td>List of WOFF Metadata Extension Item Member Records. The list must contain at least one item record.</td>
+			</tr>
+		</table>
+
+		<h6>WOFF Metadata Extension Item Member Record</h6>
+		<p>
+			The records are stored as dictionaries of the following format.
+		</p>
+		<table>
+			<tr>
+				<th>key</th>
+				<th>value type</th>
+				<th>description</th>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>string</td>
+				<td>The name of the member record.</td>
+			</tr>
+			<tr>
+				<td>value</td>
+				<td>string</td>
+				<td>The value of the member record.</td>
+			</tr>
+			<tr>
+				<td>language</td>
+				<td>string</td>
+				<td>The language of the member record.</td>
+			</tr>
+		</table>
 
 	<!-- Kerning Prefixes -->
 
