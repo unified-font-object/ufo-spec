@@ -1040,17 +1040,22 @@
 		<tr>
 			<td>url</td>
 			<td>string</td>
-			<td>The name for the credit. Corresponds to the WOFF <code>credit</code> element <code>name</code> attribute. This is required.</td>
-		</tr>
-		<tr>
-			<td>url</td>
-			<td>string</td>
 			<td>The url for the credit. Corresponds to the WOFF <code>credit</code> element <code>url</code> attribute. This is optional.</td>
 		</tr>
 		<tr>
 			<td>role</td>
 			<td>string</td>
 			<td>The role for the credit. Corresponds to the WOFF <code>credit</code> element <code>role</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>dir</td>
+			<td>string</td>
+			<td>Writing direction. The options are <em>ltr</em> and <em>rtl</em>. Corresponds to the WOFF <code>credit</code> element <code>dir</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>class</td>
+			<td>string</td>
+			<td>Class tokens. Corresponds to the WOFF <code>credit</code> element <code>class</code> attribute. This is optional.</td>
 		</tr>
 	</table>
 
@@ -1191,98 +1196,118 @@
 		</tr>
 	</table>
 
-		<h5>WOFF Metadata Extension Record</h5>
-		<p>
-			The records are stored as dictionaries of the following format.
-		</p>
-		<table>
-			<tr>
-				<th>key</th>
-				<th>value type</th>
-				<th>description</th>
-			</tr>
-			<tr>
-				<td>names</td>
-				<td>list</td>
-				<td>List of WOFF Metadata Extension Name Records. The list must contain at least one name record.</td>
-			</tr>
-			<tr>
-				<td>items</td>
-				<td>list</td>
-				<td>List of WOFF Metadata Extension Item Records. The list must contain at least one item record.</td>
-			</tr>
-		</table>
+	<h5>WOFF Metadata Extension Record</h5>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>names</td>
+			<td>list</td>
+			<td>List of WOFF Metadata Extension Name Records.</td>
+		</tr>
+		<tr>
+			<td>items</td>
+			<td>list</td>
+			<td>List of WOFF Metadata Extension Item Records. The list must contain at least one item record.</td>
+		</tr>
+	</table>
 
-		<h6>WOFF Metadata Extension Name Record</h6>
-		<p>
-			The records are stored as dictionaries of the following format.
-		</p>
-		<table>
-			<tr>
-				<th>key</th>
-				<th>value type</th>
-				<th>description</th>
-			</tr>
-			<tr>
-				<td>name</td>
-				<td>string</td>
-				<td>The name of the name record.</td>
-			</tr>
-			<tr>
-				<td>lang</td>
-				<td>string</td>
-				<td>The language of the name record.</td>
-			</tr>
-		</table>
+	<h6>WOFF Metadata Extension Item Record</h6>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>id</td>
+			<td>string</td>
+			<td>The id of the item record.</td>
+		</tr>
+		<tr>
+			<td>names</td>
+			<td>list</td>
+			<td>List of WOFF Metadata Extension Name Records. The list must contain at least one name record.</td>
+		</tr>
+		<tr>
+			<td>values</td>
+			<td>list</td>
+			<td>List of WOFF Metadata Extension Value Records. The list must contain at least one value record.</td>
+		</tr>
+	</table>
 
-		<h6>WOFF Metadata Extension Item Record</h6>
-		<p>
-			The records are stored as dictionaries of the following format.
-		</p>
-		<table>
-			<tr>
-				<th>key</th>
-				<th>value type</th>
-				<th>description</th>
-			</tr>
-			<tr>
-				<td>id</td>
-				<td>string</td>
-				<td>The id of the item record.</td>
-			</tr>
-			<tr>
-				<td>members</td>
-				<td>list</td>
-				<td>List of WOFF Metadata Extension Item Member Records. The list must contain at least one item record.</td>
-			</tr>
-		</table>
+	<h6>WOFF Metadata Extension Name Record</h6>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>string</td>
+			<td>The name of the name record. This is required.</td>
+		</tr>
+		<tr>
+			<td>language</td>
+			<td>string</td>
+			<td>The language of the name record. This is optional.</td>
+		</tr>
+		<tr>
+			<td>dir</td>
+			<td>string</td>
+			<td>Writing direction. The options are <em>ltr</em> and <em>rtl</em>. Corresponds to the WOFF extension <code>name</code> element <code>dir</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>class</td>
+			<td>string</td>
+			<td>Class tokens. Corresponds to the WOFF extension <code>name</code> element <code>class</code> attribute. This is optional.</td>
+		</tr>
+	</table>
 
-		<h6>WOFF Metadata Extension Item Member Record</h6>
-		<p>
-			The records are stored as dictionaries of the following format.
-		</p>
-		<table>
-			<tr>
-				<th>key</th>
-				<th>value type</th>
-				<th>description</th>
-			</tr>
-			<tr>
-				<td>name</td>
-				<td>string</td>
-				<td>The name of the member record.</td>
-			</tr>
-			<tr>
-				<td>value</td>
-				<td>string</td>
-				<td>The value of the member record.</td>
-			</tr>
-			<tr>
-				<td>language</td>
-				<td>string</td>
-				<td>The language of the member record.</td>
-			</tr>
-		</table>
+	<h6>WOFF Metadata Extension Value Record</h6>
+	<p>
+		The records are stored as dictionaries of the following format.
+	</p>
+	<table>
+		<tr>
+			<th>key</th>
+			<th>value type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>string</td>
+			<td>The value of the value record. This is required.</td>
+		</tr>
+		<tr>
+			<td>language</td>
+			<td>string</td>
+			<td>The language of the value record. This is optional.</td>
+		</tr>
+		<tr>
+			<td>dir</td>
+			<td>string</td>
+			<td>Writing direction. The options are <em>ltr</em> and <em>rtl</em>. Corresponds to the WOFF extension <code>value</code> element <code>dir</code> attribute. This is optional.</td>
+		</tr>
+		<tr>
+			<td>class</td>
+			<td>string</td>
+			<td>Class tokens. Corresponds to the WOFF extension <code>value</code> element <code>class</code> attribute. This is optional.</td>
+		</tr>
+	</table>
 
 	<!-- Kerning Prefixes -->
 
