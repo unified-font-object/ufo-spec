@@ -140,6 +140,7 @@
 		<li>Filenames must be case insensitive.</li>
 		<li>Filenames may use any character that can be represented by UTF-8 except: &quot; (0x22) ( (0x28) ) (0x29) * (0x2A) + (0x2B) / (0x2F) : (0x3A) &lt; (0x3C) &gt; (0x3E) ? (0x3F) [ (0x5B) \ (0x5C) ] (0x5D) | (0x7C) and anything in the ASCII control character range (0x00-0x1F and 0x7F).</li>
 		<li>Filenames must be no longer than 255 characters.</li>
+		<li>Filenames, regardless of extension and case, must not match any of the <a href="http://support.microsoft.com/kb/74496/en-us">MS-DOS reserved file names</a>.
 	</ol>
 
 	<ul class="algorithm">
@@ -172,6 +173,33 @@
 							Remove as many characters from the end of <em>name</em> as needed to make <em>name</em> no longer than <em>maximum length</em>.
 						</li>
 					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			Use period as a delimiter to split <em>name</em> into parts. For every one of these parts:
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					If a case-insensitive version of <em>part</em> is in the list of MS-DOS reserved filenames, where the illegal filenames are: CON, PRN, AUX, CLOCK$, NUL, A:-Z:, COM1, LPT1, LPT2, LPT3, COM2, COM3 and COM4:
+				</li>
+				<li>
+					<ul class="algorithmNest">
+						<li>
+							Insert an underscore at the beginning of the part.
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			Rejoin all of the parts with periods as needed.
+		</li>
+		<li>
+			<ul class="algorithmNest">
+				<li>
+					Insert an underscore before the start of the illegal filename.
 				</li>
 			</ul>
 		</li>
@@ -311,6 +339,23 @@
 		<tr>
 			<td>.notdef</td>
 			<td>_notdef</td>
+		</tr>
+		<tr>
+				<td>con</td>
+				<td>_con</td>
+		</tr>
+		<tr>
+				<td>CON</td>
+				<td>C_O_N_</td>
+		</tr>
+		<tr>
+				<td>con.alt</td>
+				<td>_con.alt</td>
+		</tr>
+		<tr>
+				<td>alt.con</td>
+				<td>alt._con</td>
+		</tr>
 	</table>
 
 	<h4>Example implementation:</h4>
@@ -318,6 +363,8 @@
 illegalCharacters = &quot;\&quot; * + / : &lt; &gt; ? [ \ ] | \0&quot;.split(&quot; &quot;)
 illegalCharacters += [chr(i) for i in range(1, 32)]
 illegalCharacters += [chr(0x7F)]
+reservedFileNames = &quot;CON PRN AUX CLOCK$ NUL A:-Z: COM1&quot;.lower().split(&quot; &quot;)
+reservedFileNames += &quot;LPT1 LPT2 LPT3 COM2 COM3 COM4&quot;.lower().split(&quot; &quot;)
 maxFileNameLength = 255
 
 def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
@@ -361,6 +408,14 @@ def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;
     u&#x27;A_acute_V_.swash&#x27;
     &gt;&gt;&gt; userNameToFileName(u&quot;.notdef&quot;)
     u&#x27;_notdef&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;con&quot;)
+    u&#x27;_con&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;CON&quot;)
+    u&#x27;C_O_N_&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;con.alt&quot;)
+    u&#x27;_con.alt&#x27;
+    &gt;&gt;&gt; userNameToFileName(u&quot;alt.con&quot;)
+    u&#x27;alt._con&#x27;
     &quot;&quot;&quot;
     # the incoming name must be a unicode string
     assert isinstance(userName, unicode),
@@ -386,6 +441,13 @@ def userNameToFileName(userName, existing=[], prefix=&quot;&quot;, suffix=&quot;
     # clip to 255
     sliceLength = maxFileNameLength - prefixLength - suffixLength
     userName = userName[:sliceLength]
+    # test for illegal files names
+    parts = []
+    for part in userName.split(&quot;.&quot;):
+        if part.lower() in reservedFileNames:
+            part = &quot;_&quot; + part
+        parts.append(part)
+    userName = &quot;.&quot;.join(parts)
     # test for clash
     fullName = prefix + userName + suffix
     if fullName.lower() in existing:
@@ -489,7 +551,7 @@ def handleClash2(existing=[], prefix=&quot;&quot;, suffix=&quot;&quot;):
         raise NameTranslationError(&quot;No unique name could be found.&quot;)
     # finished
     return finalName
-	</pre>
+</pre>
 
 	<!-- Identifiers -->
 
