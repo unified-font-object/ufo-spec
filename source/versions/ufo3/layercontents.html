@@ -21,13 +21,13 @@
 		The directory names must begin with "glyphs." and must be followed by a string that is unique within the set of other layer directory names in the font. The directory names stored in the property list must be plain directory names, not absolute or relative paths in the file system, and they must include the "glyphs." prefix if applicable. Care must be taken when choosing directory names: layer names are case sensitive, yet many file systems are not. There is no one standard layer name to file name conversion. However, a common implementation is defined in the <a href="conventions.html#usernametofilename">conventions</a>.
 	</p>
 	<p>
-		The required glyph set stored in the <em>glyphs</em> directory may have a name defined in the property list. If it does, the directory name in the mapping must be "glyphs". If it does not have a name, it must not be listed in the mapping. Authoring tools must detect the required <em>glyphs</em> directory even if it is not in the property list.
+		The required glyph set stored in the <em>glyphs</em> directory may have a user defined name. If it does not, the name "public.default" must be used to represent the name of the layer in the contents.
 	</p>
 	<p>
-		Layer names may contain any character and they may be any length. Layer names must be unique within the font. The pattern "public.*", where * represents an arbitrary string of one or more characters, is reserved for use as layer names in the registry below.
+		Layer names may contain any character and they must be at least one character long. There is not maximum layer name length. Layer names must be unique within the font. The pattern "public.*", where * represents an arbitrary string of one or more characters, is reserved for use as layer names in the registry below.
 	</p>
 	<p>
-		Authoring tools should preserve directory names when writing into existing UFOs. This can be done by referencing the existing layercontents.plist before the write operation. The layer name to directory name mapping can then be referenced when creating new directory names.
+		Authoring tools should preserve directory names when writing into existing UFOs. This can be done by referencing the existing layercontents.plist before the write operation.
 	</p>
 
 	<!-- Layer Registry -->
@@ -35,6 +35,11 @@
 	<h3>Common Layer Registry</h3>
 	<p>
 		The following is a registry of public layer names that map to functionality that is often seen in font editing applications. These common layer names allow authoring tools to exchange common layer types while the authoring tools maintain their own unique UI names for the layers.
+	</p>
+
+	<h4>public.default</h4>
+	<p>
+		This layer name indicates that the default layer has no user defined name. It must not be used as the layer name for any directory other than the default <em>glyphs</em> directory.
 	</p>
 
 	<h4>public.background</h4>
@@ -50,7 +55,7 @@
 &lt;plist version="1.0"&gt;
 &lt;array&gt;
   &lt;array&gt;
-    &lt;string&gt;&lt;/string&gt;
+    &lt;string&gt;public.default&lt;/string&gt;
     &lt;string&gt;glyphs&lt;/string&gt;
   &lt;/array&gt;
   &lt;array&gt;
