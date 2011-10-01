@@ -20,10 +20,15 @@
 
 	<h3>Kerning Groups</h3>
 	<p>
-		Groups may be used as members of kerning pairs in <a href="kerning.html">kerning.plist</a>. These groups are divided into two types: groups that appear on the first side of a kerning pair and groups that appear on the second side of a kerning pair. Kerning groups must follow the following rules.
+		Groups may be used as members of kerning pairs in <a href="kerning.html">kerning.plist</a>. These groups are divided into two types: groups that appear on the first side of a kerning pair and groups that appear on the second side of a kerning pair.
 	</p>
-
-	<h4>1. Kerning group names must begin with the appropriate <a href="fontinfo.html#kerning-group-prefixes">prefix</a>.</h4>
+	<p>
+		Kerning groups must begin with standard prefixes. The prefix for groups intended for use in the first side of a kerning pair is "public.kern1.". The prefix for groups intended for use in the second side of a kerning pair is "public.kern2.". Any characters after the prefixes are up to the user and/or authoring tool. There is no requirement that the prefixes be visible to users within an authoring tool, nor is there a requirement that the prefixes be maintained when converting kerning to another format (eg a kerning feature in <a href="features.html">features.fea</a>).
+	</p>
+	<p>
+		Kerning groups must strictly adhere to the following rules.
+	</p>
+	<h4>1. Kerning group names must begin with the appropriate prefix.</h4>
 	<p>
 		As stated elsewhere, these prefixes eliminate kerning interpretation ambiguities.
 	</p>
@@ -45,11 +50,11 @@
 			<th>group members</th>
 		</tr>
 		<tr>
-			<td>@KERN_1_A1</td>
+			<td>public.kern1.A1</td>
 			<td>A, Aacute, Agrave, Adieresis</td>
 		</tr>
 		<tr>
-			<td>@KERN_1_A2</td>
+			<td>public.kern1.A2</td>
 			<td>A, Acircumflex</td>
 		</tr>
 	</table>
@@ -61,12 +66,12 @@
 			<th>value</th>
 		</tr>
 		<tr>
-			<td>@KERN_1_A1</td>
+			<td>public.kern1.A1</td>
 			<td>T</td>
 			<td>-50</td>
 		</tr>
 		<tr>
-			<td>@KERN_1_A2</td>
+			<td>public.kern1.A2</td>
 			<td>T</td>
 			<td>-100</td>
 		</tr>
@@ -77,11 +82,11 @@
 	<p>
 		1. Look to see if (A, T) is a pair in the kerning. It isn't.<br />
 		2. Locate the groups for the first and second members of the pair.<br />
-		3. Two groups are found for A: @KERN_1_A1 and @KERN_1_A2.<br />
-		4. Look up the kerning value for (@KERN_1_A1, T) and (@KERN_1_A2, T).
+		3. Two groups are found for A: public.kern1.A1 and public.kern1.A2.<br />
+		4. Look up the kerning value for (public.kern1.A1, T) and (public.kern1.A2, T).
 	</p>
 	<p>
-		Two kerning values are found: -50 and -100. There is no way to determine which one is correct. This ambiguity is eliminated when a glyph may occur in only one group.
+		Two kerning values are found: -50 and -100. There is no way to determine which one is correct. This ambiguity is eliminated by requiring that glyphs occur in only one group per kerning side.
 	</p>
 
 	<h3>Example</h3>
@@ -91,7 +96,7 @@
 "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
 &lt;plist version="1.0"&gt;
 &lt;dict&gt;
-  &lt;key&gt;@KERN_1_A&lt;/key&gt;
+  &lt;key&gt;public.kern1.A&lt;/key&gt;
   &lt;array&gt;
     &lt;string&gt;A&lt;/string&gt;
     &lt;string&gt;Aacute&lt;/string&gt;
