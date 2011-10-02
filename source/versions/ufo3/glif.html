@@ -397,7 +397,7 @@
 	</p>
 
 	<p>
-		Components must only reference glyphs within the same layer that the component belongs to.
+		The base glyph referenced by a component may contain components. The base glyph must not create a circular reference to the glyph that contains the component. Components must only reference glyphs within the same layer that the component belongs to.
 	</p>
 
 	<h4>This element has no child elements.</h4>
