@@ -18,7 +18,7 @@
 		The property list data consists of a dictionary at the top level. Keys are <em>first</em> member names and values are dictionaries. These dictionaries contain <em>second</em> member names as keys and kerning values, either integer or float, as the values.
 	</p>
 	<p>
-		The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the <code>firstKerningGroupPrefix</code>. Group names used as the second member of a kerning pair must begin with <code>secondKerningGroupPrefix</code>. These prefixes are defined in <a href="fontinfo.html#kerning-group-prefixes">fontinfo.plist</a>. Glyphs or groups in the pairs are not required to be in the font.
+		The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the kerning group prefix defined in the <a href="groups.plist">groups.plist specification</a>. Group names used as the second member of a kerning pair must begin with the kerning group prefix defined in the <a href="groups.plist">groups.plist specification</a>. Glyphs or groups in the pairs are not required to be in the font.
 	</p>
 	<p>
 		Kerning pairs that are not defined in kerning.plist implicitly have a value of "no kerning" or zero. Therefore any kerning pair that has a value of zero, unless it is a necessary value of an <a href="#kerning-pair-exceptions">exception</a>, should not be stored in kerning.plist.
@@ -43,7 +43,7 @@
 			<th>members</th>
 		</tr>
 		<tr>
-			<td>@KERN_1_O</td>
+			<td>public.kern1.O</td>
 			<td>O, D, Q</td>
 		</tr>
 	</table>
@@ -55,7 +55,7 @@
 			<th>Value</th>
 		</tr>
 		<tr>
-			<td>@KERN_1_O</td>
+			<td>public.kern1.O</td>
 			<td>A</td>
 			<td>-50</td>
 		</tr>
@@ -89,8 +89,8 @@
 	</p>
 
 	<ol>
-		<li>Group combinations: group + group. For example, @KERN_1_O + @KERN_2_E.</li>
-		<li>Glyph and group combinations: glyph + group and group + glyph. For example, A + @KERN_2_E and @KERN_1_O + A.</li>
+		<li>Group combinations: group + group. For example, public.kern1.O + public.kern2.E.</li>
+		<li>Glyph and group combinations: glyph + group and group + glyph. For example, A + public.kern2.E and public.kern1.O + A.</li>
 		<li>Glyph combinations: glyph + glyph. For example, A + X.</li>
 	</ol>
 
@@ -117,11 +117,11 @@
 			<th>members</th>
 		</tr>
 		<tr>
-			<td>@KERN_1_O</td>
+			<td>public.kern1.O</td>
 			<td>O, D, Q</td>
 		</tr>
 		<tr>
-			<td>@KERN_2_E</td>
+			<td>public.kern2.E</td>
 			<td>E, F</td>
 		</tr>
 	</table>
@@ -135,8 +135,8 @@
 			<th>Value</th>
 		</tr>
 		<tr>
-			<td>@KERN_1_O</td>
-			<td>@KERN_2_E</td>
+			<td>public.kern1.O</td>
+			<td>public.kern2.E</td>
 			<td>-100</td>
 		</tr>
 	</table>
@@ -150,7 +150,7 @@
 			<th>Value</th>
 		</tr>
 		<tr>
-			<td>@KERN_1_O</td>
+			<td>public.kern1.O</td>
 			<td>F</td>
 			<td>-200</td>
 		</tr>
@@ -213,7 +213,7 @@
 
 	<h5>Exception Caveat</h5>
 	<p>
-		Exceptions are very powerful, but there is one rule that must be followed. <strong>There must not be contradictions within a level.</strong> For example, given the same @KERN_1_O and @KERN_2_E group as above, a font contains these following kerning pairs:
+		Exceptions are very powerful, but there is one rule that must be followed. <strong>There must not be contradictions within a level.</strong> For example, given the same public.kern1.O and public.kern2.E group as above, a font contains these following kerning pairs:
 	</p>
 	<table class="evenColumns">
 		<tr>
@@ -222,18 +222,18 @@
 			<th>Value</th>
 		</tr>
 		<tr>
-			<td>@KERN_1_O</td>
-			<td>@KERN_2_E</td>
+			<td>public.kern1.O</td>
+			<td>public.kern2.E</td>
 			<td>-100</td>
 		</tr>
 		<tr>
-			<td>@KERN_1_O</td>
+			<td>public.kern1.O</td>
 			<td>F</td>
 			<td>-200</td>
 		</tr>
 		<tr>
 			<td>Q</td>
-			<td>@KERN_2_E</td>
+			<td>public.kern2.E</td>
 			<td>-250</td>
 		</tr>
 		<tr>
@@ -283,7 +283,7 @@
 		</tr>
 	</table>
 	<p>
-		The two second level pairs, @KERN_1_O + F and Q + @KERN_2_E define two possible value for the pair Q + F. This is an unresolvable ambiguity. These types of contradictions must be avoided.
+		The two second level pairs, public.kern1.O + F and Q + public.kern2.E define two possible value for the pair Q + F. This is an unresolvable ambiguity. These types of contradictions must be avoided.
 	</p>
 
 	<!-- Value Lookup Algorithm -->
@@ -380,80 +380,66 @@
 
 	<h5>Sample implementation</h5>
 	<pre class="prettyprint">
-def lookupKerningValue(pair, kerning, groups,
-    firstKerningGroupPrefix, secondKerningGroupPrefix,
-    fallback=0):
-    """
+def lookupKerningValue(pair, kerning, groups, fallback=0):
+    &quot;&quot;&quot;
     Note: This expects kerning to be a flat dictionary
     of kerning pairs, not the nested structure used
     in kerning.plist.
 
     &gt;&gt;&gt; groups = {
-    ...     "@KERN_1_O" : ["O", "D", "Q"],
-    ...     "@KERN_2_E" : ["E", "F"]
+    ...     &quot;public.kern1.O&quot; : [&quot;O&quot;, &quot;D&quot;, &quot;Q&quot;],
+    ...     &quot;public.kern2.E&quot; : [&quot;E&quot;, &quot;F&quot;]
     ... }
     &gt;&gt;&gt; kerning = {
-    ...     ("@KERN_1_O", "@KERN_2_E") : -100,
-    ...     ("@KERN_1_O", "F") : -200,
-    ...     ("D", "F") : -300
+    ...     (&quot;public.kern1.O&quot;, &quot;public.kern2.E&quot;) : -100,
+    ...     (&quot;public.kern1.O&quot;, &quot;F&quot;) : -200,
+    ...     (&quot;D&quot;, &quot;F&quot;) : -300
     ... }
-    &gt;&gt;&gt; fP = "@KERN_1_"
-    &gt;&gt;&gt; sP = "@KERN_2_"
-    &gt;&gt;&gt; lookupKerningValue(("D", "F"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;D&quot;, &quot;F&quot;), kerning, groups)
     -300
-    &gt;&gt;&gt; lookupKerningValue(("O", "F"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;O&quot;, &quot;F&quot;), kerning, groups)
     -200
-    &gt;&gt;&gt; lookupKerningValue(("O", "E"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;O&quot;, &quot;E&quot;), kerning, groups)
     -100
-    &gt;&gt;&gt; lookupKerningValue(("O", "O"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;O&quot;, &quot;O&quot;), kerning, groups)
     0
-    &gt;&gt;&gt; lookupKerningValue(("E", "E"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;E&quot;, &quot;E&quot;), kerning, groups)
     0
-    &gt;&gt;&gt; lookupKerningValue(("E", "O"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;E&quot;, &quot;O&quot;), kerning, groups)
     0
-    &gt;&gt;&gt; lookupKerningValue(("X", "X"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;X&quot;, &quot;X&quot;), kerning, groups)
     0
-    &gt;&gt;&gt; lookupKerningValue(("@KERN_1_O", "@KERN_2_E"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;public.kern1.O&quot;, &quot;public.kern2.E&quot;),
+    ...     kerning, groups)
     -100
-    &gt;&gt;&gt; lookupKerningValue(("@KERN_1_O", "F"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;public.kern1.O&quot;, &quot;F&quot;), kerning, groups)
     -200
-    &gt;&gt;&gt; lookupKerningValue(("O", "@KERN_2_E"),
-    ....     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;O&quot;, &quot;public.kern2.E&quot;), kerning, groups)
     -100
-    &gt;&gt;&gt; lookupKerningValue(("@KERN_1_X", "@KERN_2_X"),
-    ...     kerning, groups, fP, sP)
+    &gt;&gt;&gt; lookupKerningValue((&quot;public.kern1.X&quot;, &quot;public.kern2.X&quot;), kerning, groups)
     0
-    """
+    &quot;&quot;&quot;
     # quickly check to see if the pair is in the kerning dictionary
     if pair in kerning:
         return kerning[pair]
     # get group names and make sure first and second are glyph names
     first, second = pair
     firstGroup = secondGroup = None
-    if first.startswith(firstKerningGroupPrefix):
+    if first.startswith(&quot;public.kern1.&quot;):
         firstGroup = first
         first = None
     else:
         for group, groupMembers in groups.items():
-            if group.startswith(firstKerningGroupPrefix):
+            if group.startswith(&quot;public.kern1.&quot;):
                 if first in groupMembers:
                     firstGroup = group
                     break
-    if second.startswith(secondKerningGroupPrefix):
+    if second.startswith(&quot;public.kern2.&quot;):
         secondGroup = second
         second = None
     else:
         for group, groupMembers in groups.items():
-            if group.startswith(secondKerningGroupPrefix):
+            if group.startswith(&quot;public.kern2.&quot;):
                 if second in groupMembers:
                     secondGroup = group
                     break
@@ -469,8 +455,7 @@ def lookupKerningValue(pair, kerning, groups,
         if pair in kerning:
             return kerning[pair]
     # use the fallback value
-    return fallback
-	</pre>
+    return fallback	</pre>
 
 	<h3>Example</h3>
 	<pre class="prettyprint">
@@ -479,22 +464,22 @@ def lookupKerningValue(pair, kerning, groups,
 "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
 &lt;plist version="1.0"&gt;
 &lt;dict&gt;
-  &lt;key&gt;@KERN_1_BGroup&lt;/key&gt;
+  &lt;key&gt;public.kern1.BGroup&lt;/key&gt;
   &lt;dict&gt;
-    &lt;key&gt;@KERN_2_CGroup&lt;/key&gt;
+    &lt;key&gt;public.kern2.CGroup&lt;/key&gt;
     &lt;integer&gt;7&lt;/integer&gt;
-    &lt;key&gt;@KERN_2_DGroup&lt;/key&gt;
+    &lt;key&gt;public.kern2.DGroup&lt;/key&gt;
     &lt;integer&gt;8&lt;/integer&gt;
     &lt;key&gt;A&lt;/key&gt;
     &lt;integer&gt;5&lt;/integer&gt;
     &lt;key&gt;B&lt;/key&gt;
     &lt;integer&gt;6&lt;/integer&gt;
   &lt;/dict&gt;
-  &lt;key&gt;@KERN_1_CGroup&lt;/key&gt;
+  &lt;key&gt;public.kern1.CGroup&lt;/key&gt;
   &lt;dict&gt;
-    &lt;key&gt;@KERN_2_CGroup&lt;/key&gt;
+    &lt;key&gt;public.kern2.CGroup&lt;/key&gt;
     &lt;integer&gt;11&lt;/integer&gt;
-    &lt;key&gt;@KERN_2_DGroup&lt;/key&gt;
+    &lt;key&gt;public.kern2.DGroup&lt;/key&gt;
     &lt;integer&gt;12&lt;/integer&gt;
     &lt;key&gt;A&lt;/key&gt;
     &lt;integer&gt;9&lt;/integer&gt;
@@ -503,9 +488,9 @@ def lookupKerningValue(pair, kerning, groups,
   &lt;/dict&gt;
   &lt;key&gt;A&lt;/key&gt;
   &lt;dict&gt;
-    &lt;key&gt;@KERN_2_CGroup&lt;/key&gt;
+    &lt;key&gt;public.kern2.CGroup&lt;/key&gt;
     &lt;integer&gt;3&lt;/integer&gt;
-    &lt;key&gt;@KERN_2_DGroup&lt;/key&gt;
+    &lt;key&gt;public.kern2.DGroup&lt;/key&gt;
     &lt;integer&gt;4&lt;/integer&gt;
     &lt;key&gt;A&lt;/key&gt;
     &lt;integer&gt;1&lt;/integer&gt;
@@ -522,10 +507,14 @@ def lookupKerningValue(pair, kerning, groups,
 	<h1>Converting to UFO 3 formatted kerning</h1>
 
 	<p>
-		In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, this interpretation can be avoided by referencing the <code>firstKerningGroupPrefix</code> and <code>secondKerningGroupPrefix</code> found in <a href="fontinfo.html#kerning-group-prefixes">fontinfo.plist</a>. An algorithm for converting UFO 1 and UFO 2 group kerning is detailed below.
+		In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, all kerning groups are identified through the use of the standard group prefixes defined in the <a href="groups.html">groups.plist specification</a>. An algorithm for converting UFO 1 and UFO 2 group kerning is detailed below.
 	</p>
 
 	<h3>Conversion algorithm</h3>
+
+	<p>
+		Note: this algorithm, and its sample implementation, does not check the compliance of the kerning groups with the requirements defined in the groups.plist specification.
+	</p>
 
 	<ul class="algorithm">
 		<li>
@@ -540,22 +529,12 @@ def lookupKerningValue(pair, kerning, groups,
 					<em>original group name</em> is the original group name.
 				</li>
 				<li>
-					If <em>firstKerningGroupPrefix</em> is not defined in fontinfo.plist:
+					If <em>original group name</em> does not begin with <em>public.kern1.</em>:
 				</li>
 				<li>
 					<ul class="algorithmNest">
 						<li>
-							Set "@KERN_1_" as the value for <em>firstKerningGroupPrefix</em> in fontinfo.plist.
-						</li>
-					</ul>
-				</li>
-				<li>
-					If <em>original group name</em> does not begin with <em>firstKerningGroupPrefix</em> as defined in fontinfo.plist:
-				</li>
-				<li>
-					<ul class="algorithmNest">
-						<li>
-							<em>new group name</em> is <em>firstKerningGroupPrefix</em> plus <em>original group name</em>.
+							<em>new group name</em> is <em>public.kern1</em> plus <em>original group name</em>.
 						</li>
 						<li>
 							If <em>new group name</em> is already in the groups:
@@ -591,22 +570,12 @@ def lookupKerningValue(pair, kerning, groups,
 						<em>original group name</em> is the original group name.
 					</li>
 					<li>
-						If <em>secondKerningGroupPrefix</em> is not defined in fontinfo.plist:
+						If <em>original group name</em> does not begin with <em>public.kern2.</em> as defined in fontinfo.plist:
 					</li>
 					<li>
 						<ul class="algorithmNest">
 							<li>
-								Set "@KERN_2_" as the value for <em>secondKerningGroupPrefix</em> in fontinfo.plist.
-							</li>
-						</ul>
-					</li>
-					<li>
-						If <em>original group name</em> does not begin with <em>secondKerningGroupPrefix</em> as defined in fontinfo.plist:
-					</li>
-					<li>
-						<ul class="algorithmNest">
-							<li>
-								<em>new group name</em> is <em>secondKerningGroupPrefix</em> plus <em>original group name</em>.
+								<em>new group name</em> is <em>public.kern2.</em> plus <em>original group name</em>.
 							</li>
 							<li>
 								If <em>new group name</em> is already in the groups:
@@ -650,21 +619,17 @@ def lookupKerningValue(pair, kerning, groups,
 
 	<h3>Sample conversion implementation</h3>
 	<pre class="prettyprint">
-def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups,
-    firstKerningGroupPrefix="@KERN_1_",
-    secondKerningGroupPrefix="@KERN_2_"):
-    # The prefixes must be unique.
-    assert firstKerningGroupPrefix != secondKerningGroupPrefix
+def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups):
     # Make lists of groups referenced in kerning pairs.
     firstReferencedGroups = set()
     secondReferencedGroups = set()
     for first, seconds in kerning.items():
         if first in groups:
-            if not first.startswith(firstKerningGroupPrefix):
+            if not first.startswith("public.kern1."):
                 firstReferencedGroups.add(first)
         for second in seconds.keys():
             if second in groups:
-                if not second.startswith(secondKerningGroupPrefix):
+                if not second.startswith("public.kern2."):
                     secondReferencedGroups.add(second)
     # Create new names for these groups.
     firstRenamedGroups = {}
@@ -672,7 +637,7 @@ def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups,
         # Make a list of existing group names.
         existingGroupNames = groups.keys() + firstRenamedGroups.keys()
         # Add the prefix to the name.
-        newName = firstKerningGroupPrefix + first
+        newName = "public.kern1." + first
         # Make a unique group name.
         newName = makeUniqueGroupName(newName, existingGroupNames)
         # Store for use later.
@@ -682,7 +647,7 @@ def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups,
         # Make a list of existing group names.
         existingGroupNames = groups.keys() + secondRenamedGroups.keys()
         # Add the prefix to the name.
-        newName = secondKerningGroupPrefix + second
+        newName = "public.kern2." + second
         # Make a unique group name.
         newName = makeUniqueGroupName(newName, existingGroupNames)
         # Store for use later.
@@ -709,7 +674,7 @@ def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups,
 def makeUniqueGroupName(name, groupNames, counter=0):
     # Add a number to the name if the counter is higher than zero.
     newName = name
-    if counter &gt; 0:
+    if counter > 0:
         newName = "%s%d" % (newName, counter)
     # If the new name is in the existing group names, recurse.
     if newName in groupNames:
@@ -719,7 +684,7 @@ def makeUniqueGroupName(name, groupNames, counter=0):
 
 def test():
     """
-    &gt;&gt;&gt; testKerning = {
+    >>> testKerning = {
     ...     "A" : {
     ...         "A" : 1,
     ...         "B" : 2,
@@ -739,46 +704,45 @@ def test():
     ...         "DGroup" : 12
     ...     },
     ... }
-    &gt;&gt;&gt; testGroups = {
+    >>> testGroups = {
     ...     "BGroup" : ["B"],
     ...     "CGroup" : ["C"],
     ...     "DGroup" : ["D"],
     ... }
-    &gt;&gt;&gt; kerning, groups = convertUFO1OrUFO2KerningToUFO3Kerning(
+    >>> kerning, groups = convertUFO1OrUFO2KerningToUFO3Kerning(
     ...     testKerning, testGroups)
-    &gt;&gt;&gt; expected = {
+    >>> expected = {
     ...     "A" : {
     ...         "A": 1,
     ...         "B": 2,
-    ...         "@KERN_2_CGroup": 3,
-    ...         "@KERN_2_DGroup": 4
+    ...         "public.kern2.CGroup": 3,
+    ...         "public.kern2.DGroup": 4
     ...     },
-    ...     "@KERN_1_BGroup": {
+    ...     "public.kern1.BGroup": {
     ...         "A": 5,
     ...         "B": 6,
-    ...         "@KERN_2_CGroup": 7,
-    ...         "@KERN_2_DGroup": 8
+    ...         "public.kern2.CGroup": 7,
+    ...         "public.kern2.DGroup": 8
     ...     },
-    ...     "@KERN_1_CGroup": {
+    ...     "public.kern1.CGroup": {
     ...         "A": 9,
     ...         "B": 10,
-    ...         "@KERN_2_CGroup": 11,
-    ...         "@KERN_2_DGroup": 12
+    ...         "public.kern2.CGroup": 11,
+    ...         "public.kern2.DGroup": 12
     ...     }
     ... }
-    &gt;&gt;&gt; kerning == expected
+    >>> kerning == expected
     True
-    &gt;&gt;&gt; expected = {
+    >>> expected = {
     ...     "BGroup": ["B"],
     ...     "CGroup": ["C"],
     ...     "DGroup": ["D"],
-    ...     "@KERN_1_BGroup": ["B"],
-    ...     "@KERN_1_CGroup": ["C"],
-    ...     "@KERN_2_CGroup": ["C"],
-    ...     "@KERN_2_DGroup": ["D"],
+    ...     "public.kern1.BGroup": ["B"],
+    ...     "public.kern1.CGroup": ["C"],
+    ...     "public.kern2.CGroup": ["C"],
+    ...     "public.kern2.DGroup": ["D"],
     ... }
-    &gt;&gt;&gt; groups == expected
+    >>> groups == expected
     True
-    """
-	</pre>
+    """	</pre>
 </div>
