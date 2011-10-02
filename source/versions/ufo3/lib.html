@@ -21,6 +21,21 @@
 		The property list data consists of a dictionary at the top level. In order to prevent conflicts in the lib, keys in the top level should follow a <a href="conventions.html#reversedomain">reverse domain naming scheme</a>. The pattern "public.*", where * represents an arbitrary string of one or more characters, is reserved for use in standardized lib keys. It is recommended that the data stored as a value be as shallow as possible.
 	</p>
 
+	<!-- Key Registry -->
+
+	<h3>Common Key Registry</h3>
+	<p>
+		The following is a registry of public lib keys that map to functionality that is often seen in font editing applications but is not suitable for storage elsewhere in this particular version of the UFO.
+	</p>
+
+	<h4>public.glyphOrder</h4>
+	<p>
+		This key is used for representing the user's preferred glyph order in the font. Authoring tools may use this order for displaying glyphs to the user or setting the glyph order in binaries created with the font data. However, authoring tools are not required to use this order in any way.
+	</p>
+	<p>
+		The glyph order is stored as a list of glyphs names. Glyph names must not occur more than once. Glyph names in the font may not appear in the order. The order may contain glyphs that are not in the font.
+	</p>
+
 	<h3>Example</h3>
 	<pre class="prettyprint">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
