@@ -625,11 +625,11 @@ def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups):
     secondReferencedGroups = set()
     for first, seconds in kerning.items():
         if first in groups:
-            if not first.startswith("public.kern1."):
+            if not first.startswith(&quot;public.kern1.&quot;):
                 firstReferencedGroups.add(first)
         for second in seconds.keys():
             if second in groups:
-                if not second.startswith("public.kern2."):
+                if not second.startswith(&quot;public.kern2.&quot;):
                     secondReferencedGroups.add(second)
     # Create new names for these groups.
     firstRenamedGroups = {}
@@ -637,7 +637,7 @@ def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups):
         # Make a list of existing group names.
         existingGroupNames = groups.keys() + firstRenamedGroups.keys()
         # Add the prefix to the name.
-        newName = "public.kern1." + first
+        newName = &quot;public.kern1.&quot; + first
         # Make a unique group name.
         newName = makeUniqueGroupName(newName, existingGroupNames)
         # Store for use later.
@@ -647,7 +647,7 @@ def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups):
         # Make a list of existing group names.
         existingGroupNames = groups.keys() + secondRenamedGroups.keys()
         # Add the prefix to the name.
-        newName = "public.kern2." + second
+        newName = &quot;public.kern2.&quot; + second
         # Make a unique group name.
         newName = makeUniqueGroupName(newName, existingGroupNames)
         # Store for use later.
@@ -674,8 +674,8 @@ def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups):
 def makeUniqueGroupName(name, groupNames, counter=0):
     # Add a number to the name if the counter is higher than zero.
     newName = name
-    if counter > 0:
-        newName = "%s%d" % (newName, counter)
+    if counter &gt; 0:
+        newName = &quot;%s%d&quot; % (newName, counter)
     # If the new name is in the existing group names, recurse.
     if newName in groupNames:
         return makeUniqueGroupName(name, groupNames, counter + 1)
@@ -683,66 +683,67 @@ def makeUniqueGroupName(name, groupNames, counter=0):
     return newName
 
 def test():
-    """
-    >>> testKerning = {
-    ...     "A" : {
-    ...         "A" : 1,
-    ...         "B" : 2,
-    ...         "CGroup" : 3,
-    ...         "DGroup" : 4
+    &quot;&quot;&quot;
+    &gt;&gt;&gt; testKerning = {
+    ...     &quot;A&quot; : {
+    ...         &quot;A&quot; : 1,
+    ...         &quot;B&quot; : 2,
+    ...         &quot;CGroup&quot; : 3,
+    ...         &quot;DGroup&quot; : 4
     ...     },
-    ...     "BGroup" : {
-    ...         "A" : 5,
-    ...         "B" : 6,
-    ...         "CGroup" : 7,
-    ...         "DGroup" : 8
+    ...     &quot;BGroup&quot; : {
+    ...         &quot;A&quot; : 5,
+    ...         &quot;B&quot; : 6,
+    ...         &quot;CGroup&quot; : 7,
+    ...         &quot;DGroup&quot; : 8
     ...     },
-    ...     "CGroup" : {
-    ...         "A" : 9,
-    ...         "B" : 10,
-    ...         "CGroup" : 11,
-    ...         "DGroup" : 12
+    ...     &quot;CGroup&quot; : {
+    ...         &quot;A&quot; : 9,
+    ...         &quot;B&quot; : 10,
+    ...         &quot;CGroup&quot; : 11,
+    ...         &quot;DGroup&quot; : 12
     ...     },
     ... }
-    >>> testGroups = {
-    ...     "BGroup" : ["B"],
-    ...     "CGroup" : ["C"],
-    ...     "DGroup" : ["D"],
+    &gt;&gt;&gt; testGroups = {
+    ...     &quot;BGroup&quot; : [&quot;B&quot;],
+    ...     &quot;CGroup&quot; : [&quot;C&quot;],
+    ...     &quot;DGroup&quot; : [&quot;D&quot;],
     ... }
-    >>> kerning, groups = convertUFO1OrUFO2KerningToUFO3Kerning(
+    &gt;&gt;&gt; kerning, groups = convertUFO1OrUFO2KerningToUFO3Kerning(
     ...     testKerning, testGroups)
-    >>> expected = {
-    ...     "A" : {
-    ...         "A": 1,
-    ...         "B": 2,
-    ...         "public.kern2.CGroup": 3,
-    ...         "public.kern2.DGroup": 4
+    &gt;&gt;&gt; expected = {
+    ...     &quot;A&quot; : {
+    ...         &quot;A&quot;: 1,
+    ...         &quot;B&quot;: 2,
+    ...         &quot;public.kern2.CGroup&quot;: 3,
+    ...         &quot;public.kern2.DGroup&quot;: 4
     ...     },
-    ...     "public.kern1.BGroup": {
-    ...         "A": 5,
-    ...         "B": 6,
-    ...         "public.kern2.CGroup": 7,
-    ...         "public.kern2.DGroup": 8
+    ...     &quot;public.kern1.BGroup&quot;: {
+    ...         &quot;A&quot;: 5,
+    ...         &quot;B&quot;: 6,
+    ...         &quot;public.kern2.CGroup&quot;: 7,
+    ...         &quot;public.kern2.DGroup&quot;: 8
     ...     },
-    ...     "public.kern1.CGroup": {
-    ...         "A": 9,
-    ...         "B": 10,
-    ...         "public.kern2.CGroup": 11,
-    ...         "public.kern2.DGroup": 12
+    ...     &quot;public.kern1.CGroup&quot;: {
+    ...         &quot;A&quot;: 9,
+    ...         &quot;B&quot;: 10,
+    ...         &quot;public.kern2.CGroup&quot;: 11,
+    ...         &quot;public.kern2.DGroup&quot;: 12
     ...     }
     ... }
-    >>> kerning == expected
+    &gt;&gt;&gt; kerning == expected
     True
-    >>> expected = {
-    ...     "BGroup": ["B"],
-    ...     "CGroup": ["C"],
-    ...     "DGroup": ["D"],
-    ...     "public.kern1.BGroup": ["B"],
-    ...     "public.kern1.CGroup": ["C"],
-    ...     "public.kern2.CGroup": ["C"],
-    ...     "public.kern2.DGroup": ["D"],
+    &gt;&gt;&gt; expected = {
+    ...     &quot;BGroup&quot;: [&quot;B&quot;],
+    ...     &quot;CGroup&quot;: [&quot;C&quot;],
+    ...     &quot;DGroup&quot;: [&quot;D&quot;],
+    ...     &quot;public.kern1.BGroup&quot;: [&quot;B&quot;],
+    ...     &quot;public.kern1.CGroup&quot;: [&quot;C&quot;],
+    ...     &quot;public.kern2.CGroup&quot;: [&quot;C&quot;],
+    ...     &quot;public.kern2.DGroup&quot;: [&quot;D&quot;],
     ... }
-    >>> groups == expected
+    &gt;&gt;&gt; groups == expected
     True
-    """	</pre>
+    &quot;&quot;&quot;
+	</pre>
 </div>
