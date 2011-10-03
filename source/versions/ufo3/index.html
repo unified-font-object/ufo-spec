@@ -2,7 +2,7 @@
 	<h1>UFO 3 (draft)</h1>
 
 	<p>
-		<strong>Editor's Draft June 6, 2011</strong>
+		<strong>Editor's Draft October 3, 2011</strong>
 	</p>
 
 	<p>
@@ -178,9 +178,6 @@
 		Support for WOFF metadata was added.
 	</p>
 	<p>
-		Two attributes for identifying kerning groups were added.
-	</p>
-	<p>
 		The value types for the following keys were clarified to be more consistent with the specifications they reference: versionMinor, unitsPerEm, openTypeHeadLowestRecPPEM and openTypeOS2WeightClass. This was done because the referenced fields allow only unsigned-integers.
 	</p>
 	<p>
@@ -194,13 +191,16 @@
 	<p>
 		Behavior with regard to kerning groups was defined.
 	</p>
+	<p>
+		Added a mechanism for standardizing group names.
+	</p>
 
 	<h3>kerning.plist</h3>
 	<p>
 		Added information about writing direction.
 	</p>
 	<p>
-		Information about the new group naming attributes was added.
+		Information about the new kerning groups was added.
 	</p>
 	<p>
 		Added extensive information about kerning pair types. The information is applicable to UFO 1 and UFO 2, but it was not written as a formal part of the spec.
@@ -212,6 +212,11 @@
 	<h3>features.fea</h3>
 	<p>
 		The "should be a plain text file" from UFO 2 was changed to "must be a plain text file."
+	</p>
+
+	<h3>lib.plist</h3>
+	<p>
+		Added a mechanism for standardizing lib keys.
 	</p>
 
 	<h3>layercontents.plist</h3>
@@ -259,6 +264,9 @@
 			<p>
 				A new identifier attribute was added.
 			</p>
+			<p>
+				Removed references to Super Bezier.
+			</p>
 		<h4>Image</h4>
 			<p>
 				A new image element was added.
@@ -266,6 +274,10 @@
 		<h4>Guideline</h4>
 			<p>
 				A new guideline element was added.
+			</p>
+		<h4>Lib</h4>
+			<p>
+				Added a mechanism for standardizing lib keys.
 			</p>
 
 	<h3>images</h3>
