@@ -503,19 +503,13 @@
 		</tr>
 		<tr>
 			<td>curve</td>
-			<td>Draw a cubic bezier curve from the last non-<em>offcurve</em> point to this point. If the number of <code>offcurve</code> points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the <em>Super Bezier</em> algorithm.</td>
+			<td>Draw a cubic bezier curve from the last non-<em>offcurve</em> point to this point. The number of <em>offcurve</em> points can be zero, one or two. If the number of <code>offcurve</code> points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn.
 		</tr>
 		<tr>
 			<td>qcurve</td>
 			<td>Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle.</td>
 		</tr>
 	</table>
-
-	<div class="discussionNote">
-		<p>
-			Should we remove the Super Bezier functionality? It creates an <a href="http://fontforge.sourceforge.net/python.html">interoperability problem</a> (search the page for "super-bezier").
-		</p>
-	</div>
 
 	<h4>This element has no child elements.</h4>
 
