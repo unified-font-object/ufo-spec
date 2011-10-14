@@ -611,8 +611,6 @@
 		Data that is too complex or too large for lib can be stored in the <a href="data.html">data directory</a>.
 	</p>
 
-	<!-- Key Registry -->
-
 	<h4>Common Key Registry</h4>
 	<p>
 		The following is a registry of public lib keys that map to functionality that is often seen in font editing applications but is not suitable for storage elsewhere in this particular version of the UFO.
@@ -622,6 +620,8 @@
 	<p>
 		This key is used for representing the "mark" color seen in various font editors. The value for the key must be a string following the <a href="#color">color definition</a> standard. This data is optional.
 	</p>
+
+	<!-- Example -->
 
 	<h3>Example</h3>
 	<pre class="prettyprint">
@@ -652,6 +652,8 @@
     &lt;dict&gt;
       &lt;key&gt;com.letterror.somestuff&lt;/key&gt;
       &lt;string&gt;arbitrary custom data!&lt;/string&gt;
+      &lt;key&gt;public.markColor&lt;/key&gt;
+      &lt;string&gt;1,0,0,0.5&lt;/string&gt;
     &lt;/dict&gt;
   &lt;/lib&gt;
 &lt;/glyph&gt;
