@@ -368,6 +368,19 @@
 
 	<h4>This element has no child elements.</h4>
 
+	<h4>Converting implied anchors in GLIF 1 to GLIF 2 anchor elements</h4>
+	<p>
+		In GLIF 1 there was no official anchor element. Anchors were unofficially but widely supported through the use of a contour containing only one "move" point. For example:
+	</p>
+	<pre class="prettyprint">
+&lt;contour&gt;
+  &lt;point x=&quot;250&quot; y=&quot;650&quot; type=&quot;move&quot; name=&quot;top&quot;&gt;
+&lt;/contour&gt;
+	</pre>
+	<p>
+		Authoring tools may convert instances of contours like this to anchor elements when converting GLIF 1 to GLIF 2. The required <code>x</code> and <code>y</code> and optional <code>name</code> attributes directly map to the same attributes of the anchor element.
+	</p>
+
 	<!-- <outline> -->
 
 	<h3 id="outline">outline: Outline description.</h3>
