@@ -13,6 +13,54 @@
 		This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
 	</p>
 
+	<h4>Bit Numbers</h4>
+
+	<p>
+		Throughout this specification are references to "bit numbers." These are lists of integers that correspond to the bits that should be set for particular fields in the referenced font specifications. Consider this example from a fictional font specification: 
+	</p>
+
+	<table>
+		<tr>
+			<th>type</th>
+			<th>name</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>USHORT</td>
+			<td>foo</td>
+			<td>Bit 0: Left<br/>Bit 1: Right<br/>Bit 2: Up<br/>Bit 3: Down<br/></td>
+		</tr>
+	</table>
+
+	<p>
+		Translated to the structure used in this specification would be:
+	</p>
+
+	<table>
+		<tr>
+			<th>key</th>
+			<th>type</th>
+			<th>description</th>
+		</tr>
+		<tr>
+			<td>fictionalFontSpecFoo</td>
+			<td>list</td>
+			<td>A list of bit numbers indicating the bits that should be set in <code>foo</code>. The bit numbers are listed in the fictional font specification. Corresponds to the foo field.</td>
+		</tr>
+	</table>
+
+	<p>
+		In a fontinfo.plist file, to indicate "left" and "up" the data would look like this:
+	</p>
+
+	<pre class="prettyprint">
+&lt;key&gt;fictionalFontSpecFoo&lt;/key&gt;
+&lt;array&gt;
+  &lt;integer&gt;0&lt;/integer&gt;
+  &lt;integer&gt;2&lt;/integer&gt;
+&lt;/array&gt;</pre>
+
+
 	<h2>Specification</h2>
 
 	<!-- Generic Identification -->
