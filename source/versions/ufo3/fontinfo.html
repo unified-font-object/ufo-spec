@@ -241,15 +241,15 @@
 	</p>
 	<ol>
 		<li><code>fontRevision</code> can be derived from the generic <code>versionMajor</code> and <code>versionMinor</code> attributes.</li>
-		<li><code>checkSumAdjustment</code> should be calculated by the compiler.</li>
-		<li><code>magicNumber</code> should be set by the compiler.</li>
+		<li><code>checkSumAdjustment</code> should be calculated by the authoring tool.</li>
+		<li><code>magicNumber</code> should be set by the authoring tool.</li>
 		<li><code>unitsPerEm</code> is found at the generic <code>unitsPerEm</code> attribute.</li>
 		<li><code>created</code> can be calculated by subtracting the <em>12:00 midnight, January 1, 1904</em> (as specified in the head table documentation) from the date stored at <code>openTypeHeadCreated</code>.</li>
-		<li><code>modified</code> should be set by the compiler.</li>
-		<li><code>xMin, yMin, xMax</code> and <code>yMax</code> should be calculated by the compiler.</li>
+		<li><code>modified</code> should be set by the authoring tool.</li>
+		<li><code>xMin, yMin, xMax</code> and <code>yMax</code> should be calculated by the authoring tool.</li>
 		<li><code>macStyle</code> can be derived from the generic <code>styleMapStyle</code> attribute.</li>
-		<li><code>indexToLocFormat</code> should be set by the compiler.</li>
-		<li><code>glyphDataFormat</code> should be set by the compiler.</li>
+		<li><code>indexToLocFormat</code> should be set by the authoring tool.</li>
+		<li><code>glyphDataFormat</code> should be set by the authoring tool.</li>
 	</ol>
 
 	<!-- OpenType hhea Table -->
@@ -298,12 +298,12 @@
 		<a href="http://www.microsoft.com/typography/otspec/hhea.htm">The OpenType hhea table specification</a>
 	</p>
 	<ol>
-		<li><code>advanceWidthMax</code> should be calculated by the compiler.</li>
-		<li><code>minLeftSideBearing</code> should be calculated by the compiler.</li>
-		<li><code>minRightSideBearing</code> should be calculated by the compiler.</li>
-		<li><code>xMaxExtent</code> should be calculated by the compiler.</li>
-		<li><code>metricDataFormat</code> should be set by the compiler.</li>
-		<li><code>numberOfHMetrics</code> should be calculated by the compiler.</li>
+		<li><code>advanceWidthMax</code> should be calculated by the authoring tool.</li>
+		<li><code>minLeftSideBearing</code> should be calculated by the authoring tool.</li>
+		<li><code>minRightSideBearing</code> should be calculated by the authoring tool.</li>
+		<li><code>xMaxExtent</code> should be calculated by the authoring tool.</li>
+		<li><code>metricDataFormat</code> should be set by the authoring tool.</li>
+		<li><code>numberOfHMetrics</code> should be calculated by the authoring tool.</li>
 	</ol>
 
 	<!-- OpenType name Table -->
@@ -449,7 +449,7 @@
 		<li><em>Name ID 4 (full font name)</em> can be created from the generic <code>styleMapFamily</code> and <code>styleMapStyle</code> attributes following the rules defined in the specification.</li>
 		<li><em>Name ID 6 (Postscript name)</em> can be found at <code>postscriptFontName</code>. This should follow the rules defined in the specification.</li>
 		<li><em>Name ID 7 (trademark)</em> is found at the generic <code>trademark</code> attribute.</li>
-		<li>To reiterate the point stated above, these notes are merely provided for clarity. Compilers can and should follow their own recipes for creating the name table. These notes make no considerations for platform specific variations in or application specific limitations on the strings.</li>
+		<li>To reiterate the point stated above, these notes are merely provided for clarity. Authoring tools can and should follow their own recipes for creating the name table. These notes make no considerations for platform specific variations in or application specific limitations on the strings.</li>
 	</ol>
 
 	<!-- OpenType OS/2 Table -->
@@ -589,16 +589,16 @@
 		<a href="http://www.panose.com/ProductsServices/pan1.aspx">The Panose specification.</a>
 	</p>
 	<ol>
-		<li><code>xAvgCharWidth</code> should be calculated by the compiler.</li>
+		<li><code>xAvgCharWidth</code> should be calculated by the authoring tool.</li>
 		<li><code>sFamilyClass</code> is not supported.</li>
 		<li><code>fsSelection</code> can be derived from the generic <em>styleMapStyle</em> attribute. (See question below.)</li>
-		<li><code>usFirstCharIndex</code> should be calculated by the compiler.</li>
-		<li><code>usLastCharIndex</code> should be calculated by the compiler.</li>
+		<li><code>usFirstCharIndex</code> should be calculated by the authoring tool.</li>
+		<li><code>usLastCharIndex</code> should be calculated by the authoring tool.</li>
 		<li><code>sxHeight</code> is found at the generic <em>xHeight</em> attribute.</li>
 		<li><code>sCapHeight</code> is found at the generic <em>capHeight</em> attribute.</li>
-		<li><code>usDefaultChar</code> should be calculated by the compiler. OpenType fonts are required to have a .notdef character for fallback.</li>
-		<li><code>usBreakChar</code> should be calculated by the compiler.</li>
-		<li><code>usMaxContext</code> should be calculated by the compiler.</li>
+		<li><code>usDefaultChar</code> should be calculated by the authoring tool. OpenType fonts are required to have a .notdef character for fallback.</li>
+		<li><code>usBreakChar</code> should be calculated by the authoring tool.</li>
+		<li><code>usMaxContext</code> should be calculated by the authoring tool.</li>
 	</ol>
 
 	<!-- OpenType vhea Table -->
@@ -647,12 +647,12 @@
 		<a href="http://www.microsoft.com/typography/otspec/vhea.htm">The OpenType vhea table specification</a>
 	</p>
 	<ol>
-		<li><code>advanceHeightMax</code> should be calculated by the compiler.</li>
-		<li><code>minTopSideBearing</code> should be calculated by the compiler.</li>
-		<li><code>minBottomSideBearing</code> should be calculated by the compiler.</li>
-		<li><code>yMaxExtent</code> should be calculated by the compiler.</li>
-		<li><code>metricDataFormat</code> should be set by the compiler.</li>
-		<li><code>numberOfHMetrics</code> should be calculated by the compiler.</li>
+		<li><code>advanceHeightMax</code> should be calculated by the authoring tool.</li>
+		<li><code>minTopSideBearing</code> should be calculated by the authoring tool.</li>
+		<li><code>minBottomSideBearing</code> should be calculated by the authoring tool.</li>
+		<li><code>yMaxExtent</code> should be calculated by the authoring tool.</li>
+		<li><code>metricDataFormat</code> should be set by the authoring tool.</li>
+		<li><code>numberOfHMetrics</code> should be calculated by the authoring tool.</li>
 	</ol>
 
 	<!-- PostScript Data -->
@@ -697,7 +697,7 @@
 		<tr>
 			<td>postscriptIsFixedPitch</td>
 			<td>boolean</td>
-			<td>Indicates if the font is monospaced. A compiler could calculate this automatically, but the designer may wish to override this setting. This corresponds to the Type 1/CFF <code>isFixedPitched</code> field</td>
+			<td>Indicates if the font is monospaced. An authoring tool could calculate this automatically, but the designer may wish to override this setting. This corresponds to the Type 1/CFF <code>isFixedPitched</code> field</td>
 		</tr>
 		<tr>
 			<td>postscriptBlueValues</td>
@@ -867,7 +867,7 @@
 	</p>
 	<ol>
 		<li>These fields are a combination of fields in the OpenType post and CFF tables as well as the Type 1 format.</li>
-		<li>The post table <code>minMemType42, maxMemType42, minMemType1</code> and <code>maxMemType1</code> fields should be set by the compiler.</li>
+		<li>The post table <code>minMemType42, maxMemType42, minMemType1</code> and <code>maxMemType1</code> fields should be set by the authoring tool.</li>
 		<li>The Type 1/CFF <code>StdHW</code> and <code>StdVW</code> fields can be derived by taking the first value from the <code>postscriptStemSnapH</code> and <code>postscriptStemSnapV</code> lists.</li>
 		<li>The Type 1/CFF <code>version</code> field can be derived from the generic <code>versionMajor</code> and <code>versionMinor</code> attributes.</li>
 		<li>The Type 1/CFF <code>notice</code> field is found at the generic <code>copyright</code> attribute.</li>
