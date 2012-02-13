@@ -1374,26 +1374,26 @@
 		<tr>
 			<td>angle</td>
 			<td>integer or float</td>
-			<td>The angle of the guideline. This must be an angle between 0 and 360 degrees in a clockwise direction from the horizontal.</td>
-			<td>None. If <code>x</code> or <code>y</code> are not specified, <code>angle</code> must not be specified. See below for details.</td>
+			<td>The angle of the guideline. This must be an angle between 0 and 360 degrees in a clockwise direction from the horizontal. If <code>x</code> or <code>y</code> are not specified, <code>angle</code> must not be specified. See below for details.</td>
+			<td>None.</td>
 		</tr>
 		<tr>
 			<td>name</td>
 			<td>string</td>
 			<td>An arbitrary name for the guideline. This attribute is optional.</td>
-			<td>None</td>
+			<td>no name</td>
 		</tr>
 		<tr>
 			<td>color</td>
 			<td>string</td>
 			<td>The color that should be applied to the guideline. The format follows the <a href="#color">color definition</a> standard. This attribute is optional.</td>
-			<td>None</td>
+			<td>no color</td>
 		</tr>
 		<tr>
 			<td>identifier</td>
 			<td>string</td>
 			<td>Unique identifier for the guideline. This attribute is not required and should only be added to guidelines as needed. However, once an identifier has been assigned to a guideline it must not be unnecessarily removed or changed. Identifiers may be changed in incoming guidelines during editing operations such as "paste," but they should be maintained unless a duplicate identifier will be created. The identifier value must be unique within the fontinfo.plist guidelines list that the guideline belongs to but it is not required to be unique among the identifiers assigned to guidelines in glyphs. The identifier specification is detailed in the <a href="conventions.html#identifiers">conventions</a>.</td>
-			<td>None</td>
+			<td>no identifier</td>
 		</tr>
 	</table>
 
