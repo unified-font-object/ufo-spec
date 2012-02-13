@@ -172,7 +172,7 @@
 		</tr>
 		<tr>
 			<td>rangeGaspBehavior</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of bit numbers indicating the flags to be set. The bit numbers are defined below.  Corresponds to the rangeGaspBehavior field of the GASPRANGE record in the OpenType gasp table.</td>
 		</tr>
 	</table>
@@ -230,7 +230,7 @@
 		</tr>
 		<tr>
 			<td>openTypeHeadFlags</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of bit numbers indicating the flags. The bit numbers are listed in the OpenType head specification. Corresponds to the OpenType head table <code>flags</code> field.</td>
 		</tr>
 	</table>
@@ -473,7 +473,7 @@
 		</tr>
 		<tr>
 			<td>openTypeOS2Selection</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>selection</code> field. <strong>Note:</strong> Bits 0 (italic), 5 (bold) and 6 (regular) must not be set here. These bits should be taken from the generic <em>styleMapStyle</em> attribute.</td>
 		</tr>
 		<tr>
@@ -483,22 +483,22 @@
 		</tr>
 		<tr>
 			<td>openTypeOS2Panose</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>The list must contain 10 non-negative integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table <code>Panose</code> field.</td>
 		</tr>
 		<tr>
 			<td>openTypeOS2FamilyClass</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>Two integers representing the IBM font class and font subclass of the font. The first number, representing the class ID, must be in the range 0-14. The second number, representing the subclass, must be in the range 0-15. The numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>sFamilyClass</code> field.</td>
 		</tr>
 		<tr>
 			<td>openTypeOS2UnicodeRanges</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of bit numbers that are supported Unicode ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>ulUnicodeRange1</code>, <code>ulUnicodeRange2</code>, <code>ulUnicodeRange3</code> and <code>ulUnicodeRange4</code> fields.</td>
 		</tr>
 		<tr>
 			<td>openTypeOS2CodePageRanges</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of bit numbers that are supported code page ranges in the font. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>ulCodePageRange1</code> and <code>ulCodePageRange2</code> fields.</td>
 		</tr>
 		<tr>
@@ -528,7 +528,7 @@
 		</tr>
 		<tr>
 			<td>openTypeOS2Type</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of bit numbers indicating the embedding type. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table <code>fsType</code> field.</td>
 		</tr>
 		<tr>
@@ -701,32 +701,32 @@
 		</tr>
 		<tr>
 			<td>postscriptBlueValues</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of up to 14 integers or floats specifying the values that should be in the Type 1/CFF BlueValues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification.</td>
 		</tr>
 		<tr>
 			<td>postscriptOtherBlues</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF OtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification.</td>
 		</tr>
 		<tr>
 			<td>postscriptFamilyBlues</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of up to 14 integers or floats specifying the values that should be in the Type 1/CFF FamilyBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification.</td>
 		</tr>
 		<tr>
 			<td>postscriptFamilyOtherBlues</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF FamilyOtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification.</td>
 		</tr>
 		<tr>
 			<td>postscriptStemSnapH</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>List of horizontal stems sorted in the order specified in the Type 1/CFF specification. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF <code>StemSnapH</code> field.</td>
 		</tr>
 		<tr>
 			<td>postscriptStemSnapV</td>
-			<td>number list</td>
+			<td>list</td>
 			<td>List of vertical stems sorted in the order specified in the Type 1/CFF specification. Up to 12 integers or floats are possible. This corresponds to the Type 1/CFF <code>StemSnapV</code> field.</td>
 		</tr>
 		<tr>
