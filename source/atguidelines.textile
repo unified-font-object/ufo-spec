@@ -1,6 +1,6 @@
 <div class="section">
 
-h1. Authoring Tool Guidelines (draft)
+h1. Authoring Tool Guidelines
 
 These guidelines define requirements and recommendations for authoring tools that work with UFOs. These guidelines are applicative to all versions of the UFO specification. Each version, and each section, will have additional specific guidelines for authoring tools to follow.
 

@@ -12,7 +12,7 @@ h3. Versions
 
 | "UFO 1":versions/ufo1/index.html | Published in 2004. |
 | "UFO 2":versions/ufo2/index.html | Published in March 2009. |
-| "UFO 3":versions/ufo3/index.html | Currently in development. Scheduled for publication in early 2012. |
+| "UFO 3":versions/ufo3/index.html | Published in March 2012. |
 
 h3. Download
 

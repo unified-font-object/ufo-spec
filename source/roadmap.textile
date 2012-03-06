@@ -2,7 +2,7 @@
 
 h1. Roadmap
 
-This page serves a a place to collect the UFO team's thoughts on potential future features of the specification. At this time, we are finalizing the "UFO 3":versions/ufo3/index.html specification.
+This page serves a a place to collect the UFO team's thoughts on potential future features of the specification.
 
 h3. Compact UFO
 
