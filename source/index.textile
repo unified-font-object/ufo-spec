@@ -16,6 +16,6 @@ h3. Versions
 
 h3. Download
 
-This specification can be downloaded "here":downloads/UFOSpecification.zip as a single zip package. The raw source files for the specification can be retrieved from the Subversion repository located at "http://svn.unifiedfontobject.org":http://svn.unifiedfontobject.org.
+This specification can be downloaded "here":downloads/UFOSpecification.zip as a single zip package. The source for the documentation, an issue tracker and more are located at "https://github.com/organizations/unified-font-object":https://github.com/organizations/unified-font-object.
 
 </div>
