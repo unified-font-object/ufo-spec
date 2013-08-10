@@ -29,6 +29,6 @@ Each of the files has a unique meaning, purpose and data structure:
 | "lib.plist":lib.html                               | Arbitrary custom data. |
 | "glyphs":glyphs.html                               | A directory containing all glyphs in the font. |
 | glyphs/"contents.plist":glyphs.html#contents.plist | File name to glyph name mapping. |
-| glyphs/"*.glif":GLIF                               | A glyph definition. |
+| glyphs/"*.glif":glif.html                          | A glyph definition. |
 
 </div>
