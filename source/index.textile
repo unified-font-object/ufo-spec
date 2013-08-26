@@ -16,6 +16,6 @@ h3. Versions
 
 h3. Download
 
-This specification can be downloaded "here":downloads/UFOSpecification.zip as a single zip package. The source for the documentation, an issue tracker and more are located at "https://github.com/organizations/unified-font-object":https://github.com/organizations/unified-font-object.
+This specification can be downloaded "here":downloads/UFOSpecification.zip as a single zip package. The source for the documentation, an issue tracker and more are located at "https://github.com/unified-font-object/ufo-spec":https://github.com/unified-font-object/ufo-spec.
 
 </div>
