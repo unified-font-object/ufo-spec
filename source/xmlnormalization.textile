@@ -1,0 +1,91 @@
+h1. XML Normalization
+
+This document defines a guideline for normalizing the XML data within UFOs. This is a non-normative portion of the specification. Any UFO with XML that does not conform to these guidelines is not necessarily invalid.
+
+This document does not define normalization guidelines for the contents of features.fea.
+
+
+h2. General Syntax
+
+
+h3. XML Declaration
+
+The XML declaration must be the first line of the file, and the content of the line must be:
+
+pre. 
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+h3. Whitespace and Indentation
+
+Child elements much be indented one level more than their parent elements. The tab character (Ux0009) must be used for indentation. There must not be any trailing whitespace on any line.
+
+
+h3. Elements
+
+h4. Tags
+
+Element start tags must be formatted as the tag between @<@ and @>@ without any whitespace between the @<@ and the tag. If attributes are present in the tag, they must be separated by a single space character. A space must not preceed the @>@. Examples:
+
+pre. 
+<tag>
+<tag attribute="value">
+<tag attribute1="value" attribute2="value">
+
+
+
+Element end tags must be formatted as the tag between @</@ and @>@ without any whitespace between the @<@ and @>@. Example:
+
+pre. 
+</tag>
+
+
+Elements with no content must be represented with a self-closing tag. Self-closing tags must be formatted as the tag between @<@ and @/>@ without any whitespace between the @<@ and the tag. If attributes are present in the tag, they must be separated by a single space character. A space not preceed the @/>@. Examples:
+
+pre. 
+<tag />
+<tag attribute="value" />
+<tag attribute1="value" attribute2="value" />
+
+
+h4. Attributes
+
+Element attributes must be sorted alphabetically. Attributes must be formatted as the attribute name followed by @=@ and then the value definition between two @"@. Examples:
+
+pre. 
+attribute="value"
+attributeA="value" attributeB="value"
+
+
+h4. Comments
+
+Comments must not be written into the XML.
+
+
+h4. Decimal Precision
+
+Decimals must be represented in the shortest form possible without sacrificing precision. There must not be more than ten digits past the decimal. There must not be unnecessary trailing zeros. If a number can be lossly represented with an integer, it should be represented as such.
+
+
+h2. GLIF Element Ordering
+
+# unicode
+# advance
+# image
+# outline
+# guideline
+# anchor
+# lib
+# note
+
+The child elements within these must not be reordered arbitraily as contour, component, etc. order is important. Likewise, if more than one element type is defined, for example @guideline@, the elements must not be arbitrarily reordered.
+
+
+
+h2. Property List Element Ordering
+
+
+
+h2. Default Values
+
+The UFO specification defines default values for many elements and attributes. If a value or attribute matches the default value in the specification. The value or attribute must not be written into the XML.
