@@ -18,7 +18,7 @@
 		The property list data consists of a dictionary at the top level. Keys are <em>first</em> member names and values are dictionaries. These dictionaries contain <em>second</em> member names as keys and kerning values, either integer or float, as the values.
 	</p>
 	<p>
-		The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the kerning group prefix defined in the <a href="groups.plist">groups.plist specification</a>. Group names used as the second member of a kerning pair must begin with the kerning group prefix defined in the <a href="groups.plist">groups.plist specification</a>. Glyphs or groups in the pairs are not required to be in the font.
+		The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the kerning group prefix defined in the <a href="groups.html">groups.plist specification</a>. Group names used as the second member of a kerning pair must begin with the kerning group prefix defined in the <a href="groups.html">groups.plist specification</a>. Glyphs or groups in the pairs are not required to be in the font.
 	</p>
 	<p>
 		Kerning pairs that are not defined in kerning.plist implicitly have a value of "no kerning" or zero. Therefore any kerning pair that has a value of zero, unless it is a necessary value of an <a href="#kerning-pair-exceptions">exception</a>, should not be stored in kerning.plist.
