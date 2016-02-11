@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Resources</title>
+  <meta name="description" content="The Unified Font Object (UFO) is a cross-platform, cross-application, human readable, future proof format for storing font data.
+">
+
+  <link rel="stylesheet" href="/media/main.css">
+  <link rel="canonical" href="http://unifiedfontobject.org/resources/">
+</head>
+
+  <body>
+    <header class="site-header">
+    <div id="logo"></div>
+    <div id="navigation">
+        <ul>
+            
+            
+                
+                    <li><a  href="/">Overview</a></li>
+                    
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a  href="/team/">The UFO Team</a></li>
+                    
+                
+            
+                
+                    <li><a class="active" href="/resources/">Resources</a></li>
+                    
+                
+            
+                
+                    <li><a  href="/roadmap/">Roadmap</a></li>
+                    
+                
+            
+                
+                    <li><a  href="/atguidelines/">Authoring Tool Guidelines</a></li>
+                    
+                
+            
+                
+                    <li><a  href="/versions/ufo1/">UFO 1</a></li>
+                    
+                        <ul class="navigationNested ">
+                            
+                                <li><a href="/versions/ufo1/metainfo.plist">metainfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/fontinfo.plist">fontinfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/groups.plist">groups.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/kerning.plist">kerning.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/lib.plist">lib.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/glyphs">glyphs</a></li>
+                            
+                                <li class="navigationNested1"><a href="/versions/ufo1/glyphs/contents.plist">contents.plist</a></li>
+                            
+                                <li class="navigationNested1"><a href="/versions/ufo1/glyphs/glif">glif</a></li>
+                            
+                        </ul>
+                    
+                
+            
+                
+                    <li><a  href="/versions/ufo2/">UFO 2</a></li>
+                    
+                
+            
+                
+                    <li><a  href="/versions/ufo3/">UFO 3</a></li>
+                    
+                        <ul class="navigationNested ">
+                            
+                                <li><a href="/versions/ufo3/metainfo.plist">metainfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/fontinfo.plist">fontinfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/groups.plist">groups.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/kerning.plist">kerning.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/features.fea">features.fea</a></li>
+                            
+                                <li><a href="/versions/ufo3/lib.plist">lib.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/layercontents.plist">layercontents.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/glyphs">glyphs</a></li>
+                            
+                                <li class="navigationNested1"><a href="/versions/ufo3/glyphs/contents.plist">contents.plist</a></li>
+                            
+                                <li class="navigationNested1"><a href="/versions/ufo3/glyphs/layerinfo.plist">layerinfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/GLIF">GLIF</a></li>
+                            
+                                <li><a href="/versions/ufo3/images">images</a></li>
+                            
+                                <li><a href="/versions/ufo3/data">data</a></li>
+                            
+                                <li><a href="/versions/ufo3/Conventions">Conventions</a></li>
+                            
+                        </ul>
+                    
+                
+            
+        </ul>
+    </div>
+</header>
+
+    <div id="content">
+      <div class="section">
+        
+          <h1>Resources</h1>
+        
+        <p>The UFO team strives to make it as easy as possible to add UFO support to applications and toolkits. To that effect, we present a small collection of resources.</p>
+
+<hr class="subsection" />
+
+<h2 id="macintosh-applications">Macintosh Applications</h2>
+
+<p>These resources are useful for developing Macintosh OS X applications that support the UFO format.</p>
+
+<h3 id="ufo-document-icon">UFO Document Icon</h3>
+
+<p>A standard UFO document icon. The file is provided in <a href="http://en.wikipedia.org/wiki/Apple_Icon_Image">Apple Icon Image format</a>.</p>
+
+<p><a href="downloads/UFODocumentIcon.zip"><img src="/media/resources-macicon.png" alt="UFO Icon" /></a></p>
+
+<p><a href="/downloads/UFODocumentIcon.zip">Click to download</a></p>
+
+<h3 id="uti-declarations">UTI Declarations</h3>
+
+<p>A set of standard “Uniform Type Identifier”:http://developer.apple.com/macosx/uniformtypeidentifiers.html declarations.</p>
+
+<h4 id="utexportedtypedeclarations">UTExportedTypeDeclarations</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;array&gt;</span>
+  <span class="nt">&lt;dict&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeConformsTo<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;array&gt;</span>
+      <span class="nt">&lt;string&gt;</span>com.apple.package<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/array&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeDescription<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>Unified Font Object<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeIconFile<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>UFODocumentIcon.icns<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeIdentifier<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>org.unifiedfontobject.ufo<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeReferenceURL<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>http://unifiedfontobject.org<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeTagSpecification<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+      <span class="nt">&lt;key&gt;</span>public.filename-extension<span class="nt">&lt;/key&gt;</span>
+      <span class="nt">&lt;array&gt;</span>
+        <span class="nt">&lt;string&gt;</span>ufo<span class="nt">&lt;/string&gt;</span>
+      <span class="nt">&lt;/array&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+  <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+</code></pre>
+</div>
+
+<h4 id="utimportedtypedeclarations">UTImportedTypeDeclarations</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;array&gt;</span>
+  <span class="nt">&lt;dict&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeConformsTo<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;array&gt;</span>
+      <span class="nt">&lt;string&gt;</span>com.apple.package<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;/array&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeDescription<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>Unified Font Object<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeIconFile<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>UFODocumentIcon.icns<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeIdentifier<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>org.unifiedfontobject.ufo<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeReferenceURL<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>http://unifiedfontobject.org<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>UTTypeTagSpecification<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;dict&gt;</span>
+      <span class="nt">&lt;key&gt;</span>public.filename-extension<span class="nt">&lt;/key&gt;</span>
+      <span class="nt">&lt;array&gt;</span>
+        <span class="nt">&lt;string&gt;</span>ufo<span class="nt">&lt;/string&gt;</span>
+      <span class="nt">&lt;/array&gt;</span>
+    <span class="nt">&lt;/dict&gt;</span>
+  <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+</code></pre>
+</div>
+
+      </div>
+    </div>
+    <footer class="site-footer">
+</footer>
+
+  </body>
+</html>

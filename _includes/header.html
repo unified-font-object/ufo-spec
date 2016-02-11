@@ -1,0 +1,20 @@
+<header class="site-header">
+    <div id="logo"></div>
+    <div id="navigation">
+        <ul>
+            {% assign sorted_pages = site.pages | sort:"order" %}
+            {% for item in sorted_pages %}
+                {% if item.navigation %}
+                    <li><a {% if item.url == page.url %}class="active"{% endif %} href="{{ item.url }}">{{ item.title }}</a></li>
+                    {% if item.tree %}
+                        <ul class="navigationNested {% if page.url contains item.url %} active{% endif %}">
+                            {% for i in item.tree %}
+                                <li{% if i contains "/"%} class="navigationNested{{ i | split:"/" | size | minus:1}}"{% endif %}><a href="{{ item.url }}{{ i }}">{{ i | split:"/" | last }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</header>

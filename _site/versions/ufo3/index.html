@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>UFO 3</title>
+  <meta name="description" content="The Unified Font Object (UFO) is a cross-platform, cross-application, human readable, future proof format for storing font data.
+">
+
+  <link rel="stylesheet" href="/media/main.css">
+  <link rel="canonical" href="http://unifiedfontobject.org/versions/ufo3/">
+</head>
+
+  <body>
+    <header class="site-header">
+    <div id="logo"></div>
+    <div id="navigation">
+        <ul>
+            
+            
+                
+                    <li><a  href="/">Overview</a></li>
+                    
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a  href="/team/">The UFO Team</a></li>
+                    
+                
+            
+                
+                    <li><a  href="/resources/">Resources</a></li>
+                    
+                
+            
+                
+                    <li><a  href="/roadmap/">Roadmap</a></li>
+                    
+                
+            
+                
+                    <li><a  href="/atguidelines/">Authoring Tool Guidelines</a></li>
+                    
+                
+            
+                
+                    <li><a  href="/versions/ufo1/">UFO 1</a></li>
+                    
+                        <ul class="navigationNested ">
+                            
+                                <li><a href="/versions/ufo1/metainfo.plist">metainfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/fontinfo.plist">fontinfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/groups.plist">groups.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/kerning.plist">kerning.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/lib.plist">lib.plist</a></li>
+                            
+                                <li><a href="/versions/ufo1/glyphs">glyphs</a></li>
+                            
+                                <li class="navigationNested1"><a href="/versions/ufo1/glyphs/contents.plist">contents.plist</a></li>
+                            
+                                <li class="navigationNested1"><a href="/versions/ufo1/glyphs/glif">glif</a></li>
+                            
+                        </ul>
+                    
+                
+            
+                
+                    <li><a  href="/versions/ufo2/">UFO 2</a></li>
+                    
+                
+            
+                
+                    <li><a class="active" href="/versions/ufo3/">UFO 3</a></li>
+                    
+                        <ul class="navigationNested  active">
+                            
+                                <li><a href="/versions/ufo3/metainfo.plist">metainfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/fontinfo.plist">fontinfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/groups.plist">groups.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/kerning.plist">kerning.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/features.fea">features.fea</a></li>
+                            
+                                <li><a href="/versions/ufo3/lib.plist">lib.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/layercontents.plist">layercontents.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/glyphs">glyphs</a></li>
+                            
+                                <li class="navigationNested1"><a href="/versions/ufo3/glyphs/contents.plist">contents.plist</a></li>
+                            
+                                <li class="navigationNested1"><a href="/versions/ufo3/glyphs/layerinfo.plist">layerinfo.plist</a></li>
+                            
+                                <li><a href="/versions/ufo3/GLIF">GLIF</a></li>
+                            
+                                <li><a href="/versions/ufo3/images">images</a></li>
+                            
+                                <li><a href="/versions/ufo3/data">data</a></li>
+                            
+                                <li><a href="/versions/ufo3/Conventions">Conventions</a></li>
+                            
+                        </ul>
+                    
+                
+            
+        </ul>
+    </div>
+</header>
+
+    <div id="content">
+      <div class="section">
+        
+          <h1>UFO 3</h1>
+        
+        <p>A UFO is a directory representing font data with one or more glyph layers.</p>
+
+<h3 id="terminology">Terminology</h3>
+
+<p>The terms “must”, “must not”, “required”, “shall”, “shall not”, “should”, “should not”, “recommended”, “may”, and “optional” used throughout this specification conform to [RFC 2119].</p>
+
+<p>The term “authoring tool” is used throughout this specification to refer to tools that read and write UFOs. Authoring tools may take many forms:</p>
+
+<ol>
+  <li>A font editor that uses UFO as its native file format.</li>
+  <li>A tool that allows for importing data from or exporting data to a UFO.</li>
+  <li>A programming library for reading or writing UFO data.</li>
+  <li>A script for modifying a UFO.</li>
+</ol>
+
+<p>This list is not exclusive.</p>
+
+<h3 id="file-structure">File Structure</h3>
+
+<p>UFO 3 follows this file structure:</p>
+
+<ul class="filediagram">
+  <li class="filediagramDirectory">*.ufo
+    <ul>
+      <li>metainfo.plist</li>
+      <li>fontinfo.plist</li>
+      <li>groups.plist</li>
+      <li>kerning.plist</li>
+      <li>lib.plist</li>
+      <li>layercontents.plist</li>
+      <li class="filediagramDirectory">glyphs
+        <ul>
+          <li>contents.plist</li>
+          <li>layerinfo.plist</li>
+          <li>*.glif</li>
+        </ul>
+      </li>
+      <li class="filediagramDirectory">images
+        <ul>
+          <li>*.png</li>
+        </ul>
+      </li>
+      <li class="filediagramDirectory">data</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Each of the files and directories have unique meanings, purposes and data structures:</p>
+
+<table>
+<tr>
+<td>
+[metainfo.plist]
+</td>
+<td>
+Format version, creator, etc.
+</td>
+</tr>
+<tr>
+<td>
+[fontinfo.plist]
+</td>
+<td>
+Various font info data.
+</td>
+</tr>
+<tr>
+<td>
+[groups.plist]
+</td>
+<td>
+Glyph group definitions.
+</td>
+</tr>
+<tr>
+<td>
+[kerning.plist]
+</td>
+<td>
+Kerning data.
+</td>
+</tr>
+<tr>
+<td>
+[features.fea]
+</td>
+<td>
+OpenType feature definitions.
+</td>
+</tr>
+<tr>
+<td>
+[lib.plist]
+</td>
+<td>
+Arbitrary custom data.
+</td>
+</tr>
+<tr>
+<td>
+<a href="layercontents.html">layercontent
+
+  [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
+  [metainfo.plist]: metainfo.html
+  [fontinfo.plist]: fontinfo.html
+  [groups.plist]: groups.html
+  [kerning.plist]: kerning.html
+  [features.fea]: features.html
+  [lib.plist]: lib.html
+</a></td></tr></table>
+
+      </div>
+    </div>
+    <footer class="site-footer">
+</footer>
+
+  </body>
+</html>
