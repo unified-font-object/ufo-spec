@@ -15,9 +15,9 @@ title: Overview
 
 ## Versions
 
-| [UFO 1](/versions/ufo1/index.html) | Published in 2004. |
-| [UFO 2](/versions/ufo2/index.html) | Published in March 2009. |
-| [UFO 3](/versions/ufo3/index.html) | Published in March 2012. |
+| [UFO 1]({{ site.baseurl }}/versions/ufo1/index.html) | Published in 2004. |
+| [UFO 2]({{ site.baseurl }}/versions/ufo2/index.html) | Published in March 2009. |
+| [UFO 3]({{ site.baseurl }}/versions/ufo3/index.html) | Published in March 2012. |
 
 ## Download
 

@@ -3,7 +3,6 @@ layout: default
 title: contents.plist
 ---
 
-
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 *contents.plist* contains a dictionary that maps glyph names to GLIF file names. Those file names must be plain file names, not absolute or relative paths in the file system. Care must be taken when choosing file names: glyph names are case sensitive, yet many file systems are not. There is no one standard glyph name to file name conversion. However, the most common implementation is described below.
