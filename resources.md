@@ -17,9 +17,9 @@ These resources are useful for developing Macintosh OS X applications that suppo
 
 A standard UFO document icon. The file is provided in [Apple Icon Image format](http://en.wikipedia.org/wiki/Apple_Icon_Image).
 
-[![UFO Icon](/media/resources-macicon.png)](downloads/UFODocumentIcon.zip)
+[![UFO Icon]({{ site.baseurl }}/media/resources-macicon.png)]({{ site.baseurl }}/downloads/UFODocumentIcon.zip)
 
-[Click to download](/downloads/UFODocumentIcon.zip)
+[Click to download]({{ site.baseurl }}/downloads/UFODocumentIcon.zip)
 
 ### UTI Declarations
 
