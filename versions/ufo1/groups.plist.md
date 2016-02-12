@@ -3,17 +3,11 @@ layout: default
 title: groups.plist
 ---
 
-groups.plist
-============
-
-|                 |                                                                    |
-|-----------------|--------------------------------------------------------------------|
-| **File Format** | “XML Property List”:http://www.apple.com/DTDs/PropertyList-1.0.dtd |
+| **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains the definitions of arbitrary groups of glyphs. This file is optional. If it is not defined in the UFO, there is no group data.
 
-Specification
--------------
+## Specification
 
 The property list data consists of a dictionary at the top level. Keys are group names and values are arrays of glyph name strings. There is no standard for naming groups. Glyphs may be in more than one group. Glyphs listed in the arrays are not required to be in the font.
 
@@ -43,5 +37,4 @@ Some groups may be used in kerning. See the [kerning.plist documentation] for mo
 </plist>
 ```
 
-
-[kerning.plist documentation]: ../kerning.html
+ [kerning.plist documentation]: ../kerning.plist

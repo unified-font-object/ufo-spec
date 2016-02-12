@@ -3,6 +3,16 @@ layout: default
 navigation: true
 order: 200
 title: UFO 2
+tree:
+    - metainfo.plist
+    - fontinfo.plist
+    - groups.plist
+    - kerning.plist
+    - features.fea
+    - lib.plist
+    - glyphs
+    - glyphs/contents.plist
+    - glyphs/GLIF
 ---
 
 A UFO file is a directory following this structure:
@@ -22,15 +32,15 @@ A UFO file is a directory following this structure:
 
 Each of the files has a unique meaning, purpose and data structure:
 
-| [metainfo.plist](metainfo.html)                     | Format version, creator, etc. |
-| [fontinfo.plist](fontinfo.html)                     | Various font info data. |
-| [groups.plist](groups.html)                         | Glyph group definitions. |
-| [kerning.plist](kerning.html)                       | Kerning data. |
-| [features.fea](features.html)                       | OpenType feature definitions. |
-| [lib.plist](lib.html)                               | Arbitrary custom data. |
-| [glyphs](glyphs.html)                               | A directory containing all glyphs in the font. |
-| glyphs/[contents.plist](glyphs.html)                | File name to glyph name mapping. |
-| glyphs/[*.glif](glif.html)                          | A glyph definition. |
+| [metainfo.plist](metainfo.plist)                       | Format version, creator, etc. |
+| [fontinfo.plist](fontinfo.plist)                       | Various font info data. |
+| [groups.plist](groups.plist)                           | Glyph group definitions. |
+| [kerning.plist](kerning.plist)                         | Kerning data. |
+| [features.fea](features.fea)                           | OpenType feature definitions. |
+| [lib.plist](lib.plist)                                 | Arbitrary custom data. |
+| [glyphs](glyphs)                                       | A directory containing all glyphs in the font. |
+| glyphs/[contents.plist](glyphs/contents.plist)         | File name to glyph name mapping. |
+| glyphs/[*.glif](glyphs/glif)                           | A glyph definition. |
 
 <hr class="subsection">
 

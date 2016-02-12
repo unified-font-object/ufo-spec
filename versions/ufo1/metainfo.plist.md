@@ -3,7 +3,7 @@ layout: default
 title: metainfo.plist
 ---
 
-| __File Format__ | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
+| **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains metadata about the UFO. This file is required.
 

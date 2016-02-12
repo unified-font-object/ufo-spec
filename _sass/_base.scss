@@ -72,7 +72,7 @@ ul, ol {
 li {
     > ul,
     > ol {
-         margin-bottom: 0;
+         margin-bottom: $spacing-unit / 2;
     }
 }
 

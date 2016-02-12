@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Glyph Interchange Format
-url_title: GLIF
 ---
 
 | **File Format** | XML |

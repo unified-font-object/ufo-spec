@@ -53,7 +53,7 @@ ul, ol {
 
 li > ul,
 li > ol {
-  margin-bottom: 0; }
+  margin-bottom: 15px; }
 
 /**
  * Headings
@@ -156,6 +156,8 @@ p {
 
 a {
   color: #cc0000; }
+  a:visited {
+    color: #cc0000; }
 
 a img {
   border: none; }
@@ -342,6 +344,7 @@ hr.subsection {
     padding-top: 2px;
     list-style-type: none; }
   #navigation li.navigationSectionTitle {
+    margin-top: 5px;
     color: #999; }
   #navigation .navigationNested {
     display: none;

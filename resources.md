@@ -15,7 +15,7 @@ These resources are useful for developing Macintosh OS X applications that suppo
 
 ### UFO Document Icon
 
-A standard UFO document icon. The file is provided in [Apple Icon Image format](http://en.wikipedia.org/wiki/Apple_Icon_Image).
+A standard UFO document icon. The file is provided in [Apple Icon Image format](http://en.wikipedia.org/wiki/Apple_Icon_Image){:target="_blank"}.
 
 [![UFO Icon]({{ site.baseurl }}/media/resources-macicon.png)]({{ site.baseurl }}/downloads/UFODocumentIcon.zip)
 

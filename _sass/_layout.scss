@@ -16,6 +16,9 @@ p {
 
 a {
     color: #cc0000;
+    &:visited {
+        color: #cc0000;
+    }
 }
 
 a img {
@@ -239,6 +242,7 @@ hr.subsection {
     }
 
     li.navigationSectionTitle {
+        margin-top: 5px;
         color: #999;
     }
 
