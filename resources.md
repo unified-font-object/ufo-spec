@@ -15,7 +15,7 @@ These resources are useful for developing Macintosh OS X applications that suppo
 
 ### UFO Document Icon
 
-A standard UFO document icon. The file is provided in [Apple Icon Image format](http://en.wikipedia.org/wiki/Apple_Icon_Image){:target="_blank"}.
+A standard UFO document icon. The file is provided in [Apple Icon Image format](http://en.wikipedia.org/wiki/Apple_Icon_Image).
 
 [![UFO Icon]({{ site.baseurl }}/media/resources-macicon.png)]({{ site.baseurl }}/downloads/UFODocumentIcon.zip)
 
@@ -23,7 +23,7 @@ A standard UFO document icon. The file is provided in [Apple Icon Image format](
 
 ### UTI Declarations
 
-A set of standard "Uniform Type Identifier":http://developer.apple.com/macosx/uniformtypeidentifiers.html declarations.
+A set of standard [Uniform Type Identifier](https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/UniformTypeIdentifier.html) declarations.
 
 #### UTExportedTypeDeclarations
 
