@@ -94,9 +94,9 @@ This implies that the pair values for the specific glyphs combinations are as fo
 | Q      | E      | -100  |
 | Q      | F      | -200  |
 
-##### Exception Caveat
+##### Exception Conflict Resolution
 
-Exceptions are very powerful, but there is one rule that must be followed. **There must not be contradictions within a level.** For example, given the same public.kern1.O and public.kern2.E group as above, a font contains the following kerning pairs:
+It's possible to create kerning contradictions with exceptions. For example, given the same public.kern1.O and public.kern2.E group as above, a font contains the following kerning pairs:
 
 | Side 1         | Side 2         | Value |
 |----------------|----------------|-------|
@@ -116,7 +116,9 @@ This implies that the pair values for the specific glyphs combinations are as fo
 | Q      | E      | -250             |
 | Q      | F      | **-200 or -250** |
 
-The two second level pairs, public.kern1.O + F and Q + public.kern2.E define two possible values for the pair Q + F. This is an unresolvable ambiguity. These types of contradictions must be avoided.
+The two second level pairs, public.kern1.O + F and Q + public.kern2.E define two possible values for the pair Q + F. This is an unresolvable ambiguity.
+
+To resolve this, glyph + group pairs are given higher priority than group + glyph pairs when these contradictions occur. In the example above, the Q + F pair value would be -250.
 
 #### Kerning Value Lookup Algorithm
 

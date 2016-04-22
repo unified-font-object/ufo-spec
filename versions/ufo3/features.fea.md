@@ -11,7 +11,7 @@ It is important to note that the features file may contain data that is a duplic
 
 ## Specification
 
-The file should be a plain text file and it should be in [AFDKO syntax]{:target="_blank"}. No assumption should be made about the validity of the syntax.
+The file should be a plain text file and it should be in [AFDKO syntax]{:target="_blank"}. If a feature file is present, it must be self-contained; for example, any glyph or mark classes must be defined within the file. No assumption should be made about the validity of the syntax.
 
 ### Example
 
