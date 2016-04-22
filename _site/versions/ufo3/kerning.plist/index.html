@@ -446,9 +446,9 @@ Level 3: Glyph combinations.</p>
   </tbody>
 </table>
 
-<h5 id="exception-caveat">Exception Caveat</h5>
+<h5 id="exception-caveat">Exception Conflict Resolution</h5>
 
-<p>Exceptions are very powerful, but there is one rule that must be followed. <strong>There must not be contradictions within a level.</strong> For example, given the same public.kern1.O and public.kern2.E group as above, a font contains the following kerning pairs:</p>
+<p>It's possible to create kerning contradictions with exceptions. For example, given the same public.kern1.O and public.kern2.E group as above, a font contains the following kerning pairs:</p>
 
 <table>
   <thead>
@@ -526,7 +526,9 @@ Level 3: Glyph combinations.</p>
   </tbody>
 </table>
 
-<p>The two second level pairs, public.kern1.O + F and Q + public.kern2.E define two possible values for the pair Q + F. This is an unresolvable ambiguity. These types of contradictions must be avoided.</p>
+<p>The two second level pairs, public.kern1.O + F and Q + public.kern2.E define two possible values for the pair Q + F. This is an unresolvable ambiguity.</p>
+
+<p>To resolve this, glyph + group pairs are given higher priority than group + glyph pairs when these contradictions occur. In the example above, the Q + F pair value would be -250.</p>
 
 <h4 id="kerning-value-lookup-algorithm">Kerning Value Lookup Algorithm</h4>
 
