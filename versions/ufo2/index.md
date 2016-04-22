@@ -12,7 +12,7 @@ tree:
     - lib.plist
     - glyphs
     - glyphs/contents.plist
-    - glyphs/GLIF
+    - glyphs/glif
 ---
 
 A UFO file is a directory following this structure:

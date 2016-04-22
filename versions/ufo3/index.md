@@ -14,7 +14,7 @@ tree:
     - glyphs
     - glyphs/contents.plist
     - glyphs/layerinfo.plist
-    - glyphs/GLIF
+    - glyphs/glif
     - images
     - data
     - conventions
