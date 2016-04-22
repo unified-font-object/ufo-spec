@@ -28,6 +28,7 @@ The GLIF data follows this structure:
 
 In all elements, where an attribute has a defined default value the attribute is optional unless otherwise stated. If the attribute is not defined, the value for the attribute is implicitly the default value.
 
+{: #glyph }
 ### glyph: The top level element.
 
 #### Attributes
@@ -69,6 +70,7 @@ The `name` attribute has limited uses in this version. The *contents.plist* file
 <advance width="400" />
 ```
 
+{: #unicode }
 ### unicode: Unicode code point.
 
 #### Attributes
@@ -87,6 +89,7 @@ The first occurrence of this element defines the primary Unicode value for this 
 <unicode hex="0041" />
 ```
 
+{: #image }
 ### image: An image reference.
 
 This optional element represents an image element in a glyph. It may occur at most once. The image should always be considered to be *behind* the outline element.
@@ -145,6 +148,7 @@ The guideline extends along `angle` to infinity in both directions out of the po
 
 #### This element has no child elements.
 
+{: #anchor }
 ### anchor: A reference position.
 
 This element may occur any number of times.
@@ -185,6 +189,7 @@ Authoring tools may convert instances of contours like this to anchor elements w
 | [component]  | May occur any number of times. |
 | [contour]    | May occur any number of times. |
 
+{: #component }
 ### component: Insert another glyph as part of the outline.
 
 #### Attributes
@@ -212,6 +217,7 @@ The base glyph referenced by a component may contain components. The base glyph 
 <component base="A" xOffset="100" />
 ```
 
+{: #contour }
 ### contour: Contour description.
 
 #### Attributes
@@ -228,6 +234,7 @@ The base glyph referenced by a component may contain components. The base glyph 
 
 There is no requirement that a contour contain an on-curve point. If a contour contains only off-curve points the contour must be treated as a quadratic curve.
 
+{: #point }
 ### point: An attributed coordinate pair.
 
 #### Attributes
@@ -285,10 +292,12 @@ qcurve point:
 <point x="441" y="363" type="qcurve" />
 ```
 
+{: #note }
 ### note: Note about the glyph.
 
 This element is a place for the user to define arbitrary text about the glyph. There is no standardized structure for the note apart from that it being the content of the note element.
 
+{: #lib }
 ### lib: Custom data storage.
 
 This element is a place to store authoring tool specific, user specific or otherwise arbitrary data for the glyph. lib mus have one child element that is structure as a dictionary formatted as an [XML Property List]. This element may occur at most once. In order to prevent conflicts in the lib, keys in the top level should follow a [reverse domain naming scheme]. The pattern "public.\*", where \* represents an arbitrary string of one or more characters, is reserved for use in standardized lib keys. It is recommended that the data stored as a value be as shallow as possible.
