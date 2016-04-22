@@ -51,6 +51,7 @@ An collection of items. The items are ordered, however the order is insignifican
 
 A dictionary is an unordered associative array mapping keys to values. In the XML property lists used throughout the UFO, the keys must be strings. Values may be any type, though the options are defined throughout this specification.
 
+{: #colors }
 #### color definition
 
 A color definition is defined as a string containing a comma-separated sequence of four integers or floats between 0 and 1. White space characters are allowed around the numerical values. The values in the string define the red, green, blue and alpha components of the color. The color is always specified in the [sRGB] color space.
