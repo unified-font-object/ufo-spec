@@ -1,0 +1,37 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Unified Font Object
+email: tal@typesupply.com
+description: > # this means to ignore newlines until "baseurl:"
+  The Unified Font Object (UFO) is a cross-platform, cross-application, human
+  readable, future proof format for storing font data.
+baseurl: "/ufo-spec" # the subpath of your site, e.g. /blog
+url: "http://unifiedfontobject.org" # the base hostname & protocol for your site
+
+# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
+google_analytics:
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+permalink: /:title/
+
+
+gems:
+  - rouge
+# Exclude these files from your production _site
+exclude:
+    - Gemfile
+    - Gemfile.lock
+    - LICENSE
+    - README.md
+    - CNAME
