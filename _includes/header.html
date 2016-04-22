@@ -1,0 +1,23 @@
+<header class="site-header">
+    <div id="logo"></div>
+    <div id="navigation">
+        <ul>
+            {% assign sorted_pages = site.pages | sort:"order" %}
+            {% for item in sorted_pages %}
+                {% if item.navigation %}
+                    {% if item.title == "UFO 1" %}
+                        <li class="navigationSectionTitle">Versions</li>
+                    {% endif %}
+                    <li><a {% if item.url == page.url %}class="active"{% endif %} href="{{ item.url | prepend: site.baseurl }}">{{ item.title }}</a></li>
+                    {% if item.tree %}
+                        <ul class="navigationNested {% if page.url contains item.url %} active{% endif %}">
+                            {% for i in item.tree %}
+                                <li{% if i contains "/"%} class="navigationNested{{ i | split:"/" | size | minus:1}}"{% endif %}><a href="{{ item.url | prepend: site.baseurl }}{{ i }}">{{ i | split:"/" | last }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</header>
