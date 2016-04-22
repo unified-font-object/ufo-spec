@@ -7,4 +7,13 @@
 
   <link rel="stylesheet" href="{{ "/media/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        for (var links = document.links, i = 0, a; a = links[i]; i++) {
+            if (a.host !== location.host) {
+                a.target = '_blank';
+            }
+        }
+    });
+  </script>
 </head>
