@@ -5,13 +5,13 @@ title: features.fea
 
 | **File Format** | Plain Text |
 
-This file contains the [Adobe Font Development Kit for OpenType]{:target="_blank"} feature definitions. This file is optional. If it is not defined in the UFO, there is no feature data.
+This file contains the [Adobe Font Development Kit for OpenType] feature definitions. This file is optional. If it is not defined in the UFO, there is no feature data.
 
 It is important to note that the features file may contain data that is a duplicate of or data that is in conflict with the data in [kerning.plist], [groups.plist] and [fontinfo.plist]. Synchronization between the files is not a requirement of this specification. Synchronization is up to the user and application developers.
 
 ## Specification
 
-The file should be a plain text file and it should be in [AFDKO syntax]{:target="_blank"}. No assumption should be made about the validity of the syntax.
+The file should be a plain text file and it should be in [AFDKO syntax]. No assumption should be made about the validity of the syntax.
 
 ### Example
 

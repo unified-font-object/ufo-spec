@@ -21,4 +21,4 @@ title: Overview
 
 ## Download
 
-The source for the documentation, an issue tracker and more are located at [https://github.com/unified-font-object/ufo-spec](https://github.com/unified-font-object/ufo-spec){:target="_blank"}.
+The source for the documentation, an issue tracker and more are located at [https://github.com/unified-font-object/ufo-spec](https://github.com/unified-font-object/ufo-spec).
