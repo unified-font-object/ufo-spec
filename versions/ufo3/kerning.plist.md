@@ -94,6 +94,7 @@ This implies that the pair values for the specific glyphs combinations are as fo
 | Q      | E      | -100  |
 | Q      | F      | -200  |
 
+{: #exception-conflict-resolution }
 ##### Exception Conflict Resolution
 
 It's possible to create kerning contradictions with exceptions. For example, given the same public.kern1.O and public.kern2.E group as above, a font contains the following kerning pairs:
@@ -447,4 +448,5 @@ def test():
   [XML Property List]: conventions.html#propertylist
   [groups.plist specification]: groups.plist
   [exception]: #kerning-pair-exceptions
+  [exception-conflict-resolution]: #exception-conflict-resolution
   [group's name]: groups.html
