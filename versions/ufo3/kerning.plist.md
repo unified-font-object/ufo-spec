@@ -446,7 +446,7 @@ def test():
 ```
 
   [XML Property List]: conventions.html#propertylist
-  [groups.plist specification]: groups.plist
+  [groups.plist specification]: groups.html
   [exception]: #kerning-pair-exceptions
   [exception-conflict-resolution]: #exception-conflict-resolution
   [group's name]: groups.html
