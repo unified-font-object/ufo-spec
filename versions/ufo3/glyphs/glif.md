@@ -315,14 +315,18 @@ The following is a registry of public lib keys that map to functionality that is
 
 This key is used for representing the "mark" color seen in various font editors. The value for the key must be a string following the [color definition] standard. This data is optional.
 
+##### public.postscriptName
+
+This key is used for representing the indended "production" name for the glyph, which in OpenType fonts would be typically stored in the `CFF ` or `post` table. The value for the key must be a string. It is recommended that the value conforms to the [Adobe Glyph List Specification](https://github.com/adobe-type-tools/agl-specification). Authoring tools may prefer this value over the `glyph` element's `name` attribute when converting the UFO into an OpenType font, but it is solely up to the authoring tool whether it would expect the data in [features.fea](../features.fea) to correspond to the the `glyph` element's `name` attribute or the `public.postscriptName` value. This data is optional. 
+
 ### Example
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<glyph name="period" format="2">
+<glyph name="blackcircle" format="2">
   <advance width="268"/>
-  <unicode hex="002E"/>
-  <image fileName="period sketch.png" xScale="0.5" yScale="0.5"/>
+  <unicode hex="25CF"/>
+  <image fileName="blackcircle sketch.png" xScale="0.5" yScale="0.5"/>
   <guideline y="-12" name="overshoot"/>
   <anchor x="74" y="197" name="top"/>
   <outline>
@@ -347,6 +351,8 @@ This key is used for representing the "mark" color seen in various font editors.
       <string>arbitrary custom data!</string>
       <key>public.markColor</key>
       <string>1,0,0,0.5</string>
+      <key>public.postscriptName</key>
+      <string>uni25CF</string>
     </dict>
   </lib>
 </glyph>
