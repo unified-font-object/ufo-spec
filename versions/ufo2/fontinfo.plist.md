@@ -189,7 +189,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 ##### Notes
 
-<a href="http://www.microsoft.com/typography/otspec/hhea.htm" target="_blank">The OpenType hhea table specification</a>
+<a href="http://www.microsoft.com/typography/otspec/vhea.htm" target="_blank">The OpenType vhea table specification</a>
 
 1.  *advanceHeightMax* should be calculated by the compiler.
 2.  *minTopSideBearing* should be calculated by the compiler.
