@@ -21,6 +21,8 @@ A standard UFO document icon. The file is provided in [Apple Icon Image format](
 
 [Click to download]({{ site.baseurl }}/downloads/UFODocumentIcon.zip)
 
+This document icon is MIT licensed.
+
 ### UTI Declarations
 
 A set of standard "Uniform Type Identifier":http://developer.apple.com/macosx/uniformtypeidentifiers.html declarations.
