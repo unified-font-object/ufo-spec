@@ -164,6 +164,7 @@ The following ideas are being considered for the UFO 4 specification.
 - Vertical kerning support.
 - Removing the `name` attribute from the `<glyph>` element in GLIF.
 - Support for the OpenType math table.
+- Support for storing hints in high level form. Inventing a new storage format for this is far too complex so we'd rather use an existing format (such as the one used by VTT). That will require another party to step forward with a specification for the storage structure and implementation instructions. If this doesn't happen we'll reopen the idea of storing hinting data in low level form.
 
 [ZIP archive]: https://en.wikipedia.org/wiki/Zip_(file_format)
 [MutatorMath]: https://github.com/LettError/MutatorMath/blob/master/Docs/designSpaceFileFormat.md
