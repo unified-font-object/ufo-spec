@@ -62,7 +62,7 @@ The concepts behind and structure of this file are still being developed. We cur
 
 The first idea is based on categorizing purposes and storing data for each item within a category.
 
-```
+```python
 {
     "com.something.category" : [
         {
@@ -81,7 +81,7 @@ The values would be a list of items in the category. This would allow for more t
 
 The other idea is to store an ordered list of external UFO references with app-defined data defining the purpose of the reference.
 
-```
+```python
 [
     ('master_regular', {'public.source': "sources/MyFontRegular.ufo",
                        'com.something.blah': { ..anything.. }}),
