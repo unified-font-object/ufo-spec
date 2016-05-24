@@ -132,7 +132,7 @@ The UFS lib.plist is specific to the UFS. There is no resolution  order necessar
 
 ### Location of UFOs
 
-UFOs references by the UFS *must* be located in the same directory as the UFS.
+UFOs references by the UFS *must* be stored next to the UFS. Path resolution rules will not be defined.
 
 ### Other Contents
 
