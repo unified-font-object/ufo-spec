@@ -31,7 +31,7 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 </array>
 ```
 
-##Specification
+## Specification
 
 #### Generic Identification Information
 
