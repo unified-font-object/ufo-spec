@@ -7,6 +7,52 @@ title: Roadmap
 
 This page serves a a place to collect the UFO team's thoughts on potential future features of the specification.
 
+## UFO 3 Additions
+
+Over the last 13 years the UFO specification has been developed in major steps. This has been the case because when the format was started the binary font formats that the specification superset were not rapidly changing. The UFO specification could go several years without a major upgrade and still only need a few minor additions. The binary font specifications are changing rapidly now and the UFO specification development process needs to adapt to this.
+
+The problem with updating the UFO specification rapidly is that the format has been designed to be authoring tool neutral. If a new bit of data is added to fontinfo.plist, authoring tools must be updated to handle this new data otherwise the data will be lost. In UFO 3 we developed a way to make official additions to the specification that won't result in data loss. This is done by using the various lib locations and the data directory with standard storage keys and formats. This works well for very small and very big changes, but not so well for changes that fall between. Unfortunately, these "in between" changes are the kinds that are being made to the OpenType specification--new tables, new fields, new data. This new data is too complex to store in the lib locations. So, we need to develop a way to handle this. We're going to do this by making a small tweak to the way that authoring tools interpret the data in fontinfo.plist.
+
+The fontinfo.plist specification is going to gain a new section that addresses how an authoring tool should handle unknown key/value pairs. Previously, unknown pairs were considered illegal. Going forward, when an unknown pair is encountered the tool should preserve the pair and should write it, unchanged, back into fontinfo.plist during a subsequent save operation. This does not mean that anyone can add anything that they want to fontinfo.plist. (lib.plist must still be used for that.) The authoring tool should not attempt to validate the unknown data apart from ensuring that it conforms to standard Property List specifications.
+
+This change will allow the specification to be updated incrementally without users encountering data loss. Major changes, such as additions to GLIF, will still require a complete version jump.
+
+### SVG Table
+
+The following is a sketch for how "SVG in OpenType" could be stored in UFO.
+
+There must be a layer named "public.openTypeSVG" (note, this is a UFO file layer name, not necessarily the name that must be shown to the user in an interface). That will contain a layer of glyphs that should be represented in the SVG table.
+
+The GLIF may contain anything except an <outline> element that contains data. In the glyph lib, there will be this key:
+
+* public.openTypeSVGFilePath : "*.svg"
+
+This will specify the file name to use as the SVG data.
+
+The default outline data for use in the CFF or glyf table (as required in the SVG table specification) should be in the UFO's default layer. If this glyph does not exist, it is up to the authoring tool to determine how to handle the situation. This is because the data may not yet exist during the design phase, but it is, obviously, required when compiling an OpenType font.
+
+The SVG files will be located in:
+
+{: .filediagram}
+- {: .filediagramDirectory}data/public.openTypeSVGGlyphs
+    - *.svg
+
+There is no file naming specification for the SVG files except that they must be file system legal as defined elsewhere in the UFO spec.
+
+SVG documents should conform to the rules defined in the "Glyph Semantics and Metrics" of the [SVG Table] specification.
+
+### COLR Table
+
+Color palettes ([CPAL Table]) will be located in fontinfo.plist.
+
+* openTypeCPALColorPalettes : list of ordered palettes. Palettes are defined as dicts of this form:
+
+* "rgba" : color string
+* "type: bit list corresponding to the CPAL paletteType spec.
+* "label" : string
+
+
+
 ## Single File UFO
 
 UFO has two possible storage formats. The first, "UFO Package", is a multi-file, file system directory structure. The second, "UFO ZIP", is a [ZIP archive] containing the same directory structure as defined for _UFO Package_.
@@ -166,5 +212,8 @@ The following ideas are being considered for the UFO 4 specification.
 - Support for the OpenType math table.
 - Support for storing hints in high level form. Inventing a new storage format for this is far too complex so we'd rather use an existing format (such as the one used by VTT). That will require another party to step forward with a specification for the storage structure and implementation instructions. If this doesn't happen we'll reopen the idea of storing hinting data in low level form.
 
+
+[SVG Table]: https://www.microsoft.com/typography/otspec/svg.htm
+[CPAL]: https://www.microsoft.com/typography/otspec/cpal.htm
 [ZIP archive]: https://en.wikipedia.org/wiki/Zip_(file_format)
 [MutatorMath]: https://github.com/LettError/MutatorMath/blob/master/Docs/designSpaceFileFormat.md
