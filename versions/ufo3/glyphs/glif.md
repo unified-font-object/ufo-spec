@@ -315,6 +315,10 @@ The following is a registry of public lib keys that map to functionality that is
 
 This key is used for representing the "mark" color seen in various font editors. The value for the key must be a string following the [color definition] standard. This data is optional.
 
+##### public.verticalOrigin
+
+This key is used for representing the "vertical origin" 'y' coordinate used for vertical layout. The value for the key must be an integer or float. This data is optional. Authoring tools can use this data and the advance element's `height` attribute to create the VORG and vmtx tables.
+
 ### Example
 
 ```xml
