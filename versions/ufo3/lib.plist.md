@@ -23,6 +23,12 @@ This key is used for representing the user's preferred glyph order in the font. 
 
 The glyph order is stored as a list of glyphs names. Glyph names must not occur more than once. Glyph names in the font may not appear in the order. The order may contain glyphs that are not in the font.
 
+#### public.postscriptNames
+
+This defines a preferred glyph name to Postscript glyph name mapping for glyphs in the font. Authoring tools should use the values defined in this mapping when outputting font data formats such as the `post` and `CFF ` tables in OpenType. This data is optional.
+
+The mapping is stored as a dictionary with glyphs names as keys and Postscript glyph names as values. Both keys and values must be strings. The values must conform to the Postscript glyph naming specification. The dictionary may contain glyph names that are not in the font. The dictionary may not contain a key, value pair for all glyphs in the font. If a glyph's name is not defined in this mapping, the glyph's name should be used as the Postscript name.
+
 ### Example
 
 ```xml
