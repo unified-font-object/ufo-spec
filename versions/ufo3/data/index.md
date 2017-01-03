@@ -7,4 +7,4 @@ This directory allows authoring tools to store application specific data that is
 
   [lib.plist]: ../lib.plist
   [lib element in GLIF]: ../glyphs/glif#lib
-  [reverse domain naming scheme]: ../conventions#reversedomain
+  [reverse domain naming scheme]: ../conventions#reverse-domain-naming-schemes
