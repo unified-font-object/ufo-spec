@@ -364,12 +364,12 @@ This key is used for representing the "vertical origin" 'y' coordinate used for 
   [anchor]: #anchor
   [outline]: #outline
   [lib]: #lib
-  [color definition]: conventions.html#colors
-  [layerinfo.plist]: glyphs.html#layerinfo
-  [conventions]: conventions.html#identifiers
+  [color definition]: ../../conventions/#colors
+  [layerinfo.plist]: layerinfo.plist
+  [conventions]: ../../conventions/#identifiers
   [component]: #component
   [contour]: #contour
   [point]: #point
-  [XML Property List]: conventions.html#propertylist
-  [reverse domain naming scheme]: conventions.html#reversedomain
-  [data directory]: data.html
+  [XML Property List]: ../../conventions/#xml-property-lists
+  [reverse domain naming scheme]: ../../conventions/#reverse-domain-naming-schemes
+  [data directory]: ../../data
