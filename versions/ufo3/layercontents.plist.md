@@ -56,5 +56,5 @@ This represents background reference layers such as the "Template" layer in Font
 
 ```
 
-  [XML Property List]: conventions.html#propertylist
-  [conventions]: conventions.html#usernametofilename
+  [XML Property List]: conventions/#xml-property-lists
+  [conventions]: conventions/#usernametofilename
