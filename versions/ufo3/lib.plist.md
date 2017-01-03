@@ -49,6 +49,6 @@ The mapping is stored as a dictionary with glyphs names as keys and Postscript g
 </plist>
 ```
 
-  [XML Property List]: ../conventions.html#xml-property-lists
+  [XML Property List]: ../conventions/#xml-property-lists
   [data directory]: ../data
-  [reverse domain naming scheme]: ../conventions.html#reverse-domain-naming-schemes
+  [reverse domain naming scheme]: ../conventions/#reverse-domain-naming-schemes
