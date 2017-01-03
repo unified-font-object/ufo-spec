@@ -87,5 +87,5 @@ Two kerning values are found: -50 and -100. There is no way to determine which o
 ```
 
   [XML Property List]: ../conventions.html#xml-property-lists
-  [kerning.plist]: ../kerning
+  [kerning.plist]: ../kerning.plist
   [features.fea]: ../features.fea
