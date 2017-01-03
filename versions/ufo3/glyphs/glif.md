@@ -365,7 +365,7 @@ This key is used for representing the "vertical origin" 'y' coordinate used for 
   [outline]: #outline
   [lib]: #lib
   [color definition]: ../../conventions/#colors
-  [layerinfo.plist]: layerinfo.plist
+  [layerinfo.plist]: ../layerinfo.plist
   [conventions]: ../../conventions/#identifiers
   [component]: #component
   [contour]: #contour
