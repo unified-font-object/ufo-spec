@@ -118,7 +118,7 @@ The following bit numbers correspond to the matching bits in the OpenType gasp s
 5.  `created` can be calculated by subtracting the *12:00 midnight, January 1, 1904* (as specified in the head table documentation) from the date stored at `openTypeHeadCreated`.
 6.  `modified` should be set by the authoring tool.
 7.  `xMin, yMin, xMax` and `yMax` should be calculated by the authoring tool.
-8.  `macStyle` can be derived from the generic `styleMapStyle` attribute.
+8.  `macStyle` can be derived from the generic `styleMapStyleName` attribute.
 9.  `indexToLocFormat` should be set by the authoring tool.
 10. `glyphDataFormat` should be set by the authoring tool.
 
@@ -184,9 +184,9 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 [The OpenType name table specification.]
 
 1.  *Name ID 0 (copyright)* is found at the generic `copyright` attribute.
-2.  *Name ID 1 (font family name)* is found at the generic `styleMapFamily` attribute.
-3.  *Name ID 2 (font subfamily name)* can be interpreted from the generic `styleMapStyle` attribute.
-4.  *Name ID 4 (full font name)* can be created from the generic `styleMapFamily` and `styleMapStyle` attributes following the rules defined in the specification.
+2.  *Name ID 1 (font family name)* is found at the generic `styleMapFamilyName` attribute.
+3.  *Name ID 2 (font subfamily name)* can be interpreted from the generic `styleMapStyleName` attribute.
+4.  *Name ID 4 (full font name)* can be created from the generic `styleMapFamilyName` and `styleMapStyleName` attributes following the rules defined in the specification.
 5.  *Name ID 6 (Postscript name)* can be found at `postscriptFontName`. This should follow the rules defined in the specification.
 6.  *Name ID 7 (trademark)* is found at the generic `trademark` attribute.
 7.  Authoring tools should not make any assumptions about the validity (as defined by the OpenType specification) of the naming data contained in these fields.
@@ -198,7 +198,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 |-------------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | openTypeOS2WidthClass         | integer              | Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table `usWidthClass` field.                                                                                                                                                                                                                                              |
 | openTypeOS2WeightClass        | integer              | Weight class value. Must be a non-negative integer. Corresponds to the OpenType OS/2 table `usWeightClass` field.                                                                                                                                                                                                                                      |
-| openTypeOS2Selection          | list                 | A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table `selection` field. **Note:** Bits 0 (italic), 5 (bold) and 6 (regular) must not be set here. These bits should be taken from the generic *styleMapStyle* attribute. |
+| openTypeOS2Selection          | list                 | A list of bit numbers indicating the bits that should be set in fsSelection. The bit numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table `selection` field. **Note:** Bits 0 (italic), 5 (bold) and 6 (regular) must not be set here. These bits should be taken from the generic *styleMapStyleName* attribute. |
 | openTypeOS2VendorID           | string               | Four character identifier for the creator of the font. Corresponds to the OpenType OS/2 table `achVendID` field.                                                                                                                                                                                                                                       |
 | openTypeOS2Panose             | list                 | The list must contain 10 non-negative integers that represent the setting for each category in the Panose specification. The integers correspond with the option numbers in each of the Panose categories. This corresponds to the OpenType OS/2 table `Panose` field.                                                                                 |
 | openTypeOS2FamilyClass        | list                 | Two integers representing the IBM font class and font subclass of the font. The first number, representing the class ID, must be in the range 0-14. The second number, representing the subclass, must be in the range 0-15. The numbers are listed in the OpenType OS/2 specification. Corresponds to the OpenType OS/2 table `sFamilyClass` field.   |
@@ -228,7 +228,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 
 1.  `xAvgCharWidth` should be calculated by the authoring tool.
 2.  `sFamilyClass` is not supported.
-3.  `fsSelection` can be derived from the generic *styleMapStyle* attribute. (See question below.)
+3.  `fsSelection` can be derived from the generic *styleMapStyleName* attribute. (See question below.)
 4.  `usFirstCharIndex` should be calculated by the authoring tool.
 5.  `usLastCharIndex` should be calculated by the authoring tool.
 6.  `sxHeight` is found at the generic *xHeight* attribute.
