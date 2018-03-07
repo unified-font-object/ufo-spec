@@ -27,6 +27,6 @@ feature liga {
 
   [Adobe Font Development Kit for OpenType]: http://www.adobe.com/devnet/opentype/afdko/
   [AFDKO syntax]: http://www.adobe.com/devnet/opentype/afdko/topic_feature_file_syntax.html
-  [kerning.plist]: ../kerning.html
-  [groups.plist]: ../groups.html
-  [fontinfo.plist]: ../fontinfo.html
+  [kerning.plist]: ../kerning.plist
+  [groups.plist]: ../groups.plist
+  [fontinfo.plist]: ../fontinfo.plist
