@@ -6,7 +6,7 @@ title: fontinfo.plist
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
-
+p
 #### Bit Numbers
 
 Throughout this specification are references to "bit numbers." These are lists of integers that correspond to the bits that should be set for particular fields in the referenced font specifications. Consider this example from a fictional font specification:
@@ -224,6 +224,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 ##### Notes
 
 [The OpenType OS/2 table specification.]
+
 [The Panose specification.]
 
 1.  `xAvgCharWidth` should be calculated by the authoring tool.
@@ -554,7 +555,7 @@ The guideline extends along `angle` to infinity in both directions out of the po
   [The OpenType hhea table specification]: http://www.microsoft.com/typography/otspec/hhea.htm
   [The OpenType name table specification.]: http://www.microsoft.com/typography/otspec/name.htm
   [The OpenType OS/2 table specification.]: http://www.microsoft.com/typography/otspec/os2.htm
-  [The Panose specification.]: http://www.panose.com/ProductsServices/pan1.aspx
+  [The Panose specification.]: https://monotype.github.io/panose/pan1.htm
   [The OpenType vhea table specification]: http://www.microsoft.com/typography/otspec/vhea.htm
   [The OpenType post table specification.]: http://www.microsoft.com/typography/otspec/post.htm
   [The Postscript Type 1 specification.]: http://partners.adobe.com/public/developer/en/font/T1_SPEC.PDF
