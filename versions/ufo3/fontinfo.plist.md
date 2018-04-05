@@ -6,7 +6,7 @@ title: fontinfo.plist
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
-p
+
 #### Bit Numbers
 
 Throughout this specification are references to "bit numbers." These are lists of integers that correspond to the bits that should be set for particular fields in the referenced font specifications. Consider this example from a fictional font specification:
