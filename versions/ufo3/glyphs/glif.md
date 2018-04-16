@@ -336,23 +336,32 @@ This key provides a dict defining a set of PostScript hints for a glyph. The key
 
 | key      | value type      | description                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |----------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pointTag | string          | unique point name. Must match a point name attribute.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| pointTag | string          | unique point name. Must match a point 'name' attribute.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | stems    | list of strings | list of stem strings. Each stem string starts with either 'hstem" or "vstem" and is a followed by a series of white-space delimited stem coordinate values. A stem coordinate value is an absolute coordinate. There must be an even number of stem coordinates: each pair of values defines a lower and upper edge of a stem hint. The stems must be sorted in ascending order of lower edge values. 'hstem' strings must be sorted before 'vstem' strings. |
 
-*Hint ID computation.* The glyph is flattened to a single set of contours, with
-all transformations. The contours are converted to a string by iterating through
-all the points. For each point in each contour, the GLIF point type is appended,
-then the x and y value are converted to decimal strings and appended; white
-space is omitted. Any contour with a length of less than 2 is skipped.
+*Hint ID computation.* The hash string is initialized with the width value as a
+decimal string, with the prefix w'. The glyph outline element is converted to a
+string by iterating through all the child elements.
 
-For each component, the hash function is applied to the component glyph, and the
-hash string for the component glyph is then appended to the hash string for the
-parent glyph.
+If the child is a contour element, it is converted to a string and added to the
+hash string by iterating through all the point elements. Any contour with a
+length of less than 2 is skipped. For each point, the point 'type' attribute, if
+present, is written; else a space is written. The x and y values are then
+written as decimal strings separated by a comma. The x and y values are rounded
+to a precision of no more than 3 decimal places.
+
+If the child is a component element, first the transform values are written, if
+any. These are written by writing 't' followed by the comma-separated decimal
+values of the transform attributes in the following order: ["xScale", "xyScale",
+"yxScale","yScale", "xOffset", "yOffset"]. The letter 'h' is then written,
+followed by the hash ID for the component glyph. The four scale values will be
+rounded to a precision of 8 decimal places, and the offset values will be
+rounded to a precision of at most 3 decimal places.
 
 Once the hash string is built, it is used as is for the Hint ID if it is less
 than 128 characters. Otherwise, a SHA 512 hash is computed, and this is used as
-the Hint ID for the hint dict.
-
+the Hint ID for the hint dict. The SHA 512 hash is written with lowercase
+hexidecimal digits.
 
 ### Example
 
@@ -387,49 +396,31 @@ the Hint ID for the hint dict.
       <key>public.markColor</key>
       <string>1,0,0,0.5</string>
       <key>public.postscript.hints</key>
-    <dict>
-        <key>formatVersion<key><string>1</string>
-        <key>id</key><string>64bf4987f05ced2a50195f971cd924984047eb1d79c8c43e6a0054f59cc85dea23a49deb20946a4ea84840534363f7a13cca31a81b1e7e33c832185173369086</string>
-      <key>hintSetList</key>
-      <array>
-        <dict>
-          <key>pointTag</key>
-          <string>hintSet0000</string>
-          <key>stems</key>
-          <array>
-            <string>hstem 338 28</string>
-            <string>hstem 632 28</string>
-            <string>hstem 100 32</string>
-            <string>hstem 496 32</string>
-          </array>
-        </dict>
-        <dict>
-          <key>pointTag</key>
-          <string>hintSet0005</string>
-          <key>stems</key>
-          <array>
-            <string>hstem 0 28</string>
-            <string>hstem 338 28</string>
-            <string>hstem 632 28</string>
-            <string>hstem 100 32</string>
-            <string>hstem 454 32</string>
-            <string>hstem 496 32</string>
-          </array>
-        </dict>
-        <dict>
-          <key>pointTag</key>
-          <string>hintSet0016</string>
-          <key>stems</key>
-          <array>
-            <string>hstem 0 28</string>
-            <string>hstem 338 28</string>
-            <string>hstem 632 28</string>
-            <string>hstem 100 32</string>
-            <string>hstem 496 32</string>
-          </array>
-        </dict>
-      </array>
-    </dict>
+      <dict>
+        <key>formatVersion</key><string>1</string>
+        <key>id</key><string>w268c237,88 237,152 193,187c134,187 74,187 30,150c30,88 30,23 74,-10c134,-10 193,-10 237,25</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>pointTag</key>
+            <string>hintSet0000</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -10 197</string>
+              <string>vstem 30 207</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hintSet0004</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 11 -21</string>
+              <string>vstem 30 207</string>
+            </array>
+          </dict>
+        </array>
+      </dict>
     </dict>
   </lib>
 </glyph>
