@@ -319,6 +319,50 @@ This key is used for representing the "mark" color seen in various font editors.
 
 This key is used for representing the "vertical origin" 'y' coordinate used for vertical layout. The value for the key must be an integer or float. This data is optional. Authoring tools can use this data and the advance element's `height` attribute to create the VORG and vmtx tables.
 
+#### public.postscript.hints
+
+This key provides a dict defining a set of PostScript hints for a glyph. The key is optional. Note that the set of hints become invalid whenever the outline is edited so as to change point types or coordinates. Rather than requiring all editing apps to remove hints whenever the outline is changed, the hint dict "id" is provided so that a third party can see if the current outline differs from what was present when the hints were last derived. If the hash for the current outline differs from the hint dict "id" value, then the hints are invalid for the current outline, and should be discarded.
+
+#### Hint Dict
+
+| key         | value type | description                                                                                                                                                                                                                                                  |
+|-------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| formatVersion    | string     | format version. Currently "1", the first public version.                                                                                                                                                               |
+| id          | string     | Hash of glyph outlines. This is computed when the glyph is hinted. It is used to determine if the glyph outline has been changed since the glyph was hinted: if it has, then the hint dict for the glyph should be deleted. See "Hint ID Computation" below. |
+| hintSetList | list       | List of hint sets. A hint set is a dict containing a list of hints, and a unique point name which identifies the point after which the hint set is applied.                                                                                                  |
+| flexList    | string     | List of unique point names. Each point name identifies the point at which a flex hint starts.                                                                                                                                                                |
+
+#### Hint Set
+
+| key      | value type      | description                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|----------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| pointTag | string          | unique point name. Must match a point 'name' attribute.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| stems    | list of strings | list of stem strings. Each stem string starts with either 'hstem" or "vstem" and is a followed by a series of white-space delimited stem coordinate values. A stem coordinate value is an absolute coordinate. There must be an even number of stem coordinates: each pair of values defines a lower and upper edge of a stem hint. The stems must be sorted in ascending order of lower edge values. 'hstem' strings must be sorted before 'vstem' strings. |
+
+*Hint ID computation.* The hash string is initialized with the width value as a
+decimal string, with the prefix w'. The glyph outline element is converted to a
+string by iterating through all the child elements.
+
+If the child is a contour element, it is converted to a string and added to the
+hash string by iterating through all the point elements. Any contour with a
+length of less than 2 is skipped. For each point, the point 'type' attribute, if
+present, is written; else a space is written. The x and y values are then
+written as decimal strings separated by a comma. The x and y values are rounded
+to a precision of no more than 3 decimal places.
+
+If the child is a component element, first the transform values are written, if
+any. These are written by writing 't' followed by the comma-separated decimal
+values of the transform attributes in the following order: ["xScale", "xyScale",
+"yxScale","yScale", "xOffset", "yOffset"]. The letter 'h' is then written,
+followed by the hash ID for the component glyph. The four scale values will be
+rounded to a precision of 8 decimal places, and the offset values will be
+rounded to a precision of at most 3 decimal places.
+
+Once the hash string is built, it is used as is for the Hint ID if it is less
+than 128 characters. Otherwise, a SHA 512 hash is computed, and this is used as
+the Hint ID for the hint dict. The SHA 512 hash is written with lowercase
+hexidecimal digits.
+
 ### Example
 
 ```xml
@@ -351,6 +395,32 @@ This key is used for representing the "vertical origin" 'y' coordinate used for 
       <string>arbitrary custom data!</string>
       <key>public.markColor</key>
       <string>1,0,0,0.5</string>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key><string>1</string>
+        <key>id</key><string>w268c237,88 237,152 193,187c134,187 74,187 30,150c30,88 30,23 74,-10c134,-10 193,-10 237,25</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>pointTag</key>
+            <string>hintSet0000</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -10 197</string>
+              <string>vstem 30 207</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hintSet0004</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 11 -21</string>
+              <string>vstem 30 207</string>
+            </array>
+          </dict>
+        </array>
+      </dict>
     </dict>
   </lib>
 </glyph>
