@@ -23,6 +23,18 @@ This key is used for representing the user's preferred glyph order in the font. 
 
 The glyph order is stored as a list of glyphs names. Glyph names must not occur more than once. Glyph names in the font may not appear in the order. The order may contain glyphs that are not in the font.
 
+#### public.openTypeMeta
+
+This key is used for representing the `meta` table in OpenType, stored as a dictionary keyed by tag.
+If present, the registered tags `appl` and `bild` have their values stored as data and the registered tags `dlng` and `slng` have their values each stored as an array of ScriptLangTag strings.
+Authoring tools should translate each value of `dlng` and `slng` to a comma-separated ScriptLangTags string.
+Any private tag must have its value stored as data or string.
+This data is optional.
+
+##### Notes
+
+[The OpenType meta table specification.]
+
 #### public.postscriptNames
 
 This defines a preferred glyph name to Postscript glyph name mapping for glyphs in the font. Authoring tools should use the values defined in this mapping when outputting font data formats such as the `post` and `CFF ` tables in OpenType. This data is optional.
@@ -52,3 +64,4 @@ The mapping is stored as a dictionary with glyphs names as keys and Postscript g
   [XML Property List]: ../conventions/#xml-property-lists
   [data directory]: ../data
   [reverse domain naming scheme]: ../conventions/#reverse-domain-naming-schemes
+  [The OpenType meta table specification.]: http://www.microsoft.com/typography/otspec/meta.htm
