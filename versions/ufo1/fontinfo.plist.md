@@ -37,7 +37,7 @@ The property list data consists of a dictionary at the top level. The keys and v
 | otFamilyName | string | OpenType specific family name. |
 | otStyleName | string | OpenType specific style name. |
 | otMacName | string | Macintosh and OpenType specific name. |
-| slantAngle | string | Slant angle. |
+| slantAngle | float | Slant angle. |
 | styleName | string | Style name. |
 | trademark | string | Trademark statement. |
 | ttUniqueID | string | Unique ID for TrueType fonts. |
