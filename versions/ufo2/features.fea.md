@@ -13,6 +13,8 @@ It is important to note that the features file may contain data that is a duplic
 
 The file should be a plain text file and it should be in [AFDKO syntax]. No assumption should be made about the validity of the syntax.
 
+Any `include()` statements must be relative to the UFO path, _not_ to the `features.fea` file itself.
+
 ### Example
 
 ```fea
