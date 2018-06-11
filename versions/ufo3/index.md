@@ -197,6 +197,12 @@ The images directory was added.
 
 The data directory was added.
 
+# Important corrections
+
+#### Guideline
+
+The guideline’s angle attribute was changed from being measured in the clockwise direction to the counter-clockwise direction.
+
   [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
   [metainfo.plist]: metainfo.plist
   [fontinfo.plist]: fontinfo.plist
