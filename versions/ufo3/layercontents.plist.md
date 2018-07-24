@@ -5,7 +5,7 @@ title: layercontents.plist
 
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
-This file maps the layer names to the glyph directory names.
+This file maps the layer names to the glyph directory names. This file is required.
 
 ## Specification
 
