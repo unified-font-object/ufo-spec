@@ -186,7 +186,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 1.  *Name ID 0 (copyright)* is found at the generic `copyright` attribute.
 2.  *Name ID 1 (font family name)* is found at the generic `styleMapFamilyName` attribute.
 3.  *Name ID 2 (font subfamily name)* can be interpreted from the generic `styleMapStyleName` attribute.
-4.  *Name ID 4 (full font name)* can be created from the generic `styleMapFamilyName` and `styleMapStyleName` attributes following the rules defined in the specification.
+4.  *Name ID 4 (full font name)* can be created from the generic `styleMapFamilyName` and `styleMapStyleName` or `openTypePreferredFamilyName` and `openTypePreferredSubfamilyName` attributes following the rules defined in the specification.
 5.  *Name ID 6 (Postscript name)* can be found at `postscriptFontName`. This should follow the rules defined in the specification.
 6.  *Name ID 7 (trademark)* is found at the generic `trademark` attribute.
 7.  Authoring tools should not make any assumptions about the validity (as defined by the OpenType specification) of the naming data contained in these fields.
