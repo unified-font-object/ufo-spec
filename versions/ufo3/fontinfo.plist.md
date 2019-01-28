@@ -414,7 +414,7 @@ The record is stored as dictionary of the following format.
 |------|------------|------------------------------------------------------------------------------------------------------------|
 | url  | string     | A URL for the license. Corresponds to the WOFF `license` element `url` attribute. This is optional.        |
 | id   | string     | Ad ID for the license. Corresponds to the WOFF `license` element `id` attribute. This is optional.         |
-| text | list       | A list of WOFF Metadata Text Records for the description. This list must contain at least one text record. |
+| text | list       | A list of WOFF Metadata Text Records for the description. The list is permitted to be empty.               |
 
 ##### WOFF Metadata Copyright Record
 
