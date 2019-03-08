@@ -52,7 +52,7 @@ This key is a list of glyph names used for representing glyphs that the user doe
 
 The handling of the feature file is undefined.
 
-This data is optional. A glyph name must only appear once and only glyph names that are in the font must be listed. An empty list or the absence of this key means that all glyphs are to be exported as-is with groups and kerning untouched.
+This data is optional. Glyph names must not occur more than once. The list may contain glyphs that are not in the font. An empty list or the absence of this key means that all glyphs are to be exported as-is with groups and kerning untouched.
 
 ### Example
 
