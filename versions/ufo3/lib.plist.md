@@ -41,6 +41,20 @@ This defines a preferred glyph name to Postscript glyph name mapping for glyphs 
 
 The mapping is stored as a dictionary with glyphs names as keys and Postscript glyph names as values. Both keys and values must be strings. The values must conform to the Postscript glyph naming specification. The dictionary may contain glyph names that are not in the font. The dictionary may not contain a key, value pair for all glyphs in the font. If a glyph's name is not defined in this mapping, the glyph's name should be used as the Postscript name.
 
+#### public.skipExportGlyphs
+
+This key is a list of glyph names used for representing glyphs that the user does not want exported to the final font file. The UFO compiler is expected to:
+
+1. Decompose the listed glyphs everywhere they are used as components.
+2. Remove these glyphs before the compilation run.
+3. Prune all groups of the listed glyphs. Subsequently empty groups must be removed.
+4. Prune all kerning pairs that contain any of the listed glyphs or now empty groups.
+5. Not modify the source UFO on disk. This is a compiler-internal process.
+
+The handling of the feature file is undefined.
+
+This data is optional. Glyph names must not occur more than once. The list may contain glyphs that are not in the font. An empty list or the absence of this key means that all glyphs are to be exported as-is with groups and kerning untouched.
+
 ### Example
 
 ```xml
