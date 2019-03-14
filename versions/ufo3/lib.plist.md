@@ -45,8 +45,8 @@ The mapping is stored as a dictionary with glyphs names as keys and Postscript g
 
 This key is a list of glyph names used for representing glyphs that the user does not want exported to the final font file. The UFO compiler is expected to:
 
-1. Remove these glyphs before the compilation run.
-2. Decompose the listed glyphs everywhere they are used as components.
+1. Decompose the listed glyphs everywhere they are used as components.
+2. Remove these glyphs before the compilation run.
 3. Prune all groups of the listed glyphs. Subsequently empty groups must be removed.
 4. Prune all kerning pairs that contain any of the listed glyphs or now empty groups.
 5. Not modify the source UFO on disk. This is a compiler-internal process.
