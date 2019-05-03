@@ -169,7 +169,7 @@ This element may occur any number of times.
 
 #### Anchor naming conventions
 
-The following are agreed upon standard naming conventions for special uses of the anchor `name`.
+The following are agreed upon standard naming conventions for special uses of the `name` attribute.
 
 ##### Ligature Carets
 
