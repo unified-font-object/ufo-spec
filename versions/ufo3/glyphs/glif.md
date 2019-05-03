@@ -175,7 +175,7 @@ The following are agreed upon standard naming conventions for the `name` of anch
 
 Anchors with a `name` starting with `caret_` or `vcaret_` indicate horizontal or vertical caret positions for ligature glyphs. Example usage would be to compile the [OpenType GDEF Ligature Caret List table]. 
 
-Anchor names starting with `caret_` provide the `x` value for a ligature caret position, and the `y` value is ignored. Likewise, anchors names starting with `vcaret_` provide the `y` value for a ligature caret position, and the `x` value is ignored.
+Anchor names starting with `caret_` provide the `x` value for a ligature caret position, and the `y` value is ignored. Likewise, anchor names starting with `vcaret_` provide the `y` value for a ligature caret position, and the `x` value is ignored.
 
 Both names may be followed arbitrary text (`caret_1`, `caret_blah`, etc) for designers or applications to have unique caret position names.
 
