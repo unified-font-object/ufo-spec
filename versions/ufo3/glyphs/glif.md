@@ -173,11 +173,11 @@ The following are agreed upon standard naming conventions for the `name` of anch
 
 ##### Ligature Carets
 
-Anchors with a `name` starting with `caret` or `vcaret` indicate horizontal or vertical position for ligature glyphs, for example to compile the [OpenType GDEF Ligature Caret List table]. Anchors with the name `caret` provide the `x` value for a ligature caret, and the `y` value is ignored. Likewise, anchors with the name `vcaret` provide the `y` values for a ligature caret, and the `x` value is ignored.
+Anchors with a `name` starting with `caret_` or `vcaret_` indicate horizontal or vertical position for ligature glyphs, for example to compile the [OpenType GDEF Ligature Caret List table]. Anchors with the name `caret_` provide the `x` value for a ligature caret, and the `y` value is ignored. Likewise, anchors with the name `vcaret_` provide the `y` values for a ligature caret, and the `x` value is ignored.
 
-Both names may be followed by an underscore and arbitrary text (`_N`) for designers or applications to have unique caret position names.
+Both names may be followed arbitrary text (`caret_1`, `caret_blah`, etc) for designers or applications to have unique caret position names.
 
-There must be at least `n`-1 caret postions for `n` ligature components.
+There must be no more than N-1 caret postions for N ligature components.
 
 #### Converting implied anchors in GLIF 1 to GLIF 2 anchor elements
 
