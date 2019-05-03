@@ -47,8 +47,8 @@ This key is a list of glyph names used for representing glyphs that the user doe
 
 1. Decompose the listed glyphs everywhere they are used as components.
 2. Remove these glyphs before the compilation run.
-3. Prune all groups of the listed glyphs. Subsequently empty groups must be removed.
-4. Prune all kerning pairs that contain any of the listed glyphs or now empty groups.
+3. Prune all groups of the listed glyphs.
+4. Prune all kerning pairs that contain any of the listed glyphs.
 5. Not modify the source UFO on disk. This is a compiler-internal process.
 
 The handling of the feature file is undefined.

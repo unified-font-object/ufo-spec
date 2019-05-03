@@ -12,7 +12,7 @@ This file contains horizontal kerning pairs for the font. This file is optional.
 
 The property list data consists of a dictionary at the top level. Keys are *first* member names and values are dictionaries. These dictionaries contain *second* member names as keys and kerning values, either integer or float, as the values.
 
-The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the kerning group prefix defined in the [groups.plist specification]. Group names used as the second member of a kerning pair must begin with the kerning group prefix defined in the [groups.plist specification]. Glyphs or groups in the pairs are not required to be in the font.
+The kerning pair members are glyph names or group names. Group names used as the first member of a kerning pair must begin with the kerning group prefix defined in the [groups.plist specification]. Group names used as the second member of a kerning pair must begin with the kerning group prefix defined in the [groups.plist specification]. Glyphs or groups in the pairs are not required to be in the font. Groups may also be empty. It is the responsibility of the authoring tool to remove these from compiled fonts when needed.
 
 Kerning pairs that are not defined in kerning.plist implicitly have a value of "no kerning" or zero. Therefore any kerning pair that has a value of zero, unless it is a necessary value of an [exception], should not be stored in kerning.plist.
 
