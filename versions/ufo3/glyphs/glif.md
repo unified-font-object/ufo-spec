@@ -167,6 +167,20 @@ This element may occur any number of times.
 
 #### This element has no child elements.
 
+#### Anchor naming conventions
+
+The following are agreed upon standard naming conventions for special uses of the `name` attribute.
+
+##### Ligature Carets
+
+Anchors with a `name` starting with `caret_` or `vcaret_` indicate horizontal or vertical caret positions for ligature glyphs. Example usage would be to compile the [OpenType GDEF Ligature Caret List table]. 
+
+Anchor names starting with `caret_` provide the `x` value for a ligature caret position, and the `y` value is ignored. Likewise, anchor names starting with `vcaret_` provide the `y` value for a ligature caret position, and the `x` value is ignored.
+
+Both names may be followed arbitrary text (`caret_1`, `caret_blah`, etc) for designers or applications to have unique caret position names.
+
+There must be exactly N-1 caret positions for N ligature components.
+
 #### Converting implied anchors in GLIF 1 to GLIF 2 anchor elements
 
 In GLIF 1 there was no official anchor element. Anchors were unofficially but widely supported through the use of a contour containing only one "move" point. For example:
@@ -443,3 +457,4 @@ hexidecimal digits.
   [XML Property List]: ../../conventions/#xml-property-lists
   [reverse domain naming scheme]: ../../conventions/#reverse-domain-naming-schemes
   [data directory]: ../../data
+  [OpenType GDEF Ligature Caret List table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#ligature-caret-list-table-overview
