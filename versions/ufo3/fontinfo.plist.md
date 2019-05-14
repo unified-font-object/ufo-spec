@@ -37,8 +37,8 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 
 | key                | value type           | description                                                                                                                                                                                                                       |
 |--------------------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| familyName         | string               | Family name.                                                                                                                                                                                                                      |
-| styleName          | string               | Style name.                                                                                                                                                                                                                       |
+| familyName         | string               | Family name. *Note: The specification is agnostic about how this value relates to `openTypeNamePreferredFamilyName`.*                                                                                                             |
+| styleName          | string               | Style name. *Note: The specification is agnostic about how this value relates to `openTypeNamePreferredSubfamilyName`.*                                                                                                           |
 | styleMapFamilyName | string               | Family name used for bold, italic and bold italic style mapping.                                                                                                                                                                  |
 | styleMapStyleName  | string               | Style map style. The possible values are *regular*, *italic*, *bold* and *bold italic*. These are case sensitive.                                                                                                                 |
 | versionMajor       | integer              | Major version.                                                                                                                                                                                                                    |
@@ -54,14 +54,14 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 
 #### Generic Dimension Information
 
-| key         | value type                    | description                                                                         |
-|-------------|-------------------------------|-------------------------------------------------------------------------------------|
-| unitsPerEm  | non-negative integer or float | Units per em.                                                                       |
-| descender   | integer or float              | Descender value.                                                                    |
-| xHeight     | integer or float              | x-height value.                                                                     |
-| capHeight   | integer or float              | Cap height value.                                                                   |
-| ascender    | integer or float              | Ascender value.                                                                     |
-| italicAngle | integer or float              | Italic angle. This must be an angle in counter-clockwise degrees from the vertical. |
+| key         | value type                    | description                                                                                                                |
+|-------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| unitsPerEm  | non-negative integer or float | Units per em.                                                                                                              |
+| descender   | integer or float              | Descender value. *Note: The specification is agnostic about the relationship to the more specific vertical metric values.* |
+| xHeight     | integer or float              | x-height value.                                                                                                            |
+| capHeight   | integer or float              | Cap height value.                                                                                                          |
+| ascender    | integer or float              | Ascender value. *Note: The specification is agnostic about the relationship to the more specific vertical metric values.*  |
+| italicAngle | integer or float              | Italic angle. This must be an angle in counter-clockwise degrees from the vertical.                                        |
 
 #### Generic Miscellaneous Information
 
