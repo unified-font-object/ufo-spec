@@ -343,6 +343,18 @@ The following is a registry of public lib keys that map to functionality that is
 
 This key is used for representing the "mark" color seen in various font editors. The value for the key must be a string following the [color definition] standard. This data is optional.
 
+#### public.truetype.instructions
+
+This key provides a dict defining a set of TrueType instructions assembly code for a glyph. This data is optional.
+
+#### TrueType Instructions Dict
+| key           | value type | description                                                                                                                                                                                                                                                                                                                                                |
+|---------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| formatVersion | string     | Format version. Set to "1".                                                                                                                                                                                                                                                                                                                                |
+| id            | string     | Hash of glyph outlines which may have been processed by authoring tools. This is computed when the instructions dict is created or modified. It is used to determine if the glyph outlines have changed since the glyph was hinted: if it has, then the instructions for the glyph should not be used by authoring tools. See "Hint ID Computation" below. |
+| assembly      | string     | TrueType instructions assembly. The assembly is as represented with fontTools.                                                                                                                                                                                                                                                                             |
+
+
 ##### public.verticalOrigin
 
 This key is used for representing the "vertical origin" 'y' coordinate used for vertical layout. The value for the key must be an integer or float. This data is optional. Authoring tools can use this data and the advance element's `height` attribute to create the VORG and vmtx tables.

@@ -42,6 +42,24 @@ This defines a preferred glyph name to Postscript glyph name mapping for glyphs 
 
 The mapping is stored as a dictionary with glyphs names as keys and Postscript glyph names as values. Both keys and values must be strings. The values must conform to the Postscript glyph naming specification. The dictionary may contain glyph names that are not in the font. The dictionary may not contain a key, value pair for all glyphs in the font. If a glyph's name is not defined in this mapping, the glyph's name should be used as the Postscript name.
 
+#### public.truetype.instructions
+This key provides a dict defining TrueType instructions data.
+This data is optional.
+
+| key                   | value type | description                 |
+|-----------------------|------------|-----------------------------|
+| formatVersion         | string     | Format version. Set to "1". |
+| controlValue          | dict       | TrueType instructions control values as a dictionary of control values keyed by index. This is optional.                                          |
+| controlValueProgram   | string     | TrueType preprogram assembly as a string. The assembly is as represented by fontTools. This is optional.                                          |
+| fontProgram           | string     | TrueType font program assembly as a string. The assembly as represented by fontTools. This is optional.                                           |
+| maxFunctionDefs       | integer    | Number of function definitions, used by TrueType instructions, stored in the `maxp` in OpenType table as an integer. This is optional.            |
+| maxInstructionDefs    | integer    | Number of instruction definitions, used by TrueType instructions, stored in the `maxp` in OpenType table as an integer. This is optional.         |
+| maxStackElements      | integer    | Maximum stack depth, used by TrueType instructions, stored in the `maxp` in OpenType table as an integer. This is optional.                       |
+| maxStorage            | integer    | Maximum number of storage area locations, used by TrueType instructions, stored in the `maxp` in OpenType table. This is optional.                |
+| maxSizeOfInstructions | integer    | Maximum byte count for glyph instructions, used by TrueType instructions, stored in the `maxp` in OpenType table as an integer. This is optional. |
+| maxTwilightPoints     | integer    | Maximum points used in zone 0, stored in the `maxp` in OpenType table as an integer. This is optional.                                            |
+| maxZones              | integer    | Number of zones used by TrueType instructions, stored in the `maxp` in OpenType table as an integer. This is optional.                            |
+
 #### public.skipExportGlyphs
 
 This key is a list of glyph names used for representing glyphs that the user does not want exported to the final font file. The UFO compiler is expected to:
