@@ -92,8 +92,8 @@ The following bit numbers correspond to the matching bits in the OpenType gasp s
 |-------|-------------------------------------|
 | 0     | GASP\_GRIDFIT (0x0001)              |
 | 1     | GASP\_DOGRAY (0x0002)               |
-| 2     | GASP\_SYMMETRIC\_SMOOTHING (0x0004) |
-| 3     | GASP\_SYMMETRIC\_GRIDFIT (0x0008)   |
+| 2     | GASP\_SYMMETRIC\_GRIDFIT (0x0004)   |
+| 3     | GASP\_SYMMETRIC\_SMOOTHING (0x0008) |
 
 ##### Notes
 
