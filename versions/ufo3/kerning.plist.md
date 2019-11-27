@@ -316,16 +316,16 @@ Note: this algorithm, and its sample implementation, does not check the complian
 ### Sample conversion implementation
 
 ```python
-def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups):
+def convertUFO1OrUFO2KerningToUFO3Kerning(kerning, groups, glyphSet=()):
     # Make lists of groups referenced in kerning pairs.
     firstReferencedGroups = set()
     secondReferencedGroups = set()
     for first, seconds in kerning.items():
-        if first in groups:
+        if first in groups and first not in glyphSet:
             if not first.startswith("public.kern1."):
                 firstReferencedGroups.add(first)
         for second in seconds.keys():
-            if second in groups:
+            if second in groups and second not in glyphSet:
                 if not second.startswith("public.kern2."):
                     secondReferencedGroups.add(second)
     # Create new names for these groups.
