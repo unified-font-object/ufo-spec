@@ -57,6 +57,9 @@ Now, an application wants to apply the kerning for the pair "AT". There are diff
 
 Two kerning values are found: -50 and -100. There is no way to determine which one is correct. This ambiguity is eliminated by requiring that glyphs occur in only one group per kerning side.
 
+#### 5. Glyphs must not appear more than once in a single kerning group.
+Having duplicates of a glyph in a single kerning group adds no extra information and is redundant.
+
 ### Example
 
 ```xml
