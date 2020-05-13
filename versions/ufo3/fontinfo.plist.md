@@ -283,7 +283,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 | postscriptForceBold           | boolean          | Indicates how the Type 1/CFF `ForceBold` field should be set.                                                                                                                                                                       |
 | postscriptDefaultWidthX       | integer or float | Default width for glyphs.                                                                                                                                                                                                           |
 | postscriptNominalWidthX       | integer or float | Nominal width for glyphs.                                                                                                                                                                                                           |
-| postscriptWeightName          | string           | A string indicating the overall weight of the font. This corresponds to the Type 1/CFF Weight field. It should have a reasonable value that reflects to the `openTypeOS2WeightClass` value, e.g. "Medium" for a `openTypeOS2WeightClass` value of 500, "Bold" for a value of 700, etc. There is no standard mapping, other than the examples given in the [The OpenType OS/2 table specification.]                                                                  |
+| postscriptWeightName          | string           | A string indicating the overall weight of the font. This corresponds to the Type 1/CFF Weight field. It should have a reasonable value that reflects to the `openTypeOS2WeightClass` value, e.g. "Medium" for a `openTypeOS2WeightClass` value of 500, "Bold" for a value of 700, etc.                                                                  |
 | postscriptDefaultCharacter    | string           | The name of the glyph that should be used as the default character in PFM files.                                                                                                                                                    |
 | postscriptWindowsCharacterSet | integer          | The Windows character set. The values are defined below.                                                                                                                                                                            |
 
@@ -326,6 +326,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 6.  The Type 1/CFF `FamilyName` field can be derived from the generic `familyName` attribute.
 7.  If `postscriptFullName` is not given, the Type 1/CFF `FullName` field can be created by combining the generic `familyName` and `styleName` attributes.
 8.  The Type 1/CFF/post table `italicAngle` field can be found at the generic `italicAngle` attribute.
+9.  The Type 1/CFF `postscriptWeightName` has no standard mapping to the `openTypeOS2WeightClass` value. The only official examples are given in [The OpenType OS/2 table specification.]
 
 #### Macintosh FOND Resource Data
 
