@@ -326,7 +326,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 6.  The Type 1/CFF `FamilyName` field can be derived from the generic `familyName` attribute.
 7.  If `postscriptFullName` is not given, the Type 1/CFF `FullName` field can be created by combining the generic `familyName` and `styleName` attributes.
 8.  The Type 1/CFF/post table `italicAngle` field can be found at the generic `italicAngle` attribute.
-9.  The Type 1/CFF `postscriptWeightName` has no standard mapping to the `openTypeOS2WeightClass` value. The only official examples are given in [The OpenType OS/2 table specification.]. This means that the value used is often up to the authoring tool or designer. It should be reasonable, e.g. "Medium" for a `openTypeOS2WeightClass` value of 500, "Bold" for a value of 700, etc.
+9.  The Type 1/CFF `postscriptWeightName` has no standard mapping to the `openTypeOS2WeightClass` value. The only official examples are given in [The OpenType OS/2 table specification.] This means that the value used is often up to the authoring tool or designer. It should be reasonable, e.g. "Medium" for a `openTypeOS2WeightClass` value of 500, "Bold" for a value of 700, etc.
 
 #### Macintosh FOND Resource Data
 
