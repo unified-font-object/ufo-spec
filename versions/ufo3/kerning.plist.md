@@ -39,8 +39,8 @@ This implies that the pair values for the specific glyphs combinations are as fo
 | Side 1 | Side 2 | Value |
 |--------|--------|-------|
 | O      | A      | -50   |
-| O      | A      | -50   |
 | D      | A      | -50   |
+| Q      | A      | -50   |
 
 The various combinations of glyphs and groups allow for three types of kerning pairs:
 
