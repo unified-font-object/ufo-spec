@@ -333,11 +333,11 @@ This key is used for representing the "mark" color seen in various font editors.
 
 This key is used for representing the "vertical origin" 'y' coordinate used for vertical layout. The value for the key must be an integer or float. This data is optional. Authoring tools can use this data and the advance element's `height` attribute to create the VORG and vmtx tables.
 
-#### public.postscript.hints
+##### public.postscript.hints
 
 This key provides a dict defining a set of PostScript hints for a glyph. The key is optional. Note that the set of hints become invalid whenever the outline is edited so as to change point types or coordinates. Rather than requiring all editing apps to remove hints whenever the outline is changed, the hint dict "id" is provided so that a third party can see if the current outline differs from what was present when the hints were last derived. If the hash for the current outline differs from the hint dict "id" value, then the hints are invalid for the current outline, and should be discarded.
 
-#### Hint Dict
+###### Hint Dict
 
 | key         | value type | description                                                                                                                                                                                                                                                  |
 |-------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -346,7 +346,7 @@ This key provides a dict defining a set of PostScript hints for a glyph. The key
 | hintSetList | list       | List of hint sets. A hint set is a dict containing a list of hints, and a unique point name which identifies the point after which the hint set is applied.                                                                                                  |
 | flexList    | string     | List of unique point names. Each point name identifies the point at which a flex hint starts.                                                                                                                                                                |
 
-#### Hint Set
+###### Hint Set
 
 | key      | value type      | description                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |----------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
