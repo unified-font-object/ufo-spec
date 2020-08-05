@@ -1,0 +1,29 @@
+<h2>Reference</h2>
+
+<!-- No sorting, it makes it easier to control the "story" of the page -->
+{% assign keys = page.lib_and_data_keys %}
+{% for key in keys %}
+<h3 id="{{ key.location | slugify }}_{{ key.name | slugify }}">
+    <code>{{ key.name }}</code>
+</h3>
+
+<table>
+    <tr>
+        <th>Location</th>
+        <td>{{ key.location }}</td>
+    </tr>
+    <tr>
+        <th>Type</th>
+        <td>{{ key.type }}</td>
+    </tr>
+    <tr>
+        <th>Example</th>
+        <td>{{ key.example_md | markdownify }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ key.description_md | markdownify }}</td>
+    </tr>
+</table>
+
+{% endfor %}
