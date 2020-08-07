@@ -3,6 +3,7 @@ layout: default
 title: metainfo.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains metadata about the UFO. This file is required.
@@ -11,6 +12,7 @@ This file contains metadata about the UFO. This file is required.
 
 The property list data consists of a dictionary at the top level. The keys and values are as follows.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | creator | string | The application or library that created the UFO. This should follow a reverse domain naming convention. For example, *org.robofab.ufoLib*. |

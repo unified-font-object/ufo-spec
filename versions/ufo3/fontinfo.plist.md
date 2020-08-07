@@ -3,6 +3,7 @@ layout: default
 title: fontinfo.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
@@ -11,12 +12,14 @@ This file contains information about the font itself, such as naming and dimensi
 
 Throughout this specification are references to "bit numbers." These are lists of integers that correspond to the bits that should be set for particular fields in the referenced font specifications. Consider this example from a fictional font specification:
 
+{: .name-type-description}
 | type | name | description |
 |--|--|--|
 | USHORT | foo | Bit 0: Left <br>Bit 1: Right <br>Bit 2: Up <br>Bit 3: Down |
 
 Translated to the structure used in this specification would be:
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | fictionalFontSpecFoo | list | A list of bit numbers indicating the bits that should be set in `foo`. The bit numbers are listed in the fictional font specification. Corresponds to the foo field. |
@@ -35,6 +38,7 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 
 #### Generic Identification Information
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | familyName | string | Family name. *Note: The specification is agnostic about how this value relates to `openTypeNamePreferredFamilyName`.* |
@@ -47,6 +51,7 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 
 #### Generic Legal Information
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | copyright | string | Copyright statement. |
@@ -54,6 +59,7 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 
 #### Generic Dimension Information
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | unitsPerEm | non-negative integer or float | Units per em. |
@@ -65,12 +71,14 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 
 #### Generic Miscellaneous Information
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | note | string | Arbitrary note about the font. |
 
 #### OpenType gasp Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeGaspRangeRecords | list | A list of gasp Range Records. These must be sorted in ascending order based on the `rangeMaxPPEM` value of the record. |
@@ -79,6 +87,7 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 
 The records are stored as dictionaries of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | rangeMaxPPEM | non-negative integer | The upper limit of the range, in PPEM. If any records are in the list, the final record should use 65535 (0xFFFF) as defined in the OpenType gasp specification. Corresponds to the rangeMaxPPEM field of the GASPRANGE record in the OpenType gasp table. |
@@ -88,6 +97,7 @@ The records are stored as dictionaries of the following format.
 
 The following bit numbers correspond to the matching bits in the OpenType gasp specification listed in the description column.
 
+{: .name-description}
 | value | description |
 |--|--|
 | 0 | GASP\_GRIDFIT (0x0001) |
@@ -101,6 +111,7 @@ The following bit numbers correspond to the matching bits in the OpenType gasp s
 
 #### OpenType head Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeHeadCreated | string | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month must be in the range 1-12 and the day must be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour must be in the range 0:23. The minute and second must each be in the range 0-59. The timezone is UTC. |
@@ -124,6 +135,7 @@ The following bit numbers correspond to the matching bits in the OpenType gasp s
 
 #### OpenType hhea Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeHheaAscender | integer | Ascender value. Corresponds to the OpenType hhea table `Ascender` field. |
@@ -146,6 +158,7 @@ The following bit numbers correspond to the matching bits in the OpenType gasp s
 
 #### OpenType Name Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeNameDesigner | string | Designer name. Corresponds to the OpenType name table name ID 9. |
@@ -169,6 +182,7 @@ The following bit numbers correspond to the matching bits in the OpenType gasp s
 
 The records are stored as dictionaries of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | nameID | non-negative integer | The name ID. |
@@ -194,6 +208,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 
 #### OpenType OS/2 Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeOS2WidthClass | non-negative integer | Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table `usWidthClass` field. |
@@ -240,6 +255,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 
 #### OpenType vhea Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeVheaVertTypoAscender | integer | Ascender value. Corresponds to the OpenType vhea table `vertTypoAscender` field. |
@@ -262,6 +278,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 
 #### PostScript Specific Data
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | postscriptFontName | string | Name to be used for the `FontName` field in Type 1/CFF table. |
@@ -289,8 +306,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 
 ##### postscriptWindowsCharacterSet Options
 
-| | |
-|--|--|
+{: .name-description}
 | 1 | ANSI |
 | 2 | Default |
 | 3 | Symbol |
@@ -330,6 +346,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 
 #### Macintosh FOND Resource Data
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | macintoshFONDFamilyID | integer | Family ID number. Corresponds to the ffFamID in the FOND resource. |
@@ -345,6 +362,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 
 Many of these fields *can* be populated from generic elements, but since WOFF is a wrapper format they *may not* always be duplicated. As such, all of the WOFF fields are unique key/value pairs. All of these fields, and the sub-fields that they contain, are optional.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | woffMajorVersion | non-negative integer | Major version of the font. |
@@ -363,6 +381,7 @@ Many of these fields *can* be populated from generic elements, but since WOFF is
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | id | string | The id. This is required. |
@@ -371,6 +390,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | name | string | Font vendor. Corresponds to the WOFF `vendor` element `name` attribute. This is required. |
@@ -382,6 +402,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | credits | list | Font credits. Corresponds to the WOFF `credits` element. The items in the list must follow the WOFF Credit Record format. The list must contain at least one credit record. |
@@ -390,6 +411,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | name | string | The name for the credit. Corresponds to the WOFF `credit` element `name` attribute. This is required. |
@@ -402,6 +424,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | url | string | A URL for the description. Corresponds to the WOFF `description` element `url` attribute. This is optional. |
@@ -411,6 +434,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | url | string | A URL for the license. Corresponds to the WOFF `license` element `url` attribute. This is optional. |
@@ -421,6 +445,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | text | list | A list of WOFF Metadata Text Records for the copyright. This list must contain at least one text record. |
@@ -429,6 +454,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | text | list | A list of WOFF Metadata Text Records for the trademark. This list must contain at least one text record. |
@@ -437,6 +463,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | name | string | The licensee. Corresponds to the WOFF `licensee` element `name` attribute. This is required. |
@@ -447,6 +474,7 @@ The record is stored as dictionary of the following format.
 
 The record is stored as dictionary of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | text | string | The text for the record. This is required. |
@@ -458,6 +486,7 @@ The record is stored as dictionary of the following format.
 
 The records are stored as dictionaries of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | id | string | The id for the extension. This is optional. |
@@ -468,6 +497,7 @@ The records are stored as dictionaries of the following format.
 
 The records are stored as dictionaries of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | id | string | The id of the item record. |
@@ -478,6 +508,7 @@ The records are stored as dictionaries of the following format.
 
 The records are stored as dictionaries of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | text | string | The name of the name record. This is required. |
@@ -489,6 +520,7 @@ The records are stored as dictionaries of the following format.
 
 The records are stored as dictionaries of the following format.
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | text | string | The value of the value record. This is required. |
@@ -532,6 +564,7 @@ Would be represented like this (string line broken only for formatting resons):
 
 #### Guidelines
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | guidelines | list | A list of guideline definitions that apply to all glyphs in all layers in the font. This attribute is optional. |
@@ -540,6 +573,7 @@ Would be represented like this (string line broken only for formatting resons):
 
 The guidelines are stored as dictionaries of the following format.
 
+{: .name-type-description-default}
 | key | type | description | default |
 |--|--|--|--|
 | x | integer or float | The 'x' coordinate. Optional if `y` is provided and `angle` is not provided. See below for details. | None |

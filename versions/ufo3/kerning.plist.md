@@ -3,6 +3,7 @@ layout: default
 title: kerning.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains horizontal kerning pairs for the font. This file is optional. If it is not defined in the UFO, there is no horizontal kerning data.
@@ -24,18 +25,21 @@ The kerning data is writing direction neutral. For text written left-to-right, t
 
 Kerning pairs may reference groups. This is done by using a [group's name] as a member of a kerning pair. These group members allow the kerning data to represent vast amounts of kerning with relatively few pairs. A pair member that contains a group implies that all members of the group are kerned with the other member of the pair with the same value (unless an exception is defined, see below). For example, a font has this group:
 
+{: .example-group}
 | name           | members |
 |----------------|---------|
 | public.kern1.O | O, D, Q |
 
 The font's kerning contains a pair referencing this group:
 
+{: .example-kerning}
 | Side 1         | Side 2 | Value |
 |----------------|--------|-------|
 | public.kern1.O | A      | -50   |
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+{: .example-kerning}
 | Side 1 | Side 2 | Value |
 |--------|--------|-------|
 | O      | A      | -50   |
@@ -60,6 +64,7 @@ Exception pairs may occur at the second and third levels. Second level pairs may
 
 For example, a font has these two groups:
 
+{: .example-group}
 | name           | members |
 |----------------|---------|
 | public.kern1.O | O, D, Q |
@@ -67,24 +72,28 @@ For example, a font has these two groups:
 
 The font's kerning contains a first level pair that references these two groups:
 
+{: .example-kerning}
 | Side 1         | Side 2         | Value |
 |----------------|----------------|-------|
 | public.kern1.O | public.kern2.E | -100  |
 
 The font's kerning contains a second level pair that forms an exception to the first level pair:
 
+{: .example-kerning}
 | Side 1         | Side 2 | Value |
 |----------------|--------|-------|
 | public.kern1.O | F      | -200  |
 
 The font's kerning contains a third level pair that is an exception to both the first and second level pairs:
 
+{: .example-kerning}
 | Side 1 | Side 2 | Value |
 |--------|--------|-------|
 | D      | F      | -300  |
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+{: .example-kerning}
 | Side 1 | Side 2 | Value |
 |--------|--------|-------|
 | O      | E      | -100  |
@@ -99,6 +108,7 @@ This implies that the pair values for the specific glyphs combinations are as fo
 
 It's possible to create kerning contradictions with exceptions. For example, given the same public.kern1.O and public.kern2.E group as above, a font contains the following kerning pairs:
 
+{: .example-kerning}
 | Side 1         | Side 2         | Value |
 |----------------|----------------|-------|
 | public.kern1.O | public.kern2.E | -100  |
@@ -108,6 +118,7 @@ It's possible to create kerning contradictions with exceptions. For example, giv
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+{: .example-kerning}
 | Side 1 | Side 2 | Value            |
 |--------|--------|------------------|
 | O      | E      | -100             |

@@ -3,6 +3,7 @@ layout: default
 title: Glyph Interchange Format
 ---
 
+{: .fileformat}
 | **File Format** | XML |
 
 The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a *.glif* extension.
@@ -13,6 +14,7 @@ The Glyph Interchange Format (GLIF) is a simple and clear XML representation of 
 
 #### Attributes
 
+{: .name-description}
 | name | description |
 |--|--|
 | name | The name of the glyph |
@@ -22,6 +24,7 @@ The *name* attribute has limited uses in this version. The *contents.plist* file
 
 #### Child Elements
 
+{: .name-description}
 | name | description |
 |--|--|
 | advance | May occur at most once. |
@@ -44,6 +47,7 @@ This element has no child elements.
 
 #### Attributes
 
+{: .name-description}
 | name | description |
 |--|--|
 | hex | A unicode code point as a hexadecimal number. |
@@ -54,6 +58,7 @@ This element has no child elements. The first occurrence of this element defines
 
 #### Child Elements
 
+{: .name-description}
 | name | description |
 |--|--|
 | component | May occur any number of times. |
@@ -65,6 +70,7 @@ This element has no attributes.
 
 #### Attributes
 
+{: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
 | base | string | Name of the base glyph | None |

@@ -3,6 +3,7 @@ layout: default
 title: fontinfo.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.

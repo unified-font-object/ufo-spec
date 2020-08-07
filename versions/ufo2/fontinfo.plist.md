@@ -3,6 +3,7 @@ layout: default
 title: fontinfo.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
@@ -20,6 +21,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Generic Identification Information
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | familyName | string | Family name. |
@@ -32,6 +34,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Generic Legal Information
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | copyright | string | Copyright statement. |
@@ -39,6 +42,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Generic Dimension Information
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | unitsPerEm | integer or float | Units per em. |
@@ -50,12 +54,14 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Generic Miscellaneous Information
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | note | string | Arbitrary note about the font. |
 
 #### OpenType head Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeHeadCreated | string | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month should be in the range 1-12 and the day should be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour should be in the range 0:23. The minute and second should each be in the range 0-59. |
@@ -79,6 +85,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### OpenType hhea Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeHheaAscender | integer or float | Ascender value. Corresponds to the OpenType hhea table Ascender field. |
@@ -101,6 +108,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### OpenType Name Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeNameDesigner | string | Designer name. Corresponds to the OpenType name table name ID 9. |
@@ -133,6 +141,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### OpenType OS/2 Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeOS2WidthClass | integer | Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table usWidthClass field. |
@@ -178,6 +187,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### OpenType vhea Table Fields
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | openTypeVheaVertTypoAscender | integer or float | Ascender value. Corresponds to the OpenType vhea table vertTypoAscender field. |
@@ -200,6 +210,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### PostScript Specific Data
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | postscriptFontName | string | Name to be used for the *FontName* field in Type 1/CFF table. |
@@ -265,6 +276,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Macintosh FOND Resource Data
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | macintoshFONDFamilyID | integer | Family ID number. Corresponds to the ffFamID in the FOND resource. |

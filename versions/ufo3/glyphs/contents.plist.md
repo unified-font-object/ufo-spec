@@ -3,6 +3,7 @@ layout: default
 title: contents.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 *contents.plist* contains a dictionary that maps glyph names to GLIF file names.

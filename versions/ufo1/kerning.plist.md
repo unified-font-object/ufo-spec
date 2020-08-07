@@ -3,6 +3,7 @@ layout: default
 title: kerning.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains kerning pairs for the font. This file is optional. If it is not defined in the UFO, there is no kerning data.

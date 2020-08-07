@@ -3,6 +3,7 @@ layout: default
 title: Glyph Interchange Format
 ---
 
+{: .fileformat}
 | **File Format** | XML |
 
 The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a *.glif* extension.
@@ -33,6 +34,7 @@ In all elements, where an attribute has a defined default value the attribute is
 
 #### Attributes
 
+{: .name-description}
 | name | description |
 |--|--|
 | name | The name of the glyph. This must be at least one character long. Different font specifications, such as OpenType, often have their own glyph name restrictions. Authoring tools should not make assumptions about the validity of a glyph's name for a particular font specification. |
@@ -42,6 +44,7 @@ The `name` attribute has limited uses in this version. The *contents.plist* file
 
 #### Child Elements
 
+{: .name-description}
 | name | description |
 |--|--|
 | [advance] | May occur at most once. |
@@ -58,6 +61,7 @@ The `name` attribute has limited uses in this version. The *contents.plist* file
 
 #### Attributes
 
+{: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
 | width | integer or float | The advance width. Optional if *height* is defined. | 0 |
@@ -76,6 +80,7 @@ The `name` attribute has limited uses in this version. The *contents.plist* file
 
 #### Attributes
 
+{: .name-type-description}
 | name | type | description |
 |--|--|--|
 | hex | string | A unicode code point as a hexadecimal number. The string is case-insensitive and must contain the hex value without a prefix. |
@@ -97,6 +102,7 @@ This optional element represents an image element in a glyph. It may occur at mo
 
 #### Attributes
 
+{: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
 | fileName | string | The image file name, including any file extension, not an absolute or relative path in the file system. | None |
@@ -137,6 +143,7 @@ This element may occur any number of times.
 
 #### Attributes
 
+{: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
 | x | integer or float | The 'x' coordinate. Optional if `y` is provided and `angle` is not provided. See below for details. | None |
@@ -157,6 +164,7 @@ This element may occur any number of times.
 
 #### Attributes
 
+{: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
 | x | integer or float | The 'x' coordinate. | None |
@@ -201,6 +209,7 @@ Authoring tools may convert instances of contours like this to anchor elements w
 
 #### Child Elements
 
+{: .name-description}
 | name | description |
 |--|--|
 | [component] | May occur any number of times. |
@@ -211,6 +220,7 @@ Authoring tools may convert instances of contours like this to anchor elements w
 
 #### Attributes
 
+{: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
 | base | string | Name of the base glyph | None |
@@ -239,12 +249,14 @@ The base glyph referenced by a component may contain components. The base glyph 
 
 #### Attributes
 
+{: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
 | identifier | string | Unique identifier for the contour. This attribute is not required and should only be added to contours as needed. However, once an identifier has been assigned to a contour it must not be unnecessarily removed or changed. Identifiers may be changed in incoming contours during editing operations such as "paste" and component decomposition, but they should be maintained unless a duplicate identifier will be created. Identifiers should also be retained when possible during outline manipulation operations such as path direction changes and remove overlap. The identifier value must be unique within all identifiers (including identifiers for elements other than contours) in the glyph that the contour belongs to but it is not required to be unique among the identifiers assigned in other glyphs, in any layerinfo.plist or in fontinfo.plist. The identifier specification is detailed in the [conventions]. | no identifier |
 
 #### Child Elements
 
+{: .name-description}
 | name | description |
 |--|--|
 | [point] | May occur any number of times. |
@@ -256,6 +268,7 @@ There is no requirement that a contour contain an on-curve point. If a contour c
 
 #### Attributes
 
+{: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
 | x | integer or float | The 'x' coordinate. | None |
@@ -267,8 +280,8 @@ There is no requirement that a contour contain an on-curve point. If a contour c
 
 ##### Point Types
 
-| | |
-|--|--|
+
+{: .name-description}
 | move | A point of this type must be the first in a `contour`. The reverse is not true: a `contour` does not necessarily start with a `move` point. When a `contour` **does** start with a `move` point, it signifies the beginning of an **open** contour. A **closed** contour does **not** start with a `move` and is defined as a cyclic list of points, with no predominant start point. There is always a *next point* and a *previous point*. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline. |
 | line | Draw a straight line from the previous point to this point. The previous point must be a `move`, a `line`, a `curve` or a `qcurve`. It must not be an `offcurve`. |
 | offcurve | This point is part of a curve segment that goes up to the next point that is either a `curve` or a `qcurve`. |
@@ -339,6 +352,7 @@ This key provides a dict defining a set of PostScript hints for a glyph. The key
 
 ###### Hint Dict
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | formatVersion | string | format version. Currently "1", the first public version. |
@@ -348,6 +362,7 @@ This key provides a dict defining a set of PostScript hints for a glyph. The key
 
 ###### Hint Set
 
+{: .name-type-description}
 | key | type | description |
 |--|--|--|
 | pointTag | string | unique point name. Must match a point 'name' attribute. |
