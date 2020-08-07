@@ -13,7 +13,7 @@ The Glyph Interchange Format (GLIF) is a simple and clear XML representation of 
 
 #### Attributes
 
-| attribute name | description |
+| name | description |
 |--|--|
 | name | The name of the glyph |
 | format | The format version. 1 for this version. |
@@ -22,7 +22,7 @@ The *name* attribute has limited uses in this version. The *contents.plist* file
 
 #### Child Elements
 
-| element name | description |
+| name | description |
 |--|--|
 | advance | May occur at most once. |
 | unicode | May occur any number of times. |
@@ -33,7 +33,7 @@ The *name* attribute has limited uses in this version. The *contents.plist* file
 
 #### Attributes
 
-| attribute name | data type | description |
+| name | type | description |
 |--|--|--|
 | width | integer or float | The advance width. |
 | height | integer or float | The vertical advance. |
@@ -44,7 +44,7 @@ This element has no child elements.
 
 #### Attributes
 
-| attribute name | description |
+| name | description |
 |--|--|
 | hex | A unicode code point as a hexadecimal number. |
 
@@ -54,7 +54,7 @@ This element has no child elements. The first occurrence of this element defines
 
 #### Child Elements
 
-| element name | description |
+| name | description |
 |--|--|
 | component | May occur any number of times. |
 | contour | May occur any number of times. |
@@ -65,7 +65,7 @@ This element has no attributes.
 
 #### Attributes
 
-| attribute name | data type | description | default value |
+| name | type | description | default |
 |--|--|--|--|
 | base | string | Name of the base glyph | None |
 | xScale | integer or float | See below. | 1 |

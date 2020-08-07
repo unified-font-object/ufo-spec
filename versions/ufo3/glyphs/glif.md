@@ -33,7 +33,7 @@ In all elements, where an attribute has a defined default value the attribute is
 
 #### Attributes
 
-| attribute name | description |
+| name | description |
 |--|--|
 | name | The name of the glyph. This must be at least one character long. Different font specifications, such as OpenType, often have their own glyph name restrictions. Authoring tools should not make assumptions about the validity of a glyph's name for a particular font specification. |
 | format | The format version. 2 for this version. |
@@ -42,7 +42,7 @@ The `name` attribute has limited uses in this version. The *contents.plist* file
 
 #### Child Elements
 
-| element name | description |
+| name | description |
 |--|--|
 | [advance] | May occur at most once. |
 | [unicode] | May occur any number of times. |
@@ -58,7 +58,7 @@ The `name` attribute has limited uses in this version. The *contents.plist* file
 
 #### Attributes
 
-| attribute name | data type | description | default value |
+| name | type | description | default |
 |--|--|--|--|
 | width | integer or float | The advance width. Optional if *height* is defined. | 0 |
 | height | integer or float | The vertical advance. Optional if *width* is defined. | 0 |
@@ -76,7 +76,7 @@ The `name` attribute has limited uses in this version. The *contents.plist* file
 
 #### Attributes
 
-| attribute name | data type | description |
+| name | type | description |
 |--|--|--|
 | hex | string | A unicode code point as a hexadecimal number. The string is case-insensitive and must contain the hex value without a prefix. |
 
@@ -97,7 +97,7 @@ This optional element represents an image element in a glyph. It may occur at mo
 
 #### Attributes
 
-| attribute name | data type | description | default value |
+| name | type | description | default |
 |--|--|--|--|
 | fileName | string | The image file name, including any file extension, not an absolute or relative path in the file system. | None |
 | xScale | integer or float | See below. | 1 |
@@ -137,7 +137,7 @@ This element may occur any number of times.
 
 #### Attributes
 
-| attribute name | data type | description | default value |
+| name | type | description | default |
 |--|--|--|--|
 | x | integer or float | The 'x' coordinate. Optional if `y` is provided and `angle` is not provided. See below for details. | None |
 | y | integer or float | The 'y' coordinate. Optional if `x` is provided and `angle` is not provided. See below for details. | None |
@@ -157,7 +157,7 @@ This element may occur any number of times.
 
 #### Attributes
 
-| attribute name | data type | description | default value |
+| name | type | description | default |
 |--|--|--|--|
 | x | integer or float | The 'x' coordinate. | None |
 | y | integer or float | The 'y' coordinate. | None |
@@ -201,7 +201,7 @@ Authoring tools may convert instances of contours like this to anchor elements w
 
 #### Child Elements
 
-| element name | description |
+| name | description |
 |--|--|
 | [component] | May occur any number of times. |
 | [contour] | May occur any number of times. |
@@ -211,7 +211,7 @@ Authoring tools may convert instances of contours like this to anchor elements w
 
 #### Attributes
 
-| attribute name | data type | description | default value |
+| name | type | description | default |
 |--|--|--|--|
 | base | string | Name of the base glyph | None |
 | xScale | integer or float | See below. | 1 |
@@ -239,13 +239,13 @@ The base glyph referenced by a component may contain components. The base glyph 
 
 #### Attributes
 
-| attribute name | data type | description | default value |
+| name | type | description | default |
 |--|--|--|--|
 | identifier | string | Unique identifier for the contour. This attribute is not required and should only be added to contours as needed. However, once an identifier has been assigned to a contour it must not be unnecessarily removed or changed. Identifiers may be changed in incoming contours during editing operations such as "paste" and component decomposition, but they should be maintained unless a duplicate identifier will be created. Identifiers should also be retained when possible during outline manipulation operations such as path direction changes and remove overlap. The identifier value must be unique within all identifiers (including identifiers for elements other than contours) in the glyph that the contour belongs to but it is not required to be unique among the identifiers assigned in other glyphs, in any layerinfo.plist or in fontinfo.plist. The identifier specification is detailed in the [conventions]. | no identifier |
 
 #### Child Elements
 
-| element name | description |
+| name | description |
 |--|--|
 | [point] | May occur any number of times. |
 
@@ -256,7 +256,7 @@ There is no requirement that a contour contain an on-curve point. If a contour c
 
 #### Attributes
 
-| attribute name | data type | description | default value |
+| name | type | description | default |
 |--|--|--|--|
 | x | integer or float | The 'x' coordinate. | None |
 | y | integer or float | The 'y' coordinate. | None |
@@ -339,7 +339,7 @@ This key provides a dict defining a set of PostScript hints for a glyph. The key
 
 ###### Hint Dict
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | formatVersion | string | format version. Currently "1", the first public version. |
 | id | string | Hash of glyph outlines. This is computed when the glyph is hinted. It is used to determine if the glyph outline has been changed since the glyph was hinted: if it has, then the hint dict for the glyph should be deleted. See "Hint ID Computation" below. |
@@ -348,7 +348,7 @@ This key provides a dict defining a set of PostScript hints for a glyph. The key
 
 ###### Hint Set
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | pointTag | string | unique point name. Must match a point 'name' attribute. |
 | stems | list of strings | list of stem strings. Each stem string starts with either 'hstem" or "vstem" and is a followed by a series of white-space delimited stem coordinate values. A stem coordinate value is an absolute coordinate. There must be an even number of stem coordinates: each pair of values defines a lower and upper edge of a stem hint. The stems must be sorted in ascending order of lower edge values. 'hstem' strings must be sorted before 'vstem' strings. |

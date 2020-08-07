@@ -11,7 +11,7 @@ This file contains information about the font itself, such as naming and dimensi
 
 The property list data consists of a dictionary at the top level. The keys and values are as follows.
 
-| key | value type | description |
+| key | type | description |
 |-|-|-|
 | ascender | integer or float | Ascender value. |
 | capHeight | integer or float | Cap height value. |

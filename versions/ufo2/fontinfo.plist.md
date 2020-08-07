@@ -20,7 +20,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Generic Identification Information
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | familyName | string | Family name. |
 | styleName | string | Style name. |
@@ -32,14 +32,14 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Generic Legal Information
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | copyright | string | Copyright statement. |
 | trademark | string | Trademark statement. |
 
 #### Generic Dimension Information
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | unitsPerEm | integer or float | Units per em. |
 | descender | integer or float | Descender value. |
@@ -50,13 +50,13 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Generic Miscellaneous Information
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | note | string | Arbitrary note about the font. |
 
 #### OpenType head Table Fields
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | openTypeHeadCreated | string | Creation date. Expressed as a string of the format "YYYY/MM/DD HH:MM:SS". "YYYY/MM/DD" is year/month/day. The month should be in the range 1-12 and the day should be in the range 1-end of month. "HH:MM:SS" is hour:minute:second. The hour should be in the range 0:23. The minute and second should each be in the range 0-59. |
 | openTypeHeadLowestRecPPEM | integer or float | Smallest readable size in pixels. Corresponds to the OpenType head table lowestRecPPEM field. |
@@ -79,7 +79,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### OpenType hhea Table Fields
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | openTypeHheaAscender | integer or float | Ascender value. Corresponds to the OpenType hhea table Ascender field. |
 | openTypeHheaDescender | integer or float | Descender value. Corresponds to the OpenType hhea table Descender field. |
@@ -101,7 +101,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### OpenType Name Table Fields
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | openTypeNameDesigner | string | Designer name. Corresponds to the OpenType name table name ID 9. |
 | openTypeNameDesignerURL | string | URL for the designer. Corresponds to the OpenType name table name ID 12. |
@@ -133,7 +133,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### OpenType OS/2 Table Fields
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | openTypeOS2WidthClass | integer | Width class value. Must be in the range 1-9. Corresponds to the OpenType OS/2 table usWidthClass field. |
 | openTypeOS2WeightClass | integer | Weight class value. Must be a positive integer. Corresponds to the OpenType OS/2 table usWeightClass field. |
@@ -178,7 +178,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### OpenType vhea Table Fields
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | openTypeVheaVertTypoAscender | integer or float | Ascender value. Corresponds to the OpenType vhea table vertTypoAscender field. |
 | openTypeVheaVertTypoDescender | integer or float | Descender value. Corresponds to the OpenType vhea table vertTypoDescender field. |
@@ -200,7 +200,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### PostScript Specific Data
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | postscriptFontName | string | Name to be used for the *FontName* field in Type 1/CFF table. |
 | postscriptFullName | string | Name to be used for the *FullName* field in Type 1/CFF table. |
@@ -265,7 +265,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 #### Macintosh FOND Resource Data
 
-| key | value type | description |
+| key | type | description |
 |--|--|--|
 | macintoshFONDFamilyID | integer | Family ID number. Corresponds to the ffFamID in the FOND resource. |
 | macintoshFONDName | String | Font name for the FOND resource. |
