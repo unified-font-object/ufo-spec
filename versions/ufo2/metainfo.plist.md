@@ -11,10 +11,10 @@ This file contains metadata about the UFO. This file is required.
 
 The property list data consists of a dictionary at the top level. The keys and values are as follows.
 
-| key           | value type | description                                                                                                                                |
-|---------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| creator       | string     | The application or library that created the UFO. This should follow a reverse domain naming convention. For example, *org.robofab.ufoLib*. |
-| formatVersion | int        | The version number of the UFO format. 2 for UFO 2.                                                                                         |
+| key | value type | description |
+|--|--|--|
+| creator | string | The application or library that created the UFO. This should follow a reverse domain naming convention. For example, *org.robofab.ufoLib*. |
+| formatVersion | int | The version number of the UFO format. 2 for UFO 2. |
 
 ### Example
 

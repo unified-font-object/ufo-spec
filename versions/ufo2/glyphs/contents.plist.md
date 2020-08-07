@@ -29,16 +29,16 @@ This algorithm has limited support for case insensitive file systems: it assumes
 ##### Examples
 
 
-| glyph name     | file name             |
-| ---------------|-----------------------|
-| a              | a.glif                |
-| A              | A_.glif               |
-| A.alt          | A_.alt.glif           |
-| T_H            | T__H_.glif            |
-| T_h            | T__h.glif             |
-| t_h            | t_h.glif              |
-| F_F_I          | F__F__I_.glif         |
-| f_f_i          | f_f_i.glif            |
+| glyph name | file name |
+| --|--|
+| a | a.glif |
+| A | A_.glif |
+| A.alt | A_.alt.glif |
+| T_H | T__H_.glif |
+| T_h | T__h.glif |
+| t_h | t_h.glif |
+| F_F_I | F__F__I_.glif |
+| f_f_i | f_f_i.glif |
 | Aacute_V.swash | Aacute__V_.swash.glif |
 
 ##### Possible problems

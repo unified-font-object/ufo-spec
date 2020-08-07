@@ -59,19 +59,19 @@ UFO 3 follows this file structure:
 
 Each of the files and directories have unique meanings, purposes and data structures:
 
-| [metainfo.plist](metainfo.plist)                       | Format version, creator, etc. |
-| [fontinfo.plist](fontinfo.plist)                       | Various font info data. |
-| [groups.plist](groups.plist)                           | Glyph group definitions. |
-| [kerning.plist](kerning.plist)                         | Kerning data. |
-| [features.fea](features.fea)                           | OpenType feature definitions. |
-| [lib.plist](lib.plist)                                 | Arbitrary custom data. |
-| [layercontents.plist](layercontents.plist)             | Glyphs directory name to layer name mapping. |
-| [glyphs*](glyphs)                                      | A directory containing a glyph set representing a [layer](#glyph-layers). |
-| glyphs*/[contents.plist](glyphs/contents.plist)        | File name to glyph name mapping. |
-| glyphs*/[layerinfo.plist](glyphs/layerinfo.plist)      | Information about the layer. |
-| glyphs*/[*.glif](glyphs/glif)                          | A glyph definition. |
-| [images](images)                                       | A directory containing images referenced by glyphs. |
-| [data](data)                                           | Arbitrary custom data in a quantity or structure that can't be stored in lib.plist. |
+| [metainfo.plist](metainfo.plist) | Format version, creator, etc. |
+| [fontinfo.plist](fontinfo.plist) | Various font info data. |
+| [groups.plist](groups.plist) | Glyph group definitions. |
+| [kerning.plist](kerning.plist) | Kerning data. |
+| [features.fea](features.fea) | OpenType feature definitions. |
+| [lib.plist](lib.plist) | Arbitrary custom data. |
+| [layercontents.plist](layercontents.plist) | Glyphs directory name to layer name mapping. |
+| [glyphs*](glyphs) | A directory containing a glyph set representing a [layer](#glyph-layers). |
+| glyphs*/[contents.plist](glyphs/contents.plist) | File name to glyph name mapping. |
+| glyphs*/[layerinfo.plist](glyphs/layerinfo.plist) | Information about the layer. |
+| glyphs*/[*.glif](glyphs/glif) | A glyph definition. |
+| [images](images) | A directory containing images referenced by glyphs. |
+| [data](data) | Arbitrary custom data in a quantity or structure that can't be stored in lib.plist. |
 
 ### Glyph Layers
 

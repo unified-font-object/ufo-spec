@@ -58,10 +58,10 @@ A color definition is defined as a string containing a comma-separated sequence 
 
 Examples
 
-| string    | red component | green component | blue component | alpha component |
-|-----------|---------------|-----------------|----------------|-----------------|
-| 1,0,0,1   | 1.0           | 0               | 0              | 1.0             |
-| 0,.5,0,.5 | 0             | 0.5             | 0              | 0.5             |
+| string | red component | green component | blue component | alpha component |
+|--|--|--|--|--|
+| 1,0,0,1 | 1.0 | 0 | 0 | 1.0 |
+| 0,.5,0,.5 | 0 | 0.5 | 0 | 0.5 |
 
 ### Reverse Domain Naming Schemes
 
@@ -115,30 +115,30 @@ There is no standard user name to file name conversion. The algorithm below is a
 
 #### Examples
 
-| glyph name      | file name           |
-|-----------------|---------------------|
-| a               | a                   |
-| A               | A\_                 |
-| AE              | A\_E\_              |
-| Ae              | A\_e                |
-| ae              | ae                  |
-| aE              | aE\_                |
-| a.alt           | a.alt               |
-| A.alt           | A\_.alt             |
-| A.Alt           | A\_.A\_lt           |
-| A.aLt           | A\_.aL\_t           |
-| A.alT           | A\_.alT\_           |
-| T\_H            | T\_\_H\_            |
-| T\_h            | T\_\_h              |
-| t\_h            | t\_h                |
-| F\_F\_I         | F\_\_F\_\_I\_       |
-| f\_f\_i         | f\_f\_i             |
+| glyph name | file name |
+|--|--|
+| a | a |
+| A | A\_ |
+| AE | A\_E\_ |
+| Ae | A\_e |
+| ae | ae |
+| aE | aE\_ |
+| a.alt | a.alt |
+| A.alt | A\_.alt |
+| A.Alt | A\_.A\_lt |
+| A.aLt | A\_.aL\_t |
+| A.alT | A\_.alT\_ |
+| T\_H | T\_\_H\_ |
+| T\_h | T\_\_h |
+| t\_h | t\_h |
+| F\_F\_I | F\_\_F\_\_I\_ |
+| f\_f\_i | f\_f\_i |
 | Aacute\_V.swash | A\_acute\_V\_.swash |
-| .notdef         | \_notdef            |
-| con             | \_con               |
-| CON             | C\_O\_N\_           |
-| con.alt         | \_con.alt           |
-| alt.con         | alt.\_con           |
+| .notdef | \_notdef |
+| con | \_con |
+| CON | C\_O\_N\_ |
+| con.alt | \_con.alt |
+| alt.con | alt.\_con |
 
 #### Example implementation:
 
