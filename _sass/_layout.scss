@@ -416,9 +416,10 @@ ul.algorithmdiagram {
 /* Anchors */
 
 a.header-link {
+    padding-left: 0.15em;
     opacity: 0;
-    width: 2em;
     color: var(--color-quiet);
+    font-weight: var(--weight-regular);
 }
 a.header-link:hover {
     opacity: 1.0;
