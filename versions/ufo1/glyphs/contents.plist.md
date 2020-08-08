@@ -12,20 +12,18 @@ title: contents.plist
 
 This algorithm has limited support for case insensitive file systems: it assumes glyph names are not case sensitive apart from the first character.
 
-1.  If a glyph name starts with a ".
-    1.  Replace the "." with an "\_". Some file systems regard file names that start with "." as invisible.
-
-2.  Break the glyph name into parts delimited by ".".
-3.  **If the first part contains one or more underscores**, it is a compound name.
-    1.  Split the compound name by underscore into its member names.
-    2.  To each member starting with a capital letter, add a "\_" at the end.
-    3.  Rejoin the member names with underscore.
-
-4.  **If the first part contains no underscore:**
-    1.  If it starts with a capital letter, add a "\_" to the end.
-
-5.  Rejoin the parts with ".".
-6.  Tag the name with ".glif".
+{: .algorithmdiagram}
+-  If a glyph name starts with a ".
+    -  Replace the "." with an "\_". Some file systems regard file names that start with "." as invisible.
+-  Break the glyph name into parts delimited by ".".
+-  **If the first part contains one or more underscores**, it is a compound name.
+    -  Split the compound name by underscore into its member names.
+    -  To each member starting with a capital letter, add a "\_" at the end.
+    -  Rejoin the member names with underscore.
+-  **If the first part contains no underscore:**
+    -  If it starts with a capital letter, add a "\_" to the end.
+-  Rejoin the parts with ".".
+-  Tag the name with ".glif".
 
 ##### Examples
 
