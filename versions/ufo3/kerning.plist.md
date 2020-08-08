@@ -289,7 +289,7 @@ def lookupKerningValue(pair, kerning, groups, fallback=0):
 
 ```
 
-# Converting to UFO 3 formatted kerning
+## Converting to UFO 3 formatted kerning
 
 
 In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, all kerning groups are identified through the use of the standard group prefixes defined in the [groups.plist specification][group's name]. An algorithm for converting UFO 1 and UFO 2 group kerning is detailed below.

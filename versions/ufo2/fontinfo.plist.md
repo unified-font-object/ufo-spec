@@ -288,8 +288,6 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 <a href="http://developer.apple.com/documentation/mac/Text/Text-269.html" target="_blank">Apple FOND Resource Specification</a><br>
 <a href="http://developer.apple.com/documentation/mac/Text/Text-215.html" target="_blank">Apple Font Family Record Specification</a><br>
 
-<hr class="subsection">
-
 ## Converting fontinfo.plist in UFO 1 to fontinfo.plist in UFO 2
 
 In many cases, the attributes have been retained in the new structure. However, some attributes are stored under new keys. A few attributes need to be converted to a new data format.

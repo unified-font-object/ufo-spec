@@ -42,9 +42,7 @@ Each of the files has a unique meaning, purpose and data structure:
 | glyphs/[contents.plist](glyphs/contents.plist) | File name to glyph name mapping. |
 | glyphs/[*.glif](glyphs/glif) | A glyph definition. |
 
-<hr class="subsection">
-
-# Changes from UFO 1
+## Changes from UFO 1
 
 #### fontinfo.plist
 
