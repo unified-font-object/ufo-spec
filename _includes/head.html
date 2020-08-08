@@ -16,4 +16,24 @@
         }
     });
   </script>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        for (var links = document.links, i = 0, a; a = links[i]; i++) {
+            if (a.host !== location.host) {
+                a.target = '_blank';
+            }
+        }
+        // add header links
+        var headerLinks = document.querySelectorAll("h2, h3");
+        headerLinks.forEach(function (item) {
+          if (item.id) {
+            a = document.createElement("a");
+            a.classList.add("header-link");
+            a.href = "#" + item.id;
+            a.text = "↩"
+            item.appendChild(a);
+          }
+        });
+    });
+  </script>
 </head>
