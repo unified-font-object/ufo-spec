@@ -12,6 +12,7 @@ title: contents.plist
 
 This algorithm has limited support for case insensitive file systems: it assumes glyph names are not case sensitive apart from the first character.
 
+{: .algorithmdiagram}
 1.  If a glyph name starts with a ".""
     1.  Replace the "." with an "\_". Some file systems regard file names that start with "." as invisible.
 

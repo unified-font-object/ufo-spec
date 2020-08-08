@@ -136,30 +136,31 @@ To resolve this, glyph + group pairs are given higher priority than group + glyp
 
 The task of finding a value for a particular glyph + glyph combination is relatively easy. The following algorithm demonstrates a way that it can be done for a given pair.
 
-If the pair *first glyph + second glyph* is in the kerning data:
-  - The value for *first glyph + second glyph* is the value.
-  - Stop.
-
-If the second glyph is in a kerning group:
-  *second group* is the name of the kerning group containing the second glyph.
-  If the pair *first glyph + second group* is in the kerning data:
-    - The value for *first glyph + second group* is the value.
+{: .algorithmdiagram}
+- If the pair *first glyph + second glyph* is in the kerning data:
+    - The value for *first glyph + second glyph* is the value.
     - Stop.
 
-If the first glyph is in a kerning group:
-  *first group* is the name of the kerning group containing the first glyph.
-  If the pair *first group + second glyph* is in the kerning data:
-    - The value for *first first + second glyph* is the value.
-    - Stop.
+- If the second glyph is in a kerning group:
+    - *second group* is the name of the kerning group containing the second glyph.
+    - If the pair *first glyph + second group* is in the kerning data:
+        - The value for *first glyph + second group* is the value.
+        - Stop.
 
-If the first glyph is in a kerning group and the second glyph is in a kerning group:
-  *first group* is the name of the kerning group containing the first glyph.
-  *second group* is the name of the kerning group containing the second glyph.
-  If the pair *first group + second group* is in the kerning data:
-    - The value for *first group + second group* is the value.
-    - Stop.
+- If the first glyph is in a kerning group:
+    - *first group* is the name of the kerning group containing the first glyph.
+    - If the pair *first group + second glyph* is in the kerning data:
+        - The value for *first first + second glyph* is the value.
+        - Stop.
 
-The value is zero.
+- If the first glyph is in a kerning group and the second glyph is in a kerning group:
+    - *first group* is the name of the kerning group containing the first glyph.
+    - *second group* is the name of the kerning group containing the second glyph.
+    - If the pair *first group + second group* is in the kerning data:
+        - The value for *first group + second group* is the value.
+        - Stop.
+
+- The value is zero.
 
 ##### Sample implementation
 
@@ -297,6 +298,7 @@ In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had t
 
 Note: this algorithm, and its sample implementation, does not check the compliance of the kerning groups with the requirements defined in the groups.plist specification.
 
+{: .algorithmdiagram}
 -   Make a list of groups referenced on the first side of kerning pairs.
 -   For each of these groups:
 -   -   *original group name* is the original group name.

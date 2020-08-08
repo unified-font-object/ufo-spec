@@ -75,14 +75,15 @@ There is no standard user name to file name conversion. The algorithm below is a
 
 1.  Filenames must be unique.
 2.  Filenames must be case insensitive.
-3.  Filenames may use any character that can be represented by UTF-8 except: " (0x22) ( (0x28) ) (0x29) \* (0x2A) + (0x2B) / (0x2F) : (0x3A) &lt; (0x3C) &gt; (0x3E) ? (0x3F) \[ (0x5B) \\ (0x5C) \] (0x5D) | (0x7C) and anything in the ASCII control character range (0x00-0x1F and 0x7F).
+3.  Filenames may use any character that can be represented by UTF-8 except: \"(0x22) ( (0x28) ) (0x29) \* (0x2A) + (0x2B) / (0x2F) : (0x3A) &lt; (0x3C) &gt; (0x3E) ? (0x3F) \[ (0x5B) \\ (0x5C) \] (0x5D) \| (0x7C) and anything in the ASCII control character range (0x00-0x1F and 0x7F).
 4.  Filenames must be no longer than 255 characters.
 5.  Filenames, regardless of extension and case, must not match any of the [MS-DOS reserved file names].
 
+{: .algorithmdiagram}
 -   *name* is the user name without any required prefix or suffix.
 -   *maximum length* is 255 minus the length of a prefix and/or suffix that will be added to the name.
 -   Perform a generic translation of the name without consideration for existing names:
--   -   Replace any illegal characters in *name* with underscores, where the illegal characters are: " \* + / : &lt; &gt; ? \[ \\ \] | anything in the range 0x00-0x1F and 0x7F.
+-   -   Replace any illegal characters in *name* with underscores, where the illegal characters are: " \* + / : &lt; &gt; ? \[ \\ \] \| anything in the range 0x00-0x1F and 0x7F.
     -   Insert an underscore immediately after any uppercase character.
     -   If the name begins with a period and a prefix will not be added to the name, replace the period with an underscore.
     -   If the revised *name* is longer than *maximum length*:
@@ -346,6 +347,7 @@ There is no standard identifier generation algorithm. Random strings, simple num
 
 This algorithm is designed to generate a unique identifier that is a unique string consisting of 10 characters from 0-9, A-Z and a-z. This allows a glyph to contain 10<sup>62</sup> points that follow this identifier naming scheme.
 
+{: .algorithmdiagram}
 -   *possible characters* includes 0-9, A-Z and a-z.
 -   *existing identifiers* is a list of all existing identifiers in the glyph.
 -   *identifier* a 10 character long string of characters randomly selected from *possible characters*.

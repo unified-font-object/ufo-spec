@@ -20,6 +20,17 @@ Variables
     --color-link: var(--color-red);
     --color-quiet: var(--color-medium-gray);
     --color-block: var(--color-light-gray);
+
+    --weight-thin: 100;
+    --weight-extralight: 200;
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-text: 450;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    --weight-base: var(--weight-light);
 }
 
 
@@ -85,8 +96,6 @@ body {
     border-left: 1px solid var(--color-quiet);
 }
 
-
-
 /*
 ------
 Styles
@@ -97,7 +106,7 @@ body {
     background-color: var(--color-background);
     color: var(--color-text);
     font-family: "IBM Plex Serif";
-    font-weight: 300;
+    font-weight: var(--weight-base);
     font-size: 17px;
     line-height: 1.5em;
 }
@@ -130,7 +139,7 @@ h1 {
     padding: 0 0 0.4em 0;
     border-bottom: 1px solid var(--color-text);
     margin: 0 0 0.75em 0;
-    font-weight: 100;
+    font-weight: var(--weight-thin);
     font-size: 3.25em;
     font-style: normal;
     line-height: 1em;
@@ -147,35 +156,35 @@ h2 {
     padding-bottom: 0.4em;
     border-bottom: 1px solid var(--color-text);
     font-size: 2em;
-    font-weight: 800;
+    font-weight: var(--weight-bold);
     line-height: 1.2em;
 }
 
 h3 {
     margin: 1.5em 0 1em 0;
     font-size: 1.5em;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     line-height: 1.2em;
 }
 
 h4 {
     margin: 1em 0 0.4em 0;
     font-size: 1.2em;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     line-height: 1.2em;
 }
 
 h5 {
     margin: 0.5em 0 0.4em 0;
     font-size: 1.1em;
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     line-height: 1.2em;
 }
 
 h6 {
     margin: 0.5em 0 0.4em 0;
     font-size: 1em;
-    font-weight: 500;
+    font-weight: var(--weight-medium);
     line-height: 1.2em;
 }
 
@@ -223,7 +232,7 @@ table {
         padding: 0.5em 0.75em 0.5em 0;
         font-size: 0.65em;
         font-family: "IBM Plex Sans";
-        font-weight: 600;
+        font-weight: var(--weight-semibold);
         text-align: left;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -245,12 +254,12 @@ table {
 
 table.name-description td:nth-child(1) {
     width: 6em;
-    font-weight: 450;
+    font-weight: var(--weight-text);
 }
 
 table.name-type-description td:nth-child(1) {
     width: 6em;
-    font-weight: 450;
+    font-weight: var(--weight-text);
 }
 table.name-type-description td:nth-child(2) {
     width: 4em;
@@ -259,7 +268,7 @@ table.name-type-description td:nth-child(2) {
 
 table.name-type-description-default td:nth-child(1) {
     width: 6em;
-    font-weight: 450;
+    font-weight: var(--weight-text);
 }
 table.name-type-description-default td:nth-child(2) {
     width: 4em;
@@ -310,7 +319,8 @@ table.fileformat a:hover {
 
 ul {
     font-family: "IBM Plex Sans";
-    font-weight: 500;
+    margin-left: 1.5em;
+    padding-left: 0;
 }
 
 /* File Diagram */
@@ -334,6 +344,29 @@ ul.filediagram li {
     padding: 0.1em 0.25em;
 }
 
+/* Algorithm Diagram */
+
+ul.algorithmdiagram {
+    margin: 1em 0;
+    padding: 0.5em 0.75em;
+    background-color: var(--color-block);
+
+    ul {
+        margin: 0.75em 0;
+        padding: 0;
+        // margin-left: 1em;
+        padding-left: 1em;
+        border-left: 1px dashed var(--color-text);
+    }
+
+    li {
+        margin: 0.25em 0;
+        padding: 0;
+        font-weight: var(--weight-base);
+        list-style-type: none;
+    }
+
+}
 
 /* Navigation */
 
@@ -343,7 +376,7 @@ ul.filediagram li {
         padding: 0;
         font-size: 0.9em;
         line-height: 1.5em;
-        font-weight: 500;
+        font-weight: var(--weight-medium);
         text-align: left;
         list-style-type: none;
     }
@@ -352,7 +385,7 @@ ul.filediagram li {
     }
 
     li.navigationSectionTitle {
-        font-weight: 300;
+        font-weight: var(--weight-base);
     }
 
     .navigationNested {
@@ -360,7 +393,7 @@ ul.filediagram li {
         padding-left: 0.75em;
         margin: 0.2em 0;
         border-left: 1px dashed var(--color-link);
-        font-weight: 300;
+        font-weight: var(--weight-base);
 
     }
 
@@ -375,7 +408,7 @@ ul.filediagram li {
         padding-left: 0.75em;
         margin: 0.2em 0;
         border-left: 1px dashed var(--color-link);
-        font-weight: 300;
+        font-weight: var(--weight-base);
     }
 }
 
