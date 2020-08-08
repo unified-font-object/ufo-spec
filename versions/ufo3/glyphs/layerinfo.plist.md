@@ -17,3 +17,6 @@ The property list data consists of a dictionary at the top level. The keys and v
 |--|--|--|--|
 | color | [color definition] | The color that should be used for all glyphs in the layer. This attribute is optional. | None |
 | lib | dictionary | A lib specific to the layer. To avoid naming conflicts, keys should use the [Reverse Domain Naming Scheme] defined for lib.plist. | None |
+
+  [color definition]: ../../conventions/#colors
+  [reverse domain naming scheme]: ../../conventions/#reverse-domain-naming-schemes

@@ -33,3 +33,5 @@ Authoring tools should preserve GLIF file names when writing into existing UFOs.
 </dict>
 </plist>
 ```
+
+  [conventions]: ../../conventions
