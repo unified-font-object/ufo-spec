@@ -29,7 +29,6 @@ Variables
     --weight-medium: 500;
     --weight-semibold: 600;
     --weight-bold: 700;
-
     --weight-base: var(--weight-light);
 }
 
@@ -186,6 +185,17 @@ h6 {
     font-size: 1em;
     font-weight: var(--weight-medium);
     line-height: 1.2em;
+}
+
+/* Intro */
+
+h1.intro {
+    padding: 0.5em;
+    border-bottom: none;
+    background: var(--color-red);
+    color: var(--color-background);
+    font-size: 2.25em;
+    line-height: 1.25em;
 }
 
 /* Code */
