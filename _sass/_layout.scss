@@ -330,18 +330,19 @@ ul.filediagram {
     padding: 1em;
     background-color: var(--color-block);
     list-style-type: none;
-}
 
-ul.filediagram ul {
-    margin: 0.1em 0;
-    padding: 0.5em;
-    border-left: 1px dashed var(--color-text);
-    list-style-type: none;
-}
+    ul {
+        margin: 0.1em 0;
+        padding: 0 0.5em;
+        border-left: 1px dashed var(--color-text);
+        list-style-type: none;
+    }
 
-ul.filediagram li {
-    margin: 0;
-    padding: 0.1em 0.25em;
+    li {
+        margin: 0;
+        padding: 0.1em 0.25em;
+    }
+
 }
 
 /* Algorithm Diagram */
