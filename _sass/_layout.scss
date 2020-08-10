@@ -1,8 +1,6 @@
-/*
----------
-Variables
----------
-*/
+// ---------
+// Variables
+// ---------
 
 :root {
     --color-white : rgb(255, 255, 255);
@@ -30,76 +28,74 @@ Variables
     --weight-semibold: 600;
     --weight-bold: 700;
     --weight-base: var(--weight-light);
+
+    --transition-duration: 0.25s;
 }
 
 
-/*
---------
-Sections
---------
-*/
+// --------
+// Sections
+// --------
 
 #wrapper {
+    width: 56em;
     margin: 0 auto;
 }
 
 body {
     font-size: 17px;
-    margin: 0 auto;
-    width: 47em;
     padding: 5em 0;
 }
 
-/* Logo */
+// Logo
 
 #logo {
     position: fixed;
-    z-index: 3;
+    z-index: 1;
     width: 19em;
     height: 19em;
-    margin-left: -7em;
+    margin-left: -6em;
     margin-top: -7.5em;
     background-image: url("logo.svg");
-    background-size: 89%;
+    background-size: 87%;
     background-repeat: no-repeat;
     background-position: center;
-    transition: 0.5s;
+    transition: var(--transition-duration);
 
     &:hover {
-        background-size: 100%
+        background-size: 95%
     }
 
 }
 
-/* Navigation */
+// Navigation 
 
 #navigation {
     position: fixed;
-    z-index: 2;
-    width: 12em;
-    margin-top: 12.5em;
+    z-index: 3;
+    width: 11em;
+    margin-top: 11.5em;
     padding-top: 1em;
     border-top: 1px solid var(--color-quiet);
 }
 
-/* Content */
+// Content 
 
 #content {
     position: relative;
     width: 40em;
-    // left: 0;
+    left: 0;
     padding-top: 2em;
     padding-bottom: 2em;
-    padding-left: 4em;
+    padding-left: 2em;
     margin-left: 13em;
     border-left: 1px solid var(--color-quiet);
 }
 
-/*
-------
-Styles
-------
-*/
+
+// ------
+// Styles
+// ------
 
 body {
     background-color: var(--color-background);
@@ -113,7 +109,7 @@ body {
 a {
     color: var(--color-link);
     text-decoration: none;
-    transition: 0.2s;
+    transition: var(--transition-duration);
 
     &:visited {
         color: var(--color-link);
@@ -125,14 +121,14 @@ a {
     }
 }
 
-/* Body Text */
+// Body Text 
 
 p {
     margin: 0;
     padding: 0 0 0.55em 0;
 }
 
-/* Headers */
+// Headers
 
 h1 {
     padding: 0 0 0.4em 0;
@@ -187,7 +183,7 @@ h6 {
     line-height: 1.2em;
 }
 
-/* Intro */
+// Intro 
 
 h1.intro {
     padding: 0.5em;
@@ -198,7 +194,7 @@ h1.intro {
     line-height: 1.25em;
 }
 
-/* Code */
+// Code 
 
 pre {
     overflow: hidden;
@@ -218,7 +214,7 @@ code {
     background-color: var(--color-block);
 }
 
-/* Table */
+// Table 
 
 table {
     width: 100%;
@@ -260,7 +256,7 @@ table {
     
 }
 
-/* Specification Tables */
+// Specification Tables 
 
 table.name-description td:nth-child(1) {
     width: 6em;
@@ -289,7 +285,7 @@ table.name-type-description-default td:nth-child(4) {
     font-style: italic;
 }
 
-/* Example Tables */
+// Example Tables 
 
 table.example-group td:nth-child(1) {
     width: 25%;
@@ -306,7 +302,7 @@ table.example-kerning td:nth-child(2) {
 table.example-kerning td:nth-child(3) {
 }
 
-/* File Format Table */
+// File Format Table 
 
 table.fileformat {
     width: auto;
@@ -325,7 +321,7 @@ table.fileformat a:hover {
     color: var(--color-background);
 }
 
-/* Lists */
+// Lists 
 
 ul, ol {
     font-family: "IBM Plex Sans";
@@ -333,7 +329,7 @@ ul, ol {
     padding-left: 0;
 }
 
-/* File Diagram */
+// File Diagram 
 
 ul.filediagram {
     margin: 0.5em 0;
@@ -355,7 +351,7 @@ ul.filediagram {
 
 }
 
-/* Algorithm Diagram */
+// Algorithm Diagram 
 
 ul.algorithmdiagram {
     margin: 1em 0;
@@ -378,7 +374,7 @@ ul.algorithmdiagram {
 
 }
 
-/* Navigation */
+// Navigation 
 
 #navigation {
     ul {
@@ -422,7 +418,15 @@ ul.algorithmdiagram {
     }
 }
 
-/* Anchors */
+#navigationOpenButton {
+    display: none;
+}
+
+#navigationCloseButton {
+    display: none;
+}
+
+// Anchors 
 
 a.header-link {
     padding-left: 0.15em;
@@ -441,4 +445,99 @@ h4:hover>.header-link,
 h5:hover>.header-link,
 h6:hover>.header-link {
     opacity: 1.0;
+}
+
+
+// ----------
+// Responsive
+// ----------
+
+@media only screen and (max-width: 1000px) {
+
+    #wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    #logo {
+        position: relative;
+        top: 0;
+        left: 3em;
+        width: 100%;
+        height: 4em;
+        margin: 0;
+        padding: 0;
+        background-image: url("logo-small.svg");
+        background-size: 1000px;
+        background-position: left center;
+        transition: var(--transition-duration);
+
+        &:hover {
+            background-size: 1000px;
+        }
+    }
+
+    #navigation {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        border-top: none;
+        border-right: 1px solid var(--color-quiet);
+        white-space: nowrap;
+        background-color: var(--color-background);
+        transition: var(--transition-duration);
+
+        ul {
+            padding-left: 1.5em;
+        }
+    }
+
+    #navigationOpenButton {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        width: 3em;
+        height: 4em;
+        background-image: url("open-button.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+        transition: var(--transition-duration);
+    }
+
+    #navigationCloseButton {
+        position: relative;
+        display: block;
+        left: 0;
+        width: 3em;
+        height: 4em;
+        background-image: url("close-button.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+    }
+
+    #content {
+        position: relative;
+        display: block;
+        width: 80%;
+        margin: 1em auto;
+        padding: 0;
+        border: none;
+        transition: var(--transition-duration);
+    }
+
+    h1.intro {
+        font-size: 1.5em;
+    }
+
 }

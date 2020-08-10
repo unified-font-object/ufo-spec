@@ -11,7 +11,7 @@ email: tal@typesupply.com
 description: > # this means to ignore newlines until "baseurl:"
   The Unified Font Object (UFO) is a cross-platform, cross-application, human
   readable, future proof format for storing font data.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "http://unifiedfontobject.org" # the base hostname & protocol for your site
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
