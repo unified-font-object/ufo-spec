@@ -61,6 +61,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     transition: var(--transition-duration);
+    transition-property: background-size;
 
     &:hover {
         background-size: 95%
@@ -110,6 +111,7 @@ a {
     color: var(--color-link);
     text-decoration: none;
     transition: var(--transition-duration);
+    transition-property: color;
 
     &:visited {
         color: var(--color-link);
@@ -472,7 +474,8 @@ h6:hover>.header-link {
         background-image: url("logo-small.svg");
         background-size: 1000px;
         background-position: left center;
-        transition: var(--transition-duration);
+        transition-duration: var(--transition-duration);
+        transition-property: left;
 
         &:hover {
             background-size: 1000px;
@@ -493,7 +496,8 @@ h6:hover>.header-link {
         border-right: 1px solid var(--color-quiet);
         white-space: nowrap;
         background-color: var(--color-background);
-        transition: var(--transition-duration);
+        transition-duration: var(--transition-duration);
+        transition-property: width;
 
         ul {
             padding-left: 1.5em;
@@ -511,7 +515,6 @@ h6:hover>.header-link {
         background-repeat: no-repeat;
         background-position: center;
         cursor: pointer;
-        transition: var(--transition-duration);
     }
 
     #navigationCloseButton {
@@ -533,7 +536,8 @@ h6:hover>.header-link {
         margin: 1em auto;
         padding: 0;
         border: none;
-        transition: var(--transition-duration);
+        transition-duration: var(--transition-duration);
+        transition-property: left;
     }
 
     h1.intro {
