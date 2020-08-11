@@ -51,3 +51,14 @@ Open an [issue](https://github.com/unified-font-object/ufo-spec/issues) and disc
 
 ## Meetings
 Historically there are informal meetings about the specification around the Robothon conference (held every three years). On July 31, 2020, we had the first open virtual meeting, the [notes of which are online](https://docs.google.com/document/d/1REf695Yxnu3aj_UqcVfF0WTyV8PUaPo-r6duEHxtj48/edit).
+
+## How to edit this website
+
+Clone the repository, install [Jekyll](https://jekyllrb.com/docs/) then run:
+
+```bash
+jekyll serve
+```
+
+Then your can find the built website at http://127.0.0.1:4000/
+The built website will keep updating as you edit (just refresh it).
