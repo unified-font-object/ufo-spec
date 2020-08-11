@@ -2,7 +2,7 @@
 layout: default
 navigation: true
 order: 2
-title: The UFO Team
+title: Contributors
 ---
 
 The UFO format was developed by and is maintained by:
