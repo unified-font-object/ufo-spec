@@ -16,3 +16,12 @@ Input, corrections and contributions are welcome.
 ## Site Credits
 
 The typefaces used on this site are from the [IBM Plex](https://www.ibm.com/plex/) family designed by [Bold Monday](https://www.boldmonday.com) and a wide array of collaborators.
+
+- site: {{ site }}
+- site.github {{ site.github }}
+- site.github.hostname {{ site.github.hostname }}
+- repositories:
+
+{% for repository in site.github.public_repositories %}
+	- {{ repository.name }}
+{% endfor %}
