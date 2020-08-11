@@ -16,4 +16,49 @@
         }
     });
   </script>
+
+  <!-- Header Anchors -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        for (var links = document.links, i = 0, a; a = links[i]; i++) {
+            if (a.host !== location.host) {
+                a.target = '_blank';
+            }
+        }
+        var headerLinks = document.querySelectorAll("h2, h3");
+        headerLinks.forEach(function (item) {
+          if (item.id) {
+            a = document.createElement("a");
+            a.classList.add("header-link");
+            a.href = "#" + item.id;
+            a.text = "↩"
+            item.appendChild(a);
+          }
+        });
+    });
+  </script>
+
+  <!-- Responsive Navigation -->
+  <script type="text/javascript">
+    function openNavigation() {
+      var navigation = document.getElementById("navigation")
+      var navigationButton = document.getElementById("navigationOpenButton")
+      var logo = document.getElementById("logo")
+      var content = document.getElementById("content")
+      navigation.style.width = "13em";
+      content.style.left = "13em";
+      logo.style.left = "15em";
+    }
+
+    function closeNavigation() {
+      var navigation = document.getElementById("navigation")
+      var navigationButton = document.getElementById("navigationOpenButton")
+      var logo = document.getElementById("logo")
+      var content = document.getElementById("content")
+      navigation.style.width = 0;
+      content.style.left = 0;
+      logo.style.left = "3em";
+    }
+  </script>
+
 </head>

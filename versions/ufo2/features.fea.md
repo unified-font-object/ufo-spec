@@ -3,6 +3,7 @@ layout: default
 title: features.fea
 ---
 
+{: .fileformat}
 | **File Format** | Plain Text |
 
 This file contains the [Adobe Font Development Kit for OpenType] feature definitions. This file is optional. If it is not defined in the UFO, there is no feature data.

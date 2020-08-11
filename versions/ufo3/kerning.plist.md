@@ -3,6 +3,7 @@ layout: default
 title: kerning.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains horizontal kerning pairs for the font. This file is optional. If it is not defined in the UFO, there is no horizontal kerning data.
@@ -24,18 +25,21 @@ The kerning data is writing direction neutral. For text written left-to-right, t
 
 Kerning pairs may reference groups. This is done by using a [group's name] as a member of a kerning pair. These group members allow the kerning data to represent vast amounts of kerning with relatively few pairs. A pair member that contains a group implies that all members of the group are kerned with the other member of the pair with the same value (unless an exception is defined, see below). For example, a font has this group:
 
+{: .example-group}
 | name           | members |
 |----------------|---------|
 | public.kern1.O | O, D, Q |
 
 The font's kerning contains a pair referencing this group:
 
+{: .example-kerning}
 | Side 1         | Side 2 | Value |
 |----------------|--------|-------|
 | public.kern1.O | A      | -50   |
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+{: .example-kerning}
 | Side 1 | Side 2 | Value |
 |--------|--------|-------|
 | O      | A      | -50   |
@@ -60,6 +64,7 @@ Exception pairs may occur at the second and third levels. Second level pairs may
 
 For example, a font has these two groups:
 
+{: .example-group}
 | name           | members |
 |----------------|---------|
 | public.kern1.O | O, D, Q |
@@ -67,24 +72,28 @@ For example, a font has these two groups:
 
 The font's kerning contains a first level pair that references these two groups:
 
+{: .example-kerning}
 | Side 1         | Side 2         | Value |
 |----------------|----------------|-------|
 | public.kern1.O | public.kern2.E | -100  |
 
 The font's kerning contains a second level pair that forms an exception to the first level pair:
 
+{: .example-kerning}
 | Side 1         | Side 2 | Value |
 |----------------|--------|-------|
 | public.kern1.O | F      | -200  |
 
 The font's kerning contains a third level pair that is an exception to both the first and second level pairs:
 
+{: .example-kerning}
 | Side 1 | Side 2 | Value |
 |--------|--------|-------|
 | D      | F      | -300  |
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+{: .example-kerning}
 | Side 1 | Side 2 | Value |
 |--------|--------|-------|
 | O      | E      | -100  |
@@ -99,6 +108,7 @@ This implies that the pair values for the specific glyphs combinations are as fo
 
 It's possible to create kerning contradictions with exceptions. For example, given the same public.kern1.O and public.kern2.E group as above, a font contains the following kerning pairs:
 
+{: .example-kerning}
 | Side 1         | Side 2         | Value |
 |----------------|----------------|-------|
 | public.kern1.O | public.kern2.E | -100  |
@@ -108,6 +118,7 @@ It's possible to create kerning contradictions with exceptions. For example, giv
 
 This implies that the pair values for the specific glyphs combinations are as follows:
 
+{: .example-kerning}
 | Side 1 | Side 2 | Value            |
 |--------|--------|------------------|
 | O      | E      | -100             |
@@ -125,30 +136,31 @@ To resolve this, glyph + group pairs are given higher priority than group + glyp
 
 The task of finding a value for a particular glyph + glyph combination is relatively easy. The following algorithm demonstrates a way that it can be done for a given pair.
 
-If the pair *first glyph + second glyph* is in the kerning data:
-  - The value for *first glyph + second glyph* is the value.
-  - Stop.
-
-If the second glyph is in a kerning group:
-  *second group* is the name of the kerning group containing the second glyph.
-  If the pair *first glyph + second group* is in the kerning data:
-    - The value for *first glyph + second group* is the value.
+{: .algorithmdiagram}
+- If the pair *first glyph + second glyph* is in the kerning data:
+    - The value for *first glyph + second glyph* is the value.
     - Stop.
 
-If the first glyph is in a kerning group:
-  *first group* is the name of the kerning group containing the first glyph.
-  If the pair *first group + second glyph* is in the kerning data:
-    - The value for *first first + second glyph* is the value.
-    - Stop.
+- If the second glyph is in a kerning group:
+    - *second group* is the name of the kerning group containing the second glyph.
+    - If the pair *first glyph + second group* is in the kerning data:
+        - The value for *first glyph + second group* is the value.
+        - Stop.
 
-If the first glyph is in a kerning group and the second glyph is in a kerning group:
-  *first group* is the name of the kerning group containing the first glyph.
-  *second group* is the name of the kerning group containing the second glyph.
-  If the pair *first group + second group* is in the kerning data:
-    - The value for *first group + second group* is the value.
-    - Stop.
+- If the first glyph is in a kerning group:
+    - *first group* is the name of the kerning group containing the first glyph.
+    - If the pair *first group + second glyph* is in the kerning data:
+        - The value for *first first + second glyph* is the value.
+        - Stop.
 
-The value is zero.
+- If the first glyph is in a kerning group and the second glyph is in a kerning group:
+    - *first group* is the name of the kerning group containing the first glyph.
+    - *second group* is the name of the kerning group containing the second glyph.
+    - If the pair *first group + second group* is in the kerning data:
+        - The value for *first group + second group* is the value.
+        - Stop.
+
+- The value is zero.
 
 ##### Sample implementation
 
@@ -277,7 +289,7 @@ def lookupKerningValue(pair, kerning, groups, fallback=0):
 
 ```
 
-# Converting to UFO 3 formatted kerning
+## Converting to UFO 3 formatted kerning
 
 
 In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had the same name as a group and a glyph, that member was the group. In UFO 3, all kerning groups are identified through the use of the standard group prefixes defined in the [groups.plist specification][group's name]. An algorithm for converting UFO 1 and UFO 2 group kerning is detailed below.
@@ -286,6 +298,7 @@ In UFO 1 and UFO 2, the implication was that if a member of a kerning pair had t
 
 Note: this algorithm, and its sample implementation, does not check the compliance of the kerning groups with the requirements defined in the groups.plist specification.
 
+{: .algorithmdiagram}
 -   Make a list of groups referenced on the first side of kerning pairs.
 -   For each of these groups:
 -   -   *original group name* is the original group name.

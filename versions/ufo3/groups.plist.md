@@ -3,6 +3,7 @@ layout: default
 title: groups.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains the definitions of arbitrary groups of glyphs. This file is optional. If it is not defined in the UFO, there is no group data.
@@ -36,6 +37,7 @@ One or more kerning groups may be unreferenced in kerning pairs. This is allowed
 
 Glyphs that appear in more than one group per side create a logical ambiguity. For example, consider these two kerning groups:
 
+{: .example-group}
 | group name      | group members                |
 |-----------------|------------------------------|
 | public.kern1.A1 | A, Aacute, Agrave, Adieresis |
@@ -43,6 +45,7 @@ Glyphs that appear in more than one group per side create a logical ambiguity. F
 
 The kerning in this example contains the following kerning pairs:
 
+{: .example-kerning}
 | side 1          | side 2 | value |
 |-----------------|--------|-------|
 | public.kern1.A1 | T      | -50   |

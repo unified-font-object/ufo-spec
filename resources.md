@@ -7,8 +7,6 @@ title: Resources
 
 The UFO team strives to make it as easy as possible to add UFO support to applications and toolkits. To that effect, we present a small collection of resources.
 
-<hr class="subsection">
-
 ## Macintosh Applications
 
 These resources are useful for developing Macintosh OS X applications that support the UFO format.

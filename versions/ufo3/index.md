@@ -59,19 +59,19 @@ UFO 3 follows this file structure:
 
 Each of the files and directories have unique meanings, purposes and data structures:
 
-| [metainfo.plist](metainfo.plist)                       | Format version, creator, etc. |
-| [fontinfo.plist](fontinfo.plist)                       | Various font info data. |
-| [groups.plist](groups.plist)                           | Glyph group definitions. |
-| [kerning.plist](kerning.plist)                         | Kerning data. |
-| [features.fea](features.fea)                           | OpenType feature definitions. |
-| [lib.plist](lib.plist)                                 | Arbitrary custom data. |
-| [layercontents.plist](layercontents.plist)             | Glyphs directory name to layer name mapping. |
-| [glyphs*](glyphs)                                      | A directory containing a glyph set representing a [layer](#glyph-layers). |
-| glyphs*/[contents.plist](glyphs/contents.plist)        | File name to glyph name mapping. |
-| glyphs*/[layerinfo.plist](glyphs/layerinfo.plist)      | Information about the layer. |
-| glyphs*/[*.glif](glyphs/glif)                          | A glyph definition. |
-| [images](images)                                       | A directory containing images referenced by glyphs. |
-| [data](data)                                           | Arbitrary custom data in a quantity or structure that can't be stored in lib.plist. |
+| [metainfo.plist](metainfo.plist) | Format version, creator, etc. |
+| [fontinfo.plist](fontinfo.plist) | Various font info data. |
+| [groups.plist](groups.plist) | Glyph group definitions. |
+| [kerning.plist](kerning.plist) | Kerning data. |
+| [features.fea](features.fea) | OpenType feature definitions. |
+| [lib.plist](lib.plist) | Arbitrary custom data. |
+| [layercontents.plist](layercontents.plist) | Glyphs directory name to layer name mapping. |
+| [glyphs*](glyphs) | A directory containing a glyph set representing a [layer](#glyph-layers). |
+| glyphs*/[contents.plist](glyphs/contents.plist) | File name to glyph name mapping. |
+| glyphs*/[layerinfo.plist](glyphs/layerinfo.plist) | Information about the layer. |
+| glyphs*/[*.glif](glyphs/glif) | A glyph definition. |
+| [images](images) | A directory containing images referenced by glyphs. |
+| [data](data) | Arbitrary custom data in a quantity or structure that can't be stored in lib.plist. |
 
 ### Glyph Layers
 
@@ -83,7 +83,7 @@ Layers are implemented with a series of glyph sets within the UFO. Each glyph se
 
 A character to glyph mapping for the UFO may be created by skimming the GLIF files in the required layer and retrieving the first Unicode element, if present. There is no guarantee that a single Unicode value will not be used in more than one GLIF. All authoring tools may handle these conflicts in their own particular way. Likewise, a glyph with the same name in more than one layer may have different Unicode values in each layer. Authoring tools using the native file model should maintain the different Unicode values. Import/expert model authoring tools may or may not retain the Unicode values on the layers that are not the required layer. All of this should be done in accordance with the policies outlined in the [Authoring Tool Guidelines].
 
-# Changes from UFO 2
+## Changes from UFO 2
 
 In general, there have been many editorial changes that don't affect the content. The term "authoring tool" has been used to make the references to applications, scripts, etc. consistent. Various conformance statements were modified to make them consistent with RFC 2119.
 
@@ -197,7 +197,7 @@ The images directory was added.
 
 The data directory was added.
 
-# Important corrections
+## Important corrections
 
 #### Guideline
 

@@ -3,6 +3,7 @@ layout: default
 title: lib.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file is a place to store authoring tool specific, user specific or otherwise arbitrary data for the font. It is optional. If it is not defined in the UFO, there is no lib data.

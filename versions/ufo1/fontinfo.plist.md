@@ -3,6 +3,7 @@ layout: default
 title: fontinfo.plist
 ---
 
+{: .fileformat}
 | **File Format** | [XML Property List](http://www.apple.com/DTDs/PropertyList-1.0.dtd) |
 
 This file contains information about the font itself, such as naming and dimensions. This file is optional. Not all values are required for a proper file.
@@ -11,7 +12,7 @@ This file contains information about the font itself, such as naming and dimensi
 
 The property list data consists of a dictionary at the top level. The keys and values are as follows.
 
-| key | value type | description |
+| key | type | description |
 |-|-|-|
 | ascender | integer or float | Ascender value. |
 | capHeight | integer or float | Cap height value. |
