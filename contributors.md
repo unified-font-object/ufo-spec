@@ -1,7 +1,7 @@
 ---
 layout: default
 navigation: true
-order: 2
+order: 4
 title: Contributors
 ---
 

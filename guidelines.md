@@ -1,7 +1,7 @@
 ---
 layout: default
 navigation: true
-order: 5
+order: 2
 title: Guidelines
 ---
 
