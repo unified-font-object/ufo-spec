@@ -5,23 +5,25 @@ order: 4
 title: Contributors
 ---
 
-The UFO format was developed by and is maintained by:
+The UFO format was created by Just van Rossum, Erik van Blokland and Tal Leming. The specification is managed and maintained by:
 
-| [Tal Leming - editor](mailto:tal@typesupply.com) | [Type Supply](http://typesupply.com) |
-| [Just van Rossum](mailto:just@letterror.com)     | [LettError](http://letterror.com) |
-| [Erik van Blokland](mailto:erik@letterror.com)   | [LettError](http://letterror.com) |
+- Tal Leming
+- Erik van Blokland
+- Just van Rossum
+- Ben Kiel
+- Frederik Berlaen
 
-Input, corrections and contributions are welcome.
+The UFO specification is a community project with input and edits from many people, including:
+
+{% for contributor in site.github.contributors %}
+	{% if contributor.contributions > 1 %}
+		{% assign c = "edits" %}
+	{% else %}
+		{% assign c = "edit" %}
+	{% endif %}
+- [{{ contributor.login }}]({{ contributor.html_url }}) – {{ contributor.contributions }} {{ c }}
+{% endfor %}
 
 ## Site Credits
 
 The typefaces used on this site are from the [IBM Plex](https://www.ibm.com/plex/) family designed by [Bold Monday](https://www.boldmonday.com) and a wide array of collaborators.
-
-- site: {{ site }}
-- site.github {{ site.github }}
-- site.github.hostname {{ site.github.hostname }}
-- repositories:
-
-{% for repository in site.github.public_repositories %}
-	- {{ repository.name }}
-{% endfor %}
