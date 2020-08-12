@@ -43,7 +43,6 @@
 }
 
 body {
-    font-size: 17px;
     padding: 5em 0;
 }
 
@@ -532,7 +531,7 @@ h6:hover>.header-link {
     #content {
         position: relative;
         display: block;
-        width: 80%;
+        width: 90%;
         margin: 1em auto;
         padding: 0;
         border: none;
@@ -544,4 +543,16 @@ h6:hover>.header-link {
         font-size: 1.5em;
     }
 
+}
+
+@media only screen and (max-width: 750px) {
+    body {
+        font-size: 29px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+        font-size: 34px;
+    }
 }
