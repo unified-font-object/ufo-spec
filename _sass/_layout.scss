@@ -453,18 +453,6 @@ h6:hover>.header-link {
 // Responsive
 // ----------
 
-@media only screen and (max-width: 500px) {
-    body {
-        font-size: 34px;
-    }
-}
-
-@media only screen and (max-width: 750px) {
-    body {
-        font-size: 29px;
-    }
-}
-
 @media only screen and (max-width: 1000px) {
     
     #wrapper {
@@ -555,4 +543,16 @@ h6:hover>.header-link {
         font-size: 1.5em;
     }
 
+}
+
+@media only screen and (max-width: 750px) {
+    body {
+        font-size: 29px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+        font-size: 34px;
+    }
 }
