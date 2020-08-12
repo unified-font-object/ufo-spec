@@ -102,6 +102,7 @@ body {
     color: var(--color-text);
     font-family: "IBM Plex Serif";
     font-weight: var(--weight-base);
+    font-size: 17px;
     line-height: 1.5em;
 }
 
@@ -452,12 +453,20 @@ h6:hover>.header-link {
 // Responsive
 // ----------
 
+@media only screen and (max-width: 500px) {
+    body {
+        font-size: 34px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    body {
+        font-size: 29px;
+    }
+}
+
 @media only screen and (max-width: 1000px) {
     
-    body {
-        font-size: 17px;
-    }
-
     #wrapper {
         position: absolute;
         left: 0;
@@ -546,16 +555,4 @@ h6:hover>.header-link {
         font-size: 1.5em;
     }
 
-}
-
-@media only screen and (max-width: 750px) {
-    body {
-        font-size: 29px;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    body {
-        font-size: 34px;
-    }
 }
