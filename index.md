@@ -15,10 +15,24 @@ title: Overview
 
 ### Versions
 
-| [UFO 1]({{site.baseurl}}/versions/ufo1/index.html) | Published in 2004. |
-| [UFO 2]({{site.baseurl}}/versions/ufo2/index.html) | Published in March 2009. |
-| [UFO 3]({{site.baseurl}}/versions/ufo3/index.html) | Published in March 2012. |
+| [UFO 1] | Published in 2004. |
+| [UFO 2] | Published in March 2009. |
+| [UFO 3] | Published in March 2012. |
+| [UFO 4] | In development. |
 
-### Download
+### Questions, Comments, Discussions
 
-The source for the documentation, an issue tracker and more are located at [https://github.com/unified-font-object/ufo-spec](https://github.com/unified-font-object/ufo-spec).
+If you have questions, comments or would like to discuss the UFO specification, please post to the [UFO Specification Google Group].
+
+### Contribute
+
+[Contributions are welcome!] The source for the documentation, an issue tracker and more are located on [GitHub].
+
+
+  [UFO 1]: versions/ufo1/index.html
+  [UFO 2]: versions/ufo2/index.html
+  [UFO 3]: versions/ufo3/index.html
+  [UFO 4]: versions/ufo4/index.html
+  [UFO Specification Google Group]: https://groups.google.com/g/ufo-spec
+  [Contributions are welcome!]: contributing
+  [GitHub]: https://github.com/unified-font-object/ufo-spec
