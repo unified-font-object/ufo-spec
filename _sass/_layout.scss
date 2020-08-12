@@ -102,7 +102,6 @@ body {
     color: var(--color-text);
     font-family: "IBM Plex Serif";
     font-weight: var(--weight-base);
-    font-size: 17px;
     line-height: 1.5em;
 }
 
@@ -454,6 +453,10 @@ h6:hover>.header-link {
 // ----------
 
 @media only screen and (max-width: 1000px) {
+    
+    body {
+        font-size: 17px;
+    }
 
     #wrapper {
         position: absolute;
