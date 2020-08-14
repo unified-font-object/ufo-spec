@@ -12,7 +12,7 @@
     --color-green : rgb(0, 180, 0);
     --color-blue : rgb(0, 0, 180 );
     --color-magenta : rgb(230, 0, 220);
-    
+
     --color-background: var(--color-white);
     --color-text: var(--color-black);
     --color-link: var(--color-red);
@@ -68,7 +68,7 @@ body {
 
 }
 
-// Navigation 
+// Navigation
 
 #navigation {
     position: fixed;
@@ -79,7 +79,7 @@ body {
     border-top: 1px solid var(--color-quiet);
 }
 
-// Content 
+// Content
 
 #content {
     position: relative;
@@ -122,14 +122,12 @@ a {
     }
 }
 
-// Body Text 
+// Body Text
 
 p {
     margin: 0;
     padding: 0 0 0.55em 0;
 }
-
-// Headers
 
 h1 {
     padding: 0 0 0.4em 0;
@@ -184,7 +182,7 @@ h6 {
     line-height: 1.2em;
 }
 
-// Intro 
+// Intro
 
 h1.intro {
     padding: 0.5em;
@@ -195,10 +193,10 @@ h1.intro {
     line-height: 1.25em;
 }
 
-// Code 
+// Code
 
 pre {
-    overflow: hidden;
+    overflow-y: auto;
     margin: 1em 0;
     padding: 0.5em 0.75em;
     font-family: "IBM Plex Mono";
@@ -215,7 +213,7 @@ code {
     background-color: var(--color-block);
 }
 
-// Table 
+// Table
 
 table {
     width: 100%;
@@ -254,10 +252,10 @@ table {
     td:nth-last-child(1) {
         padding-right: 0;
     }
-    
+
 }
 
-// Specification Tables 
+// Specification Tables
 
 table.name-description td:nth-child(1) {
     width: 6em;
@@ -286,7 +284,7 @@ table.name-type-description-default td:nth-child(4) {
     font-style: italic;
 }
 
-// Example Tables 
+// Example Tables
 
 table.example-group td:nth-child(1) {
     width: 25%;
@@ -303,7 +301,7 @@ table.example-kerning td:nth-child(2) {
 table.example-kerning td:nth-child(3) {
 }
 
-// File Format Table 
+// File Format Table
 
 table.fileformat {
     width: auto;
@@ -322,7 +320,7 @@ table.fileformat a:hover {
     color: var(--color-background);
 }
 
-// Lists 
+// Lists
 
 ul, ol {
     font-family: "IBM Plex Sans";
@@ -330,7 +328,7 @@ ul, ol {
     padding-left: 0;
 }
 
-// File Diagram 
+// File Diagram
 
 ul.filediagram {
     margin: 0.5em 0;
@@ -352,7 +350,7 @@ ul.filediagram {
 
 }
 
-// Algorithm Diagram 
+// Algorithm Diagram
 
 ul.algorithmdiagram {
     margin: 1em 0;
@@ -375,7 +373,7 @@ ul.algorithmdiagram {
 
 }
 
-// Navigation 
+// Navigation
 
 #navigation {
     ul {
@@ -427,7 +425,7 @@ ul.algorithmdiagram {
     display: none;
 }
 
-// Anchors 
+// Anchors
 
 a.header-link {
     padding-left: 0.15em;
