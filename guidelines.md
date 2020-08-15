@@ -1,8 +1,8 @@
 ---
 layout: default
 navigation: true
-order: 5
-title: Authoring Tool Guidelines
+order: 2
+title: Guidelines
 ---
 
 These guidelines define requirements and recommendations for authoring tools that work with UFOs. These guidelines are applicative to all versions of the UFO specification. Each version, and each section, will have additional specific guidelines for authoring tools to follow.

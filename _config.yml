@@ -28,6 +28,7 @@ permalink: /:title/
 
 gems:
   - rouge
+  - jekyll-github-metadata
 # Exclude these files from your production _site
 exclude:
     - Gemfile
