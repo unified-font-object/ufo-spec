@@ -9,7 +9,7 @@ The UFO specification is a community project and problem reports and enhancement
 
 ## Problem Identification
 
-The process begins when a problem is identified. A problem may be a mistake in the current specification, a missing bit of data, a new idea that needs storage or something else. When considering the problem, it is important to consider the following questions:
+The process begins when a problem is identified. A problem may be a mistake in the current specification, a missing bit of data, a new idea that needs storage or something else. When defining the problem it is important to consider the following questions:
 
 - Is the problem caused by a mistake in the specification?
 - Is the problem caused by something missing in the specification?
@@ -29,7 +29,7 @@ If the problem is only affecting a single user, workflow or tool, it is often be
 
 ## Solution Development
 
-Solutions are developed collaboratively in the issue defining the problem. Ideally, the person who identifies the problem will lead, or at least participate in, the development of a solution to the problem. The development process is deliberately slow in order to keep the specification as clear of cruft as possible. Many ideas seem great at first, but over time better solutions evolve through collaboration or the ideas fall by the wayside altogether. Simple ideas with obvious solutions can move quickly, but more complex ideas need time to mature. There is no one development path for all solution, but there are some general steps in the process.
+Solutions are developed collaboratively in the issue defining the problem. Ideally, the person who identifies the problem will lead, or at least participate in, the development of a solution to the problem. The development process is deliberately slow in order to keep the specification as clear of cruft as possible. Many ideas seem great at first, but over time better solutions evolve through collaboration or the ideas fall by the wayside altogether. Simple ideas with obvious solutions can move quickly, but more complex ideas need time to mature. There is no one development path for all solutions, but there are some general steps in the process.
 
 ### Work out a solution in abstract.
 
@@ -50,7 +50,7 @@ Once the general idea for a solution is worked out, the storage location and for
 - The storage formats must be human readable and human editable.   In practice this means that files should be plain text. The specification makes use of XML, but CSV, YAML and so on are all potentially acceptable. "Human readable and editable" does not necessarily mean "easy to manually edit." Rather, it means "if absolutely necessary, a user must be able to open the file and work on it without any tool beyond a plain text editor." The only exceptions to this are things that can't be represented with plain text, such as images.
 - Programmatic reading/writing of the storage format should be easy to implement, preferably with widely accessible, open libraries in multiple programming languages.
 
-If a storage format for the data that fits these requirements already exists, the existing format should be considered instead of inventing a new format. Likewise, if there is data with a similar structure already in the UFO specification, the previously defined structure should serve as a model format. For 
+If a storage format for the data that fits these requirements already exists, the existing format should be considered instead of inventing a new format. Likewise, if there is data with a similar structure already in the UFO specification, the previously defined structure should serve as a model format.
 
 Additions to the the specification can be stored in several places:
 
