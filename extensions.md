@@ -29,14 +29,14 @@ This data could be stored in `fontinfo.plist` with this serialization structure:
 ```xml
 <key>com.somefoundry.productionTool</key>
 <dict>
-	<key>autohint</key>
-	<true/>
-	<key>decomposeComponents</key>
-	<false/>
-	<key>removeOverlap</key>
-	<true/>
-	<key>roundToIntegers</key>
-	<false/>
+  <key>autohint</key>
+  <true/>
+  <key>decomposeComponents</key>
+  <false/>
+  <key>removeOverlap</key>
+  <true/>
+  <key>roundToIntegers</key>
+  <false/>
 </dict>
 ```
 
@@ -76,20 +76,20 @@ This data could be stored in `fontinfo.plist` with this serialization structure:
 ```xml
 <key>com.sometool.smartGuides</key>
 <dict>
-	<key>7pdbofkUhz</key>
-	<dict>
-		<key>unicodeCategory</key>
-		<string>Lu</string>
-	</dict>
-	<key>z1bkCMlhNb</key>
-	<dict>
-		<key>contourCount</key>
-		<array>
-			<string>&gt;</string>
-			<integer>0</integer>
-		</array>
-		<key>glyphNamePattern</key>
-		<string>*.sc*</string>
-	</dict>
+  <key>7pdbofkUhz</key>
+  <dict>
+    <key>unicodeCategory</key>
+    <string>Lu</string>
+  </dict>
+  <key>z1bkCMlhNb</key>
+  <dict>
+    <key>contourCount</key>
+    <array>
+      <string>&gt;</string>
+      <integer>0</integer>
+    </array>
+    <key>glyphNamePattern</key>
+    <string>*.sc*</string>
+  </dict>
 </dict>
 ```
