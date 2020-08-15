@@ -63,10 +63,10 @@ Data collisions are prevented by using a reverse domain name storage key system.
 In some cases, a tool may need to refer to specific objects. UFO 3 introduced object identifiers that are designed for such purposes. For example, if a tool shows font guidelines only when certain conditions are met:
 
 {: .algorithmdiagram}
-- Smart Guides
+- Smart Guide
 	- guide identifier: 7pdbofkUhz
-	- unicode category: Lu
-- Smart Guides
+		- unicode category: Lu
+- Smart Guide
 	- guide identifier: z1bkCMlhNb
 	- glyph name pattern: *.sc*
 	- contour count: > 0
