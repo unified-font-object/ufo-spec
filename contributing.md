@@ -1,7 +1,7 @@
 ---
 layout: default
 navigation: true
-order: 4
+order: 3
 title: Contributing
 ---
 

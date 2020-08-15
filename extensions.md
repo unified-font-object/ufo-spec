@@ -1,8 +1,8 @@
 ---
 layout: default
 navigation: true
-order: 3
-title: Extending
+order: 5
+title: Extensions
 ---
 
 **THIS IS A DRAFT.**
