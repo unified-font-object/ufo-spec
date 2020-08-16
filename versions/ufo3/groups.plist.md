@@ -96,3 +96,4 @@ Any appearances of a glyph after the first appearance of that glyph in a group m
   [XML Property List]: ../conventions.html#xml-property-lists
   [kerning.plist]: ../kerning.plist
   [features.fea]: ../features.fea
+  [control characters]: ../conventions/#controls

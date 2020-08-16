@@ -35,3 +35,4 @@ Authoring tools should preserve GLIF file names when writing into existing UFOs.
 ```
 
   [conventions]: ../../conventions
+  [control characters]: ../../conventions/#controls
