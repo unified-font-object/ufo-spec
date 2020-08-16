@@ -56,6 +56,31 @@ The handling of the feature file is undefined.
 
 This data is optional. Glyph names must not occur more than once. The list may contain glyphs that are not in the font. An empty list or the absence of this key means that all glyphs are to be exported as-is with groups and kerning untouched.
 
+#### public.objectLibs
+
+This key provides a dictionary of data containing object-level lib data for individual guidelines within fontinfo.plist. The dictionary is structured with object identifiers that correspond to guidelines as keys and object-level dictionaries as values. Within each of these of these object-level dictionaries, keys should follow a [reverse domain naming scheme]. The pattern "public.\*", where `*` represents an arbitrary string of one or more characters, is reserved for use in standardized lib keys. It is recommended that the data stored as a value be as shallow as possible. If a key in this dictionary is not an identifier of any guideline within fontinfo.plist, the key and value may be discarded.
+
+```xml
+<key>com.sometool.smartGuides</key>
+<dict>
+  <key>7pdbofkUhz</key>
+  <dict>
+    <key>unicodeCategory</key>
+    <string>Lu</string>
+  </dict>
+  <key>z1bkCMlhNb</key>
+  <dict>
+    <key>contourCount</key>
+    <array>
+      <string>&gt;</string>
+      <integer>0</integer>
+    </array>
+    <key>glyphNamePattern</key>
+    <string>*.sc*</string>
+  </dict>
+</dict>
+```
+
 ### Example
 
 ```xml
