@@ -146,14 +146,14 @@ This element may occur any number of times.
 {: .name-type-description-default}
 | name | type | description | default |
 |--|--|--|--|
-| x | integer or float | The 'x' coordinate. Optional if `y` is provided and `angle` is not provided. See below for details. | None |
-| y | integer or float | The 'y' coordinate. Optional if `x` is provided and `angle` is not provided. See below for details. | None |
-| angle | integer or float | The angle of the guideline. This must be an angle between 0 and 360 degrees in a counter-clockwise direction from the horizontal. If `x` or `y` are not specified, `angle` must not be specified. See below for details. | None |
+| x | integer or float | The 'x' coordinate. See below for details. | 0 |
+| y | integer or float | The 'y' coordinate. See below for details. | 0 |
+| angle | integer or float | The angle of the guideline. This must be an angle between 0 and 360 degrees in a counter-clockwise direction from the horizontal. See below for details. | 0 |
 | name | string | An arbitrary name for the guideline. This attribute is optional. | no name |
 | color | string | The color that should be applied to the guideline. The format follows the [color definition] standard. This attribute is optional. | no color |
 | identifier | string | Unique identifier for the guideline. This attribute is not required and should only be added to guidelines as needed. However, once an identifier has been assigned to a guideline it must not be unnecessarily removed or changed. Identifiers may be changed in incoming guidelines during editing operations such as "paste," but they should be maintained unless a duplicate identifier will be created. The identifier value must be unique within all identifiers (including identifiers for elements other than guidelines) in the glyph that the guideline belongs to but it is not required to be unique among the identifiers assigned in other glyphs or in fontinfo.plist. The identifier specification is detailed in the [conventions]. | no identifier |
 
-The guideline extends along `angle` to infinity in both directions out of the point defined by `x` and `y`. If `y` and `angle` are omitted, the element represents a vertical guideline. If `x` and `angle` are omitted, the element represents a horizontal guideline.
+The guideline extends along `angle` to infinity in both directions out of the point defined by `x` and `y`.
 
 #### This element has no child elements.
 
