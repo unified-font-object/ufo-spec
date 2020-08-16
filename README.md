@@ -7,10 +7,9 @@ The Unified Font Object (UFO) is a cross-platform, cross-application, human read
 
 ## Building documentation locally
 1. Install ruby gems and bundler ([how to](https://idratherbewriting.com/jekylldoctheme-separate-outputs/mydoc/mydoc_install_dependencies.html))
-2. in `_config.yml` change `baseurl: "/"` to `baseurl: ""` (_note:_ this is a hack, anyone who knows jekyll better, please PR something that avoids this)
-3. `bundle install`
-4. `bundle exec jekyll serve`
-5. Browse to localhost:4000
+2. `bundle install`
+3. `bundle exec jekyll serve`
+4. Browse to localhost:4000
 
 ## UFO Specification Process
 
