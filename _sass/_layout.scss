@@ -30,6 +30,8 @@
     --weight-base: var(--weight-light);
 
     --transition-duration: 0.25s;
+
+    --max-column-width: 80ch; // 80 average characters (based on width of "zero" glyph) of main font
 }
 
 
@@ -104,6 +106,10 @@ body {
     font-weight: var(--weight-base);
     font-size: 17px;
     line-height: 1.5em;
+}
+
+p, ul {
+    max-width: var(--max-column-width);
 }
 
 a {
@@ -453,7 +459,7 @@ h6:hover>.header-link {
 // Responsive
 // ----------
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1150px) {
     
     #wrapper {
         position: absolute;
