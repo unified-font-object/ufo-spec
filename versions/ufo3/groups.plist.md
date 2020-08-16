@@ -11,7 +11,7 @@ This file contains the definitions of arbitrary groups of glyphs. This file is o
 ## Specification
 
 
-The property list data consists of a dictionary at the top level. Keys are group names and values are lists of glyph name strings. Group names must contain one or more characters. There is no name length limit and any character may be used in a group name. The pattern "public.\*", where \* represents an arbitrary string of one or more characters, is reserved for use in standardized group names. With the exception of the kerning groups defined below, glyphs may be in more than one group and they may appear within the same group more than once. Glyphs in the groups are not required to be in the font.
+The property list data consists of a dictionary at the top level. Keys are group names and values are lists of glyph name strings. Group names must contain one or more characters. There is no name length limit and any character except for [control characters] may be used in a group name. The pattern "public.\*", where \* represents an arbitrary string of one or more characters, is reserved for use in standardized group names. With the exception of the kerning groups defined below, glyphs may be in more than one group and they may appear within the same group more than once. Glyphs in the groups are not required to be in the font.
 
 ### Kerning Groups
 
