@@ -498,3 +498,4 @@ This key provides a dictionary of data containing object-level lib data for indi
   [reverse domain naming scheme]: ../../conventions/#reverse-domain-naming-schemes
   [data directory]: ../../data
   [OpenType GDEF Ligature Caret List table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#ligature-caret-list-table-overview
+  [control characters]: ../../conventions/#controls
