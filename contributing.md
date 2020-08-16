@@ -116,5 +116,5 @@ As a problem is discussed, the specification managers will advise the discussion
   [fork of the specification]: https://github.com/unified-font-object/ufo-spec
   [pull request]: https://github.com/unified-font-object/ufo-spec/pulls
   
-### Meetings
+## Meetings
 Historically there are informal meetings about the specification around the [Robothon](http://typemedia.org/robothon/) conference (held roughly every three years). On July 31, 2020, we had the first open virtual meeting, the [notes of which are online](https://docs.google.com/document/d/1REf695Yxnu3aj_UqcVfF0WTyV8PUaPo-r6duEHxtj48/edit).
