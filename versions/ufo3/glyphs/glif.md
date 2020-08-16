@@ -392,6 +392,31 @@ than 128 characters. Otherwise, a SHA 512 hash is computed, and this is used as
 the Hint ID for the hint dict. The SHA 512 hash is written with lowercase
 hexidecimal digits.
 
+##### public.objectLibs
+
+This key provides a dictionary of data containing object-level lib data for individual contours, points, components, anchors or guidelines within the glyph that this lib belongs to. The dictionary is structured with object identifiers that correspond to objects in the glyph as keys and object-level dictionaries as values. Within each of these of these object-level dictionaries, keys should follow a [reverse domain naming scheme]. The pattern "public.\*", where `*` represents an arbitrary string of one or more characters, is reserved for use in standardized lib keys. It is recommended that the data stored as a value be as shallow as possible. If a key in this dictionary is not an identifier of any object within this glyph, the key and value may be discarded.
+
+```xml
+<key>public.objectIdentifiers</key>
+<dict>
+  <key>vMlVuTQd4d</key>
+  <dict>
+    <key>com.foundry.contourColor</key>
+    <string>1,0,0,0.5</string>
+  </dict>
+  <key>KN3WZjorob</key>
+  <dict>
+    <key>com.foundry.pointColor</key>
+    <string>0,1,0,0.5</string>
+  </dict>
+  <key>h0ablXAzTg</key>
+  <dict>
+    <key>com.foundry.pointColor</key>
+    <string>1,0,0,0.5</string>
+  </dict>
+</dict>
+```
+
 ### Example
 
 ```xml
