@@ -16,7 +16,7 @@ The directory names must begin with "glyphs." and must be followed by a string t
 
 The required glyph set stored in the *glyphs* directory may have a user defined name. If it does not, the name "public.default" must be used to represent the name of the layer in the contents.
 
-Layer names may contain any character and they must be at least one character long. There is no maximum layer name length. Layer names must be unique within the font. The pattern "public.\*", where \* represents an arbitrary string of one or more characters, is reserved for use in standardized layer names.
+Layer names may contain any character except they must not contain [control characters]. They must be at least one character long. There is no maximum layer name length. Layer names must be unique within the font. The pattern "public.\*", where \* represents an arbitrary string of one or more characters, is reserved for use in standardized layer names.
 
 Authoring tools should preserve directory names when writing into existing UFOs. This can be done by referencing the existing layercontents.plist before the write operation.
 
