@@ -21,7 +21,7 @@ tree:
 ---
 
 
-A UFO is a directory representing font data with one or more glyph layers.
+A UFO is a directory or zip representing font data with one or more glyph layers.
 
 ### Terminology
 
@@ -36,7 +36,25 @@ The term "authoring tool" is used throughout this specification to refer to tool
 
 This list is not exclusive.
 
-### File Structure
+### Storage Formats
+
+UFO has two possible storage formats. The first, "UFO Package", is a multi-file, file system directory structure. The second, "UFO ZIP", is a [ZIP archive] containing the same directory structure as defined for _UFO Package_.
+
+A _UFO ZIP_ must be a ZIP archive that follows these specifications:
+
+1. ZIP64 format is allowed, but not required.
+2. File names must be encoded to UTF-8.
+3. All contents of the UFO must be contained within a single directory. For example, `rootdirectory/metainfo.plist` and `rootdirectory/kerning.plist`. The name of this directory will be arbitrary and no assumptions should be made about it's name.
+4. The file may or may not be compressed.
+5. The file must not be encrypted.
+
+### File Name Extensions
+
+| ----- | ----------- |
+| .ufo  | UFO Package |
+| .ufoz | UFO ZIP     |
+
+### Directory Structure
 
 UFO 3 follows this file structure:
 
@@ -88,6 +106,10 @@ A character to glyph mapping for the UFO may be created by skimming the GLIF fil
 In general, there have been many editorial changes that don't affect the content. The term "authoring tool" has been used to make the references to applications, scripts, etc. consistent. Various conformance statements were modified to make them consistent with RFC 2119.
 
 This list is for reference only as it may leave some changes out. The sub-sections of the specification overrule this list.
+
+### Storage Format
+
+A single-file version of the format was added.
 
 ### metainfo.plist
 
@@ -204,6 +226,7 @@ The data directory was added.
 The guideline’s angle attribute was changed from being measured in the clockwise direction to the counter-clockwise direction.
 
   [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
+  [ZIP archive]: https://en.wikipedia.org/wiki/Zip_(file_format)
   [metainfo.plist]: metainfo.plist
   [fontinfo.plist]: fontinfo.plist
   [groups.plist]: groups.plist
