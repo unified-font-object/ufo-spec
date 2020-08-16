@@ -546,3 +546,15 @@ h6:hover>.header-link {
 
     
 }
+
+@media only screen and (max-width: 400px) {
+    // prevent overflow for words as long as "contributing" on small screens
+    h1 {
+        font-size: 15vw;
+    }
+
+    // "Thin" renders somewhat poorly on iPhone screens, so this makes it just slightly thicker
+    h1.intro {
+        font-weight: var(--weight-extralight);
+    }
+}
