@@ -24,7 +24,7 @@ Libs are useful for storing data about the objects that they relate to. For exam
 	- round to integers: no
 	- autohint: yes
 
-This data could be stored in `fontinfo.plist` with this serialization structure:
+This data could be stored in `lib.plist` with this serialization structure:
 
 ```xml
 <key>com.somefoundry.productionTool</key>
@@ -71,7 +71,7 @@ In some cases, a tool may need to refer to specific objects. UFO 3 introduced ob
 	- glyph name pattern: *.sc*
 	- contour count: > 0
 
-This data could be stored in `fontinfo.plist` with this serialization structure:
+This data could be stored in `lib.plist` with this serialization structure:
 
 ```xml
 <key>com.sometool.smartGuides</key>
