@@ -8,7 +8,7 @@ title: contents.plist
 
 *contents.plist* contains a dictionary that maps glyph names to GLIF file names.
 
-Glyph names may contain any character and they may be any length. Glyph names must be unique within the layer.
+Glyph names may contain any character except they must not contain [control characters]. They may be any length. Glyph names must be unique within the layer.
 
 ## Specification
 
