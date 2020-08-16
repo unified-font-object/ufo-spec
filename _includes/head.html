@@ -5,19 +5,19 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <link rel="stylesheet" href="{{ "/media/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
   <!-- favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="media/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="media/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="media/favicon/favicon-16x16.png">
-  <link rel="manifest" href="media/favicon/site.webmanifest">
-  <link rel="mask-icon" href="media/favicon/safari-pinned-tab.svg" color="#e60000">
-  <link rel="shortcut icon" href="media/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/media/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/media/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/media/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/media/favicon/safari-pinned-tab.svg" color="#e60000">
+  <link rel="shortcut icon" href="/media/favicon/favicon.ico">
   <meta name="msapplication-TileColor" content="#e60000">
-  <meta name="msapplication-config" content="media/favicon/browserconfig.xml">
+  <meta name="msapplication-config" content="/media/favicon/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <!-- END favicons -->
 
