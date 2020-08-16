@@ -63,6 +63,11 @@ Examples
 | 1,0,0,1 | 1.0 | 0 | 0 | 1.0 |
 | 0,.5,0,.5 | 0 | 0.5 | 0 | 0.5 |
 
+{: #controls }
+#### control characters
+
+Any character with a Unicode value in the ranges of U+0000—U+001F (C0 controls), U+007F (delete), and U+0080—U+009F (C1 controls).
+
 ### Reverse Domain Naming Schemes
 
 In several places in the UFO the [reverse domain naming system] is recommended for creating unique keys and ids. To make a reverse domain, reverse the relevant Internet domain. For example, if the Internet domain is *unifiedfontobject.org*, the reverse domain name would be *org.unifiedfontobject*. Further extensions to make the string unique may be added. For example, *org.unifiedfontobject.MySpecialTool*.

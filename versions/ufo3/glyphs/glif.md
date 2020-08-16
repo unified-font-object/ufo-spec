@@ -37,7 +37,7 @@ In all elements, where an attribute has a defined default value the attribute is
 {: .name-description}
 | name | description |
 |--|--|
-| name | The name of the glyph. This must be at least one character long. Different font specifications, such as OpenType, often have their own glyph name restrictions. Authoring tools should not make assumptions about the validity of a glyph's name for a particular font specification. |
+| name | The name of the glyph. This must be at least one character long. Names must not contain [control characters]. Different font specifications, such as OpenType, often have their own glyph name restrictions. Authoring tools should not make assumptions about the validity of a glyph's name for a particular font specification. |
 | format | The major format version. 2 for this version. |
 | formatMinor | The minor format version. Optional if the minor version is 0, must be present if the minor version is not 0. |
 
@@ -150,7 +150,7 @@ This element may occur any number of times.
 | x | integer or float | The 'x' coordinate. Optional if `y` is provided and `angle` is not provided. See below for details. | None |
 | y | integer or float | The 'y' coordinate. Optional if `x` is provided and `angle` is not provided. See below for details. | None |
 | angle | integer or float | The angle of the guideline. This must be an angle between 0 and 360 degrees in a counter-clockwise direction from the horizontal. If `x` or `y` are not specified, `angle` must not be specified. See below for details. | None |
-| name | string | An arbitrary name for the guideline. This attribute is optional. | no name |
+| name | string | An arbitrary name for the guideline. This attribute is optional. Name must not contain [control characters]. | no name |
 | color | string | The color that should be applied to the guideline. The format follows the [color definition] standard. This attribute is optional. | no color |
 | identifier | string | Unique identifier for the guideline. This attribute is not required and should only be added to guidelines as needed. However, once an identifier has been assigned to a guideline it must not be unnecessarily removed or changed. Identifiers may be changed in incoming guidelines during editing operations such as "paste," but they should be maintained unless a duplicate identifier will be created. The identifier value must be unique within all identifiers (including identifiers for elements other than guidelines) in the glyph that the guideline belongs to but it is not required to be unique among the identifiers assigned in other glyphs or in fontinfo.plist. The identifier specification is detailed in the [conventions]. | no identifier |
 
@@ -170,7 +170,7 @@ This element may occur any number of times.
 |--|--|--|--|
 | x | integer or float | The 'x' coordinate. | None |
 | y | integer or float | The 'y' coordinate. | None |
-| name | string | An arbitrary name for the anchor. This attribute is optional. | no name |
+| name | string | An arbitrary name for the anchor. This attribute is optional. Name must not contain [control characters]. | no name |
 | color | string | The color that should be applied to the anchor. The format follows the [color definition] standard. This attribute is optional. | no color |
 | identifier | string | Unique identifier for the anchor. This attribute is not required and should only be added to anchors as needed. However, once an identifier has been assigned to an anchor it must not be unnecessarily removed or changed. Identifiers may be changed in incoming anchors during editing operations such as "paste," but they should be maintained unless a duplicate identifier will be created. The identifier value must be unique within all identifiers (including identifiers for elements other than anchors) in the glyph that the anchor belongs to but it is not required to be unique among the identifiers assigned in other glyphs or in fontinfo.plist. The identifier specification is detailed in the [conventions]. | no identifier |
 
@@ -276,7 +276,7 @@ There is no requirement that a contour contain an on-curve point. If a contour c
 | y | integer or float | The 'y' coordinate. | None |
 | type | string | The point and/or segment type. The options are detailed below. | offcurve |
 | smooth | string | This attribute must only be given when `type` indicates the point is on-curve. When set to `yes`, it signifies that a smooth curvature should be maintained at this point, either as a `curve point` or a `tangent point` in Fontographer terms. This attribute may be set for all point types except `offcurve`. | no |
-| name | string | Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline. | no name |
+| name | string | Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline. Name must not contain [control characters]. | no name |
 | identifier | string | Unique identifier for the point. This attribute is not required and should only be added to points as needed. However, once an identifier has been assigned to a point it must not be unnecessarily removed or changed. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained unless a duplicate identifier will be created. Identifiers should also be retained when possible during outline manipulation operations such as path direction changes and remove overlap. The identifier value must be unique within all identifiers (including identifiers for elements other than poinys) in the glyph that the point belongs to but it is not required to be unique among the identifiers assigned in other glyphs, in any layerinfo.plist or in fontinfo.plist. The identifier specification is detailed in the [conventions]. | no identifier |
 
 ##### Point Types
