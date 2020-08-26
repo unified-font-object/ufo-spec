@@ -38,7 +38,8 @@ In all elements, where an attribute has a defined default value the attribute is
 | name | description |
 |--|--|
 | name | The name of the glyph. This must be at least one character long. Names must not contain [control characters]. Different font specifications, such as OpenType, often have their own glyph name restrictions. Authoring tools should not make assumptions about the validity of a glyph's name for a particular font specification. |
-| format | The format version. 2 for this version. |
+| format | The major format version. 2 for this version. |
+| formatMinor | The minor format version. Optional if the minor version is 0, must be present if the minor version is not 0. |
 
 The `name` attribute has limited uses in this version. The *contents.plist* file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the `name` attribute should be ignored, since manual editing may have caused a mismatch with the glyph name as stored in *contents.plist*, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.
 
