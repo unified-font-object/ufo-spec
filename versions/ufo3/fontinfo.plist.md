@@ -47,7 +47,7 @@ In a fontinfo.plist file, to indicate "left" and "up" the data would look like t
 | styleMapStyleName | string | Style map style. The possible values are *regular*, *italic*, *bold* and *bold italic*. These are case sensitive. |
 | versionMajor | integer | Major version. |
 | versionMinor | non-negative integer | Minor version. |
-| year | integer | The year the font was created. This attribute is deprecated as of version 2. It's presence should not be relied upon by authoring tools. However, it may occur in a font's info so authoring tools should preserve it if present. |
+| year | integer | The year the font was created. This attribute is deprecated as of version 2. Its presence should not be relied upon by authoring tools. However, it may occur in a font's info so authoring tools should preserve it if present. |
 
 #### Generic Legal Information
 
