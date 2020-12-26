@@ -397,27 +397,6 @@ hexidecimal digits.
 
 This key provides a dictionary of data containing object-level lib data for individual contours, points, components, anchors or guidelines within the glyph that this lib belongs to. The dictionary is structured with object identifiers that correspond to objects in the glyph as keys and object-level dictionaries as values. Within each of these of these object-level dictionaries, keys should follow a [reverse domain naming scheme]. The pattern "public.\*", where `*` represents an arbitrary string of one or more characters, is reserved for use in standardized lib keys. It is recommended that the data stored as a value be as shallow as possible. If a key in this dictionary is not an identifier of any object within this glyph, the key and value may be discarded.
 
-```xml
-<key>public.objectIdentifiers</key>
-<dict>
-  <key>vMlVuTQd4d</key>
-  <dict>
-    <key>com.foundry.contourColor</key>
-    <string>1,0,0,0.5</string>
-  </dict>
-  <key>KN3WZjorob</key>
-  <dict>
-    <key>com.foundry.pointColor</key>
-    <string>0,1,0,0.5</string>
-  </dict>
-  <key>h0ablXAzTg</key>
-  <dict>
-    <key>com.foundry.pointColor</key>
-    <string>1,0,0,0.5</string>
-  </dict>
-</dict>
-```
-
 ### Example
 
 ```xml
@@ -429,10 +408,10 @@ This key provides a dictionary of data containing object-level lib data for indi
   <guideline y="-12" name="overshoot"/>
   <anchor x="74" y="197" name="top"/>
   <outline>
-    <contour>
+    <contour identifier="vMlVuTQd4d">
       <point x="237" y="152"/>
       <point x="193" y="187"/>
-      <point x="134" y="187" type="curve" smooth="yes"/>
+      <point x="134" y="187" type="curve" smooth="yes" identifier="KN3WZjorob"/>
       <point x="74" y="187"/>
       <point x="30" y="150"/>
       <point x="30" y="88" type="curve" smooth="yes"/>
@@ -441,7 +420,7 @@ This key provides a dictionary of data containing object-level lib data for indi
       <point x="134" y="-10" type="curve" smooth="yes"/>
       <point x="193" y="-10"/>
       <point x="237" y="25"/>
-      <point x="237" y="88" type="curve" smooth="yes"/>
+      <point x="237" y="88" type="curve" smooth="yes" identifier="h0ablXAzTg"/>
     </contour>
   </outline>
   <lib>
@@ -450,10 +429,28 @@ This key provides a dictionary of data containing object-level lib data for indi
       <string>arbitrary custom data!</string>
       <key>public.markColor</key>
       <string>1,0,0,0.5</string>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>KN3WZjorob</key>
+        <dict>
+          <key>com.foundry.pointColor</key>
+          <string>0,1,0,0.5</string>
+        </dict>
+        <key>h0ablXAzTg</key>
+        <dict>
+          <key>com.foundry.pointColor</key>
+          <string>1,0,0,0.5</string>
+        </dict>
+        <key>vMlVuTQd4d</key>
+        <dict>
+          <key>com.foundry.contourColor</key>
+          <string>1,0,0,0.5</string>
+        </dict>
+      </dict>
       <key>public.postscript.hints</key>
       <dict>
-        <key>formatVersion</key><string>1</string>
-        <key>id</key><string>w268c237,88 237,152 193,187c134,187 74,187 30,150c30,88 30,23 74,-10c134,-10 193,-10 237,25</string>
+        <key>formatVersion</key>
+        <string>1</string>
         <key>hintSetList</key>
         <array>
           <dict>
@@ -475,6 +472,8 @@ This key provides a dictionary of data containing object-level lib data for indi
             </array>
           </dict>
         </array>
+        <key>id</key>
+        <string>w268c237,88 237,152 193,187c134,187 74,187 30,150c30,88 30,23 74,-10c134,-10 193,-10 237,25</string>
       </dict>
     </dict>
   </lib>
