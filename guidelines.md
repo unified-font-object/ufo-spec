@@ -17,7 +17,7 @@ This model allows an authoring tool to import data from a UFO and/or export data
 
 #### Native File Format
 
-This model allows the UFO to the the native file format for the authoring tool.
+This model allows the UFO to serve as the native file format for the authoring tool.
 
 ### Requirements and Recommendations
 
