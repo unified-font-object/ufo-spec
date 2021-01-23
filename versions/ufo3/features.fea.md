@@ -12,7 +12,7 @@ It is important to note that the features file may contain data that is a duplic
 
 ## Specification
 
-The file should be a plain text file and it should be in [AFDKO syntax]. If a feature file is present, it must be self-contained; for example, any glyph or mark classes must be defined within the file. No assumption should be made about the validity of the syntax.
+The file must be a plain text file and it should be in [AFDKO syntax]. If a feature file is present, it must be self-contained; for example, any glyph or mark classes must be defined within the file. No assumption should be made about the validity of the syntax.
 
 Any `include()` statements must be relative to the UFO path, _not_ to the `features.fea` file itself.
 
