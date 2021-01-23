@@ -99,7 +99,7 @@ Layers are implemented with a series of glyph sets within the UFO. Each glyph se
 
 #### Character Mapping
 
-A character to glyph mapping for the UFO may be created by skimming the GLIF files in the required layer and retrieving the first Unicode element, if present. There is no guarantee that a single Unicode value will not be used in more than one GLIF. All authoring tools may handle these conflicts in their own particular way. Likewise, a glyph with the same name in more than one layer may have different Unicode values in each layer. Authoring tools using the native file model should maintain the different Unicode values. Import/expert model authoring tools may or may not retain the Unicode values on the layers that are not the required layer. All of this should be done in accordance with the policies outlined in the [Authoring Tool Guidelines].
+A character to glyph mapping for the UFO may be created by skimming the GLIF files in the required layer and retrieving the first Unicode element, if present. There is no guarantee that a single Unicode value will not be used in more than one GLIF. All authoring tools may handle these conflicts in their own particular way. Likewise, a glyph with the same name in more than one layer may have different Unicode values in each layer. Authoring tools using the native file model should maintain the different Unicode values. Import/export model authoring tools may or may not retain the Unicode values on the layers that are not the required layer. All of this should be done in accordance with the policies outlined in the [Authoring Tool Guidelines].
 
 ## Changes from UFO 2
 
