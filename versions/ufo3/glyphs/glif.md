@@ -418,6 +418,10 @@ This key provides a dictionary of data containing object-level lib data for indi
 </dict>
 ```
 
+### public.openTypeCategory
+
+This key is used to define the glyph class of the glyph to be used, for example, in the [OpenType GDEF Glyph Class Definition Table]. The value must be one of following strings : `base`, `mark`, `ligature`, `component`. This data is optional.
+
 ### Example
 
 ```xml
@@ -518,5 +522,6 @@ This key provides a dictionary of data containing object-level lib data for indi
   [XML Property List]: ../../conventions/#xml-property-lists
   [reverse domain naming scheme]: ../../conventions/#reverse-domain-naming-schemes
   [data directory]: ../../data
+  [OpenType GDEF Glyph Class Definition Table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#glyph-class-definition-table
   [OpenType GDEF Ligature Caret List table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#ligature-caret-list-table-overview
   [control characters]: ../../conventions/#controls
