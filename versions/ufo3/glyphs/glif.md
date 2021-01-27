@@ -345,16 +345,54 @@ The following is a registry of public lib keys that map to functionality that is
 
 This key is used for representing the "mark" color seen in various font editors. The value for the key must be a string following the [color definition] standard. This data is optional.
 
-#### public.truetype.instructions
+##### public.truetype.instructions
 
 This key provides a dict defining a set of TrueType instructions assembly code for a glyph. This data is optional.
 
-#### TrueType Instructions Dict
-| key           | value type | description  |
-|---------------|------------|--------------|
-| formatVersion | string     | Format version. Set to "1". |
-| id            | string     | Hash of glyph outlines which may have been processed by authoring tools. This is computed when the instructions dict is created or modified. It is used to determine if the glyph outlines have changed since the glyph was hinted: if it has, then the instructions for the glyph should not be used by authoring tools. See "Hint ID Computation" below. |
-| assembly      | string     | TrueType instructions assembly. The assembly is as represented with fontTools. |
+```xml
+<key>public.truetype.instructions</key>
+<dict>
+  <key>formatVersion</key>
+  <string>1</string>
+  <key>id</key>
+  <string>fb063b7cbc6859d5e9bd61651e10cbc27b8362c296d3b9fcecaadbf60999b038cae7f3716e9815f9766af29e167e12e89e9e2334a710cd8ce621218f0534f585</string>
+  <key>assembly</key>
+  <string>
+PUSHB[ ]        /* 3 values pushed */
+0
+4
+5
+SRP1[ ] /* SetRefPoint1 */
+SRP2[ ] /* SetRefPoint2 */
+IP[ ]   /* InterpolatePts */
+SVTCA[0]        /* SetFPVectorToAxis */
+PUSHB[ ]        /* 1 value pushed */
+0
+MDAP[1] /* MoveDirectAbsPt */
+PUSHB[ ]        /* 2 values pushed */
+2
+1
+PUSHB[ ]        /* 1 value pushed */
+10
+CALL[ ] /* CallFunction */
+IF[ ]   /* If */
+POP[ ]  /* PopTopStack */
+MDRP[11000]     /* MoveDirectRelPt */
+ELSE[ ] /* Else */
+MIRP[10100]     /* MoveIndirectRelPt */
+EIF[ ]  /* EndIf */
+IUP[0]  /* InterpolateUntPts */
+IUP[1]  /* InterpolateUntPts */
+  </string>
+</dict>
+```
+
+###### TrueType Instructions Dict
+| key | type | description |
+|--|--|--|
+| formatVersion | string | Format version. Set to "1". |
+| id | string | Hash of glyph outlines which may have been processed by authoring tools. This is computed when the instructions dict is created or modified. It is used to determine if the glyph outlines have changed since the glyph was hinted: if it has, then the instructions for the glyph should not be used by authoring tools. See "Hint ID Computation" below. |
+| assembly | string | TrueType instructions assembly. The assembly is as represented with fontTools. |
 
 
 ##### public.verticalOrigin
