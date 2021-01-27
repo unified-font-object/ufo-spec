@@ -36,12 +36,12 @@ This data is optional.
 
 [The OpenType meta table specification.]
 
-#### public.openTypeCategory
+#### public.openTypeCategories
 
 This key is used to define the category of the glyphs to be used, for example, as glyph class in the [OpenType GDEF Glyph Class Definition Table]. The categories are stored in a dictionary keyed by glyph name, each value must be one of `base`, `mark`, `ligature` or `component`. This data is optional.
 
 ```xml
-<key>public.openTypeCategory</key>
+<key>public.openTypeCategories</key>
 <dict>
   <key>A</key>
   <string>base</string>
