@@ -36,6 +36,24 @@ This data is optional.
 
 [The OpenType meta table specification.]
 
+#### public.openTypeCategory
+
+This key is used to define the category of the glyphs to be used, for example, as glyph class in the [OpenType GDEF Glyph Class Definition Table]. The categories are stored in a dictionary keyed by glyph name, each value must be one of `base`, `mark`, `ligature` or `component`. This data is optional.
+
+```xml
+<key>public.openTypeCategory</key>
+<dict>
+  <key>A</key>
+  <string>base</string>
+  <key>B</key>
+  <string>base</string>
+  <key>f_f</key>
+  <string>ligature</string>
+  <key>acutecomb</key>
+  <string>mark</string>
+</dict>
+```
+
 #### public.postscriptNames
 
 This defines a preferred glyph name to Postscript glyph name mapping for glyphs in the font. Authoring tools should use the values defined in this mapping when outputting font data formats such as the `post` and `CFF ` tables in OpenType. This data is optional.
@@ -123,3 +141,4 @@ This key provides a dictionary of data containing object-level lib data for indi
   [data directory]: ../data
   [reverse domain naming scheme]: ../conventions/#reverse-domain-naming-schemes
   [The OpenType meta table specification.]: http://www.microsoft.com/typography/otspec/meta.htm
+  [OpenType GDEF Glyph Class Definition Table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#glyph-class-definition-table
