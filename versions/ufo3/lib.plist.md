@@ -64,14 +64,15 @@ The mapping is stored as a dictionary with glyphs names as keys and Postscript g
 
 #### public.truetype.instructions
 This key provides a dict defining TrueType instructions data.
+The assembly is represented by a single string of fontTools TrueType instructions assembly with optional line formatting between instructions.
 This data is optional.
 
 | key                   | value type | description                 |
 |-----------------------|------------|-----------------------------|
 | formatVersion         | string     | Format version. Set to "1". |
-| controlValue          | dict       | TrueType instructions control values as a dictionary of control values keyed by index. This is optional.                                          |
-| controlValueProgram   | string     | TrueType preprogram assembly as a string. The assembly is as represented by fontTools. This is optional.                                          |
-| fontProgram           | string     | TrueType font program assembly as a string. The assembly as represented by fontTools. This is optional.                                           |
+| controlValue          | dict       | TrueType instructions control values as a dictionary of control values keyed by index. This is optional. |
+| controlValueProgram   | string     | TrueType preprogram assembly as a string. This is optional. |
+| fontProgram           | string     | TrueType font program assembly as a string. This is optional. |
 | maxFunctionDefs       | integer    | Number of function definitions, used by TrueType instructions, stored in the `maxp` in OpenType table as an integer. This is optional.            |
 | maxInstructionDefs    | integer    | Number of instruction definitions, used by TrueType instructions, stored in the `maxp` in OpenType table as an integer. This is optional.         |
 | maxStackElements      | integer    | Maximum stack depth, used by TrueType instructions, stored in the `maxp` in OpenType table as an integer. This is optional.                       |
