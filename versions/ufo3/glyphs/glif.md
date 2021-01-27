@@ -347,7 +347,8 @@ This key is used for representing the "mark" color seen in various font editors.
 
 ##### public.truetype.instructions
 
-This key provides a dict defining a set of TrueType instructions assembly code for a glyph. This data is optional.
+This key provides a dict defining a set of TrueType instructions assembly code for a glyph.
+This data is optional.
 
 ```xml
 <key>public.truetype.instructions</key>
@@ -392,7 +393,7 @@ IUP[1]  /* InterpolateUntPts */
 |--|--|--|
 | formatVersion | string | Format version. Set to "1". |
 | id | string | Hash of glyph outlines which may have been processed by authoring tools. This is computed when the instructions dict is created or modified. It is used to determine if the glyph outlines have changed since the glyph was hinted: if it has, then the instructions for the glyph should not be used by authoring tools. See "Hint ID Computation" below. |
-| assembly | string | TrueType instructions assembly. The assembly is as represented with fontTools. |
+| assembly | string | TrueType instructions assembly as a string. The assembly is represented by a single string of fontTools TrueType instructions assembly with optional line formatting between instructions. |
 
 
 ##### public.verticalOrigin
