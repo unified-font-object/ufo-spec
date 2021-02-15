@@ -389,6 +389,8 @@ IUP[1]  /* InterpolateUntPts */
 ```
 
 ###### TrueType Instructions Dict
+
+{: .name-type-description }
 | key | type | description |
 |--|--|--|
 | formatVersion | string | Format version. Set to "1". |
