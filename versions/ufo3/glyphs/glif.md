@@ -283,6 +283,8 @@ There is no requirement that a contour contain an on-curve point. If a contour c
 
 
 {: .name-description}
+| name | description |
+|--|--|
 | move | A point of this type must be the first in a `contour`. The reverse is not true: a `contour` does not necessarily start with a `move` point. When a `contour` **does** start with a `move` point, it signifies the beginning of an **open** contour. A **closed** contour does **not** start with a `move` and is defined as a cyclic list of points, with no predominant start point. There is always a *next point* and a *previous point*. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline. |
 | line | Draw a straight line from the previous point to this point. The previous point must be a `move`, a `line`, a `curve` or a `qcurve`. It must not be an `offcurve`. |
 | offcurve | This point is part of a curve segment that goes up to the next point that is either a `curve` or a `qcurve`. |
@@ -348,11 +350,11 @@ This key is used for representing the "mark" color seen in various font editors.
 This key provides a dict defining a set of TrueType instructions assembly code for a glyph. This data is optional.
 
 #### TrueType Instructions Dict
-| key           | value type | description                                                                                                                                                                                                                                                                                                                                                |
-|---------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| formatVersion | string     | Format version. Set to "1".                                                                                                                                                                                                                                                                                                                                |
+| key           | value type | description  |
+|---------------|------------|--------------|
+| formatVersion | string     | Format version. Set to "1". |
 | id            | string     | Hash of glyph outlines which may have been processed by authoring tools. This is computed when the instructions dict is created or modified. It is used to determine if the glyph outlines have changed since the glyph was hinted: if it has, then the instructions for the glyph should not be used by authoring tools. See "Hint ID Computation" below. |
-| assembly      | string     | TrueType instructions assembly. The assembly is as represented with fontTools.                                                                                                                                                                                                                                                                             |
+| assembly      | string     | TrueType instructions assembly. The assembly is as represented with fontTools. |
 
 
 ##### public.verticalOrigin
