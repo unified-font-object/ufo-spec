@@ -477,6 +477,13 @@ This key provides a dictionary of data containing object-level lib data for indi
 </dict>
 ```
 
+##### Standardized object lib keys
+
+{: .name-type-description }
+| key | type | description |
+|--|--|--|
+| public.truetype.compositeFlags | list | This key is used in a component object-level dictionary and provides a list of bit that should be set in the TrueType Composite Glyph flags. The bit numbers that can be set are bits 4 (ROUND_XY_TO_GRID) or 9 (USE_MY_METRICS) listed in the [OpenType glyf Composite Glyph Description]. **Note**: Bit 10 (OVERLAP_COMPOUND) should be taken from the glyph lib key "public.truetype.overlap" for the first component and should not be set for other components. Any other bit must not be set here and should be set by authoring tools in TrueType binaries. Authoring tools may ignore this data. This data is optional.
+
 ### Example
 
 ```xml
@@ -578,4 +585,6 @@ This key provides a dictionary of data containing object-level lib data for indi
   [reverse domain naming scheme]: ../../conventions/#reverse-domain-naming-schemes
   [data directory]: ../../data
   [OpenType GDEF Ligature Caret List table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#ligature-caret-list-table-overview
+  [OpenType glyf Composite Glyph Description]: https://docs.microsoft.com/en-us/typography/opentype/spec/glyf#composite-glyph-description
+  [OpenType glyf Simple Glyph Description]: https://docs.microsoft.com/en-us/typography/opentype/spec/glyf#simple-glyph-description
   [control characters]: ../../conventions/#controls
