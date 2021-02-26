@@ -397,6 +397,10 @@ IUP[1]  /* InterpolateUntPts */
 | id | string | Hash of glyph outlines which may have been processed by authoring tools. This is computed when the instructions dict is created or modified. It is used to determine if the glyph outlines have changed since the glyph was hinted: if it has, then the instructions for the glyph should not be used by authoring tools. See "Hint ID Computation" below. |
 | assembly | string | TrueType instructions assembly as a string. The assembly is represented by a single string of fontTools TrueType instructions assembly with optional line formatting between instructions. |
 
+#### public.truetype.overlap
+
+This key is a boolean used for indicating the glyph contours or components may have overlap.
+Authoring tools may use this to set bit 6 (OVERLAP_SIMPLE) in the TrueType Simple Glyph flags or bit 10 (OVERLAP_COMPOUND) in the TrueType Composite Glyph flags listed in the [OpenType glyf Simple Glyph Description] and the [OpenType glyf Composite Glyph Description]. Authoring tools may ignore or override this data. This data is optional.
 
 ##### public.verticalOrigin
 
