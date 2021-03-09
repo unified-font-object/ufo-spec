@@ -38,9 +38,11 @@ This data is optional.
 
 #### public.openTypeCategories
 
-This key is used to define the category of the glyphs to be used, for example, as glyph class in the [OpenType GDEF Glyph Class Definition Table]. The categories are stored in a dictionary keyed by glyph name. Both key and values must be strings. Values must be one of `base`, `mark`, `ligature` or `component`. This data is optional.
+This key is used to define the category of the glyphs to be used, for example, as glyph class in the [OpenType GDEF Glyph Class Definition Table]. The categories are stored in a dictionary keyed by glyph name. Both key and values must be strings. Values must be one of `unassigned`, `base`, `mark`, `ligature` or `component`. This data is optional.
 
 The dictionary may contain glyph names that are not in the font. The dictionary may not contain a key, value pair for all glyphs in the font.
+**Note:** If a glyph's category is not defined in the dictionary, authoring tools may assign it to any glyph class in the OpenType GDEF Glyph Class Definition Table.
+
 
 ```xml
 <key>public.openTypeCategories</key>
