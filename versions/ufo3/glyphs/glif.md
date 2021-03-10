@@ -482,7 +482,7 @@ This key provides a dictionary of data containing object-level lib data for indi
 {: .name-type-description }
 | key | type | description |
 |--|--|--|
-| public.truetype.roundOffsetToGrid | boolean | This key is used in a component object-level dictionary and, when set to true, indicates bit 2 (ROUND_XY_TO_GRID) listed in the [OpenType glyf Composite Glyph Description] should be set for the component the Component Glyph flags in TrueType binaries. Authoring tools may ignore this data. This data is optional.
+| public.truetype.roundOffsetToGrid | boolean | This key is used in a component object-level dictionary and, when set to true, indicates bit 2 (ROUND_XY_TO_GRID) listed in the [OpenType glyf Composite Glyph Description] should be set for the component in the Component Glyph flags in TrueType binaries. Authoring tools may ignore this data. This data is optional.
 | public.truetype.useMyMetrics | boolean | This key is used in a component object-level dictionary and, when set to true, indicates bit 9 (USE_MY_METRICS) listed in the [OpenType glyf Composite Glyph Description] should be set for the component in the Component Glyph flags in TrueType binaries. It may be used to update the `xOffset, yOffset` of the component and the `width`, `height` and `verticalOrigin` of the glyph it is in. Authoring tools may ignore this data. This data is optional.
 
 ### Example
