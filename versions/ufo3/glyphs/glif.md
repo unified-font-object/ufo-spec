@@ -397,6 +397,10 @@ IUP[1]  /* InterpolateUntPts */
 | id | string | Hash of glyph outlines which may have been processed by authoring tools. This is computed when the instructions dict is created or modified. It is used to determine if the glyph outlines have changed since the glyph was hinted: if it has, then the instructions for the glyph should not be used by authoring tools. See "Hint ID Computation" below. |
 | assembly | string | TrueType instructions assembly as a string. The assembly is represented by a single string of fontTools TrueType instructions assembly with optional line formatting between instructions. |
 
+#### public.truetype.overlap
+
+This key is a boolean used for indicating the glyph contours or components may have overlap.
+Authoring tools may use this to set bit 6 (OVERLAP_SIMPLE) in the TrueType Simple Glyph flags or bit 10 (OVERLAP_COMPOUND) in the TrueType Composite Glyph flags listed in the [OpenType glyf Simple Glyph Description] and the [OpenType glyf Composite Glyph Description]. Authoring tools may ignore or override this data. This data is optional.
 
 ##### public.verticalOrigin
 
@@ -472,6 +476,14 @@ This key provides a dictionary of data containing object-level lib data for indi
   </dict>
 </dict>
 ```
+
+##### Standardized object lib keys
+
+{: .name-type-description }
+| key | type | description |
+|--|--|--|
+| public.truetype.roundOffsetToGrid | boolean | This key is used in a component object-level dictionary and, when set to true, indicates bit 2 (ROUND_XY_TO_GRID) listed in the [OpenType glyf Composite Glyph Description] should be set for the component in the Component Glyph flags in TrueType binaries. Authoring tools may ignore this data. This data is optional.
+| public.truetype.useMyMetrics | boolean | This key is used in a component object-level dictionary and, when set to true, indicates bit 9 (USE_MY_METRICS) listed in the [OpenType glyf Composite Glyph Description] should be set for the component in the Component Glyph flags in TrueType binaries. This data is optional.
 
 ### Example
 
@@ -574,4 +586,6 @@ This key provides a dictionary of data containing object-level lib data for indi
   [reverse domain naming scheme]: ../../conventions/#reverse-domain-naming-schemes
   [data directory]: ../../data
   [OpenType GDEF Ligature Caret List table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#ligature-caret-list-table-overview
+  [OpenType glyf Composite Glyph Description]: https://docs.microsoft.com/en-us/typography/opentype/spec/glyf#composite-glyph-description
+  [OpenType glyf Simple Glyph Description]: https://docs.microsoft.com/en-us/typography/opentype/spec/glyf#simple-glyph-description
   [control characters]: ../../conventions/#controls
