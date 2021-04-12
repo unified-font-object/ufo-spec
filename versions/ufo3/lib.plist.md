@@ -97,6 +97,28 @@ The handling of the feature file is undefined.
 
 This data is optional. Glyph names must not occur more than once. The list may contain glyphs that are not in the font. An empty list or the absence of this key means that all glyphs are to be exported as-is with groups and kerning untouched.
 
+#### public.unicodeVariationSequences
+
+This key is a dictionary for Unicode Variation Sequences. Keys are *Variation Selector* code points as a hexadecimal numbers and values are dictionaries. These dictionaries contain code points as hexidecimal numbers as keys and glyph names as values. This data and the glyphs' Unicode code points can be used to generate the [OpenType cmap subtable format 14] for Unicode [Variation Sequences].
+
+This data is optional.
+
+```xml
+<key>public.unicodeVariationSequences</key>
+<dict>
+  <key>FE0E</key>
+  <dict>
+    <key>1F170</key>
+    <string>Anegativesquared.text</string>
+  </dict>
+  <key>FE0F</key>
+  <dict>
+    <key>1F170</key>
+    <string>Anegativesquared</string>
+  </dict>
+</dict>
+```
+
 #### public.objectLibs
 
 This key provides a dictionary of data containing object-level lib data for individual guidelines within fontinfo.plist. The dictionary is structured with object identifiers that correspond to guidelines as keys and object-level dictionaries as values. Within each of these of these object-level dictionaries, keys should follow a [reverse domain naming scheme]. The pattern "public.\*", where `*` represents an arbitrary string of one or more characters, is reserved for use in standardized lib keys. It is recommended that the data stored as a value be as shallow as possible. If a key in this dictionary is not an identifier of any guideline within fontinfo.plist, the key and value may be discarded.
@@ -146,4 +168,6 @@ This key provides a dictionary of data containing object-level lib data for indi
   [data directory]: ../data
   [reverse domain naming scheme]: ../conventions/#reverse-domain-naming-schemes
   [The OpenType meta table specification.]: http://www.microsoft.com/typography/otspec/meta.htm
+  [OpenType cmap subtable format 14]: https://docs.microsoft.com/en-us/typography/opentype/spec/cmap#format-14-unicode-variation-sequences
   [OpenType GDEF Glyph Class Definition Table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#glyph-class-definition-table
+  [Variation Sequences]: http://www.unicode.org/faq/vs.html
