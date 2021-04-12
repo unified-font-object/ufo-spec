@@ -99,7 +99,7 @@ This data is optional. Glyph names must not occur more than once. The list may c
 
 #### public.unicodeVariationSequences
 
-This key is a dictionary for Unicode Variation Sequences. Keys are *Variation Selector* code points as a hexadecimal numbers and values are dictionaries. These dictionaries contain code points as hexidecimal numbers as keys and glyph names as values. This data can be used to generate the [OpenType cmap subtable format 14] for Unicode [Variation Sequences].
+This key is a dictionary for Unicode Variation Sequences. Keys are *Variation Selector* code points as a hexadecimal numbers and values are dictionaries. These dictionaries contain code points as hexidecimal numbers as keys and glyph names as values. This data and the glyphs' Unicode code points can be used to generate the [OpenType cmap subtable format 14] for Unicode [Variation Sequences].
 
 This data is optional.
 
