@@ -593,9 +593,9 @@ The guideline extends along `angle` to infinity in both directions out of the po
   [The Panose specification.]: https://monotype.github.io/panose/pan1.htm
   [The OpenType vhea table specification]: http://www.microsoft.com/typography/otspec/vhea.htm
   [The OpenType post table specification.]: http://www.microsoft.com/typography/otspec/post.htm
-  [The Postscript Type 1 specification.]: http://partners.adobe.com/public/developer/en/font/T1_SPEC.PDF
-  [The CFF specification.]: http://www.adobe.com/devnet/font/pdfs/5176.CFF.pdf
-  [Adobe FOND Specification]: http://www.adobe.com/devnet/font/pdfs/0091.Mac_Fond.pdf
+  [The Postscript Type 1 specification.]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/T1_SPEC.pdf
+  [The CFF specification.]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/5176.CFF.pdf
+  [Adobe FOND Specification]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/0091.Mac_Fond.pdf
   [Apple FOND Resource Specification]: http://developer.apple.com/documentation/mac/Text/Text-269.html
   [Apple Font Family Record Specification]: http://developer.apple.com/documentation/mac/Text/Text-215.html
   [The WOFF specification]: http://www.w3.org/TR/WOFF

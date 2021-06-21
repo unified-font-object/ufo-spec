@@ -12,7 +12,7 @@ It is important to note that the features file may contain data that is a duplic
 
 ## Specification
 
-The file must be a plain text file and it should be in [AFDKO syntax]. If a feature file is present, it must be self-contained; for example, any glyph or mark classes must be defined within the file. No assumption should be made about the validity of the syntax.
+The file must be a plain text file and it should be in [AFDKO FEA syntax]. If a feature file is present, it must be self-contained; for example, any glyph or mark classes must be defined within the file. No assumption should be made about the validity of the syntax.
 
 Any `include()` statements must be relative to the UFO path, _not_ to the `features.fea` file itself.
 
@@ -28,8 +28,8 @@ feature liga {
 ```
 
 
-  [Adobe Font Development Kit for OpenType]: http://www.adobe.com/devnet/opentype/afdko/
-  [AFDKO syntax]: http://www.adobe.com/devnet/opentype/afdko/topic_feature_file_syntax.html
+  [Adobe Font Development Kit for OpenType]: https://github.com/adobe-type-tools/afdko/
+  [AFDKO FEA syntax]: https://adobe-type-tools.github.io/afdko/OpenTypeFeatureFileSpecification.html
   [kerning.plist]: ../kerning.plist
   [groups.plist]: ../groups.plist
   [fontinfo.plist]: ../fontinfo.plist

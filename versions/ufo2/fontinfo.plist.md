@@ -262,8 +262,8 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 ##### Notes
 
 <a href="http://www.microsoft.com/typography/otspec/post.htm" target="_blank">The OpenType post table specification.</a><br>
-<a href="http://partners.adobe.com/public/developer/en/font/T1_SPEC.PDF" target="_blank">The Postscript Type 1 specification.</a><br>
-<a href="http://www.adobe.com/devnet/font/pdfs/5176.CFF.pdf" target="_blank">The CFF specification.</a><br>
+<a href="https://adobe-type-tools.github.io/font-tech-notes/pdfs/T1_SPEC.pdf" target="_blank">The Postscript Type 1 specification.</a><br>
+<a href="https://adobe-type-tools.github.io/font-tech-notes/pdfs/5176.CFF.pdf" target="_blank">The CFF specification.</a><br>
 
 1.  These fields are a combination of fields in the OpenType post and CFF tables as well as the Type 1 format.
 2.  The post table *minMemType42, maxMemType42, minMemType1* and *maxMemType1* fields should be set by the compiler.
@@ -284,7 +284,7 @@ In several cases, data moved to generic keys can be used in a controlled, slight
 
 ##### Notes
 
-<a href="http://www.adobe.com/devnet/font/pdfs/0091.Mac_Fond.pdf" target="_blank">Adobe FOND Specification</a><br>
+<a href="https://adobe-type-tools.github.io/font-tech-notes/pdfs/0091.Mac_Fond.pdf" target="_blank">Adobe FOND Specification</a><br>
 <a href="http://developer.apple.com/documentation/mac/Text/Text-269.html" target="_blank">Apple FOND Resource Specification</a><br>
 <a href="http://developer.apple.com/documentation/mac/Text/Text-215.html" target="_blank">Apple Font Family Record Specification</a><br>
 
