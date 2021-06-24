@@ -283,7 +283,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 |--|--|--|
 | postscriptFontName | string | Name to be used for the `FontName` field in Type 1/CFF table. |
 | postscriptFullName | string | Name to be used for the `FullName` field in Type 1/CFF table. |
-| postscriptSlantAngle | integer or float | Artificial slant angle. This must be an angle in counter-clockwise degrees from the vertical. This value is *not* the same as the italic angle. It does not correspond to a field in the Type 1/CFF table, it is a legacy value from FontLab. |
+| postscriptSlantAngle | integer or float | Artificial slant angle. This must be an angle in counter-clockwise degrees from the vertical. This value is *not* the same as the italic angle. Font authoring tools may use this value to set the FontMatrix in Type 1/CFF table. |
 | postscriptUniqueID | integer | A unique ID number as defined in the Type 1/CFF specification. |
 | postscriptUnderlineThickness | integer or float | Underline thickness value. Corresponds to the Type 1/CFF/post table `UnderlineThickness` field. |
 | postscriptUnderlinePosition | integer or float | Underline position value. Corresponds to the Type 1/CFF/post table `UnderlinePosition` field. |
