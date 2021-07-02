@@ -1,5 +1,7 @@
 The Unified Font Object (UFO) is a cross-platform, cross-application, human readable, future proof format for storing font data.
 
+The specification is found at [unifiedfontobject.org](http://unifiedfontobject.org)
+
 ## The UFO Design Philosophy
 * The data must be human readable and human editable.
 * The data should be application independent.
