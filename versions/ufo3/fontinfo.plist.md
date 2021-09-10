@@ -599,6 +599,6 @@ The guideline extends along `angle` to infinity in both directions out of the po
   [Apple FOND Resource Specification]: http://developer.apple.com/documentation/mac/Text/Text-269.html
   [Apple Font Family Record Specification]: http://developer.apple.com/documentation/mac/Text/Text-215.html
   [The WOFF specification]: http://www.w3.org/TR/WOFF
-  [XML Property List]: ../conventions.html#propertylist
-  [color definition]: ../conventions.html#colors
-  [conventions]: ../conventions.html#identifiers
+  [XML Property List]: ../conventions#propertylist
+  [color definition]: ../conventions#colors
+  [conventions]: ../conventions#identifiers
