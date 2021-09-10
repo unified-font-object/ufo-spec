@@ -5,6 +5,10 @@ title: Conventions
 
 These are conventions that are used throughout the UFO.
 
+### Allowed Content Types
+
+UFOs may contain only plain files or directories. Symlinks are not allowed anywhere, as they increase the amount of edge cases implementations have to handle without clear benefit, while complicating data exchange across different platforms.
+
 ### XML Property Lists
 
 XML property lists are used throughout this specification. [A DTD is available.]
