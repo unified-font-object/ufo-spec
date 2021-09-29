@@ -15,9 +15,9 @@ The property list data consists of a dictionary at the top level. The keys and v
 {: .name-type-description}
 | key | type | description |
 |--|--|--|
-| creator | string | The application or library that created the UFO. This should follow a [reverse domain naming scheme]. For example, *org.robofab.ufoLib*. |
-| formatVersion | int | The major version number of the UFO format. 3 for UFO 3. |
-| formatVersionMinor | int | The minor version number of the UFO format. Optional if the minor version is 0, must be present if the minor version is not 0. |
+| creator | string | The application or library that created the UFO. This should follow a [reverse domain naming scheme]. For example, *org.robofab.ufoLib*. Optional. |
+| formatVersion | non-negative integer | The major version number of the UFO format. 3 for UFO 3. Required. |
+| formatVersionMinor | non-negative integer | The minor version number of the UFO format. Optional if the minor version is 0, must be present if the minor version is not 0. |
 
 ### Example
 
