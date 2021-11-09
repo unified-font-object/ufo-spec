@@ -371,7 +371,7 @@ Many of these fields *can* be populated from generic elements, but since WOFF is
 | woffMetadataVendor | dictionary | Font vendor. Corresponds to the WOFF `vendor` element. The dictionary must follow the the WOFF Metadata Vendor Record structure. |
 | woffMetadataCredits | dictionary | Font credits. Corresponds to the WOFF `credits` element. The dictionary must follow the WOFF Metadata Credits Record structure. |
 | woffMetadataDescription | dictionary | Font description. Corresponds to the WOFF `description` element. The dictionary must follow the WOFF Metadata Description Record structure. |
-| woffMetadataLicense | dictionary | Font description. Corresponds to the WOFF `license` element. The dictionary must follow the WOFF Metadata License Record structure. |
+| woffMetadataLicense | dictionary | Font license. Corresponds to the WOFF `license` element. The dictionary must follow the WOFF Metadata License Record structure. |
 | woffMetadataCopyright | dictionary | Font copyright. Corresponds to the WOFF `copyright` element. The dictionary must follow the WOFF Metadata Copyright Record structure. |
 | woffMetadataTrademark | dictionary | Font trademark. Corresponds to the WOFF `trademark` element. The dictionary must follow the WOFF Metadata Trademark Record structure. |
 | woffMetadataLicensee | dictionary | Font licensee. Corresponds to the WOFF `licensee` element. The dictionary must follow the WOFF Metadata Licensee Record structure. |
