@@ -206,6 +206,11 @@ Authoring tools may convert instances of contours like this to anchor elements w
 {: #outline }
 ### outline: Outline description.
 
+Note that this element contains descriptions of graphical data. Therefore, 
+
+1. an empty outline element is semantically equivalent to the element not existing in the first place.
+2. an empty contour element is semantically equivalent to the element not existing in the first place.
+
 #### This element has no attributes.
 
 #### Child Elements
