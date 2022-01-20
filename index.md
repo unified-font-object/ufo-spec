@@ -20,19 +20,24 @@ title: Overview
 | [UFO 3] | Published in March 2012. |
 | [UFO 4] | In development. |
 
-### Questions, Comments, Discussions
-
-If you have questions, comments or would like to discuss the UFO specification, please post to the [UFO Specification Google Group].
-
 ### Contribute
 
 [Contributions are welcome!] The source for the documentation, an issue tracker and more are located on [GitHub].
+
+### Questions, Comments, Discussions
+
+If you have questions, comments or would like to discuss the UFO specification, please post to the [UFO Specification Issue Tracker] on our GitHub.
+
+### Updates
+
+If you would like to stay informed about group meetings and other organizational matters, subscribe to the [UFO Specification Google Group].
 
 
   [UFO 1]: versions/ufo1/index.html
   [UFO 2]: versions/ufo2/index.html
   [UFO 3]: versions/ufo3/index.html
   [UFO 4]: versions/ufo4/index.html
-  [UFO Specification Google Group]: https://groups.google.com/g/ufo-spec
   [Contributions are welcome!]: contributing
   [GitHub]: https://github.com/unified-font-object/ufo-spec
+  [UFO Specification Issue Tracker]: https://github.com/unified-font-object/ufo-spec/issues
+  [UFO Specification Google Group]: https://groups.google.com/g/ufo-spec
