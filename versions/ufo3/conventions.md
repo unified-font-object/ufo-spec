@@ -39,7 +39,7 @@ An integer greater than or equal to zero. See above for integer notation.
 
 #### float
 
-A float is specified with an optional sign character ("+" or "-") followed by zero or more digits "0" to "9" followed by a period "." followed by one or more digits "0" to "9". There is no limit to the number of digits before or after the decimal. If a sign character is not present, the number is non-negative.
+A float is specified with an optional sign character ("+" or "-") followed by zero or more digits "0" to "9" followed by a period "." followed by one or more digits "0" to "9". There is no limit to the number of digits before or after the decimal. If a sign character is not present, the number is non-negative. Only normal and zero float types are allowed; NaN, infinite, and subnormal floats are disallowed.
 
 Authoring tools should not write floats that can be represented losslessly as integers unless the specification requires a float.
 
