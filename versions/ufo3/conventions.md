@@ -84,22 +84,23 @@ There is no standard user name to file name conversion. The algorithm below is a
 
 1.  Filenames must be unique.
 2.  Filenames must be case insensitive.
-3.  Filenames may use any character that can be represented by UTF-8 except: \"(0x22) ( (0x28) ) (0x29) \* (0x2A) + (0x2B) / (0x2F) : (0x3A) &lt; (0x3C) &gt; (0x3E) ? (0x3F) \[ (0x5B) \\ (0x5C) \] (0x5D) \| (0x7C) and anything in the ASCII control character range (0x00-0x1F and 0x7F).
+3.  Filenames may use any character that can be represented by UTF-8 except the ones that are reserved across a variety of popular filesystems.
 4.  Filenames must be no longer than 255 characters.
-5.  Filenames, regardless of extension and case, must not match any of the [MS-DOS reserved file names].
+5.  Filenames, regardless of extension and case, must not match any of the [Windows reserved file names].
+6.  Filenames must be valid Unicode strings.
 
 {: .algorithmdiagram}
 -   *name* is the user name without any required prefix or suffix.
 -   *maximum length* is 255 minus the length of a prefix and/or suffix that will be added to the name.
 -   Perform a generic translation of the name without consideration for existing names:
--   -   Replace any illegal characters in *name* with underscores, where the illegal characters are: " \* + / : &lt; &gt; ? \[ \\ \] \| anything in the range 0x00-0x1F and 0x7F.
+-   -   Replace any illegal characters in *name* with underscores, where the illegal characters are: `"` (U+0022) `(` (U+0028) `)` (U+0029) `*` (U+002A) `+` (U+002B) `/` (U+002F) `:` (U+003A) `<` (U+003C) `>` (U+003E) `?` (U+003F) `[` (U+005B) `\` (U+005C) `]` (U+005D) `|` (U+007C) and anything in the ASCII control character range (U+0000–U+001F inclusive and U+007F).
     -   Insert an underscore immediately after any uppercase character.
     -   If the name begins with a period and a prefix will not be added to the name, replace the period with an underscore.
     -   If the revised *name* is longer than *maximum length*:
     -   -   Remove as many characters from the end of *name* as needed to make *name* no longer than *maximum length*.
 
 -   Use period as a delimiter to split *name* into parts. For every one of these parts:
--   -   If a case-insensitive version of *part* is in the list of MS-DOS reserved filenames, where the illegal filenames are: CON, PRN, AUX, CLOCK$, NUL, A:-Z:, COM1, LPT1, LPT2, LPT3, COM2, COM3 and COM4:
+-   -   If a case-insensitive version of *part* is in the list of [Windows reserved file names], where the illegal filenames are: CON, CLOCK$, PRN, AUX, NUL, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8, COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, and LPT9:
     -   -   Insert an underscore at the beginning of the part.
 
 -   Rejoin all of the parts with periods as needed.
@@ -395,4 +396,4 @@ def makeRandomIdentifier(existing, recursionDepth=0):
   [A DTD is available.]: http://www.apple.com/DTDs/PropertyList-1.0.dtd
   [sRGB]: http://en.wikipedia.org/wiki/SRGB
   [reverse domain naming system]: http://en.wikipedia.org/wiki/Reverse-DNS
-  [MS-DOS reserved file names]: http://support.microsoft.com/kb/74496/en-us
+  [Windows reserved file names]: https://docs.microsoft.com/en-gb/windows/win32/fileio/naming-a-file#naming-conventions
