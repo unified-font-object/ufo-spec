@@ -88,7 +88,7 @@ The `name` attribute has limited uses in this version. The *contents.plist* file
 
 #### This element has no child elements.
 
-The first occurrence of this element defines the primary Unicode value for this glyph.
+The first occurrence of this element defines the primary Unicode value for this glyph. Unicode values should not be repeated for a glyph.
 
 #### Example
 
