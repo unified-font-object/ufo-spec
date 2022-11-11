@@ -294,7 +294,7 @@ There is no requirement that a contour contain an on-curve point. If a contour c
 | line | Draw a straight line from the previous point to this point. The previous point must be a `move`, a `line`, a `curve` or a `qcurve`. It must not be an `offcurve`. |
 | offcurve | This point is part of a curve segment that goes up to the next point that is either a `curve` or a `qcurve`. |
 | curve | Draw a cubic bezier curve from the last non-*offcurve* point to this point. The number of *offcurve* points can be zero, one or two. If the number of `offcurve` points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. |
-| qcurve | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. |
+| qcurve | Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle. The number of *offcurve* points preceding this point can be zero, in which case a straight line is drawn from the last non-*offcurve* point to this point. |
 
 #### This element has no child elements.
 
