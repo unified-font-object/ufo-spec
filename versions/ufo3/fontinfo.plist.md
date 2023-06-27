@@ -591,15 +591,14 @@ The guideline extends along `angle` to infinity in both directions out of the po
   [The OpenType hhea table specification]: https://learn.microsoft.com/en-us/typography/opentype/spec/hhea
   [The OpenType name table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/name
   [The OpenType OS/2 table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/os2
-  [The OpenType post table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/post
   [The Panose specification.]: https://monotype.github.io/panose/pan1.htm
-  [The OpenType vhea table specification]: http://www.microsoft.com/typography/otspec/vhea.htm
-  [The OpenType post table specification.]: http://www.microsoft.com/typography/otspec/post.htm
+  [The OpenType vhea table specification]: https://learn.microsoft.com/en-us/typography/opentype/spec/vhea
+  [The OpenType post table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/post
   [The Postscript Type 1 specification.]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/T1_SPEC.pdf
   [The CFF specification.]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/5176.CFF.pdf
   [Adobe FOND Specification]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/0091.Mac_Fond.pdf
-  [Apple FOND Resource Specification]: http://developer.apple.com/documentation/mac/Text/Text-269.html
-  [Apple Font Family Record Specification]: http://developer.apple.com/documentation/mac/Text/Text-215.html
+  [Apple FOND Resource Specification]: https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6fond.html
+  [Apple Font Family Record Specification]: https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6name.html
   [The WOFF specification]: http://www.w3.org/TR/WOFF
   [XML Property List]: ../conventions#propertylist
   [color definition]: ../conventions#colors
