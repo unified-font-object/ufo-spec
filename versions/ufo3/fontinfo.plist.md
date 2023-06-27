@@ -598,7 +598,7 @@ The guideline extends along `angle` to infinity in both directions out of the po
   [The CFF specification.]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/5176.CFF.pdf
   [Adobe FOND Specification]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/0091.Mac_Fond.pdf
   [Apple FOND Resource Specification]: https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6fond.html
-  [Apple Font Family Record Specification]: https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6name.html
+  [Apple Font Family Record Specification]: https://developer.apple.com/documentation/applicationservices/famrec
   [The WOFF specification]: http://www.w3.org/TR/WOFF
   [XML Property List]: ../conventions#propertylist
   [color definition]: ../conventions#colors
