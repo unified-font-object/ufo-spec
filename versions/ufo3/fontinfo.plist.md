@@ -286,7 +286,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 | postscriptSlantAngle | integer or float | Artificial slant angle. This must be an angle in counter-clockwise degrees from the vertical. This value is *not* the same as the italic angle. Font authoring tools may use this value to set the FontMatrix in Type 1/CFF table. |
 | postscriptUniqueID | integer | A unique ID number as defined in the Type 1/CFF specification. |
 | postscriptUnderlineThickness | integer or float | Underline thickness value. Corresponds to the Type 1/CFF/post table `UnderlineThickness` field. |
-| postscriptUnderlinePosition | integer or float | Underline position value. Corresponds to the Type 1/CFF/post table `UnderlinePosition` field. |
+| postscriptUnderlinePosition | integer or float | Underline position value. Corresponds to the Type 1/CFF table `UnderlinePosition` field. The post/CFF2 table `UnderlinePosition` should be calculated from this value by adding half of the `postscriptUnderlineThickness` to `postscriptUnderlinePosition`. |
 | postscriptIsFixedPitch | boolean | Indicates if the font is monospaced. An authoring tool could calculate this automatically, but the designer may wish to override this setting. This corresponds to the Type 1/CFF `isFixedPitched` field |
 | postscriptBlueValues | list | A list of up to 14 integers or floats specifying the values that should be in the Type 1/CFF BlueValues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
 | postscriptOtherBlues | list | A list of up to 10 integers or floats specifying the values that should be in the Type 1/CFF OtherBlues field. This list must contain an even number of integers following the rules defined in the Type 1/CFF specification. |
@@ -343,6 +343,7 @@ Records should have a unique `nameID`, `platformID`, `encodingID` and `languageI
 7.  If `postscriptFullName` is not given, the Type 1/CFF `FullName` field can be created by combining the generic `familyName` and `styleName` attributes.
 8.  The Type 1/CFF/post table `italicAngle` field can be found at the generic `italicAngle` attribute.
 9.  The Type 1/CFF `postscriptWeightName` has no standard mapping to the `openTypeOS2WeightClass` value. The only official examples are given in [The OpenType OS/2 table specification.] This means that the value used is often up to the authoring tool or designer. It should be reasonable, e.g. "Medium" for a `openTypeOS2WeightClass` value of 500, "Bold" for a value of 700, etc.
+10.  The difference between CFF/Type1 underline position and post/CFF2 values is documented in [The OpenType post table specification.]
 
 #### Macintosh FOND Resource Data
 
@@ -585,19 +586,19 @@ The guidelines are stored as dictionaries of the following format.
 
 The guideline extends along `angle` to infinity in both directions out of the point defined by `x` and `y`. If `y` and `angle` are omitted, the element represents a vertical guideline. If `x` and `angle` are omitted, the element represents a horizontal guideline.
 
-  [The OpenType gasp table specification.]: http://www.microsoft.com/typography/otspec/gasp.htm
-  [The OpenType head table specification.]: http://www.microsoft.com/typography/otspec/head.htm
-  [The OpenType hhea table specification]: http://www.microsoft.com/typography/otspec/hhea.htm
-  [The OpenType name table specification.]: http://www.microsoft.com/typography/otspec/name.htm
-  [The OpenType OS/2 table specification.]: http://www.microsoft.com/typography/otspec/os2.htm
+  [The OpenType gasp table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/gasp
+  [The OpenType head table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/head
+  [The OpenType hhea table specification]: https://learn.microsoft.com/en-us/typography/opentype/spec/hhea
+  [The OpenType name table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/name
+  [The OpenType OS/2 table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/os2
   [The Panose specification.]: https://monotype.github.io/panose/pan1.htm
-  [The OpenType vhea table specification]: http://www.microsoft.com/typography/otspec/vhea.htm
-  [The OpenType post table specification.]: http://www.microsoft.com/typography/otspec/post.htm
+  [The OpenType vhea table specification]: https://learn.microsoft.com/en-us/typography/opentype/spec/vhea
+  [The OpenType post table specification.]: https://learn.microsoft.com/en-us/typography/opentype/spec/post
   [The Postscript Type 1 specification.]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/T1_SPEC.pdf
   [The CFF specification.]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/5176.CFF.pdf
   [Adobe FOND Specification]: https://adobe-type-tools.github.io/font-tech-notes/pdfs/0091.Mac_Fond.pdf
-  [Apple FOND Resource Specification]: http://developer.apple.com/documentation/mac/Text/Text-269.html
-  [Apple Font Family Record Specification]: http://developer.apple.com/documentation/mac/Text/Text-215.html
+  [Apple FOND Resource Specification]: https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6fond.html
+  [Apple Font Family Record Specification]: https://developer.apple.com/documentation/applicationservices/famrec
   [The WOFF specification]: http://www.w3.org/TR/WOFF
   [XML Property List]: ../conventions#propertylist
   [color definition]: ../conventions#colors
