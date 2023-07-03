@@ -177,5 +177,3 @@ This key provides a dictionary of data containing object-level lib data for indi
   [OpenType cmap subtable format 14]: https://docs.microsoft.com/en-us/typography/opentype/spec/cmap#format-14-unicode-variation-sequences
   [OpenType GDEF Glyph Class Definition Table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#glyph-class-definition-table
   [Variation Sequences]: http://www.unicode.org/faq/vs.html
-  [OpenType Post table]: https://learn.microsoft.com/en-us/typography/opentype/spec/otvarcommonformats
-  [OpenType CFF2 table]: https://learn.microsoft.com/en-us/typography/opentype/spec/cff2
