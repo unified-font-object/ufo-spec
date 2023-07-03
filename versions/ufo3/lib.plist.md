@@ -58,6 +58,12 @@ The dictionary may contain glyph names that are not in the font. The dictionary 
 </dict>
 ```
 
+#### public.openTypePostUnderlinePosition
+
+This defines an integer position for underline, defined as the top of the underline from the baseline. If present, this value should be used for `underlinePosition` of the OpenType `post` and `CFF2`. If `postscriptUnderlinePosition` is not defined, this value should be used to calculate the `Type 1` and OpenType `CFF` `underlinePosition`; if `postscriptUnderlinePosition` is present, that value must be used for `Type 1` and `CFF`. 
+
+To calculate the `Type 1`/`CFF` `underlinePosition` from this value, subtract half of `postscriptUnderlineThickness` from `public.openTypePostUnderlinePosition`. If this result is a float, round the value down (i.e. 33.5 rounds to 33, and −33.5 rounds to −34).
+
 #### public.postscriptNames
 
 This defines a preferred glyph name to Postscript glyph name mapping for glyphs in the font. Authoring tools should use the values defined in this mapping when outputting font data formats such as the `post` and `CFF ` tables in OpenType. This data is optional.
@@ -171,3 +177,5 @@ This key provides a dictionary of data containing object-level lib data for indi
   [OpenType cmap subtable format 14]: https://docs.microsoft.com/en-us/typography/opentype/spec/cmap#format-14-unicode-variation-sequences
   [OpenType GDEF Glyph Class Definition Table]: https://docs.microsoft.com/en-us/typography/opentype/spec/gdef#glyph-class-definition-table
   [Variation Sequences]: http://www.unicode.org/faq/vs.html
+  [OpenType Post table]: https://learn.microsoft.com/en-us/typography/opentype/spec/otvarcommonformats
+  [OpenType CFF2 table]: https://learn.microsoft.com/en-us/typography/opentype/spec/cff2
