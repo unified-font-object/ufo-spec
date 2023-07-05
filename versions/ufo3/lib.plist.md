@@ -58,6 +58,10 @@ The dictionary may contain glyph names that are not in the font. The dictionary 
 </dict>
 ```
 
+#### public.openTypeHeadModified
+
+A string that may be used by authoring tools to set the `modified` date in the `head` table. It is expressed as a string of the format “YYYY/MM/DD HH:MM:SS”. “YYYY/MM/DD” is year/month/day. The month must be in the range 1-12 and the day must be in the range 1-end of month. “HH:MM:SS” is hour:minute:second. The hour must be in the range 0:23. The minute and second must each be in the range 0-59. The timezone is UTC.
+
 #### public.openTypePostUnderlinePosition
 
 This defines an integer position for underline, defined as the top of the underline from the baseline (the [OpenType post table definition]). If present, this value should be used for `underlinePosition` of the OpenType `post` table. If `postscriptUnderlinePosition` is not defined, this value should be used to calculate the `Type 1` and OpenType `CFF` `underlinePosition`; if `postscriptUnderlinePosition` is also present in addition to `public.openTypePostUnderlinePosition`, the `postscriptUnderlinePosition` value must be used for `Type 1` and `CFF`. 
