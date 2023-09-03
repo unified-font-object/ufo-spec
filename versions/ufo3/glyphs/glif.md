@@ -338,7 +338,7 @@ This element is a place for the user to define arbitrary text about the glyph. T
 {: #lib }
 ### lib: Custom data storage.
 
-This element is a place to store authoring tool specific, user specific or otherwise arbitrary data for the glyph. lib must have one child element that is structure as a dictionary formatted as an [XML Property List]. This element may occur at most once. In order to prevent conflicts in the lib, keys in the top level should follow a [reverse domain naming scheme]. The pattern "public.\*", where \* represents an arbitrary string of one or more characters, is reserved for use in standardized lib keys. It is recommended that the data stored as a value be as shallow as possible.
+This element is a place to store authoring tool specific, user specific or otherwise arbitrary data for the glyph. lib must have either zero or one child element that is structured as a dictionary formatted as an [XML Property List]. This element may occur at most once. In order to prevent conflicts in the lib, keys in the top level should follow a [reverse domain naming scheme]. The pattern "public.\*", where \* represents an arbitrary string of one or more characters, is reserved for use in standardized lib keys. It is recommended that the data stored as a value be as shallow as possible.
 
 Data that is too complex or too large for lib can be stored in the [data directory].
 
