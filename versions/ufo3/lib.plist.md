@@ -24,6 +24,12 @@ This key is used for representing the user's preferred glyph order in the font. 
 
 The glyph order is stored as a list of glyphs names. Glyph names must not occur more than once. Glyph names in the font may not appear in the order. The order may contain glyphs that are not in the font.
 
+#### public.groupOrder
+
+This key is used for representing the user's preferred [group] order in the font. Authoring tools may use this order for displaying groups to the user. However, authoring tools are not required to use this order in any way. This data is optional.
+
+The group order is stored as a list of group names. Group names must not occur more than once. Group names in the font may not appear in the order. The order may contain groups that are not in the font.
+
 #### public.openTypeMeta
 
 This key is used for representing the `meta` table in OpenType, stored as a dictionary keyed by tag.
@@ -183,3 +189,5 @@ This key provides a dictionary of data containing object-level lib data for indi
   [Variation Sequences]: http://www.unicode.org/faq/vs.html
   [OpenType post table definition]: https://learn.microsoft.com/en-us/typography/opentype/spec/post
   [OpenType normalization]: https://docs.microsoft.com/en-us/typography/opentype/spec/otvaroverview#coordinate-scales-and-normalization
+  [group]: ../groups.plist
+  
