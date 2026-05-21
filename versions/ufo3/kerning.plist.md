@@ -150,7 +150,7 @@ The task of finding a value for a particular glyph + glyph combination is relati
 - If the first glyph is in a kerning group:
     - *first group* is the name of the kerning group containing the first glyph.
     - If the pair *first group + second glyph* is in the kerning data:
-        - The value for *first first + second glyph* is the value.
+        - The value for *first group + second glyph* is the value.
         - Stop.
 
 - If the first glyph is in a kerning group and the second glyph is in a kerning group:
